@@ -1,0 +1,178 @@
+
+Gcontroller.RepoHelper#getJGitRepository(Ljava/lang/String;)Lmodel/Repo;f
+\C:/Users/Marco/GitHub/BugRetriever/BugRetriever/git/src/main/java/controller/RepoHelper.java (!"8*ˇ
+2%& %(,Q
+O
+%& %(0
+%3java.io.PrintStream"__id*"
+
+__unknown_file (
+""à
+Ö
+%7 %(_
+%4java.lang.String"__concat*(
+%7 %(Q
+\nERRORE | Il progetto '*-
+%T %(_!
+
+projectNamejava.lang.String§
+°
+	%7 %(ü
+%5java.lang.String"__concat*$
+%7 %(_
+
+%4java.lang.String*L
+	%b %(ü?=
+;' passato NON CORRISPONDE A NESSUN PROGETTO ANALIZZABILE.\n‘—
+	%& %(†
+
+%6void".java.io.PrintStream#print(Ljava/lang/String;)V*7
+
+__unknown_file (
+
+%3java.io.PrintStream*4
+
+__unknown_file (
+
+%5java.lang.String2print(Ljava/lang/String;)"
+
+%¢ %(Æ
+""*ˆ
+4 (O
+M
+ (
+	repoIndex
+model.Repo"__id*"
+
+__unknown_file (
+""ä
+á
+ (
+	repoIndex
+model.Repo"
+__arrayGet*2
+
+__unknown_file (
+
+%0java.util.List*"
+
+__unknown_file (
+""*	
+2
+6
+1*Å
+5 W  (`j
+h
+ E  (`
+repoToCloneReturn
+model.Repo"__id*5
+
+__unknown_file (
+
+	repoIndex
+model.Repo*
+2
+1*ü
+6   (©¶
+   (/
+%1java.lang.String"3model.Repo#getApacheProjectName()Ljava/lang/String;*5
+
+__unknown_file (
+
+	repoIndex
+model.Repo2getApacheProjectName()€ÿ
+   (C
+%2boolean",java.lang.String#equals(Ljava/lang/Object;)Z*4
+
+__unknown_file (
+
+%1java.lang.String*=
+
+__unknown_file (!
+
+projectNamejava.lang.String2equals(Ljava/lang/Object;)*
+4
+5*`
+7 ('L
+J
+ ('
+%0java.util.List"__id*"
+
+__unknown_file (
+""*
+4*k
+8! (%W
+U
+ (&
+repoToCloneReturn
+model.Repo"__id*"
+
+__unknown_file (
+""*
+7*≥	
+1+ +(.,
++, +(0
+%7java.io.File"java.io.Fileµ
+≤
++( +(X
+%8"(java.io.File#<init>(Ljava/lang/String;)V*0
+
+__unknown_file (
+
+%7java.io.File*D
+
+__unknown_file ((&
+$C:\\Users\\Marco\\GitHub\\bookkeeper‘—
++ +(Y
+
+%9void")model.Repo#setPathOfRepo(Ljava/io/File;)V*=
+
+__unknown_file (!
+
+repoToCloneReturn
+model.Repo*0
+
+__unknown_file (
+
+%7java.io.File2setPathOfRepo(Ljava/io/File;)¶£
+2 2(B
+%10java.io.File"-model.Repo#getPathOfLocalRepo()Ljava/io/File;*=
+
+__unknown_file (!
+
+repoToCloneReturn
+model.Repo2getPathOfLocalRepo()≈¬
+0 3(
+%11"+model.Repo#setjGitRepository(LRepository;)V*=
+
+__unknown_file (!
+
+repoToCloneReturn
+model.Repo*"
+
+__unknown_file (
+""2setjGitRepository(LRepository;)îë
+6 6(?
+%12"*model.Repo#getjGitRepository()LRepository;*=
+
+__unknown_file (!
+
+repoToCloneReturn
+model.Repo2getjGitRepository()≠™
+7 7(+
+%13"model.Repo#setGitHandle(LGit;)V*=
+
+__unknown_file (!
+
+repoToCloneReturn
+model.Repo*"
+
+__unknown_file (
+""2setGitHandle(LGit;)"-
+9 9(!!
+
+repoToCloneReturn
+model.Repo:+
+" (4
+projectNamejava.lang.StringB
+controller.RepoHelperH

@@ -1,6 +1,7 @@
 package controller;
 
 import model.Commit;
+import model.Metrics;
 import model.ReleaseTag;
 import model.RepoFile;
 import org.eclipse.jgit.api.errors.GitAPIException;
@@ -71,11 +72,18 @@ public class FileRetriever {
             // Check returned list of commits
             if(relatedCommitsOfCurrentTaggedRelease.isEmpty()){System.out.println("NESSUN COMMIT RELATIVO ALLA TAGGED RELEASE DEL SEGUENTE FILE");}
 
+
+            // Set file's metrics
+            MetricsRetriever mtr = new MetricsRetriever();
+            Metrics metricsToAdd = mtr.metricsHelper(taggedReleaseToGetFiles.getCurrentRepo().getjGitRepository(), treeWalk);
+
+
             // Add file to the list
             filesToReturn.add(new RepoFile(
                     fileName,
                     new File(treeWalk.getPathString()),  // Path of current file
-                    relatedCommitsOfCurrentTaggedRelease
+                    relatedCommitsOfCurrentTaggedRelease,
+                    metricsToAdd
             ));
 
             System.out.println(" -> found: " + treeWalk.getPathString());

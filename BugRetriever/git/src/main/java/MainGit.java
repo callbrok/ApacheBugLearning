@@ -58,6 +58,8 @@ public class MainGit {
                     if(comIndex.getCommitFromJira() != null){System.out.print("\n   JIRA-| " + comIndex.getCommitFromJira().getNameKey());continue;}
                     System.out.print("\n    GIT-| " + comIndex.getCommitFromGit().getShortMessage());
                 }
+
+                System.out.print("\n+ METRICHE:\n+    LOC-| " + rpfIndex.getFileMetrics().getLoc());
             }
         }
 

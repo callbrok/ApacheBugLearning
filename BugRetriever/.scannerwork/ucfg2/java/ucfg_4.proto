@@ -1,0 +1,15 @@
+
+3model.Bug#getResolutionTicketDate()Ljava/util/Date;[
+QC:/Users/Marco/GitHub/BugRetriever/BugRetriever/jira/src/main/java/model/Bug.java ('"1* 
+12 (Fm
+k
+2 (F
+%0java.util.Date"__id*C
+
+__unknown_file ('*%
+	model.Bug"
+resolutionTicketDate""
++ (G
+
+%0java.util.DateB
+	model.BugH
