@@ -68,10 +68,10 @@ public class Proportion {
             // #NOTE TO THINKING OF:
             //      Perche prendo 5 come dice il paper?
             if(bugToCheckIncrement.size() > THRESHOLD){
-                System.err.print("\n\nSCATTATO INCREMENT PER IL BUG --> " + validBugP.getNameKey() + "\n");
+                System.out.print("\n\nSCATTATO INCREMENT PER IL BUG --> " + validBugP.getNameKey() + "\n");
                 p = increment(bugToCheckIncrement);
             }else{
-                System.err.print("\n\nSCATTATO COLD START PER IL BUG --> " + validBugP.getNameKey() + "\n");
+                System.out.print("\n\nSCATTATO COLD START PER IL BUG --> " + validBugP.getNameKey() + "\n");
                 p = takeMedianPColdStart(projectsP);
             }
 
@@ -82,9 +82,9 @@ public class Proportion {
             validBugP.setAffectedAndInjectedVersions(injectedVersion, released);
 
             // Print checking
-            System.err.print("\nCALCULATED AV: ");
-            for(Release rlsIndex : validBugP.getAffectedVersions()){System.err.print(rlsIndex.getIndex() + " ");}
-            System.err.print("\n-------------------\n\n");
+            System.out.print("\nCALCULATED AV: ");
+            for(Release rlsIndex : validBugP.getAffectedVersions()){System.out.print(rlsIndex.getIndex() + " ");}
+            System.out.print("\n-------------------\n\n");
 
             // Flag the bug which use proportion
             validBugP.setPropotionaled(true);
@@ -154,7 +154,7 @@ public class Proportion {
         // Approximate 'injectedVersionIndex' by excess
         if(APROXIMATE){iv = iv.setScale(0, RoundingMode.HALF_UP);}
 
-        System.err.print(currBugToCalcProportion.getNameKey() + "| FV: " + currBugToCalcProportion.getFixedVersions().getIndex() + " | OV: " + currBugToCalcProportion.getOpeningVersion().getIndex() + "| P: " + p + "| IV: " + injectedVersionIndex + " --> " + iv.intValue() );
+        System.out.print(currBugToCalcProportion.getNameKey() + "| FV: " + currBugToCalcProportion.getFixedVersions().getIndex() + " | OV: " + currBugToCalcProportion.getOpeningVersion().getIndex() + "| P: " + p + "| IV: " + injectedVersionIndex + " --> " + iv.intValue() );
 
 
         // Check if the calculated Injected Version's index match with one of Released tagged
@@ -181,19 +181,19 @@ public class Proportion {
         int pBugCounter = 0;
 
         // Printing check
-        // System.err.println("\n  --------- Increment si basera' su i seguenti bug:");
+        // System.out.println("\n  --------- Increment si basera' su i seguenti bug:");
 
         // Scroll through the valid bug list
         for (Bug validBugIncrement : validBugListForIncrement) {
             float currentP = pFormula(validBugIncrement);
 
             // Printing check
-            //System.err.print("\n     PER IL BUG: " + validBugIncrement.getNameKey() + " P E'UGUALE A " + currentP);
+            //System.out.print("\n     PER IL BUG: " + validBugIncrement.getNameKey() + " P E'UGUALE A " + currentP);
 
             finalP = finalP + currentP;
             pBugCounter = pBugCounter + 1;
         }
-        // System.err.println("  --------- Fine increment pe questo Bug\n");
+        // System.out.println("  --------- Fine increment pe questo Bug\n");
 
         return finalP/pBugCounter;
     }
@@ -217,7 +217,7 @@ public class Proportion {
             for(Bug bugIndex : validBug){
 
                 // Print every single p of valid bug not proportioned
-                //System.err.println(bugIndex.getNameKey() + " | " + pFormula(bugIndex));
+                //System.out.println(bugIndex.getNameKey() + " | " + pFormula(bugIndex));
 
                 // Else calc p for the current bug
                 projectP = projectP + pFormula(bugIndex);
@@ -228,7 +228,7 @@ public class Proportion {
             projectsP.add(projectP/pBugCounter);
 
             // Print current project's p
-            System.err.print("\nCALCULATED P FOR PROJECT '" + projectName + "' ---> P: " + projectP/pBugCounter);
+            System.out.print("\nCALCULATED P FOR PROJECT '" + projectName + "' ---> P: " + projectP/pBugCounter);
         }
 
         // return projects p

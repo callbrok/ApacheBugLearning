@@ -1,0 +1,7 @@
+controller\BugRetriever.class
+model\Release.class
+controller\ReleaseRetriever.class
+model\Bug.class
+controller\Proportion.class
+MainJira.class
+controller\JSONHelper.class

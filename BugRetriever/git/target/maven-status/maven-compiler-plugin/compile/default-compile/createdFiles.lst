@@ -1,0 +1,12 @@
+MainGit.class
+model\RepoFile.class
+controller\FileRetriever.class
+model\ReleaseTag.class
+model\Repo.class
+controller\CommitRetriever.class
+controller\ReleaseTagRetriever.class
+controller\RepoHelper$1.class
+controller\RepoHelper.class
+controller\SimpleProgressMonitor.class
+model\Commit.class
+model\Metrics.class

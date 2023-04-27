@@ -189,58 +189,58 @@ public class BugRetriever {
     public void printBugInformation(Bug bug, int bugIndex){
 
         // Print Bug Number
-        System.err.print("\n+-- BUG N." + bugIndex);
+        System.out.print("\n+-- BUG N." + bugIndex);
 
         // Print propotionaled
-        System.err.print("\n+ PROPORTION: " + bug.getPropotionaled());
+        System.out.print("\n+ PROPORTION: " + bug.getPropotionaled());
 
         // Print valid
-        System.err.print("\n+ VALID: " + bug.getValid());
+        System.out.print("\n+ VALID: " + bug.getValid());
 
         // Print namekey
-        System.err.print("\n+ NAME: " + bug.getNameKey());
+        System.out.print("\n+ NAME: " + bug.getNameKey());
 
         // Print Affected Version
         List<Release> affectedReleases = bug.getAffectedVersions();
-        System.err.print("\n+ AFFECTED VERSION: ");
+        System.out.print("\n+ AFFECTED VERSION: ");
 
-        if(affectedReleases == null){System.err.print(" PASSATO VALORE null");}
+        if(affectedReleases == null){System.out.print(" PASSATO VALORE null");}
         else{
             for (Release index : affectedReleases) {
-                System.err.print(index.getName() + " ");
+                System.out.print(index.getName() + " ");
             }
         }
 
 
         // Print data creazione
-        System.err.print("\n+ DATA CREAZIONE: " + bug.getCreationTicketDate());
+        System.out.print("\n+ DATA CREAZIONE: " + bug.getCreationTicketDate());
 
         // Print data risoluzione
-        System.err.print("\n+ DATA RISOLUZIONE: " + bug.getResolutionTicketDate());
+        System.out.print("\n+ DATA RISOLUZIONE: " + bug.getResolutionTicketDate());
 
         // Print fixedversion
-        System.err.print("\n+ FIXED VERSION: ");
-        if(bug.getFixedVersions() == null){System.err.print(" PASSATO VALORE null");}
+        System.out.print("\n+ FIXED VERSION: ");
+        if(bug.getFixedVersions() == null){System.out.print(" PASSATO VALORE null");}
         else {
-            System.err.print(bug.getFixedVersions().getName());
+            System.out.print(bug.getFixedVersions().getName());
         }
 
         // Print openingversion
-        System.err.print("\n+ OPENING VERSION: ");
-        if(bug.getOpeningVersion() == null){System.err.print(" PASSATO VALORE null");}
+        System.out.print("\n+ OPENING VERSION: ");
+        if(bug.getOpeningVersion() == null){System.out.print(" PASSATO VALORE null");}
         else {
-            System.err.print(bug.getOpeningVersion().getName());
+            System.out.print(bug.getOpeningVersion().getName());
         }
 
         // Print injected version
-        System.err.print("\n+ INJECTED VERSION: ");
-        if(bug.getInjectedVersion() == null){System.err.print(" PASSATO VALORE null");}
+        System.out.print("\n+ INJECTED VERSION: ");
+        if(bug.getInjectedVersion() == null){System.out.print(" PASSATO VALORE null");}
         else {
-            System.err.print(bug.getInjectedVersion().getName());
+            System.out.print(bug.getInjectedVersion().getName());
         }
 
 
-        System.err.print("\n+--------------------------\n");
+        System.out.print("\n+--------------------------\n");
 
     }
 

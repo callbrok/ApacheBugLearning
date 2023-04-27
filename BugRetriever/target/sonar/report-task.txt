@@ -3,5 +3,5 @@ projectKey=org.example:BugRetriever
 serverUrl=https://sonarcloud.io
 serverVersion=8.0.0.40443
 dashboardUrl=https://sonarcloud.io/dashboard?id=org.example%3ABugRetriever
-ceTaskId=AYfCXSZu8iad-bqgBUIK
-ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AYfCXSZu8iad-bqgBUIK
+ceTaskId=AYfCtfDUTWpeoxSxRY-n
+ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AYfCtfDUTWpeoxSxRY-n

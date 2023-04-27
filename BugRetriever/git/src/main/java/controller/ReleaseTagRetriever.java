@@ -29,7 +29,7 @@ public class ReleaseTagRetriever {
 
         Git git = project.getGitHandle();
 
-        System.err.println("\n\nListing all tagged release:");
+        System.out.println("\n\nListing all tagged release:");
 
         // Retrieve all project's tags ref object
         List<Ref> call = git.tagList().call();
@@ -47,7 +47,7 @@ public class ReleaseTagRetriever {
                     project                   // Set Repo objects
             ));
 
-            System.err.println("\nAdded Tag: " + ref.getName());
+            System.out.println("\nAdded Tag: " + ref.getName());
         }
 
         return listOfTagReleases;

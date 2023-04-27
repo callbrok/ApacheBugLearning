@@ -34,7 +34,7 @@ public class RepoHelper {
 
         // IMPLEMENTARE SISTEMA DI ERRORE CHE MANDA IN BREAK IL SISTEMA
         // If passed projectName doesn't match, return an error
-        if(repoToCloneReturn == null){System.err.print("\nERRORE | Il progetto '" + projectName + "' passato NON CORRISPONDE A NESSUN PROGETTO ANALIZZABILE.\n"); return null;}
+        if(repoToCloneReturn == null){System.out.print("\nERRORE | Il progetto '" + projectName + "' passato NON CORRISPONDE A NESSUN PROGETTO ANALIZZABILE.\n"); return null;}
 
         // Clone and set the local path where repo was cloned
         //repoToCloneReturn.setPathOfRepo(cloneRepository(repoToCloneReturn));
@@ -67,14 +67,14 @@ public class RepoHelper {
         }
 
         // Clone repo
-        System.err.println("Cloning from " + repoToClone.getGitUrl() + " to " + localPath);
+        System.out.println("Cloning from " + repoToClone.getGitUrl() + " to " + localPath);
         try (Git result = Git.cloneRepository()
                 .setURI(repoToClone.getGitUrl())
                 .setDirectory(localPath)
                 .setProgressMonitor(new SimpleProgressMonitor())
                 .call()) {
             // Note: the call() returns an opened repository already which needs to be closed to avoid file handle leaks!
-            System.err.println("Having repository: " + result.getRepository().getDirectory());
+            System.out.println("Having repository: " + result.getRepository().getDirectory());
 
             // Set gitHandle for the repo
             //
@@ -90,10 +90,10 @@ public class RepoHelper {
     public void deleteRepository(Repo projectRepo) throws IOException {
         // Close handle
         projectRepo.getGitHandle().close();
-        System.err.println("\n\nHANDLE CLOSED");
+        System.out.println("\n\nHANDLE CLOSED");
 
         // clean up here to not keep using more and more disk-space for these samples
         //FileUtils.deleteDirectory(projectRepo.getPathOfLocalRepo());
-        //System.err.println("\nREPO DELETED");
+        //System.out.println("\nREPO DELETED");
     }
 }
