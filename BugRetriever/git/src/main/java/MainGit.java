@@ -55,7 +55,8 @@ public class MainGit {
 
                 for(Commit comIndex : rpfIndex.getRelatedCommits()){
                     if(rpfIndex.getRelatedCommits().isEmpty()){System.out.print("  NESSUN COMMIT ASSEGNATO"); continue;}
-                    System.out.print("\n      -| " + comIndex.getCommitFromJira().getNameKey());
+                    if(comIndex.getCommitFromJira() != null){System.out.print("\n   JIRA-| " + comIndex.getCommitFromJira().getNameKey());continue;}
+                    System.out.print("\n    GIT-| " + comIndex.getCommitFromGit().getShortMessage());
                 }
             }
         }

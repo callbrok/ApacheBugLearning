@@ -13,7 +13,18 @@ public class Commit {
         this.commitFromGit = commitFromGit;
     }
 
+    public Commit(){
+        this.commitFromJira = null;
+        this.commitFromGit = null;
+    }
+
+
+    // Setter
+    public void setCommitFromGit(RevCommit commitFromGit) {this.commitFromGit = commitFromGit;}
+    public void setCommitFromJira(Bug commitFromJira) {this.commitFromJira = commitFromJira;}
+
 
     // Getter
     public Bug getCommitFromJira() {return commitFromJira;}
+    public RevCommit getCommitFromGit() {return commitFromGit;}
 }

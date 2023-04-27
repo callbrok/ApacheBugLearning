@@ -55,15 +55,18 @@ public class CommitRetriever {
 
         // Scroll commit
         for (RevCommit rev : logs) {
+            // Init commit to add
+            Commit commitToAdd = new Commit();
+            commitToAdd.setCommitFromGit(rev);
 
             // Check current commit
             Bug currentBug = commitJiraGitLinker(rev);
 
-            // Check returned bug
-            if(currentBug.getNameKey().equals("NOMATCH")){continue;}
+            // Check returned bug, if the name is different from 'NOMATCH' there is a match with Jira Bug
+            if(!currentBug.getNameKey().equals("NOMATCH")){commitToAdd.setCommitFromJira(currentBug);}
 
             // Add commit to commit list for passed file
-            commitsToReturn.add(new Commit(currentBug, rev));
+            commitsToReturn.add(commitToAdd);
 
             System.out.println("     -- AddedCommit: " + rev.getShortMessage() + "  |  ID: " + rev.getId().getName());
             commitCounter++;
@@ -79,7 +82,7 @@ public class CommitRetriever {
         for(Bug validBugIndex: LISTOFJIRABUG){
 
             // If commit's message contains bug name like 'BOOKKEEPER-46', there is a match
-            if(commit.getShortMessage().contains(validBugIndex.getNameKey())){return validBugIndex;}
+            if(commit.getShortMessage().matches("(.*)" + validBugIndex.getNameKey()  + "(.*)")){return validBugIndex;}
 
         }
 
