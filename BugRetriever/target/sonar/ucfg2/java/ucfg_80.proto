@@ -1,0 +1,15 @@
+
+9model.ReleaseTag#getReferencedFilesList()Ljava/util/List;a
+WC:/Users/Marco/GitHub/BugRetriever/BugRetriever/git/src/main/java/model/ReleaseTag.java (0"1*¦
+1; (Ns
+q
+; (N
+%0java.util.List"__id*I
+
+__unknown_file (-*+
+model.ReleaseTag"
+referencedFilesList""
+4 (O
+
+%0java.util.ListB
+model.ReleaseTagH

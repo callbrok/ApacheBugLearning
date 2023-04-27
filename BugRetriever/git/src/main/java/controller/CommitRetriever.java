@@ -68,7 +68,7 @@ public class CommitRetriever {
             // Add commit to commit list for passed file
             commitsToReturn.add(commitToAdd);
 
-            System.out.println("     -- AddedCommit: " + rev.getShortMessage() + "  |  ID: " + rev.getId().getName());
+            System.err.println("     -- AddedCommit: " + rev.getShortMessage() + "  |  ID: " + rev.getId().getName());
             commitCounter++;
         }
 

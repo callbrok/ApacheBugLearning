@@ -1,0 +1,22 @@
+
+,__sonar_lambda_1$controller.ReleaseRetrieverm
+cC:/Users/Marco/GitHub/BugRetriever/BugRetriever/jira/src/main/java/controller/ReleaseRetriever.java7E 7(j"1*»
+17L 7(Oš—
+7L 7(`
+%19java.util.Date".model.Release#getReleaseDate()Ljava/util/Date;*2
+
+__unknown_file (
+
+rlsmodel.Release2getReleaseDate()tr
+7L 7(j
+%20long"java.util.Date#getTime()J*3
+
+__unknown_file (
+
+%19java.util.Date2	getTime()"
+7L 7(j
+
+%20long: 
+7E 7(H
+rlsmodel.ReleaseB%#
+!java.util.function.ToLongFunction

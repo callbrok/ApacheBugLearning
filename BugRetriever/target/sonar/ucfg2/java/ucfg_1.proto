@@ -1,0 +1,27 @@
+
+(__sonar_lambda_0$controller.BugRetrieverk
+_C:/Users/Marco/GitHub/BugRetriever/BugRetriever/jira/src/main/java/controller/BugRetriever.java£E £(j"1*Ã
+1
+£L £(Oœ™
+
+£L £(`
+%14java.util.Date".model.Release#getReleaseDate()Ljava/util/Date;*2
+
+__unknown_file (
+
+rlsmodel.Release2getReleaseDate()vt
+
+£L £(j
+%15long"java.util.Date#getTime()J*3
+
+__unknown_file (
+
+%14java.util.Date2	getTime()"
+
+£L £(j
+
+%15long:"
+
+£E £(H
+rlsmodel.ReleaseB%#
+!java.util.function.ToLongFunction

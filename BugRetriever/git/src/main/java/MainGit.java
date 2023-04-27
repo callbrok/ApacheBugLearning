@@ -44,22 +44,24 @@ public class MainGit {
 
         // Print dell'intera lista compilata
         for(ReleaseTag rlstIndex : tagRelesesToDoThinks){
-            System.out.print("\n\n+----------------------------------------------------------------------------------------------------+\n" +
+            System.err.print("\n\n+----------------------------------------------------------------------------------------------------+\n" +
                     "+                             RELEASE REFERED BY TAG: " + rlstIndex.getGitTag()  +
                     "\n+----------------------------------------------------------------------------------------------------+\n\n");
 
             for(RepoFile rpfIndex : rlstIndex.getReferencedFilesList()){
-                System.out.print("\n\n+ FILE: " + rpfIndex.getPathOfFile());
-                System.out.print("\n+ NELLA RELEASE CON TAG: " + rlstIndex.getGitTag());
-                System.out.print("\n+ POSSIEDE I SEGUENTI COMMIT:");
+                System.err.print("\n\n+ FILE: " + rpfIndex.getPathOfFile());
+                System.err.print("\n+ NELLA RELEASE CON TAG: " + rlstIndex.getGitTag());
+                System.err.print("\n+ POSSIEDE I SEGUENTI [" + rpfIndex.getRelatedCommits().size() + "] COMMIT:");
 
                 for(Commit comIndex : rpfIndex.getRelatedCommits()){
-                    if(rpfIndex.getRelatedCommits().isEmpty()){System.out.print("  NESSUN COMMIT ASSEGNATO"); continue;}
-                    if(comIndex.getCommitFromJira() != null){System.out.print("\n   JIRA-| " + comIndex.getCommitFromJira().getNameKey());continue;}
-                    System.out.print("\n    GIT-| " + comIndex.getCommitFromGit().getShortMessage());
+                    if(rpfIndex.getRelatedCommits().isEmpty()){System.err.print("  NESSUN COMMIT ASSEGNATO"); continue;}
+                    if(comIndex.getCommitFromJira() != null){System.err.print("\n   JIRA-| " + comIndex.getCommitFromJira().getNameKey());continue;}
+                    System.err.print("\n    GIT-| " + comIndex.getCommitFromGit().getShortMessage());
                 }
             }
         }
+
+        System.err.println("\n\nNUMERO COMMIT TOTALI: ");
 
 
         // After all close current git handle and delete temp cloned repository

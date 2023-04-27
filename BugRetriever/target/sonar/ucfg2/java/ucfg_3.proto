@@ -1,0 +1,94 @@
+
+gcontroller.BugRetriever#retrieveFixedANDOpeningVersion(Ljava/util/Date;Ljava/util/List;)Lmodel/Release;k
+_C:/Users/Marco/GitHub/BugRetriever/BugRetriever/jira/src/main/java/controller/BugRetriever.javaª ª(2"6*‹
+2
+³ ³(!W
+U
+
+³ ³(!
+releaseIndexmodel.Release"__id*"
+
+__unknown_file (
+""˜
+•
+
+³ ³(!
+releaseIndexmodel.Release"
+__arrayGet*8
+
+__unknown_file (
+
+releasedjava.util.List*"
+
+__unknown_file (
+""*
+4
+1*>
+3
+µ µ(#"-
+
+µ µ($
+
+releaseIndexmodel.Release*“
+4
+´ ´(¤¡
+
+´" ´(?
+%2java.util.Date".model.Release#getReleaseDate()Ljava/util/Date;*;
+
+__unknown_file (
+
+releaseIndexmodel.Release2getReleaseDate()ÒÏ
+
+´ ´(@
+%3boolean"(java.util.Date#before(Ljava/util/Date;)Z*:
+
+__unknown_file (
+
+
+TicketDatejava.util.Date*2
+
+__unknown_file (
+
+%2java.util.Date2before(Ljava/util/Date;)*
+2
+3*Ï
+6
+°. °(420
+
+°& °(-
+%0model.Release"model.Release™
+–
+
+°" °(5
+%1")model.Release#<init>(Ljava/lang/String;)V*1
+
+__unknown_file (
+
+%0model.Release*$
+
+__unknown_file (
+NULLi
+g
+
+° °(6 
+releaseToReturnmodel.Release"__id*1
+
+__unknown_file (
+
+%0model.Release*
+2*A
+1
+¹ ¹("0
+
+¹ ¹("
+ 
+releaseToReturnmodel.Release:*
+
+ª3 ª(C
+
+TicketDatejava.util.Date:(
+
+ªD ª(Z
+releasedjava.util.ListB
+controller.BugRetriever

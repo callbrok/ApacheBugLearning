@@ -1,0 +1,96 @@
+
+_controller.CommitRetriever#commitJiraGitLinker(Lorg/eclipse/jgit/revwalk/RevCommit;)Lmodel/Bug;k
+aC:/Users/Marco/GitHub/BugRetriever/BugRetriever/git/src/main/java/controller/CommitRetriever.javaO O(#"5*˘
+2R R(R
+P
+R R(
+validBugIndex	model.Bug"__id*"
+
+__unknown_file (
+""ç
+ä
+R R(
+validBugIndex	model.Bug"
+__arrayGet*2
+
+__unknown_file (
+
+%0java.util.List*"
+
+__unknown_file (
+""*
+4
+1*7
+3Ug U(t"(
+U` U(u
+
+validBugIndex	model.Bug*≠
+4U U(Ã…
+U U('
+%1java.lang.String"Forg.eclipse.jgit.revwalk.RevCommit#getShortMessage()Ljava/lang/String;*J
+
+__unknown_file (.
+,
+commit"org.eclipse.jgit.revwalk.RevCommit2getShortMessage()óî
+U9 U(S
+%2java.lang.String"(model.Bug#getNameKey()Ljava/lang/String;*8
+
+__unknown_file (
+
+validBugIndex	model.Bug2getNameKey()j
+h
+U0 U(S
+%3java.lang.String"__concat*
+U0 U(6
+(.*)*$
+U9 U(S
+
+%2java.lang.Stringj
+h
+U0 U(]
+%4java.lang.String"__concat*$
+U0 U(S
+
+%3java.lang.String*
+UW U(]
+(.*)‘—
+U U(^
+%5boolean"-java.lang.String#matches(Ljava/lang/String;)Z*4
+
+__unknown_file (
+
+%1java.lang.String*4
+
+__unknown_file (
+
+%4java.lang.String2matches(Ljava/lang/String;)*
+2
+3*ã
+5R R(,w
+u
+R R(,
+%0java.util.List"__id*M
+
+__unknown_file (1*/
+controller.CommitRetriever"
+LISTOFJIRABUG*
+2*Î
+1Z Z( (&
+Z Z(
+%6	model.Bug"	model.Bugí
+è
+Z Z(!
+%7"%model.Bug#<init>(Ljava/lang/String;)V*-
+
+__unknown_file (
+
+%6	model.Bug*'
+
+__unknown_file (	
+NOMATCH"
+Z Z("
+
+%6	model.Bug:8
+O$ O(4,
+commit"org.eclipse.jgit.revwalk.RevCommitB
+controller.CommitRetriever

@@ -1,0 +1,13 @@
+controller.CommitRetriever#bugListRefFile(Ljava/lang/String;Lmodel/ReleaseTag;Lmodel/ReleaseTag;Ljava/lang/Boolean;)Ljava/util/List;
+java.util.ArrayList#<init>()V
+org.eclipse.jgit.revwalk.RevCommit#getShortMessage()Ljava/lang/String;
+org.eclipse.jgit.revwalk.RevObject#getId()Lorg/eclipse/jgit/lib/ObjectId;
+java.util.ArrayList#instance-init#
+org.eclipse.jgit.lib.Repository#exactRef(Ljava/lang/String;)Lorg/eclipse/jgit/lib/Ref;
+java.lang.String#equals(Ljava/lang/Object;)Z
+model.Commit#<init>()V
+org.eclipse.jgit.lib.AnyObjectId#getName()Ljava/lang/String;
+controller.BugRetriever#<init>()V
+controller.BugRetriever#instance-init#
+model.Commit#instance-init#
+controller.CommitRetriever#commitJiraGitLinker(Lorg/eclipse/jgit/revwalk/RevCommit;)Lmodel/Bug;

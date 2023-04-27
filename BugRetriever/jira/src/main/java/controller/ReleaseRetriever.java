@@ -78,14 +78,14 @@ public class ReleaseRetriever {
     public void printReleaseList(List<Release> released){
         // Print release objects list
 
-        System.out.print("\n\n+--------- LISTA RELEASE 'RELEASED' ---------\n\n");
+        System.err.print("\n\n+--------- LISTA RELEASE 'RELEASED' ---------\n\n");
 
         for (Release index : released) {
-            System.out.print(index.getIndex() + " | " + index.getId() + " | " + index.getName() + " | " + index.getReleaseDate() + "\n");
+            System.err.print(index.getIndex() + " | " + index.getId() + " | " + index.getName() + " | " + index.getReleaseDate() + "\n");
         }
 
-        System.out.print("\n+ LA LISTA E'COMPOSTA DA " + released.size() + " RELEASE");
-        System.out.print("\n+--------------------------------------------\n\n");
+        System.err.print("\n+ LA LISTA E'COMPOSTA DA " + released.size() + " RELEASE");
+        System.err.print("\n+--------------------------------------------\n\n");
     }
 
 

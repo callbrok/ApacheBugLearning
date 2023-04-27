@@ -20,7 +20,7 @@ public class MainJira {
 
         List<Bug> validBug = gtb.getBug(PROJECT, false, true);
 
-        System.out.println("\n\n ------------------------------------------ \n\n");
+        System.err.println("\n\n ------------------------------------------ \n\n");
 
         int bugIndex = 0;
         for(Bug bg : validBug){

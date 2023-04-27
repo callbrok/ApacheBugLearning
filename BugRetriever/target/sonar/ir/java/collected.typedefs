@@ -1,0 +1,114 @@
+Í
+controller.BugRetriever+
+<init>!controller.BugRetriever#<init>()Vr
+getBughcontroller.BugRetriever#getBug(Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;)Ljava/util/List;º
+injectedVersionsFromJsonFieldsôcontroller.BugRetriever#injectedVersionsFromJsonFields(Lorg/json/JSONArray;Ljava/util/List;Ljava/util/List;Lmodel/Bug;Ljava/lang/Boolean;)Lmodel/Release;Q
+printBugInformation:controller.BugRetriever#printBugInformation(Lmodel/Bug;I)Vâ
+retrieveFixedANDOpeningVersiongcontroller.BugRetriever#retrieveFixedANDOpeningVersion(Ljava/util/Date;Ljava/util/List;)Lmodel/Release;java.lang.ObjectÖ
+controller.JSONHelper)
+<init>controller.JSONHelper#<init>()VL
+readAllAcontroller.JSONHelper#readAll(Ljava/io/Reader;)Ljava/lang/String;a
+readJsonFromUrlNcontroller.JSONHelper#readJsonFromUrl(Ljava/lang/String;)Lorg/json/JSONObject;java.lang.Object…
+
+	model.Bug
+<init>model.Bug#<init>()V/
+<init>%model.Bug#<init>(Ljava/lang/String;)Vd
+calculatedAffectedVersionsFmodel.Bug#calculatedAffectedVersions(Ljava/util/List;)Ljava/util/List;F
+getAffectedVersions/model.Bug#getAffectedVersions()Ljava/util/List;J
+getCreationTicketDate1model.Bug#getCreationTicketDate()Ljava/util/Date;?
+getFixedVersions+model.Bug#getFixedVersions()Lmodel/Release;C
+getInjectedVersion-model.Bug#getInjectedVersion()Lmodel/Release;6
+
+getNameKey(model.Bug#getNameKey()Ljava/lang/String;A
+getOpeningVersion,model.Bug#getOpeningVersion()Lmodel/Release;C
+getPropotionaled/model.Bug#getPropotionaled()Ljava/lang/Boolean;N
+getResolutionTicketDate3model.Bug#getResolutionTicketDate()Ljava/util/Date;3
+getValid'model.Bug#getValid()Ljava/lang/Boolean;l
+setAffectedAndInjectedVersionsJmodel.Bug#setAffectedAndInjectedVersions(Lmodel/Release;Ljava/util/List;)Vm
+setBugcmodel.Bug#setBug(Ljava/lang/String;Ljava/util/Date;Ljava/util/Date;Lmodel/Release;Lmodel/Release;)VD
+setPropotionaled0model.Bug#setPropotionaled(Ljava/lang/Boolean;)Vo
+validCheckerHelperFirstTmodel.Bug#validCheckerHelperFirst(Lmodel/Release;Lmodel/Release;)Ljava/lang/Boolean;Ä
+validCheckerHelperSeconddmodel.Bug#validCheckerHelperSecond(Lmodel/Release;Lmodel/Release;Lmodel/Release;)Ljava/lang/Boolean;java.lang.Objectº
+controller.Proportion)
+<init>controller.Proportion#<init>()V>
+	coldStart1controller.Proportion#coldStart()Ljava/util/List;u
+getInjectedVersionFromPZcontroller.Proportion#getInjectedVersionFromP(FLmodel/Bug;Ljava/util/List;)Lmodel/Release;?
+	increment2controller.Proportion#increment(Ljava/util/List;)Fg
+incrementCheckerScontroller.Proportion#incrementChecker(Ljava/util/List;Lmodel/Bug;)Ljava/util/List;8
+pFormula,controller.Proportion#pFormula(Lmodel/Bug;)Ft
+proportionAlgoHelper\controller.Proportion#proportionAlgoHelper(Ljava/util/List;Ljava/util/List;)Ljava/util/List;U
+takeMedianPColdStart=controller.Proportion#takeMedianPColdStart(Ljava/util/List;)Fjava.lang.Objectõ
+controller.ReleaseRetriever/
+<init>%controller.ReleaseRetriever#<init>()VÅ
+getReleaseFromProjecthcontroller.ReleaseRetriever#getReleaseFromProject(Ljava/lang/String;Ljava/lang/Boolean;)Ljava/util/List;S
+printReleaseList?controller.ReleaseRetriever#printReleaseList(Ljava/util/List;)V`
+setReleaseIndexMcontroller.ReleaseRetriever#setReleaseIndex(Ljava/util/List;)Ljava/util/List;java.lang.ObjectÑ
+model.ReleaseD
+<init>:model.Release#<init>(ILjava/lang/String;Ljava/util/Date;)V3
+<init>)model.Release#<init>(Ljava/lang/String;)V
+getIdmodel.Release#getId()I%
+getIndexmodel.Release#getIndex()I4
+getName)model.Release#getName()Ljava/lang/String;@
+getReleaseDate.model.Release#getReleaseDate()Ljava/util/Date;&
+setIndexmodel.Release#setIndex(I)Vjava.lang.Objectg
+MainJira
+<init>MainJira#<init>()V+
+main#MainJira#main([Ljava/lang/String;)Vjava.lang.ObjectÀ
+model.Commit 
+<init>model.Commit#<init>()VO
+<init>Emodel.Commit#<init>(Lmodel/Bug;Lorg/eclipse/jgit/revwalk/RevCommit;)VW
+getCommitFromGitCmodel.Commit#getCommitFromGit()Lorg/eclipse/jgit/revwalk/RevCommit;@
+getCommitFromJira+model.Commit#getCommitFromJira()Lmodel/Bug;X
+setCommitFromGitDmodel.Commit#setCommitFromGit(Lorg/eclipse/jgit/revwalk/RevCommit;)VA
+setCommitFromJira,model.Commit#setCommitFromJira(Lmodel/Bug;)Vjava.lang.Objectd
+MainGit
+<init>MainGit#<init>()V*
+main"MainGit#main([Ljava/lang/String;)Vjava.lang.ObjectD
+model.Metrics!
+<init>model.Metrics#<init>()Vjava.lang.Object”
+controller.RepoHelper)
+<init>controller.RepoHelper#<init>()VT
+cloneRepositoryAcontroller.RepoHelper#cloneRepository(Lmodel/Repo;)Ljava/io/File;I
+deleteRepository5controller.RepoHelper#deleteRepository(Lmodel/Repo;)V\
+getJGitRepositoryGcontroller.RepoHelper#getJGitRepository(Ljava/lang/String;)Lmodel/Repo;java.lang.ObjectÜ
+ controller.SimpleProgressMonitor4
+<init>*controller.SimpleProgressMonitor#<init>()VM
+	beginTask@controller.SimpleProgressMonitor#beginTask(Ljava/lang/String;I)V6
+endTask+controller.SimpleProgressMonitor#endTask()V>
+isCancelled/controller.SimpleProgressMonitor#isCancelled()ZA
+showDuration1controller.SimpleProgressMonitor#showDuration(Z)V3
+start*controller.SimpleProgressMonitor#start(I)V5
+update+controller.SimpleProgressMonitor#update(I)V$org.eclipse.jgit.lib.ProgressMonitorjava.lang.Object«
+controller.ReleaseTagRetriever2
+<init>(controller.ReleaseTagRetriever#<init>()Vg
+makeTagReleasesListPcontroller.ReleaseTagRetriever#makeTagReleasesList(Lmodel/Repo;)Ljava/util/List;v
+releasesTagJiraGitLinkerZcontroller.ReleaseTagRetriever#releasesTagJiraGitLinker(Ljava/lang/String;)Lmodel/Release;java.lang.ObjectÒ
+controller.FileRetriever,
+<init>"controller.FileRetriever#<init>()Vî
+getAllFilesOfTagReleaseycontroller.FileRetriever#getAllFilesOfTagRelease(Lmodel/ReleaseTag;Lmodel/ReleaseTag;Ljava/lang/Boolean;)Ljava/util/List;java.lang.Object˛
+model.RepoFileR
+<init>Hmodel.RepoFile#<init>(Ljava/lang/String;Ljava/io/File;Ljava/util/List;)V=
+getPathOfFile,model.RepoFile#getPathOfFile()Ljava/io/File;G
+getRelatedCommits2model.RepoFile#getRelatedCommits()Ljava/util/List;java.lang.Objectü
+
+model.RepoB
+<init>8model.Repo#<init>(Ljava/lang/String;Ljava/lang/String;)VK
+getApacheProjectName3model.Repo#getApacheProjectName()Ljava/lang/String;C
+getGitHandle3model.Repo#getGitHandle()Lorg/eclipse/jgit/api/Git;5
+	getGitUrl(model.Repo#getGitUrl()Ljava/lang/String;C
+getPathOfLocalRepo-model.Repo#getPathOfLocalRepo()Ljava/io/File;T
+getjGitRepository?model.Repo#getjGitRepository()Lorg/eclipse/jgit/lib/Repository;D
+setGitHandle4model.Repo#setGitHandle(Lorg/eclipse/jgit/api/Git;)V:
+setPathOfRepo)model.Repo#setPathOfRepo(Ljava/io/File;)VU
+setjGitRepository@model.Repo#setjGitRepository(Lorg/eclipse/jgit/lib/Repository;)Vjava.lang.Object
+controller.CommitRetriever.
+<init>$controller.CommitRetriever#<init>()Vó
+bugListRefFileÑcontroller.CommitRetriever#bugListRefFile(Ljava/lang/String;Lmodel/ReleaseTag;Lmodel/ReleaseTag;Ljava/lang/Boolean;)Ljava/util/List;v
+commitJiraGitLinker_controller.CommitRetriever#commitJiraGitLinker(Lorg/eclipse/jgit/revwalk/RevCommit;)Lmodel/Bug;java.lang.Object∆
+model.ReleaseTag$
+<init>model.ReleaseTag#<init>()VQ
+<init>Gmodel.ReleaseTag#<init>(Ljava/lang/String;Lmodel/Release;Lmodel/Repo;)V?
+getCurrentRepo-model.ReleaseTag#getCurrentRepo()Lmodel/Repo;;
+	getGitTag.model.ReleaseTag#getGitTag()Ljava/lang/String;S
+getReferencedFilesList9model.ReleaseTag#getReferencedFilesList()Ljava/util/List;T
+setReferencedFilesList:model.ReleaseTag#setReferencedFilesList(Ljava/util/List;)Vjava.lang.Object

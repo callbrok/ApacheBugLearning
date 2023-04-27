@@ -1,0 +1,126 @@
+
+Ncontroller.JSONHelper#readJsonFromUrl(Ljava/lang/String;)Lorg/json/JSONObject;g
+]C:/Users/Marco/GitHub/BugRetriever/BugRetriever/jira/src/main/java/controller/JSONHelper.java (,"7*¢
+2 (Ih
+f
+ (I
+jsonorg.json.JSONObject"__id*7
+
+__unknown_file (
+
+%9org.json.JSONObject")
+ (
+
+jsonorg.json.JSONObject*ı
+3 (*f
+d
+ (*
+jsonTextjava.lang.String"__id*4
+
+__unknown_file (
+
+%8java.lang.String<:
++ (>
+%9org.json.JSONObject"org.json.JSONObject∫
+∑
+' (H
+%10"/org.json.JSONObject#<init>(Ljava/lang/String;)V*7
+
+__unknown_file (
+
+%9org.json.JSONObject*:
+
+__unknown_file (
+
+jsonTextjava.lang.String*
+2*ﬁ
+4 (fl
+j
+ (f
+rdjava.io.BufferedReader"__id*:
+
+__unknown_file (
+
+%6java.io.BufferedReader€
+ÿ
+ ()
+%8java.lang.String"Acontroller.JSONHelper#readAll(Ljava/io/Reader;)Ljava/lang/String;*5
+
+__unknown_file ("
+controller.JSONHelper*:
+
+__unknown_file (
+
+rdjava.io.BufferedReader*
+3*ô
+5  (eB@
+$ (2
+%6java.io.BufferedReader"java.io.BufferedReader¿
+Ω
+  (e
+%7"0java.io.BufferedReader#<init>(Ljava/io/Reader;)V*:
+
+__unknown_file (
+
+%6java.io.BufferedReader*=
+
+__unknown_file (!
+
+%4java.io.InputStreamReader*
+4*‘
+6I (KV
+T
+M (c
+%3java.nio.charset.Charset"__id*"
+
+__unknown_file (
+""HF
+7 (H
+%4java.io.InputStreamReader"java.io.InputStreamReaderù
+ö
+3 (d
+%5"Rjava.io.InputStreamReader#<init>(Ljava/io/InputStream;Ljava/nio/charset/Charset;)V*=
+
+__unknown_file (!
+
+%4java.io.InputStreamReader*7
+
+__unknown_file (
+
+isjava.io.InputStream*<
+
+__unknown_file ( 
+
+%3java.nio.charset.Charset*
+5*Ó
+7! ($.,
+ ( 
+%0java.net.URL"java.net.URL¶
+£
+ (%
+%1"(java.net.URL#<init>(Ljava/lang/String;)V*0
+
+__unknown_file (
+
+%0java.net.URL*5
+
+__unknown_file (
+
+urljava.lang.Stringòï
+ (2
+%2java.io.InputStream".java.net.URL#openStream()Ljava/io/InputStream;*0
+
+__unknown_file (
+
+%0java.net.URL2openStream()f
+d
+ (3
+isjava.io.InputStream"__id*7
+
+__unknown_file (
+
+%2java.io.InputStream*
+6:#
+- (7
+urljava.lang.StringB"
+controller.JSONHelperH

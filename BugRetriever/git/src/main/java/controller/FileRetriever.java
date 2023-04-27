@@ -40,7 +40,7 @@ public class FileRetriever {
 
         RevCommit commit = walk.parseCommit(head.getObjectId());
         RevTree tree = commit.getTree();
-        System.out.println("\n\n+----------------------------------------------------------------------------------------------------------------------+\n"
+        System.err.println("\n\n+----------------------------------------------------------------------------------------------------------------------+\n"
                 + "+++ Having tree: " + tree + " for TAG: " + taggedReleaseToGetFiles.getGitTag()  +
                 "\n+----------------------------------------------------------------------------------------------------------------------+\n\n" );
 
@@ -69,7 +69,7 @@ public class FileRetriever {
             List<Commit> relatedCommitsOfCurrentTaggedRelease = gtc.bugListRefFile(treeWalk.getPathString(), taggedReleaseToGetFiles, previousTaggedRelease, isFirst);
 
             // Check returned list of commits
-            if(relatedCommitsOfCurrentTaggedRelease.isEmpty()){System.out.println("NESSUN COMMIT RELATIVO ALLA TAGGED RELEASE DEL SEGUENTE FILE");}
+            if(relatedCommitsOfCurrentTaggedRelease.isEmpty()){System.err.println("NESSUN COMMIT RELATIVO ALLA TAGGED RELEASE DEL SEGUENTE FILE");}
 
             // Add file to the list
             filesToReturn.add(new RepoFile(
@@ -78,7 +78,7 @@ public class FileRetriever {
                     relatedCommitsOfCurrentTaggedRelease
             ));
 
-            System.out.println(" -> found: " + treeWalk.getPathString());
+            System.err.println(" -> found: " + treeWalk.getPathString());
         }
 
         return filesToReturn;
