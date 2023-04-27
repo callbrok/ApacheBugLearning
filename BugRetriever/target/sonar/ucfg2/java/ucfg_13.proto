@@ -1,15 +1,0 @@
-
-/model.Bug#getAffectedVersions()Ljava/util/List;[
-QC:/Users/Marco/GitHub/BugRetriever/BugRetriever/jira/src/main/java/model/Bug.java (,"1*œ
-17 (Gi
-g
-7 (G
-%0java.util.List"__id*?
-
-__unknown_file (#*!
-	model.Bug"
-affectedVersions""
-0 (H
-
-%0java.util.ListB
-	model.BugH

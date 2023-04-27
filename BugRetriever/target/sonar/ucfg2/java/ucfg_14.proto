@@ -1,15 +1,0 @@
-
-+model.Bug#getFixedVersions()Lmodel/Release;[
-QC:/Users/Marco/GitHub/BugRetriever/BugRetriever/jira/src/main/java/model/Bug.java (#"1*–
-1. (:d
-b
-. (:
-%0model.Release"__id*;
-
-__unknown_file (*
-	model.Bug"
-fixedVersion"!
-' (;
-
-%0model.ReleaseB
-	model.BugH

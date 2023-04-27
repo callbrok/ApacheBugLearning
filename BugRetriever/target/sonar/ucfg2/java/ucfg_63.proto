@@ -1,16 +1,0 @@
-
-,model.RepoFile#getPathOfFile()Ljava/io/File;_
-UC:/Users/Marco/GitHub/BugRetriever/BugRetriever/git/src/main/java/model/RepoFile.java ("1*—
-1( (2f
-d
-( (2
-%0java.io.File"__id*>
-
-__unknown_file ("* 
-model.RepoFile"
-
-pathOfFile" 
-! (3
-
-%0java.io.FileB
-model.RepoFileH

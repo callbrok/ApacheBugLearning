@@ -1,15 +1,0 @@
-
-.model.Release#getReleaseDate()Ljava/util/Date;_
-UC:/Users/Marco/GitHub/BugRetriever/BugRetriever/jira/src/main/java/model/Release.java ("1*›
-1) (4h
-f
-) (4
-%0java.util.Date"__id*>
-
-__unknown_file ("* 
-model.Release"
-releaseDate""
-" (5
-
-%0java.util.DateB
-model.ReleaseH

@@ -1,49 +1,0 @@
-
-2controller.Proportion#increment(Ljava/util/List;)Fi
-]C:/Users/Marco/GitHub/BugRetriever/BugRetriever/jira/src/main/java/controller/Proportion.java≠ ≠("2*ù
-2
-ª ª("X
-V
-
-ª ª("
-validBugIncrement	model.Bug"__id*"
-
-__unknown_file (
-""©
-¶
-
-ª ª("
-validBugIncrement	model.Bug"
-__arrayGet*H
-
-__unknown_file (,
-*
-validBugListForIncrementjava.util.List*"
-
-__unknown_file (
-""*
-3
-1*÷
-3
-º º(%ø
-º
-
-º º(8
-%0float",controller.Proportion#pFormula(Lmodel/Bug;)F*5
-
-__unknown_file (
-controller.Proportion*<
-
-__unknown_file ( 
-
-validBugIncrement	model.Bug*
-2*%
-1
-∆ ∆("
-
-∆ ∆("
-"":8
-
-≠ ≠(>*
-validBugListForIncrementjava.util.ListB
-controller.ProportionP

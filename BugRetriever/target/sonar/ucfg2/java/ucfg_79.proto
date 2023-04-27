@@ -1,15 +1,0 @@
-
-.model.ReleaseTag#getGitTag()Ljava/lang/String;a
-WC:/Users/Marco/GitHub/BugRetriever/BugRetriever/git/src/main/java/model/ReleaseTag.java ("1*ù
-1& (,h
-f
-& (,
-%0java.lang.String"__id*<
-
-__unknown_file ( *
-model.ReleaseTag"
-gitTag"$
- (-
-
-%0java.lang.StringB
-model.ReleaseTagH

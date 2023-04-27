@@ -1,15 +1,0 @@
-
-1model.Bug#getCreationTicketDate()Ljava/util/Date;[
-QC:/Users/Marco/GitHub/BugRetriever/BugRetriever/jira/src/main/java/model/Bug.java (%"1*ž
-10 (Bk
-i
-0 (B
-%0java.util.Date"__id*A
-
-__unknown_file (%*#
-	model.Bug"
-creationTicketDate""
-) (C
-
-%0java.util.DateB
-	model.BugH

@@ -1,5 +1,0 @@
-controller.CommitRetriever#commitJiraGitLinker(Lorg/eclipse/jgit/revwalk/RevCommit;)Lmodel/Bug;
-org.eclipse.jgit.revwalk.RevCommit#getShortMessage()Ljava/lang/String;
-java.lang.String#matches(Ljava/lang/String;)Z
-model.Bug#<init>(Ljava/lang/String;)V
-model.Bug#instance-init#

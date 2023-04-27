@@ -1,15 +1,0 @@
-
-+model.Commit#getCommitFromJira()Lmodel/Bug;]
-SC:/Users/Marco/GitHub/BugRetriever/BugRetriever/git/src/main/java/model/Commit.java ( "1*“
-1+ (9e
-c
-+ (9
-%0	model.Bug"__id*@
-
-__unknown_file ($*"
-model.Commit"
-commitFromJira"
-$ (:
-
-%0	model.BugB
-model.CommitH
