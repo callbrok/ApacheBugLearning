@@ -42,9 +42,10 @@ public class ReleaseTagRetriever {
 
             // Set, Create and Add ReleaseTag objetc to valid tagged release list
             listOfTagReleases.add(new ReleaseTag(
-                    ref.getName(),            // Set tag name path
-                    releaseToAdd,             // Set Release associated object
-                    project                   // Set Repo objects
+                    ref.getName(),                  // Set tag name path
+                    releaseToAdd,                   // Set Release associated object
+                    project,                        // Set Repo objects
+                    ref.getObjectId().getName()     // Set value of ref object in the repository
             ));
 
             System.out.println("\nAdded Tag: " + ref.getName());

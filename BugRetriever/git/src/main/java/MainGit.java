@@ -1,6 +1,6 @@
 import controller.FileRetriever;
+import controller.JGitHelper;
 import controller.ReleaseTagRetriever;
-import controller.RepoHelper;
 import model.Commit;
 import model.ReleaseTag;
 import model.Repo;
@@ -17,7 +17,7 @@ public class MainGit {
 
     public static void main(String[] args) throws IOException, JSONException, GitAPIException, ParseException {
 
-        RepoHelper gtp = new RepoHelper();
+        JGitHelper gtp = new JGitHelper();
         ReleaseTagRetriever gttr = new ReleaseTagRetriever();
         FileRetriever gtf = new FileRetriever();
 
@@ -59,7 +59,10 @@ public class MainGit {
                     System.out.print("\n    GIT-| " + comIndex.getCommitFromGit().getShortMessage());
                 }
 
-                System.out.print("\n+ METRICHE:\n+    LOC-| " + rpfIndex.getFileMetrics().getLoc());
+                System.out.print("\n+ METRICHE:");
+                System.out.print("\n+    LOC         -| " + rpfIndex.getFileMetrics().getLoc());
+                System.out.print("\n+    LOC_TOUCHED -| " + rpfIndex.getFileMetrics().getLocTouched());
+                System.out.print("\n+    N_AUTHORS   -| " + rpfIndex.getFileMetrics().getnAuth());
             }
         }
 

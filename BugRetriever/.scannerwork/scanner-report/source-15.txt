@@ -1,6 +1,6 @@
 import controller.FileRetriever;
 import controller.ReleaseTagRetriever;
-import controller.RepoHelper;
+import controller.JGitHelper;
 import model.Commit;
 import model.ReleaseTag;
 import model.Repo;

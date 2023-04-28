@@ -1,1 +1,1 @@
-controller.RepoHelper#deleteRepository(Lmodel/Repo;)V
+controller.JGitHelper#deleteRepository(Lmodel/Repo;)V
