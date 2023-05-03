@@ -31,4 +31,10 @@ public class RepoFile {
     public Metrics getFileMetrics() {return fileMetrics;}
     public Boolean getItsBuggy() {return itsBuggy;}
     public String getNameFile() {return nameFile;}
+
+
+    public String getItsBuggyCSV(){
+        if(itsBuggy){return "YES";}
+        return "NO";
+    }
 }

@@ -11,6 +11,7 @@
     <modules>
         <module>git</module>
         <module>jira</module>
+        <module>csv</module>
     </modules>
 
     <properties>
