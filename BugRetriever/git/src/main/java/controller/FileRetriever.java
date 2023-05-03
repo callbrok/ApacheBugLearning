@@ -83,7 +83,8 @@ public class FileRetriever {
                     fileName,
                     new File(treeWalk.getPathString()),  // Path of current file
                     relatedCommitsOfCurrentTaggedRelease,
-                    metricsToAdd
+                    metricsToAdd,
+                    false
             ));
 
             System.out.println(" -> found: " + treeWalk.getPathString());
@@ -91,6 +92,5 @@ public class FileRetriever {
 
         return filesToReturn;
     }
-
 
 }

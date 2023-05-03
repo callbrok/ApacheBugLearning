@@ -10,6 +10,7 @@ import org.json.JSONException;
 
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainGit {
@@ -42,8 +43,21 @@ public class MainGit {
         // di commit riferiti che hanno un associazione con i bug di Jira
 
 
+        // Set RepoFile's Bugginess
+        List<ReleaseTag> tagRelesesWithBugginess = new ArrayList<>(tagRelesesToDoThinks);
+
+        for(ReleaseTag rlsIndex : tagRelesesToDoThinks){
+            for(RepoFile rpIndex : rlsIndex.getReferencedFilesList()){
+                for(Commit cmIndex : rpIndex.getRelatedCommits()){
+                    if(cmIndex.getCommitFromJira()!=null){
+                        tagRelesesWithBugginess = gttr.setBugginess(tagRelesesWithBugginess, rpIndex.getPathOfFile(), cmIndex.getCommitFromJira().getAffectedVersions());
+                    }
+                }
+            }
+        }
+
         // Print dell'intera lista compilata
-        for(ReleaseTag rlstIndex : tagRelesesToDoThinks){
+        for(ReleaseTag rlstIndex : tagRelesesWithBugginess){
             System.out.print("\n\n+----------------------------------------------------------------------------------------------------+\n" +
                     "+                             RELEASE REFERED BY TAG: " + rlstIndex.getGitTag()  +
                     "\n+----------------------------------------------------------------------------------------------------+\n\n");
@@ -51,6 +65,7 @@ public class MainGit {
             for(RepoFile rpfIndex : rlstIndex.getReferencedFilesList()){
                 System.out.print("\n\n+ FILE: " + rpfIndex.getPathOfFile());
                 System.out.print("\n+ NELLA RELEASE CON TAG: " + rlstIndex.getGitTag());
+                System.out.print("\n+ BUGGINESS: " + rpfIndex.getItsBuggy());
                 System.out.print("\n+ POSSIEDE I SEGUENTI [" + rpfIndex.getRelatedCommits().size() + "] COMMIT:");
 
                 for(Commit comIndex : rpfIndex.getRelatedCommits()){

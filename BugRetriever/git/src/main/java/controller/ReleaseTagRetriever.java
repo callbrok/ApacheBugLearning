@@ -1,20 +1,17 @@
 package controller;
 
-import model.Release;
-import model.ReleaseTag;
-import model.Repo;
+import model.*;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.GitAPIException;
 import org.eclipse.jgit.lib.Ref;
 
+import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ReleaseTagRetriever {
-
-
 
     private static List<Release> LISTOFJIRARELEASE = new ArrayList<>();
 
@@ -54,8 +51,6 @@ public class ReleaseTagRetriever {
         return listOfTagReleases;
     }
 
-
-
     private Release releasesTagJiraGitLinker(String releaseTagName){
         // Initialize 'no-match' Release object
         Release errorRelease = new Release("NOMATCH");
@@ -74,6 +69,25 @@ public class ReleaseTagRetriever {
 
         // Return default Release, that allert no matches
         return errorRelease;
+    }
+
+    public List<ReleaseTag> setBugginess(List<ReleaseTag> tagRelesesToDoThinks, File pathOfCurrentFile, List<Release> affectedVersions){
+
+        // Scroll all file of all Release
+        for(ReleaseTag rlsIndex : tagRelesesToDoThinks){
+            // Find a ReleaseTag Object that match with one of passed affected version
+            if(affectedVersions.stream().anyMatch(o -> rlsIndex.getReleaseFromJira().getName().equals(o.getName()))){
+                for(RepoFile rpIndex : rlsIndex.getReferencedFilesList()){
+                    // Find that file that it will set buggy and correspond to the passed path
+                    if(rpIndex.getPathOfFile() == pathOfCurrentFile){
+                        System.out.println("\n\nSettato a true il file: " + pathOfCurrentFile + ", alla versione: " + rlsIndex.getGitTag());
+                        rpIndex.setItsBuggy(true);
+                    }
+                }
+            }
+        }
+
+        return tagRelesesToDoThinks;
     }
 
 }

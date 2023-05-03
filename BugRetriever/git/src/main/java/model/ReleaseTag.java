@@ -26,6 +26,7 @@ public class ReleaseTag {
     public String getGitTag() {return gitTag;}
     public List<RepoFile> getReferencedFilesList() {return referencedFilesList;}
     public String getRefObjectIdGetName() {return refObjectIdGetName;}
+    public Release getReleaseFromJira() {return releaseFromJira;}
 
 
     // Setter
