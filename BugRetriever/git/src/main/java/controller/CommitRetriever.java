@@ -11,6 +11,8 @@ import org.eclipse.jgit.revwalk.RevCommit;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class CommitRetriever {
@@ -37,11 +39,10 @@ public class CommitRetriever {
         Ref previousTag = git.getRepository().exactRef(previousTaggedRelease.getGitTag());
 
         // Init commit list
-        Iterable<RevCommit> logs = null;
+        Iterable<RevCommit> logs = new ArrayList<>();
 
         if(isFirst){
             // If I'm getting the files for the first tagged release, I don't set the tag's range
-
             logs = git.log()
                     .addPath( pathOfFile )      // File name to retrieve commits
                     .call();
@@ -52,6 +53,7 @@ public class CommitRetriever {
                     .addRange(previousTag.getPeeledObjectId(), currentTag.getPeeledObjectId())      // Set tag range
                     .call();
         }
+
 
         // Scroll commit
         for (RevCommit rev : logs) {
@@ -71,6 +73,7 @@ public class CommitRetriever {
             System.out.println("     -- AddedCommit: " + rev.getShortMessage() + "  |  ID: " + rev.getId().getName());
             commitCounter++;
         }
+
 
         return commitsToReturn;
     }

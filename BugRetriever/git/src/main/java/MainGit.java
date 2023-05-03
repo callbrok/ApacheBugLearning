@@ -60,9 +60,16 @@ public class MainGit {
                 }
 
                 System.out.print("\n+ METRICHE:");
-                System.out.print("\n+    LOC         -| " + rpfIndex.getFileMetrics().getLoc());
-                System.out.print("\n+    LOC_TOUCHED -| " + rpfIndex.getFileMetrics().getLocTouched());
-                System.out.print("\n+    N_AUTHORS   -| " + rpfIndex.getFileMetrics().getnAuth());
+                System.out.print("\n+    LOC              -| " + rpfIndex.getFileMetrics().getLoc());
+                System.out.print("\n+    LOC_ADDED        -| " + rpfIndex.getFileMetrics().getLocAdded());
+                System.out.print("\n+    LOC_MAX_ADDED    -| " + rpfIndex.getFileMetrics().getLocMaxAdded());
+                System.out.print("\n+    LOC_TOUCHED      -| " + rpfIndex.getFileMetrics().getLocTouched());
+                System.out.print("\n+    N_REVISION       -| " + rpfIndex.getFileMetrics().getnRevision());
+                System.out.print("\n+    AVG_LOC_ADDED    -| " + rpfIndex.getFileMetrics().getAverageLocAdded());
+                System.out.print("\n+    N_AUTHORS        -| " + rpfIndex.getFileMetrics().getnAuth());
+                System.out.print("\n+    CHURN            -| " + rpfIndex.getFileMetrics().getChurn());
+                System.out.print("\n+    MAX_CHURN        -| " + rpfIndex.getFileMetrics().getMaxChurn());
+                System.out.print("\n+    AVG_CHURN        -| " + rpfIndex.getFileMetrics().getAverageChurn());
             }
         }
 
