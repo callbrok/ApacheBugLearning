@@ -1,10 +1,7 @@
 import controller.FileRetriever;
 import controller.JGitHelper;
 import controller.ReleaseTagRetriever;
-import model.Commit;
-import model.ReleaseTag;
-import model.Repo;
-import model.RepoFile;
+import model.*;
 import org.eclipse.jgit.api.errors.GitAPIException;
 import org.json.JSONException;
 
@@ -50,7 +47,7 @@ public class MainGit {
             for(RepoFile rpIndex : rlsIndex.getReferencedFilesList()){
                 for(Commit cmIndex : rpIndex.getRelatedCommits()){
                     if(cmIndex.getCommitFromJira()!=null){
-                        tagRelesesWithBugginess = gttr.setBugginess(tagRelesesWithBugginess, rpIndex.getPathOfFile(), cmIndex.getCommitFromJira().getAffectedVersions());
+                        tagRelesesWithBugginess = gttr.setBugginess(tagRelesesWithBugginess, rpIndex.getNameFile(), cmIndex.getCommitFromJira().getAffectedVersions());
                     }
                 }
             }

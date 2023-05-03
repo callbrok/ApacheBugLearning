@@ -30,4 +30,5 @@ public class RepoFile {
     public List<Commit> getRelatedCommits() {return relatedCommits;}
     public Metrics getFileMetrics() {return fileMetrics;}
     public Boolean getItsBuggy() {return itsBuggy;}
+    public String getNameFile() {return nameFile;}
 }

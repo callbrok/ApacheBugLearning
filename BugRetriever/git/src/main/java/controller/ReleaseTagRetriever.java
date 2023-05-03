@@ -71,7 +71,7 @@ public class ReleaseTagRetriever {
         return errorRelease;
     }
 
-    public List<ReleaseTag> setBugginess(List<ReleaseTag> tagRelesesToDoThinks, File pathOfCurrentFile, List<Release> affectedVersions){
+    public List<ReleaseTag> setBugginess(List<ReleaseTag> tagRelesesToDoThinks, String fileName, List<Release> affectedVersions){
 
         // Scroll all file of all Release
         for(ReleaseTag rlsIndex : tagRelesesToDoThinks){
@@ -79,8 +79,7 @@ public class ReleaseTagRetriever {
             if(affectedVersions.stream().anyMatch(o -> rlsIndex.getReleaseFromJira().getName().equals(o.getName()))){
                 for(RepoFile rpIndex : rlsIndex.getReferencedFilesList()){
                     // Find that file that it will set buggy and correspond to the passed path
-                    if(rpIndex.getPathOfFile() == pathOfCurrentFile){
-                        System.out.println("\n\nSettato a true il file: " + pathOfCurrentFile + ", alla versione: " + rlsIndex.getGitTag());
+                    if(rpIndex.getNameFile().equals(fileName)){
                         rpIndex.setItsBuggy(true);
                     }
                 }
