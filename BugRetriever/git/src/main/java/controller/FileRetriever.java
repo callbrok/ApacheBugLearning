@@ -75,7 +75,7 @@ public class FileRetriever {
 
             // Set file's metrics
             MetricsRetriever mtr = new MetricsRetriever();
-            Metrics metricsToAdd = mtr.metricsHelper(taggedReleaseToGetFiles, previousTaggedRelease, isFirst, treeWalk, relatedCommitsOfCurrentTaggedRelease);
+            Metrics metricsToAdd = mtr.metricsHelper(taggedReleaseToGetFiles, isFirst, treeWalk, relatedCommitsOfCurrentTaggedRelease);
 
 
             // Add file to the list

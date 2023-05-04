@@ -55,15 +55,20 @@ public class GitController {
 
     private void printAllGitDataSet(List<ReleaseTag> tagRelesesWithBugginess){
         // Print alla data inside the ReleaseTag objects list
+        int counterYes=0;
+        int counterFile=0;
+
         for(ReleaseTag rlstIndex : tagRelesesWithBugginess){
             System.out.print("\n\n+----------------------------------------------------------------------------------------------------+\n" +
                     "+                             RELEASE REFERED BY TAG: " + rlstIndex.getGitTag()  +
                     "\n+----------------------------------------------------------------------------------------------------+\n\n");
 
             for(RepoFile rpfIndex : rlstIndex.getReferencedFilesList()){
+                counterFile = counterFile + 1;
+
                 System.out.print("\n\n+ FILE: " + rpfIndex.getPathOfFile());
                 System.out.print("\n+ NELLA RELEASE CON TAG: " + rlstIndex.getGitTag());
-                System.out.print("\n+ BUGGINESS: " + rpfIndex.getItsBuggy());
+                System.out.print("\n+ BUGGINESS: " + rpfIndex.getItsBuggy()); if(rpfIndex.getItsBuggy()){counterYes = counterYes + 1;}
                 System.out.print("\n+ POSSIEDE I SEGUENTI [" + rpfIndex.getRelatedCommits().size() + "] COMMIT:");
 
                 for(Commit comIndex : rpfIndex.getRelatedCommits()){
@@ -85,6 +90,8 @@ public class GitController {
                 System.out.print("\n+    AVG_CHURN        -| " + rpfIndex.getFileMetrics().getAverageChurn());
             }
         }
+
+        System.out.println("\n\nI FILE BUGGY SONO: " + counterYes + " SU " + counterFile + " CLASSI TOTALI TRA LE VARIE RELEASE");
     }
 
 }

@@ -7,6 +7,7 @@ import org.apache.commons.csv.CSVPrinter;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +20,7 @@ public class CSVGenerator {
 
         List<List<String>> data = new ArrayList<>();
 
+        DecimalFormat df = new DecimalFormat("#.##");
 
         for(ReleaseTag rlstIndex : tagRelesesWithBugginess){
 
@@ -31,11 +33,11 @@ public class CSVGenerator {
                 lineToAdd.add(String.valueOf(rpfIndex.getFileMetrics().getnAuth()));
                 lineToAdd.add(String.valueOf(rpfIndex.getFileMetrics().getLoc()));
                 lineToAdd.add(String.valueOf(rpfIndex.getFileMetrics().getLocAdded()));
-                lineToAdd.add(String.valueOf(rpfIndex.getFileMetrics().getAverageLocAdded()));
+                lineToAdd.add(String.valueOf(df.format(rpfIndex.getFileMetrics().getAverageLocAdded())));
                 lineToAdd.add(String.valueOf(rpfIndex.getFileMetrics().getLocMaxAdded()));
                 lineToAdd.add(String.valueOf(rpfIndex.getFileMetrics().getLocTouched()));
                 lineToAdd.add(String.valueOf(rpfIndex.getFileMetrics().getChurn()));
-                lineToAdd.add(String.valueOf(rpfIndex.getFileMetrics().getAverageChurn()));
+                lineToAdd.add(String.valueOf(df.format(rpfIndex.getFileMetrics().getAverageChurn())));
                 lineToAdd.add(String.valueOf(rpfIndex.getFileMetrics().getMaxChurn()));
                 lineToAdd.add(rpfIndex.getItsBuggyCSV());
 
