@@ -14,11 +14,14 @@ import org.eclipse.jgit.treewalk.TreeWalk;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.FileSystems;
+import java.nio.file.PathMatcher;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class FileRetriever {
+    private static final Boolean GETTESTCLASS = false;
 
     public List<RepoFile> getAllFilesOfTagRelease(ReleaseTag taggedReleaseToGetFiles, ReleaseTag previousTaggedRelease, Boolean isFirst) throws IOException, GitAPIException, ParseException {
         List<RepoFile> filesToReturn = new ArrayList<>();
@@ -64,6 +67,8 @@ public class FileRetriever {
             // If isn't a Java class skip it, WE NEED ONLY JAVA CLASSES TO CALCULATE BUGGINESS
             if(!fileExtension.equals("java")){continue;}
 
+            // Check if we need skip test class, if yes skip it
+            if(!GETTESTCLASS && treeWalk.getPathString().matches("(.*)/test/(.*)")){continue;}
 
             // If the current file match, search related commit that corrisponde to jira bug retrieved jet
             CommitRetriever gtc = new CommitRetriever();
