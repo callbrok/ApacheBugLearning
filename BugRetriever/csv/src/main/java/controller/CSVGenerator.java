@@ -5,6 +5,7 @@ import model.RepoFile;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.DecimalFormat;
@@ -13,7 +14,7 @@ import java.util.List;
 
 public class CSVGenerator {
     private static final String FILENAME="output.csv";
-    public void buildCSV(List<ReleaseTag> tagRelesesWithBugginess) throws IOException {
+    public String buildCSV(List<ReleaseTag> tagRelesesWithBugginess) throws IOException {
 
         String[] headers = {"Version", "Filename", "NR", "NAUTHORS" ,"LOC", "LOC_ADDED", "AVGLOCADDED"
                 , "MAXLOCADDED", "LOCTOUCHED", "CHURN", "AVGCHURN", "MAXCHURN", "BUGGY"};
@@ -48,6 +49,9 @@ public class CSVGenerator {
         FileWriter out = new FileWriter(FILENAME);
         CSVPrinter printer = new CSVPrinter(out, CSVFormat.DEFAULT.withHeader(headers));
 
+        //create a File linked to the same file using the name of this one;
+        File f = new File(FILENAME);
+
         for (List<String> row : data) {
             printer.printRecord(row);
         }
@@ -55,6 +59,7 @@ public class CSVGenerator {
         printer.close();
         out.close();
 
+        return f.getAbsolutePath();
     }
 
 }
