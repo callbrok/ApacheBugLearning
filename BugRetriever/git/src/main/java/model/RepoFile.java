@@ -6,13 +6,13 @@ import java.util.List;
 public class RepoFile {
 
     private String nameFile;
-    private File pathOfFile;
+    private String pathOfFile;
     private List<Commit> relatedCommits;
     private Metrics fileMetrics;
     private Boolean itsBuggy;
 
 
-    public RepoFile(String nameFile, File pathOfFile, List<Commit> relatedCommits, Metrics fileMetrics, Boolean itsBuggy){
+    public RepoFile(String nameFile, String pathOfFile, List<Commit> relatedCommits, Metrics fileMetrics, Boolean itsBuggy){
         this.nameFile = nameFile;
         this.pathOfFile = pathOfFile;
         this.relatedCommits = relatedCommits;
@@ -26,7 +26,7 @@ public class RepoFile {
 
 
     // Getter
-    public File getPathOfFile() {return pathOfFile;}
+    public String getPathOfFile() {return pathOfFile;}
     public List<Commit> getRelatedCommits() {return relatedCommits;}
     public Metrics getFileMetrics() {return fileMetrics;}
     public Boolean getItsBuggy() {return itsBuggy;}

@@ -13,7 +13,7 @@ import java.util.List;
 public class MainGit {
     private static final String PROJECT="BOOKKEEPER";
 
-    public static void main(String[] args) throws IOException, JSONException, GitAPIException, ParseException {
+    public static void main(String[] args) throws Exception {
 
         JGitHelper gtp = new JGitHelper();
         ReleaseTagRetriever gttr = new ReleaseTagRetriever();

@@ -9,7 +9,7 @@ public class GenerateCSV {
 
     private static final String PROJECT="BOOKKEEPER";
 
-    public static void main(String[] args) throws GitAPIException, IOException, ParseException {
+    public static void main(String[] args) throws Exception {
         GitController gtc = new GitController();
         CSVGenerator csv = new CSVGenerator();
 

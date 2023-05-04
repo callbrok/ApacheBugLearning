@@ -13,7 +13,7 @@ import java.util.List;
 
 public class GitController {
 
-    public List<ReleaseTag> retrieveAllGitDataSet(String projectName) throws GitAPIException, IOException, ParseException {
+    public List<ReleaseTag> retrieveAllGitDataSet(String projectName) throws Exception {
         JGitHelper gtp = new JGitHelper();
         ReleaseTagRetriever gttr = new ReleaseTagRetriever();
         FileRetriever gtf = new FileRetriever();

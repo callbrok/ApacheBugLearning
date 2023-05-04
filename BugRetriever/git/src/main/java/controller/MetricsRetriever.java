@@ -1,21 +1,12 @@
 package controller;
 
-import model.Commit;
-import model.Metrics;
-import model.ReleaseTag;
-import model.Repo;
-import org.eclipse.jgit.api.Git;
-import org.eclipse.jgit.api.errors.GitAPIException;
-import org.eclipse.jgit.diff.DiffEntry;
-import org.eclipse.jgit.diff.DiffFormatter;
-import org.eclipse.jgit.diff.Edit;
-import org.eclipse.jgit.diff.RawTextComparator;
+import model.*;
+import org.eclipse.jgit.diff.*;
 import org.eclipse.jgit.lib.*;
 import org.eclipse.jgit.revwalk.RevCommit;
 import org.eclipse.jgit.revwalk.RevTree;
 import org.eclipse.jgit.revwalk.RevWalk;
-import org.eclipse.jgit.treewalk.TreeWalk;
-import org.eclipse.jgit.treewalk.filter.PathFilter;
+import org.eclipse.jgit.treewalk.*;
 import org.eclipse.jgit.util.io.DisabledOutputStream;
 
 import java.io.BufferedReader;
@@ -27,14 +18,13 @@ import java.util.List;
 
 public class MetricsRetriever {
 
-
-    public Metrics metricsHelper(ReleaseTag taggedReleaseToGetFileMetrics, Boolean isFirst, TreeWalk treeWalk, List<Commit> relatedCommitsOfCurrentTaggedRelease) throws IOException, GitAPIException {
+    public Metrics metricsHelper(ReleaseTag taggedReleaseToGetFileMetrics, ReleaseTag previousTaggedReleaseToGetFileMetrics, Boolean isFirst, TreeWalk treeWalk, List<Commit> relatedCommitsOfCurrentTaggedRelease) throws Exception {
 
         // Retrieve LOC Metric -------------------------
         int locMetric = locMetric(taggedReleaseToGetFileMetrics, taggedReleaseToGetFileMetrics.getCurrentRepo().getjGitRepository().findRef("HEAD").getObjectId(), treeWalk.getPathString());
 
         // Retrieve others LOC Metrics -----------------
-        List<Integer> locMetrics = locOtherMetrics(relatedCommitsOfCurrentTaggedRelease, treeWalk, taggedReleaseToGetFileMetrics, isFirst);
+        List<Integer> locMetrics = locOtherMetrics(taggedReleaseToGetFileMetrics, previousTaggedReleaseToGetFileMetrics, treeWalk, isFirst, relatedCommitsOfCurrentTaggedRelease);
         // Integer list where:
         //      1' Element: LOC Added
         //      2' Element: Max LOC Added
@@ -119,126 +109,110 @@ public class MetricsRetriever {
         return nline;
     }
 
-    private List<Integer> locOtherMetrics(List<Commit> relatedCommitsOfCurrentTaggedRelease, TreeWalk treeWalk,  ReleaseTag taggedReleaseToGetFileMetrics, Boolean isFirst) throws IOException {
+
+
+    private List<Integer> locOtherMetrics(ReleaseTag taggedReleaseToGetFileMetrics, ReleaseTag previousTaggedReleaseToGetFileMetrics, TreeWalk treeWalk, Boolean isFirst, List<Commit> relatedCommitsOfCurrentTaggedRelease) throws Exception {
+        // LOC Touched:
+        //      sum over revisions of LOC added and deleted.
+        List<Integer> locMetrics = new ArrayList<>(Arrays.asList(0,0,0,0,0,0));
 
         int linesAdded = 0;
         int linesDeleted = 0;
-        int firstCommitLocAdded = 0;
-        int maxLocAdded = 0;
-        int maxChurn = 0;
-        int totalChurn = 0;
-
-        List<Integer> locMetrics = new ArrayList<>(Arrays.asList(0,0,0,0,0,0));
+        int linesMaxAdded = 0;
+        int churn = 0;
+        int churnMax = 0;
 
         Repository repository = taggedReleaseToGetFileMetrics.getCurrentRepo().getjGitRepository();
 
-        DiffFormatter df = new DiffFormatter(DisabledOutputStream.INSTANCE);
-        df.setRepository(repository);
-        df.setDiffComparator(RawTextComparator.DEFAULT);
-        df.setDetectRenames(true);
+        // Scori tutti i commit che fanno riferimento a quel file
+        for(int k=0; k<relatedCommitsOfCurrentTaggedRelease.size(); k++){
 
-        // Scroll all current file's commit and count the added and deleted line
-        for(int j=relatedCommitsOfCurrentTaggedRelease.size()-1; j>0; j--){
-            RevCommit commit = relatedCommitsOfCurrentTaggedRelease.get(j-1).getCommitFromGit();
-            RevCommit parent = relatedCommitsOfCurrentTaggedRelease.get(j).getCommitFromGit();
+            RevCommit commit = relatedCommitsOfCurrentTaggedRelease.get(k).getCommitFromGit();
+            RevCommit parent;
 
-            // Select only file current file path
-            df.setPathFilter(PathFilter.create( treeWalk.getPathString() ));
-            List<DiffEntry> diffs = df.scan(parent.getTree(), commit.getTree());
+            // #NOTE-TO-THINKING-OF:
+            //      If is the first commmit and there is a previous release of file, take parent for the first commit
+            //      the latest commit of previous release file
+            if(k==0 && !isFirst){
+                parent = takeLatestCommitOfTag(previousTaggedReleaseToGetFileMetrics, treeWalk.getPathString());
+                // If parent return null, the previous release doesn't have a commit
+                if(parent==null){continue;}
+            }
+            //      If is the first commmit and there isn't a previous release of file, add entire line size like
+            //      the file is just added
+            else if(k==0 && isFirst){
+                ObjectId commitId = repository.resolve(relatedCommitsOfCurrentTaggedRelease.get(0).getCommitFromGit().getId().getName());
+                int lineFirstCommit = locMetric(taggedReleaseToGetFileMetrics, commitId, treeWalk.getPathString());
 
-            // Calc loc Metrics
-            List<Integer> locMetricsTemp = locMetricsHelperCalculator(diffs, df);
+                linesAdded += lineFirstCommit;
 
-            // Calc LOC Added and Deleted
-            linesAdded += locMetricsTemp.get(0);
-            linesDeleted += locMetricsTemp.get(3);
+                // Check if is the max
+                if(lineFirstCommit>linesMaxAdded){linesMaxAdded=lineFirstCommit;}
+                continue;
+            }
+            //      Take previous commit for parent assign
+            else{parent = relatedCommitsOfCurrentTaggedRelease.get(k-1).getCommitFromGit();}
 
-            // Check max LOC Added
-            if(locMetricsTemp.get(1)>maxLocAdded){maxLocAdded=locMetricsTemp.get(1);}
+            DiffFormatter df = new DiffFormatter(DisabledOutputStream.INSTANCE);
+            df.setRepository(repository);
+            df.setDiffComparator(RawTextComparator.DEFAULT);
+            df.setDetectRenames(true);
 
-            // Calc total Churn
-            totalChurn += locMetricsTemp.get(4);
+            List<DiffEntry> diffs;
+            diffs = df.scan(parent.getTree(), commit.getTree());
+
+            int tempAdded = 0;
+            int tempDeleted = 0;
+
+            for (DiffEntry diff : diffs) {
+                if(diff.getNewPath().equals(treeWalk.getPathString())){
+                    for (Edit edit : df.toFileHeader(diff).toEditList()) {
+                        tempDeleted += edit.getEndA() - edit.getBeginA();
+                        tempAdded += edit.getEndB() - edit.getBeginB();
+                    }
+                }
+            }
+
+            // Set line LOC
+            linesDeleted += tempDeleted;
+            linesAdded += tempAdded;
+
+            // Check max Added line
+            if(tempAdded>linesMaxAdded){linesMaxAdded=tempAdded;}
+
+            int tempChurn = Math.abs(tempAdded-tempDeleted);
 
             // Check max Churn
-            if(locMetricsTemp.get(5)>maxChurn){maxChurn=locMetricsTemp.get(5);}
+            if(tempChurn > churnMax){churnMax=tempChurn;}
+
+            churn += tempChurn;
+
+            
+            System.out.println("PER IL COMMIT " + k + ": " + relatedCommitsOfCurrentTaggedRelease.get(k).getCommitFromGit().getShortMessage() + " AGGIUNTE: " + tempAdded + " ELIMINATE: " + tempDeleted);
+
         }
 
-        // ------ First Commit Consideration ------
-        // If the file it's created in this release and the commmit file list is not empty
-        // return the loc number of file in the first commit, positioned on the latest commit
-        // of current commit list file
-        if(isFirst && !relatedCommitsOfCurrentTaggedRelease.isEmpty()){
-            ObjectId commitId = repository.resolve(relatedCommitsOfCurrentTaggedRelease.get(relatedCommitsOfCurrentTaggedRelease.size()-1).getCommitFromGit().getId().getName());
-            firstCommitLocAdded = locMetric(taggedReleaseToGetFileMetrics, commitId, treeWalk.getPathString());
-        }
-
-        // Check max LOC Added
-        if(firstCommitLocAdded>maxLocAdded){maxLocAdded=firstCommitLocAdded;}
-
-        // #NOTE-TO-THINKING-OF:
-        //      Se il file è stato creato in una release precedente, non prendo in considerazione
-        //      le modifiche sul primo commit, perchè non prendendo in considerazione tutte le release
-        //      non saprei con quale commit fare il confronto se appartenesse a una release che non faccio
-        //      riferimento da Jira.
-
-        locMetrics.set(0,linesAdded);
-        locMetrics.set(1,maxLocAdded);
-        locMetrics.set(2,(linesDeleted + linesAdded + firstCommitLocAdded));
-        locMetrics.set(3,linesDeleted);
-        locMetrics.set(4,totalChurn);
-        locMetrics.set(5,maxChurn);
-
-        System.out.println("\nADDED: " + linesAdded + " | MAX: " + maxLocAdded + " | TOUCHED: " + (linesDeleted + linesAdded + firstCommitLocAdded) + " | FIRSTADD: " + firstCommitLocAdded);
+        locMetrics.set(0, linesAdded);
+        locMetrics.set(1, linesMaxAdded);
+        locMetrics.set(2, linesAdded+linesDeleted);
+        locMetrics.set(3, linesDeleted);
+        locMetrics.set(4, churn);
+        locMetrics.set(5, churnMax);
 
         return locMetrics;
     }
 
-    private List<Integer> locMetricsHelperCalculator(List<DiffEntry> diffs, DiffFormatter df) throws IOException {
+    private RevCommit takeLatestCommitOfTag(ReleaseTag previousTaggedReleaseToGetFileMetrics, String filePath){
+        // Retrieve the latest commit of passed file of passed tag Release
+        RevCommit commitToReturn = null;
 
-        // 'locMetrics' is a Integer List, where every element is a metric to return:
-        //      1' Element: LOC Added
-        //      2' Element: Max LOC Added
-        //      3' Element: LOC Touched
-        //      4' Element: LOC Deleted
-        //      5' Element: Churn
-        //      6' Element: Max Churn
-        List<Integer> locMetrics = new ArrayList<>(Arrays.asList(0,0,0,0,0,0));
-
-        int linesAdded = 0;
-        int linesDeleted = 0;
-        int maxLocAdded = 0;
-        int maxChurn = 0;
-        int totalChurn = 0;
-
-        for (DiffEntry diff : diffs) {
-            for (Edit edit : df.toFileHeader(diff).toEditList()) {
-                int tempLinesDeleted = edit.getEndA() - edit.getBeginA();
-                int tempLinesAdded = edit.getEndB() - edit.getBeginB();
-
-                // Calc LOC Added and Deleted
-                linesAdded += tempLinesAdded;
-                linesDeleted += tempLinesDeleted;
-
-                // Check max LOC Added
-                if(tempLinesAdded>maxLocAdded){maxLocAdded=tempLinesAdded;}
-
-                // Calc current churn
-                int currentChurn = Math.abs(tempLinesAdded-tempLinesDeleted);
-                // Calc total Churn
-                totalChurn += currentChurn;
-                // Check max Churn
-                if(currentChurn>maxChurn){maxChurn=currentChurn;}
+        for(RepoFile fileIndex : previousTaggedReleaseToGetFileMetrics.getReferencedFilesList()){
+            if(fileIndex.getPathOfFile().equals(filePath) && !fileIndex.getRelatedCommits().isEmpty()){
+                commitToReturn = fileIndex.getRelatedCommits().get(fileIndex.getRelatedCommits().size()-1).getCommitFromGit();
             }
         }
 
-        locMetrics.set(0,linesAdded);
-        locMetrics.set(1,maxLocAdded);
-        locMetrics.set(2,(linesDeleted + linesAdded));
-        locMetrics.set(3,linesDeleted);
-        locMetrics.set(4,totalChurn);
-        locMetrics.set(5,maxChurn);
-
-        return locMetrics;
+        return commitToReturn;
     }
 
 

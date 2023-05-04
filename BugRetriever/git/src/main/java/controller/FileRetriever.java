@@ -14,16 +14,15 @@ import org.eclipse.jgit.treewalk.TreeWalk;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.FileSystems;
-import java.nio.file.PathMatcher;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class FileRetriever {
     private static final Boolean GETTESTCLASS = false;
 
-    public List<RepoFile> getAllFilesOfTagRelease(ReleaseTag taggedReleaseToGetFiles, ReleaseTag previousTaggedRelease, Boolean isFirst) throws IOException, GitAPIException, ParseException {
+    public List<RepoFile> getAllFilesOfTagRelease(ReleaseTag taggedReleaseToGetFiles, ReleaseTag previousTaggedRelease, Boolean isFirst) throws Exception {
         List<RepoFile> filesToReturn = new ArrayList<>();
 
         String fileExtension;
@@ -74,19 +73,23 @@ public class FileRetriever {
             CommitRetriever gtc = new CommitRetriever();
             List<Commit> relatedCommitsOfCurrentTaggedRelease = gtc.bugListRefFile(treeWalk.getPathString(), taggedReleaseToGetFiles, previousTaggedRelease, isFirst);
 
+            // Reverse commit list
+            Collections.reverse(relatedCommitsOfCurrentTaggedRelease);
+
+
             // Check returned list of commits
             if(relatedCommitsOfCurrentTaggedRelease.isEmpty()){System.out.println("NESSUN COMMIT RELATIVO ALLA TAGGED RELEASE DEL SEGUENTE FILE");}
 
 
             // Set file's metrics
             MetricsRetriever mtr = new MetricsRetriever();
-            Metrics metricsToAdd = mtr.metricsHelper(taggedReleaseToGetFiles, isFirst, treeWalk, relatedCommitsOfCurrentTaggedRelease);
+            Metrics metricsToAdd = mtr.metricsHelper(taggedReleaseToGetFiles, previousTaggedRelease, isFirst, treeWalk, relatedCommitsOfCurrentTaggedRelease);
 
 
             // Add file to the list
             filesToReturn.add(new RepoFile(
                     fileName,
-                    new File(treeWalk.getPathString()),  // Path of current file
+                    treeWalk.getPathString(),  // Path of current file
                     relatedCommitsOfCurrentTaggedRelease,
                     metricsToAdd,
                     false
