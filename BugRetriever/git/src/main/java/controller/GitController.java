@@ -31,9 +31,7 @@ public class GitController {
 
 
         // Set file to Release
-        for(ReleaseTag rlIndex : tagRelesesToDoThinks){
-            rlIndex.setReferencedFilesList(gtf.getAllFilesOfTagRelease(rlIndex));
-        }
+        for(ReleaseTag rlIndex : tagRelesesToDoThinks){rlIndex.setReferencedFilesList(gtf.getAllFilesOfTagRelease(rlIndex));}
 
         CommitRetriever gtc = new CommitRetriever();
         MetricsRetriever mtr = new MetricsRetriever();
@@ -41,24 +39,23 @@ public class GitController {
         // Set Commit and Metrics to File
         for (int i = 0; i < tagRelesesToDoThinks.size(); i++) {
             for(RepoFile rpIndex : tagRelesesToDoThinks.get(i).getReferencedFilesList()){
+
+                ReleaseTag previousRelease = tagRelesesToDoThinks.get(i);
+                Boolean isFirst = true;
+
                 // If it's the first Release
-                if(i==0){
-                    List<Commit> commitsToSet = gtc.bugListRefFile(rpIndex.getPathOfFile(), tagRelesesToDoThinks.get(i), tagRelesesToDoThinks.get(i), true, bugList);
-
-                    // Reverse commit list
-                    Collections.reverse(commitsToSet);
-                    rpIndex.setRelatedCommits(commitsToSet);
-
-                    rpIndex.setFileMetrics(mtr.metricsHelper(tagRelesesToDoThinks.get(i), tagRelesesToDoThinks.get(i), true, rpIndex.getPathOfFile(), commitsToSet));
-                    continue;
+                if(i!=0){
+                    previousRelease = tagRelesesToDoThinks.get(i-1);
+                    isFirst = false;
                 }
-                List<Commit> commitsToSet = gtc.bugListRefFile(rpIndex.getPathOfFile(), tagRelesesToDoThinks.get(i-1), tagRelesesToDoThinks.get(i), false, bugList);
+
+                List<Commit> commitsToSet = gtc.bugListRefFile(rpIndex.getPathOfFile(), previousRelease, tagRelesesToDoThinks.get(i), isFirst, bugList);
 
                 // Reverse commit list
                 Collections.reverse(commitsToSet);
                 rpIndex.setRelatedCommits(commitsToSet);
 
-                rpIndex.setFileMetrics(mtr.metricsHelper(tagRelesesToDoThinks.get(i), tagRelesesToDoThinks.get(i-1), false, rpIndex.getPathOfFile(), commitsToSet));
+                rpIndex.setFileMetrics(mtr.metricsHelper(tagRelesesToDoThinks.get(i), previousRelease, isFirst, rpIndex.getPathOfFile(), commitsToSet));
             }
         }
 
