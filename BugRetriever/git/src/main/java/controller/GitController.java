@@ -6,7 +6,6 @@ import org.eclipse.jgit.api.errors.GitAPIException;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class GitController {
@@ -28,8 +27,11 @@ public class GitController {
 
         Repo repoToDoThinks = gtp.getJGitRepository(projectName);
         List<ReleaseTag> tagRelesesToDoThinks = gttr.makeTagReleasesList(repoToDoThinks, released);
+        ReleaseTag previousTaggedRelease = new ReleaseTag();
+        Boolean isFirst;
 
 
+<<<<<<< HEAD
         // Set file to Release
         for(ReleaseTag rlIndex : tagRelesesToDoThinks){rlIndex.setReferencedFilesList(gtf.getAllFilesOfTagRelease(rlIndex));}
 
@@ -57,8 +59,16 @@ public class GitController {
 
                 rpIndex.setFileMetrics(mtr.metricsHelper(tagRelesesToDoThinks.get(i), previousRelease, isFirst, rpIndex.getPathOfFile(), commitsToSet));
             }
-        }
+=======
+        // Set referenced files for every tagged release
+        for (int i = 0; i < tagRelesesToDoThinks.size(); i++) {
 
+            if(i==0){previousTaggedRelease=tagRelesesToDoThinks.get(i); isFirst=true;}
+            else{previousTaggedRelease=tagRelesesToDoThinks.get(i-1); isFirst=false;}
+
+            tagRelesesToDoThinks.get(i).setReferencedFilesList(gtf.getAllFilesOfTagRelease(tagRelesesToDoThinks.get(i), previousTaggedRelease, isFirst, bugList));
+>>>>>>> parent of a8ea978 (Improved Performance)
+        }
 
         // Set RepoFile's Bugginess
         List<ReleaseTag> tagRelesesWithBugginess = new ArrayList<>(tagRelesesToDoThinks);

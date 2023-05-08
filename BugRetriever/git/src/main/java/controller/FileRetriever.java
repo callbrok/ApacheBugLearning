@@ -20,7 +20,7 @@ public class FileRetriever {
     //      buggy quindi potrebbe essere impattante
     private static final Boolean GETTESTCLASS = false;
 
-    public List<RepoFile> getAllFilesOfTagRelease(ReleaseTag taggedReleaseToGetFiles) throws Exception {
+    public List<RepoFile> getAllFilesOfTagRelease(ReleaseTag taggedReleaseToGetFiles, ReleaseTag previousTaggedRelease, Boolean isFirst, List<Bug> bugList) throws Exception {
         List<RepoFile> filesToReturn = new ArrayList<>();
 
         String fileExtension;
@@ -67,11 +67,29 @@ public class FileRetriever {
             // Check if we need skip test class, if yes skip it
             if(!GETTESTCLASS && treeWalk.getPathString().matches("(.*)/test/(.*)")){continue;}
 
+            // If the current file match, search related commit that corrisponde to jira bug retrieved jet
+            CommitRetriever gtc = new CommitRetriever();
+            List<Commit> relatedCommitsOfCurrentTaggedRelease = gtc.bugListRefFile(treeWalk.getPathString(), taggedReleaseToGetFiles, previousTaggedRelease, isFirst, bugList);
+
+            // Reverse commit list
+            Collections.reverse(relatedCommitsOfCurrentTaggedRelease);
+
+
+            // Check returned list of commits
+            if(relatedCommitsOfCurrentTaggedRelease.isEmpty()){System.out.println("NESSUN COMMIT RELATIVO ALLA TAGGED RELEASE DEL SEGUENTE FILE");}
+
+
+            // Set file's metrics
+            MetricsRetriever mtr = new MetricsRetriever();
+            Metrics metricsToAdd = mtr.metricsHelper(taggedReleaseToGetFiles, previousTaggedRelease, isFirst, treeWalk, relatedCommitsOfCurrentTaggedRelease);
+
 
             // Add file to the list
             filesToReturn.add(new RepoFile(
                     fileName,
                     treeWalk.getPathString(),  // Path of current file
+                    relatedCommitsOfCurrentTaggedRelease,
+                    metricsToAdd,
                     false
             ));
 
