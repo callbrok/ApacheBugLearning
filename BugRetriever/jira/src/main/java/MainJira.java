@@ -15,18 +15,18 @@ public class MainJira {
         ReleaseRetriever gtf = new ReleaseRetriever();
         BugRetriever gtb = new BugRetriever();
 
-        List<Release> released = gtf.getReleaseFromProject(PROJECT, true);
-        gtf.printReleaseList(released);
+        //List<Release> released = gtf.getReleaseFromProject(PROJECT, true);
+        //gtf.printReleaseList(released);
 
-        List<Bug> validBug = gtb.getBug(PROJECT, false, true);
-
-        System.out.println("\n\n ------------------------------------------ \n\n");
-
-        int bugIndex = 0;
-        for(Bug bg : validBug){
-            bugIndex=bugIndex+1;
-            gtb.printBugInformation(bg,bugIndex);
-        }
+//        List<Bug> validBug = gtb.getBug(PROJECT, false, true);
+//
+//        System.out.println("\n\n ------------------------------------------ \n\n");
+//
+//        int bugIndex = 0;
+//        for(Bug bg : validBug){
+//            bugIndex=bugIndex+1;
+//            gtb.printBugInformation(bg,bugIndex);
+//        }
 
     }
 }

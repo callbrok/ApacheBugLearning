@@ -1,9 +1,6 @@
 package controller;
 
-import model.Commit;
-import model.Metrics;
-import model.ReleaseTag;
-import model.RepoFile;
+import model.*;
 import org.eclipse.jgit.lib.Ref;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.revwalk.RevCommit;
@@ -23,7 +20,7 @@ public class FileRetriever {
     //      buggy quindi potrebbe essere impattante
     private static final Boolean GETTESTCLASS = false;
 
-    public List<RepoFile> getAllFilesOfTagRelease(ReleaseTag taggedReleaseToGetFiles, ReleaseTag previousTaggedRelease, Boolean isFirst) throws Exception {
+    public List<RepoFile> getAllFilesOfTagRelease(ReleaseTag taggedReleaseToGetFiles, ReleaseTag previousTaggedRelease, Boolean isFirst, List<Bug> bugList) throws Exception {
         List<RepoFile> filesToReturn = new ArrayList<>();
 
         String fileExtension;
@@ -72,7 +69,7 @@ public class FileRetriever {
 
             // If the current file match, search related commit that corrisponde to jira bug retrieved jet
             CommitRetriever gtc = new CommitRetriever();
-            List<Commit> relatedCommitsOfCurrentTaggedRelease = gtc.bugListRefFile(treeWalk.getPathString(), taggedReleaseToGetFiles, previousTaggedRelease, isFirst);
+            List<Commit> relatedCommitsOfCurrentTaggedRelease = gtc.bugListRefFile(treeWalk.getPathString(), taggedReleaseToGetFiles, previousTaggedRelease, isFirst, bugList);
 
             // Reverse commit list
             Collections.reverse(relatedCommitsOfCurrentTaggedRelease);

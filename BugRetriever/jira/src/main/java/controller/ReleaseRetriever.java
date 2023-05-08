@@ -14,7 +14,7 @@ import java.util.List;
 
 public class ReleaseRetriever {
 
-    public List<Release> getReleaseFromProject(String projectName, Boolean getHalfReleases) throws IOException, ParseException {
+    public List<Release> getReleaseFromProject(String projectName, Boolean getHalfReleases, String releaseRange) throws IOException, ParseException {
         String url = "https://issues.apache.org/jira/rest/api/2/project//" + projectName;
 
         JSONObject json = JSONHelper.readJsonFromUrl(url);
@@ -58,7 +58,12 @@ public class ReleaseRetriever {
         releases.sort(comparatorAsc);
 
 
-        if(getHalfReleases){return setReleaseIndex(releases.subList(0, (releases.size()-1)/2));}
+        // If it's flagged, take the half of valid releases
+        if(getHalfReleases){releases = setReleaseIndex(releases.subList(0, (releases.size()-1)/2));}
+
+        if(!releaseRange.equals("ALL")){releases = releases.subList(0, (Integer.parseInt(releaseRange)+1));}
+
+
         return setReleaseIndex(releases);
     }
 

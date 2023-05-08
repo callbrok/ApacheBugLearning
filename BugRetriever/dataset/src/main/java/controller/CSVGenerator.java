@@ -13,8 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CSVGenerator {
-    private static final String FILENAME="output.csv";
-    public String buildCSV(List<ReleaseTag> tagRelesesWithBugginess) throws IOException {
+    public String buildCSV(List<ReleaseTag> tagRelesesWithBugginess, String fileVersionName, String datasetType) throws IOException {
+        String fileName = "output_" + datasetType + "-SET_R[" + fileVersionName + "].csv";
 
         String[] headers = {"Version", "Filename", "NR", "NAUTHORS" ,"LOC", "LOC_ADDED", "AVGLOCADDED"
                 , "MAXLOCADDED", "LOCTOUCHED", "CHURN", "AVGCHURN", "MAXCHURN"
@@ -55,11 +55,11 @@ public class CSVGenerator {
             }
         }
 
-        FileWriter out = new FileWriter(FILENAME);
+        FileWriter out = new FileWriter(fileName);
         CSVPrinter printer = new CSVPrinter(out, CSVFormat.DEFAULT.withHeader(headers));
 
         //create a File linked to the same file using the name of this one;
-        File f = new File(FILENAME);
+        File f = new File(fileName);
 
         for (List<String> row : data) {
             printer.printRecord(row);

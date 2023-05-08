@@ -1,9 +1,6 @@
 package controller;
 
-import model.Commit;
-import model.ReleaseTag;
-import model.Repo;
-import model.RepoFile;
+import model.*;
 import org.eclipse.jgit.api.errors.GitAPIException;
 
 import java.io.IOException;
@@ -13,14 +10,23 @@ import java.util.List;
 
 public class GitController {
 
-    public List<ReleaseTag> retrieveAllGitDataSet(String projectName) throws Exception {
+    public List<ReleaseTag> retrieveAllGitDataSet(String projectName, String releaseRange) throws Exception {
+
+        // From Jira
+        ReleaseRetriever rls = new ReleaseRetriever();
+        BugRetriever gtb = new BugRetriever();
+
+        List<Release> released = rls.getReleaseFromProject(projectName, true, releaseRange);
+        List<Bug> bugList = gtb.getBug(projectName, false, released);
+
+
+        // From Git
         JGitHelper gtp = new JGitHelper();
         ReleaseTagRetriever gttr = new ReleaseTagRetriever();
         FileRetriever gtf = new FileRetriever();
 
         Repo repoToDoThinks = gtp.getJGitRepository(projectName);
-
-        List<ReleaseTag> tagRelesesToDoThinks = gttr.makeTagReleasesList(repoToDoThinks);
+        List<ReleaseTag> tagRelesesToDoThinks = gttr.makeTagReleasesList(repoToDoThinks, released);
         ReleaseTag previousTaggedRelease = new ReleaseTag();
         Boolean isFirst;
 
@@ -31,7 +37,7 @@ public class GitController {
             if(i==0){previousTaggedRelease=tagRelesesToDoThinks.get(i); isFirst=true;}
             else{previousTaggedRelease=tagRelesesToDoThinks.get(i-1); isFirst=false;}
 
-            tagRelesesToDoThinks.get(i).setReferencedFilesList(gtf.getAllFilesOfTagRelease(tagRelesesToDoThinks.get(i), previousTaggedRelease, isFirst));
+            tagRelesesToDoThinks.get(i).setReferencedFilesList(gtf.getAllFilesOfTagRelease(tagRelesesToDoThinks.get(i), previousTaggedRelease, isFirst, bugList));
         }
 
         // Set RepoFile's Bugginess
@@ -41,7 +47,7 @@ public class GitController {
             for(RepoFile rpIndex : rlsIndex.getReferencedFilesList()){
                 for(Commit cmIndex : rpIndex.getRelatedCommits()){
                     if(cmIndex.getCommitFromJira()!=null){
-                        tagRelesesWithBugginess = gttr.setBugginess(tagRelesesWithBugginess, rpIndex.getNameFile(), cmIndex.getCommitFromJira().getAffectedVersions());
+                        tagRelesesWithBugginess = gttr.setBugginess(tagRelesesWithBugginess, rpIndex.getNameFile(), cmIndex.getCommitFromJira().getAffectedVersions(), releaseRange);
                     }
                 }
             }

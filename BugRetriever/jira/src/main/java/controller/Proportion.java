@@ -212,7 +212,8 @@ public class Proportion {
             //      Per effettuare cold start prendo tutte le release per il calcolo di p medio
             //      negli altri progetti e non la meta ?
             //
-            validBug = gtb.getBug(projectName, true, false);
+            ReleaseRetriever rls = new ReleaseRetriever();
+            validBug = gtb.getBug(projectName, true, rls.getReleaseFromProject(projectName, false, "ALL"));
 
             for(Bug bugIndex : validBug){
 

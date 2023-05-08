@@ -2,6 +2,7 @@ package controller;
 
 import model.Bug;
 import model.Commit;
+import model.Release;
 import model.ReleaseTag;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.GitAPIException;
@@ -17,20 +18,12 @@ import java.util.List;
 
 public class CommitRetriever {
 
-    private static List<Bug> LISTOFJIRABUG = new ArrayList<>();
-
-    public List<Commit> bugListRefFile(String pathOfFile, ReleaseTag taggedReleaseToGetCommit, ReleaseTag previousTaggedRelease, Boolean isFirst) throws IOException, GitAPIException, ParseException {
+    public List<Commit> bugListRefFile(String pathOfFile, ReleaseTag taggedReleaseToGetCommit, ReleaseTag previousTaggedRelease, Boolean isFirst, List<Bug> bugList) throws IOException, GitAPIException, ParseException {
         BugRetriever gtb = new BugRetriever();
         List<Commit> commitsToReturn = new ArrayList<>();
 
         int commitCounter = 0;
 
-        // If there aren't Jira commits, retrieve and set it
-        if(LISTOFJIRABUG.isEmpty()){LISTOFJIRABUG=gtb.getBug(
-                taggedReleaseToGetCommit.getCurrentRepo().getApacheProjectName(),  // Project's name from Repo object
-                false,
-                true
-        );}
 
         Git git = taggedReleaseToGetCommit.getCurrentRepo().getGitHandle();
 
@@ -62,7 +55,7 @@ public class CommitRetriever {
             commitToAdd.setCommitFromGit(rev);
 
             // Check current commit
-            Bug currentBug = commitJiraGitLinker(rev);
+            Bug currentBug = commitJiraGitLinker(rev, bugList);
 
             // Check returned bug, if the name is different from 'NOMATCH' there is a match with Jira Bug
             if(!currentBug.getNameKey().equals("NOMATCH")){commitToAdd.setCommitFromJira(currentBug);}
@@ -79,10 +72,10 @@ public class CommitRetriever {
     }
 
 
-    private Bug commitJiraGitLinker(RevCommit commit){
+    private Bug commitJiraGitLinker(RevCommit commit, List<Bug> bugList){
 
         // Scroll all valid bug and find match with passed commit
-        for(Bug validBugIndex: LISTOFJIRABUG){
+        for(Bug validBugIndex: bugList){
 
             // If commit's message contains bug name like 'BOOKKEEPER-46', there is a match
             if(commit.getShortMessage().matches("(.*)" + validBugIndex.getNameKey()  + "(.*)")){return validBugIndex;}

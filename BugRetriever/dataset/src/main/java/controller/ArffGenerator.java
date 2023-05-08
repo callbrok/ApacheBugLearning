@@ -8,9 +8,9 @@ import java.io.File;
 import java.io.IOException;
 
 public class ArffGenerator {
-    private static final String FILENAME="output.arff";
 
     public void buildArff(String csvPathFile) throws IOException {
+        String fileName = csvPathFile.substring(0, csvPathFile.indexOf(']')+1) + ".arff";
 
         // Load CSV
         CSVLoader loader = new CSVLoader();
@@ -26,7 +26,7 @@ public class ArffGenerator {
         saver.setInstances(data);
 
         // 'Save as' ARFF
-        saver.setFile(new File(FILENAME));
+        saver.setFile(new File(fileName));
         saver.writeBatch();
     }
 

@@ -15,13 +15,10 @@ import java.util.List;
 
 public class BugRetriever {
 
-    public List<Bug> getBug(String projectName, Boolean coldStartEnabler, Boolean getHalfReleases) throws IOException, ParseException {
+    public List<Bug> getBug(String projectName, Boolean coldStartEnabler, List<Release> released) throws IOException, ParseException {
         List<Bug> validBug = new ArrayList<>();
         List<Bug> validBugNoProportion = new ArrayList<>();
 
-        // Retrieve list of released tagged releases
-        ReleaseRetriever gtf = new ReleaseRetriever();
-        List<Release> released = gtf.getReleaseFromProject(projectName, getHalfReleases);
 
         int j,totalBug;
         int i=0;

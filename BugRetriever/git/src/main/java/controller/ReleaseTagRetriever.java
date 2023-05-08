@@ -13,16 +13,12 @@ import java.util.List;
 
 public class ReleaseTagRetriever {
 
-    private static List<Release> LISTOFJIRARELEASE = new ArrayList<>();
-
-    public List<ReleaseTag> makeTagReleasesList(Repo project) throws IOException, ParseException, GitAPIException {
+    public List<ReleaseTag> makeTagReleasesList(Repo project, List<Release> listOfJiRelease) throws GitAPIException {
         ReleaseRetriever rls = new ReleaseRetriever();
 
         // Init list of ragged release's objects
         List<ReleaseTag> listOfTagReleases = new ArrayList<>();
 
-        // If there aren't Jira releases, retrieve and set it
-        if(LISTOFJIRARELEASE.isEmpty()){LISTOFJIRARELEASE=rls.getReleaseFromProject(project.getApacheProjectName(), true);}
 
         Git git = project.getGitHandle();
 
@@ -32,7 +28,7 @@ public class ReleaseTagRetriever {
         List<Ref> call = git.tagList().call();
 
         for (Ref ref : call) {
-            Release releaseToAdd = releasesTagJiraGitLinker(ref.getName());
+            Release releaseToAdd = releasesTagJiraGitLinker(ref.getName(), listOfJiRelease);
 
             // Check match with one of Release retrived by Jira
             if(releaseToAdd.getName().equals("NOMATCH")){continue;}
@@ -51,7 +47,7 @@ public class ReleaseTagRetriever {
         return listOfTagReleases;
     }
 
-    private Release releasesTagJiraGitLinker(String releaseTagName){
+    private Release releasesTagJiraGitLinker(String releaseTagName, List<Release> listOfJiRelease){
         // Initialize 'no-match' Release object
         Release errorRelease = new Release("NOMATCH");
 
@@ -63,7 +59,7 @@ public class ReleaseTagRetriever {
         String versionToCheck = releaseTagName.substring(releaseTagName.lastIndexOf("-") + 1);
 
         // Check matches with released jira Release
-        for(Release releaseIndex: LISTOFJIRARELEASE){
+        for(Release releaseIndex: listOfJiRelease){
             if(releaseIndex.getName().equals(versionToCheck)){ return releaseIndex;}
         }
 
@@ -71,17 +67,18 @@ public class ReleaseTagRetriever {
         return errorRelease;
     }
 
-    public List<ReleaseTag> setBugginess(List<ReleaseTag> tagRelesesToDoThinks, String fileName, List<Release> affectedVersions){
+    public List<ReleaseTag> setBugginess(List<ReleaseTag> tagRelesesToDoThinks, String fileName, List<Release> affectedVersions, String releaseRange){
 
         // Scroll all file of all Release
         for(ReleaseTag rlsIndex : tagRelesesToDoThinks){
             // Find a ReleaseTag Object that match with one of passed affected version
             if(affectedVersions.stream().anyMatch(o -> rlsIndex.getReleaseFromJira().getName().equals(o.getName()))){
                 for(RepoFile rpIndex : rlsIndex.getReferencedFilesList()){
+                    // Control for Walk Forward bugginess
+                    if(!releaseRange.equals("ALL") && (rlsIndex.getReleaseFromJira().getIndex() >= Integer.parseInt(releaseRange)+1)){break;}
+
                     // Find that file that it will set buggy and correspond to the passed path
-                    if(rpIndex.getNameFile().equals(fileName)){
-                        rpIndex.setItsBuggy(true);
-                    }
+                    if(rpIndex.getNameFile().equals(fileName)){rpIndex.setItsBuggy(true); break;}
                 }
             }
         }
