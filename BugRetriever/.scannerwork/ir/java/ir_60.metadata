@@ -1,1 +1,2 @@
-model.Release#getIndex()I
+controller.ReleaseTagRetriever#setBugginess(Ljava/util/List;Ljava/lang/String;Ljava/util/List;)Ljava/util/List;
+java.lang.String#equals(Ljava/lang/Object;)Z

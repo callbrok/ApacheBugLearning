@@ -1,1 +1,1 @@
-model.Commit#setCommitFromJira(Lmodel/Bug;)V
+controller.SimpleProgressMonitor#showDuration(Z)V

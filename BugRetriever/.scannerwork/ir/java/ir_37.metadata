@@ -1,1 +1,3 @@
-model.Repo#setjGitRepository(LRepository;)V
+controller.BugRetriever#retrieveFixedANDOpeningVersion(Ljava/util/Date;Ljava/util/List;)Lmodel/Release;
+model.Release#instance-init#
+model.Release#<init>(Ljava/lang/String;)V

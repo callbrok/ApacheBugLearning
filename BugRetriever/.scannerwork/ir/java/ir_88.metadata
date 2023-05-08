@@ -1,1 +1,1 @@
-model.RepoFile#getRelatedCommits()Ljava/util/List;
+model.ReleaseTag#getReleaseFromJira()Lmodel/Release;

@@ -1,15 +1,127 @@
 
-.model.Release#getReleaseDate()Ljava/util/Date;_
-UC:/Users/Marco/GitHub/BugRetriever/BugRetriever/jira/src/main/java/model/Release.java ("1*õ
-1) (4h
-f
-) (4
-%0java.util.Date"__id*>
+ocontroller.ReleaseTagRetriever#setBugginess(Ljava/util/List;Ljava/lang/String;Ljava/util/List;)Ljava/util/List;o
+eC:/Users/Marco/GitHub/BugRetriever/BugRetriever/git/src/main/java/controller/ReleaseTagRetriever.javaJ J(("2*è
+2M M(T
+R
+M M(
+rlsIndexmodel.ReleaseTag"__id*"
 
-__unknown_file ("* 
-model.Release"
-releaseDate""
-" (5
+__unknown_file (
+""°
+û
+M M(
+rlsIndexmodel.ReleaseTag"
+__arrayGet*D
+
+__unknown_file ((
+&
+tagRelesesToDoThinksjava.util.List*"
+
+__unknown_file (
+""*
+7
+1*˜
+3P P($Q
+O
+P P($
+rpIndexmodel.RepoFile"__id*"
+
+__unknown_file (
+""å
+â
+P P($
+rpIndexmodel.RepoFile"
+__arrayGet*2
+
+__unknown_file (
 
-%0java.util.DateB
-model.ReleaseH
+%7java.util.List*"
+
+__unknown_file (
+""*
+2
+5*ﬁ
+4S S(…∆
+S S(1
+%10void"0model.RepoFile#setItsBuggy(Ljava/lang/Boolean;)V*7
+
+__unknown_file (
+
+rpIndexmodel.RepoFile* 
+
+__unknown_file (22 setItsBuggy(Ljava/lang/Boolean;)*
+3*ê
+5R R(ùö
+R R(,
+%8java.lang.String".model.RepoFile#getNameFile()Ljava/lang/String;*7
+
+__unknown_file (
+
+rpIndexmodel.RepoFile2getNameFile()ÿ’
+R R(=
+%9boolean",java.lang.String#equals(Ljava/lang/Object;)Z*4
+
+__unknown_file (
+
+%8java.lang.String*:
+
+__unknown_file (
+
+fileNamejava.lang.String2equals(Ljava/lang/Object;)*
+3
+4*…
+6P' P(/¥±
+P' P(H
+%7java.util.List"9model.ReleaseTag#getReferencedFilesList()Ljava/util/List;*:
+
+__unknown_file (
+
+rlsIndexmodel.ReleaseTag2getReferencedFilesList()*
+3*ˇ
+7O O(∞≠
+O O((
+%0java.util.stream.Stream"6java.util.Collection#stream()Ljava/util/stream/Stream;*@
+
+__unknown_file ($
+"
+affectedVersionsjava.util.List2stream()ï
+í
+O2 O(r"
+%1java.util.function.Predicate"__declareFunction*O
+
+__unknown_file (31
+/__sonar_lambda_1$controller.ReleaseTagRetrieverë
+é
+
+__unknown_file (0
+"
+%1java.util.function.Predicate"
+
+rlsIndex"__id*:
+
+__unknown_file (
+
+rlsIndexmodel.ReleaseTagàÖ
+O O(s
+%6boolean"Ajava.util.stream.Stream#anyMatch(Ljava/util/function/Predicate;)Z*;
+
+__unknown_file (
+
+%0java.util.stream.Stream*@
+
+__unknown_file ($
+"
+%1java.util.function.Predicate2(anyMatch(Ljava/util/function/Predicate;)*
+2
+6*C
+1Y Y(#"4
+Y Y($(
+&
+tagRelesesToDoThinksjava.util.List:2
+J) J(O&
+tagRelesesToDoThinksjava.util.List:(
+JP J(`
+fileNamejava.lang.String:.
+Ja J("
+affectedVersionsjava.util.ListB" 
+controller.ReleaseTagRetrieverH

@@ -48,7 +48,7 @@ public class GitController {
         }
 
         // Print all dataset
-        printAllGitDataSet(tagRelesesWithBugginess);
+        //printAllGitDataSet(tagRelesesWithBugginess);
 
         return tagRelesesWithBugginess;
     }

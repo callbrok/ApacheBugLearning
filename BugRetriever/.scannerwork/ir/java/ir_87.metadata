@@ -1,1 +1,1 @@
-model.RepoFile#getPathOfFile()Ljava/io/File;
+model.ReleaseTag#getRefObjectIdGetName()Ljava/lang/String;

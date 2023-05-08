@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="git" />
         <module name="jira" />
+        <module name="csv" />
       </profile>
     </annotationProcessing>
   </component>

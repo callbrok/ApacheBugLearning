@@ -1,1 +1,6 @@
-controller.CommitRetriever#instance-init#
+controller.MetricsRetriever#locMetric(Lmodel/ReleaseTag;LObjectId;Ljava/lang/String;)I
+null
+java.io.InputStreamReader#<init>(Ljava/io/InputStream;)V
+java.io.BufferedReader#instance-init#
+java.io.BufferedReader#<init>(Ljava/io/Reader;)V
+java.io.InputStreamReader#instance-init#

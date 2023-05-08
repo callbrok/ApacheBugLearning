@@ -7,9 +7,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="git" />
+        <module name="dataset" />
         <module name="jira" />
-        <module name="csv" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="csv" target="17" />
+    </bytecodeTargetLevel>
   </component>
 </project>

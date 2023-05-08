@@ -15,17 +15,31 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class MetricsRetriever {
 
     public Metrics metricsHelper(ReleaseTag taggedReleaseToGetFileMetrics, ReleaseTag previousTaggedReleaseToGetFileMetrics, Boolean isFirst, TreeWalk treeWalk, List<Commit> relatedCommitsOfCurrentTaggedRelease) throws Exception {
 
         // Retrieve LOC Metric -------------------------
-        int locMetric = locMetric(taggedReleaseToGetFileMetrics, taggedReleaseToGetFileMetrics.getCurrentRepo().getjGitRepository().findRef("HEAD").getObjectId(), treeWalk.getPathString());
+        List<Integer> locMetricAndNMethods = locAndMethodsNumberMetrics(taggedReleaseToGetFileMetrics, taggedReleaseToGetFileMetrics.getCurrentRepo().getjGitRepository().findRef("HEAD").getObjectId(), treeWalk.getPathString(), false);
+        // Integer 'locMetricAndNMethods' list where:
+        //      1' Element: LOC (Whit comment and blank lines)
+        //      2' Element: NPBM (Number of public methods)
+        //      3' Element: NPVM (Number of private methods)
+        //      4' Element: NSM (Number of static methods)
+        //      5' Element: NAM (Number of all method's class)
+        //      6' Element: LOCM (Number of commented lines)
+        int locMetric = locMetricAndNMethods.get(0);
+        int nPublicMethods = locMetricAndNMethods.get(1);
+        int nPrivateMethods = locMetricAndNMethods.get(2);
+        int nStaticMethods = locMetricAndNMethods.get(3);
+        int nMethods = locMetricAndNMethods.get(4);
+        int nCommentedLines = locMetricAndNMethods.get(5);
 
         // Retrieve others LOC Metrics -----------------
         List<Integer> locMetrics = locOtherMetrics(taggedReleaseToGetFileMetrics, previousTaggedReleaseToGetFileMetrics, treeWalk, isFirst, relatedCommitsOfCurrentTaggedRelease);
-        // Integer list where:
+        // Integer 'locMetrics' list where:
         //      1' Element: LOC Added
         //      2' Element: Max LOC Added
         //      3' Element: LOC Touched
@@ -68,17 +82,47 @@ public class MetricsRetriever {
                 averageLocAdded,
                 churn,
                 maxChurn,
-                averageChurn
+                averageChurn,
+                nPublicMethods,
+                nPrivateMethods,
+                nStaticMethods,
+                nMethods,
+                nCommentedLines
         );
     }
 
 
-    private int locMetric(ReleaseTag taggedReleaseToGetFileMetrics, ObjectId objectId, String pathOfFile) throws IOException {
+    private List<Integer> locAndMethodsNumberMetrics(ReleaseTag taggedReleaseToGetFileMetrics, ObjectId objectId, String pathOfFile, Boolean skipRegex) throws IOException {
         // Size (LOC):
         //      Lines of code of current file on the current release.
         Repository repository = taggedReleaseToGetFileMetrics.getCurrentRepo().getjGitRepository();
+        List<Integer> locMetricsAndNMethods = new ArrayList<>(Arrays.asList(0,0,0,0,0,0));
 
         int nline = 0;
+        int nPublicMethods = 0;
+        int nPrivateMethods = 0;
+        int nStaticMethods = 0;
+        int nMethods = 0;
+        int blankLine = 0;
+        int nCommentedLines = 0;
+
+        // Regex Pattern for methods declaration
+        Pattern patternPublicMethod = Pattern.compile("(?:(?:public)+\\s+)+[$_\\w<>\\[\\]\\s]*\\s+[\\$_\\w]+\\([^\\)]*\\)?\\s*\\{?[^\\}]*\\}?");
+        Pattern patternPrivateMethod = Pattern.compile("(?:(?:private)+\\s+)+[$_\\w<>\\[\\]\\s]*\\s+[\\$_\\w]+\\([^\\)]*\\)?\\s*\\{?[^\\}]*\\}?");
+        Pattern patternStaticMethod = Pattern.compile("(?:(?:static)+\\s+)+[$_\\w<>\\[\\]\\s]*\\s+[\\$_\\w]+\\([^\\)]*\\)?\\s*\\{?[^\\}]*\\}?");
+        Pattern patternAllMethods = Pattern.compile("(?:(?:public|private|protected|static|final|native|synchronized|abstract|transient)+\\s+)+[$_\\w<>\\[\\]\\s]*\\s+[\\$_\\w]+\\([^\\)]*\\)?\\s*\\{?[^\\}]*\\}?");
+
+        // Regex Pattern for comments
+        //      Search on the line for the sequence of characters: */
+        Pattern patternComment1 = Pattern.compile("\\*/");
+        //      Search on the line for the sequence of characters: /*
+        Pattern patternComment2 = Pattern.compile("\\/\\*");
+        //      Search on the line for the sequence of characters: //
+        Pattern patternComment3 = Pattern.compile("//");
+        //      Search on the line for the character * but not followed by character =, so to
+        //      distinguish comments from mathematical expressions
+        Pattern patternComment4 = Pattern.compile("\\*[^=]");
+
 
         RevWalk walk = new RevWalk(repository);
 
@@ -98,17 +142,38 @@ public class MetricsRetriever {
                 BufferedReader reader = new BufferedReader(new InputStreamReader(loader.openStream()));
                 while(reader.ready()) {
                     String line = reader.readLine();
+
+                    // LOC metric counter
                     nline = nline + 1;
+
+                    if(skipRegex){continue;}
+
+                    // Methods counter
+                    if(patternPublicMethod.matcher(line).find()){nPublicMethods+=1;}
+                    if(patternPrivateMethod.matcher(line).find()){nPrivateMethods+=1;}
+                    if(patternStaticMethod.matcher(line).find()){nStaticMethods+=1;}
+                    if(patternAllMethods.matcher(line).find()){nMethods+=1;}
+
+                    // Comments counter
+                    if(patternComment1.matcher(line).find() || patternComment2.matcher(line).find() || patternComment3.matcher(line).find() || patternComment4.matcher(line).find()){nCommentedLines+=1;}
+
+                    // Blank-line counter
+                    if(line.trim().isEmpty()){blankLine += 1;}
                 }
 
                 break;
             }
         }
 
-        System.out.println(nline);
-        return nline;
-    }
+        locMetricsAndNMethods.set(0, nline);
+        locMetricsAndNMethods.set(1, nPublicMethods);
+        locMetricsAndNMethods.set(2, nPrivateMethods);
+        locMetricsAndNMethods.set(3, nStaticMethods);
+        locMetricsAndNMethods.set(4, nMethods);
+        locMetricsAndNMethods.set(5, nCommentedLines);
 
+        return locMetricsAndNMethods;
+    }
 
 
     private List<Integer> locOtherMetrics(ReleaseTag taggedReleaseToGetFileMetrics, ReleaseTag previousTaggedReleaseToGetFileMetrics, TreeWalk treeWalk, Boolean isFirst, List<Commit> relatedCommitsOfCurrentTaggedRelease) throws Exception {
@@ -142,7 +207,7 @@ public class MetricsRetriever {
             //      the file is just added
             else if(k==0 && isFirst){
                 ObjectId commitId = repository.resolve(relatedCommitsOfCurrentTaggedRelease.get(0).getCommitFromGit().getId().getName());
-                int lineFirstCommit = locMetric(taggedReleaseToGetFileMetrics, commitId, treeWalk.getPathString());
+                int lineFirstCommit = locAndMethodsNumberMetrics(taggedReleaseToGetFileMetrics, commitId, treeWalk.getPathString(), true).get(0);
 
                 linesAdded += lineFirstCommit;
 
@@ -202,6 +267,7 @@ public class MetricsRetriever {
         return locMetrics;
     }
 
+
     private RevCommit takeLatestCommitOfTag(ReleaseTag previousTaggedReleaseToGetFileMetrics, String filePath){
         // Retrieve the latest commit of passed file of passed tag Release
         RevCommit commitToReturn = null;
@@ -234,7 +300,6 @@ public class MetricsRetriever {
 
         return authorsName.size();
     }
-
 
 
 

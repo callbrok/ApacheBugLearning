@@ -13,8 +13,18 @@ public class Metrics {
     private int maxChurn;
     private float averageChurn;
 
+    // Added by Me
+    private int nPublicMethods;
+    private int nPrivateMethods;
+    private int nStaticMethods;
+    private int nMethods;
+    private int nCommentedLines;
 
-    public Metrics(int loc, int locTouched, int nAuth, int locAdded, int locMaxAdded, int nRevision, float averageLocAdded, int churn, int maxChurn, float averageChurn){
+
+    public Metrics(int loc, int locTouched, int nAuth, int locAdded, int locMaxAdded, int nRevision,
+                   float averageLocAdded, int churn, int maxChurn, float averageChurn, int nPublicMethods,
+                   int nPrivateMethods, int nStaticMethods, int nMethods, int nCommentedLines){
+
         this.loc = loc;
         this.locTouched = locTouched;
         this.nAuth = nAuth;
@@ -25,6 +35,13 @@ public class Metrics {
         this.churn = churn;
         this.maxChurn = maxChurn;
         this.averageChurn = averageChurn;
+
+        // Me Metrics
+        this.nPublicMethods = nPublicMethods;
+        this.nPrivateMethods = nPrivateMethods;
+        this.nStaticMethods = nStaticMethods;
+        this.nMethods = nMethods;
+        this.nCommentedLines = nCommentedLines;
     }
 
 
@@ -52,4 +69,10 @@ public class Metrics {
     public int getChurn() {return churn;}
     public int getMaxChurn() {return maxChurn;}
     public float getAverageChurn() {return averageChurn;}
+
+    public int getnPublicMethods() {return nPublicMethods;}
+    public int getnPrivateMethods() {return nPrivateMethods;}
+    public int getnStaticMethods() {return nStaticMethods;}
+    public int getnMethods() {return nMethods;}
+    public int getnCommentedLines() {return nCommentedLines;}
 }

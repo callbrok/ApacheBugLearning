@@ -11,7 +11,7 @@
     <modules>
         <module>git</module>
         <module>jira</module>
-        <module>csv</module>
+        <module>dataset</module>
     </modules>
 
     <properties>

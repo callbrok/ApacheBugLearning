@@ -1,1 +1,3 @@
-model.Repo#getApacheProjectName()Ljava/lang/String;
+controller.CommitRetriever#commitJiraGitLinker(LRevCommit;)Lmodel/Bug;
+model.Bug#<init>(Ljava/lang/String;)V
+model.Bug#instance-init#

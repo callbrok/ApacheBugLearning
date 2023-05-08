@@ -1,9 +1,2 @@
-controller.CommitRetriever#bugListRefFile(Ljava/lang/String;Lmodel/ReleaseTag;Lmodel/ReleaseTag;Ljava/lang/Boolean;)Ljava/util/List;
-java.util.ArrayList#<init>()V
-controller.CommitRetriever#commitJiraGitLinker(LRevCommit;)Lmodel/Bug;
-java.util.ArrayList#instance-init#
+controller.MetricsRetriever#takeLatestCommitOfTag(Lmodel/ReleaseTag;Ljava/lang/String;)LRevCommit;
 java.lang.String#equals(Ljava/lang/Object;)Z
-model.Commit#<init>()V
-controller.BugRetriever#<init>()V
-controller.BugRetriever#instance-init#
-model.Commit#instance-init#

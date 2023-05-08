@@ -1,1 +1,1 @@
-model.Commit#getCommitFromJira()Lmodel/Bug;
+MainJira#instance-init#

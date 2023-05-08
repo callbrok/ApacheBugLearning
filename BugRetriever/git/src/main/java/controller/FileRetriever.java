@@ -4,7 +4,6 @@ import model.Commit;
 import model.Metrics;
 import model.ReleaseTag;
 import model.RepoFile;
-import org.eclipse.jgit.api.errors.GitAPIException;
 import org.eclipse.jgit.lib.Ref;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.revwalk.RevCommit;
@@ -12,14 +11,16 @@ import org.eclipse.jgit.revwalk.RevTree;
 import org.eclipse.jgit.revwalk.RevWalk;
 import org.eclipse.jgit.treewalk.TreeWalk;
 
-import java.io.File;
-import java.io.IOException;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class FileRetriever {
+
+    // #NOTE-TO-THINKING-OF:
+    //      Fare considerazione su valutazione della bugginess, non considerando le classi test e
+    //      considerando le classi test, facendo capire se la loro analisi è impattante, sono molte le classi di
+    //      buggy quindi potrebbe essere impattante
     private static final Boolean GETTESTCLASS = false;
 
     public List<RepoFile> getAllFilesOfTagRelease(ReleaseTag taggedReleaseToGetFiles, ReleaseTag previousTaggedRelease, Boolean isFirst) throws Exception {
