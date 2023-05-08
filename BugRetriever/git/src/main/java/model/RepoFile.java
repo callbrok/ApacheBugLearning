@@ -20,9 +20,17 @@ public class RepoFile {
         this.itsBuggy=itsBuggy;
     }
 
+    public RepoFile(String nameFile, String pathOfFile, Boolean itsBuggy){
+        this.nameFile = nameFile;
+        this.pathOfFile = pathOfFile;
+        this.itsBuggy=itsBuggy;
+    }
+
 
     // Setter
     public void setItsBuggy(Boolean itsBuggy) {this.itsBuggy = itsBuggy;}
+    public void setRelatedCommits(List<Commit> relatedCommits) {this.relatedCommits = relatedCommits;}
+    public void setFileMetrics(Metrics fileMetrics) {this.fileMetrics = fileMetrics;}
 
 
     // Getter

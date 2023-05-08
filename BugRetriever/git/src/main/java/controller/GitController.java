@@ -6,6 +6,7 @@ import org.eclipse.jgit.api.errors.GitAPIException;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class GitController {
@@ -27,18 +28,40 @@ public class GitController {
 
         Repo repoToDoThinks = gtp.getJGitRepository(projectName);
         List<ReleaseTag> tagRelesesToDoThinks = gttr.makeTagReleasesList(repoToDoThinks, released);
-        ReleaseTag previousTaggedRelease = new ReleaseTag();
-        Boolean isFirst;
 
 
-        // Set referenced files for every tagged release
-        for (int i = 0; i < tagRelesesToDoThinks.size(); i++) {
-
-            if(i==0){previousTaggedRelease=tagRelesesToDoThinks.get(i); isFirst=true;}
-            else{previousTaggedRelease=tagRelesesToDoThinks.get(i-1); isFirst=false;}
-
-            tagRelesesToDoThinks.get(i).setReferencedFilesList(gtf.getAllFilesOfTagRelease(tagRelesesToDoThinks.get(i), previousTaggedRelease, isFirst, bugList));
+        // Set file to Release
+        for(ReleaseTag rlIndex : tagRelesesToDoThinks){
+            rlIndex.setReferencedFilesList(gtf.getAllFilesOfTagRelease(rlIndex));
         }
+
+        CommitRetriever gtc = new CommitRetriever();
+        MetricsRetriever mtr = new MetricsRetriever();
+
+        // Set Commit and Metrics to File
+        for (int i = 0; i < tagRelesesToDoThinks.size(); i++) {
+            for(RepoFile rpIndex : tagRelesesToDoThinks.get(i).getReferencedFilesList()){
+                // If it's the first Release
+                if(i==0){
+                    List<Commit> commitsToSet = gtc.bugListRefFile(rpIndex.getPathOfFile(), tagRelesesToDoThinks.get(i), tagRelesesToDoThinks.get(i), true, bugList);
+
+                    // Reverse commit list
+                    Collections.reverse(commitsToSet);
+                    rpIndex.setRelatedCommits(commitsToSet);
+
+                    rpIndex.setFileMetrics(mtr.metricsHelper(tagRelesesToDoThinks.get(i), tagRelesesToDoThinks.get(i), true, rpIndex.getPathOfFile(), commitsToSet));
+                    continue;
+                }
+                List<Commit> commitsToSet = gtc.bugListRefFile(rpIndex.getPathOfFile(), tagRelesesToDoThinks.get(i-1), tagRelesesToDoThinks.get(i), false, bugList);
+
+                // Reverse commit list
+                Collections.reverse(commitsToSet);
+                rpIndex.setRelatedCommits(commitsToSet);
+
+                rpIndex.setFileMetrics(mtr.metricsHelper(tagRelesesToDoThinks.get(i), tagRelesesToDoThinks.get(i-1), false, rpIndex.getPathOfFile(), commitsToSet));
+            }
+        }
+
 
         // Set RepoFile's Bugginess
         List<ReleaseTag> tagRelesesWithBugginess = new ArrayList<>(tagRelesesToDoThinks);
