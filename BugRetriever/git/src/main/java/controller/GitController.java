@@ -31,35 +31,6 @@ public class GitController {
         Boolean isFirst;
 
 
-<<<<<<< HEAD
-        // Set file to Release
-        for(ReleaseTag rlIndex : tagRelesesToDoThinks){rlIndex.setReferencedFilesList(gtf.getAllFilesOfTagRelease(rlIndex));}
-
-        CommitRetriever gtc = new CommitRetriever();
-        MetricsRetriever mtr = new MetricsRetriever();
-
-        // Set Commit and Metrics to File
-        for (int i = 0; i < tagRelesesToDoThinks.size(); i++) {
-            for(RepoFile rpIndex : tagRelesesToDoThinks.get(i).getReferencedFilesList()){
-
-                ReleaseTag previousRelease = tagRelesesToDoThinks.get(i);
-                Boolean isFirst = true;
-
-                // If it's the first Release
-                if(i!=0){
-                    previousRelease = tagRelesesToDoThinks.get(i-1);
-                    isFirst = false;
-                }
-
-                List<Commit> commitsToSet = gtc.bugListRefFile(rpIndex.getPathOfFile(), previousRelease, tagRelesesToDoThinks.get(i), isFirst, bugList);
-
-                // Reverse commit list
-                Collections.reverse(commitsToSet);
-                rpIndex.setRelatedCommits(commitsToSet);
-
-                rpIndex.setFileMetrics(mtr.metricsHelper(tagRelesesToDoThinks.get(i), previousRelease, isFirst, rpIndex.getPathOfFile(), commitsToSet));
-            }
-=======
         // Set referenced files for every tagged release
         for (int i = 0; i < tagRelesesToDoThinks.size(); i++) {
 
@@ -67,7 +38,6 @@ public class GitController {
             else{previousTaggedRelease=tagRelesesToDoThinks.get(i-1); isFirst=false;}
 
             tagRelesesToDoThinks.get(i).setReferencedFilesList(gtf.getAllFilesOfTagRelease(tagRelesesToDoThinks.get(i), previousTaggedRelease, isFirst, bugList));
->>>>>>> parent of a8ea978 (Improved Performance)
         }
 
         // Set RepoFile's Bugginess
