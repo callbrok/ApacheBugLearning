@@ -1,1 +1,1 @@
-model.ReleaseTag#<init>()V
+model.ReleaseTag#getCurrentRepo()Lmodel/Repo;

@@ -29,21 +29,18 @@ getNameKey(model.Bug#getNameKey()Ljava/lang/String;A
 numberAuthorsMetricBcontroller.MetricsRetriever#numberAuthorsMetric(Ljava/util/List;)Ijava.lang.Object §
 controller.JSONHelper)
 <init>controller.JSONHelper#<init>()VL
-readAllAcontroller.JSONHelper#readAll(Ljava/io/Reader;)Ljava/lang/String;java.lang.Object õ
+readAllAcontroller.JSONHelper#readAll(Ljava/io/Reader;)Ljava/lang/String;java.lang.Object ≠
 controller.ReleaseRetriever/
-<init>%controller.ReleaseRetriever#<init>()VÅ
-getReleaseFromProjecthcontroller.ReleaseRetriever#getReleaseFromProject(Ljava/lang/String;Ljava/lang/Boolean;)Ljava/util/List;S
+<init>%controller.ReleaseRetriever#<init>()Vì
+getReleaseFromProjectzcontroller.ReleaseRetriever#getReleaseFromProject(Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;)Ljava/util/List;S
 printReleaseList?controller.ReleaseRetriever#printReleaseList(Ljava/util/List;)V`
-setReleaseIndexMcontroller.ReleaseRetriever#setReleaseIndex(Ljava/util/List;)Ljava/util/List;java.lang.Object˙
+setReleaseIndexMcontroller.ReleaseRetriever#setReleaseIndex(Ljava/util/List;)Ljava/util/List;java.lang.Objectä
 controller.CommitRetriever.
-<init>$controller.CommitRetriever#<init>()Vó
-bugListRefFileÑcontroller.CommitRetriever#bugListRefFile(Ljava/lang/String;Lmodel/ReleaseTag;Lmodel/ReleaseTag;Ljava/lang/Boolean;)Ljava/util/List;java.lang.Object †
-controller.ArffGenerator,
-<init>"controller.ArffGenerator#<init>()VD
-	buildArff7controller.ArffGenerator#buildArff(Ljava/lang/String;)Vjava.lang.Object≠
+<init>$controller.CommitRetriever#<init>()Vß
+bugListRefFileîcontroller.CommitRetriever#bugListRefFile(Ljava/lang/String;Lmodel/ReleaseTag;Lmodel/ReleaseTag;Ljava/lang/Boolean;Ljava/util/List;)Ljava/util/List;java.lang.Object ™
 controller.BugRetriever+
-<init>!controller.BugRetriever#<init>()Vr
-getBughcontroller.BugRetriever#getBug(Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;)Ljava/util/List;Q
+<init>!controller.BugRetriever#<init>()Vo
+getBugecontroller.BugRetriever#getBug(Ljava/lang/String;Ljava/lang/Boolean;Ljava/util/List;)Ljava/util/List;Q
 printBugInformation:controller.BugRetriever#printBugInformation(Lmodel/Bug;I)Vâ
 retrieveFixedANDOpeningVersiongcontroller.BugRetriever#retrieveFixedANDOpeningVersion(Ljava/util/Date;Ljava/util/List;)Lmodel/Release;java.lang.Object È
 
@@ -52,7 +49,10 @@ model.RepoB
 getApacheProjectName3model.Repo#getApacheProjectName()Ljava/lang/String;5
 	getGitUrl(model.Repo#getGitUrl()Ljava/lang/String;C
 getPathOfLocalRepo-model.Repo#getPathOfLocalRepo()Ljava/io/File;:
-setPathOfRepo)model.Repo#setPathOfRepo(Ljava/io/File;)Vjava.lang.Object ‚
+setPathOfRepo)model.Repo#setPathOfRepo(Ljava/io/File;)Vjava.lang.Object p
+GenerateCSV
+<init>GenerateCSV#<init>()V.
+main&GenerateCSV#main([Ljava/lang/String;)Vjava.lang.Object‚
  controller.SimpleProgressMonitor4
 <init>*controller.SimpleProgressMonitor#<init>()VM
 	beginTask@controller.SimpleProgressMonitor#beginTask(Ljava/lang/String;I)V6
@@ -63,16 +63,19 @@ model.RepoB
 update+controller.SimpleProgressMonitor#update(I)Vjava.lang.Object g
 MainJira
 <init>MainJira#<init>()V+
-main#MainJira#main([Ljava/lang/String;)Vjava.lang.Object»
+main#MainJira#main([Ljava/lang/String;)Vjava.lang.Object˝
 controller.ReleaseTagRetriever2
-<init>(controller.ReleaseTagRetriever#<init>()Vg
-makeTagReleasesListPcontroller.ReleaseTagRetriever#makeTagReleasesList(Lmodel/Repo;)Ljava/util/List;v
-releasesTagJiraGitLinkerZcontroller.ReleaseTagRetriever#releasesTagJiraGitLinker(Ljava/lang/String;)Lmodel/Release;
-setBugginessocontroller.ReleaseTagRetriever#setBugginess(Ljava/util/List;Ljava/lang/String;Ljava/util/List;)Ljava/util/List;java.lang.Object…
+<init>(controller.ReleaseTagRetriever#<init>()Vw
+makeTagReleasesList`controller.ReleaseTagRetriever#makeTagReleasesList(Lmodel/Repo;Ljava/util/List;)Ljava/util/List;Ü
+releasesTagJiraGitLinkerjcontroller.ReleaseTagRetriever#releasesTagJiraGitLinker(Ljava/lang/String;Ljava/util/List;)Lmodel/Release;í
+setBugginessÅcontroller.ReleaseTagRetriever#setBugginess(Ljava/util/List;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;)Ljava/util/List;java.lang.Object…
 model.Commit 
 <init>model.Commit#<init>()V@
 getCommitFromJira+model.Commit#getCommitFromJira()Lmodel/Bug;A
-setCommitFromJira,model.Commit#setCommitFromJira(Lmodel/Bug;)Vjava.lang.Object Ñ
+setCommitFromJira,model.Commit#setCommitFromJira(Lmodel/Bug;)Vjava.lang.Object †
+controller.ArffGenerator,
+<init>"controller.ArffGenerator#<init>()VD
+	buildArff7controller.ArffGenerator#buildArff(Ljava/lang/String;)Vjava.lang.ObjectÑ
 model.ReleaseD
 <init>:model.Release#<init>(ILjava/lang/String;Ljava/util/Date;)V3
 <init>)model.Release#<init>(Ljava/lang/String;)V
@@ -80,17 +83,14 @@ model.RepoB
 getIndexmodel.Release#getIndex()I4
 getName)model.Release#getName()Ljava/lang/String;@
 getReleaseDate.model.Release#getReleaseDate()Ljava/util/Date;&
-setIndexmodel.Release#setIndex(I)Vjava.lang.ObjectÒ
+setIndexmodel.Release#setIndex(I)Vjava.lang.ObjectÇ
 controller.FileRetriever,
-<init>"controller.FileRetriever#<init>()Vî
-getAllFilesOfTagReleaseycontroller.FileRetriever#getAllFilesOfTagRelease(Lmodel/ReleaseTag;Lmodel/ReleaseTag;Ljava/lang/Boolean;)Ljava/util/List;java.lang.Objectù
+<init>"controller.FileRetriever#<init>()V•
+getAllFilesOfTagReleaseâcontroller.FileRetriever#getAllFilesOfTagRelease(Lmodel/ReleaseTag;Lmodel/ReleaseTag;Ljava/lang/Boolean;Ljava/util/List;)Ljava/util/List;java.lang.ObjectØ
 controller.GitController,
 <init>"controller.GitController#<init>()VT
-printAllGitDataSet>controller.GitController#printAllGitDataSet(Ljava/util/List;)Vk
-retrieveAllGitDataSetRcontroller.GitController#retrieveAllGitDataSet(Ljava/lang/String;)Ljava/util/List;java.lang.Objectp
-GenerateCSV
-<init>GenerateCSV#<init>()V.
-main&GenerateCSV#main([Ljava/lang/String;)Vjava.lang.Object˘
+printAllGitDataSet>controller.GitController#printAllGitDataSet(Ljava/util/List;)V}
+retrieveAllGitDataSetdcontroller.GitController#retrieveAllGitDataSet(Ljava/lang/String;Ljava/lang/String;)Ljava/util/List;java.lang.Object˘
 model.ReleaseTag$
 <init>model.ReleaseTag#<init>()Vc
 <init>Ymodel.ReleaseTag#<init>(Ljava/lang/String;Lmodel/Release;Lmodel/Repo;Ljava/lang/String;)V?
@@ -108,9 +108,10 @@ model.RepoB
 incrementCheckerScontroller.Proportion#incrementChecker(Ljava/util/List;Lmodel/Bug;)Ljava/util/List;8
 pFormula,controller.Proportion#pFormula(Lmodel/Bug;)Ft
 proportionAlgoHelper\controller.Proportion#proportionAlgoHelper(Ljava/util/List;Ljava/util/List;)Ljava/util/List;U
-takeMedianPColdStart=controller.Proportion#takeMedianPColdStart(Ljava/util/List;)Fjava.lang.ObjectÙ
-model.Metrics+
-<init>!model.Metrics#<init>(IIIIIIFIIF)V3
+takeMedianPColdStart=controller.Proportion#takeMedianPColdStart(Ljava/util/List;)Fjava.lang.Objecté
+
+model.Metrics0
+<init>&model.Metrics#<init>(IIIIIIFIIFIIIII)V3
 getAverageChurn model.Metrics#getAverageChurn()F9
 getAverageLocAdded#model.Metrics#getAverageLocAdded()F%
 getChurnmodel.Metrics#getChurn()I!
@@ -119,8 +120,13 @@ model.RepoB
 getLocMaxAddedmodel.Metrics#getLocMaxAdded()I/
 getLocTouchedmodel.Metrics#getLocTouched()I+
 getMaxChurnmodel.Metrics#getMaxChurn()I%
-getnAuthmodel.Metrics#getnAuth()I-
-getnRevisionmodel.Metrics#getnRevision()I4
+getnAuthmodel.Metrics#getnAuth()I9
+getnCommentedLines#model.Metrics#getnCommentedLines()I+
+getnMethodsmodel.Metrics#getnMethods()I9
+getnPrivateMethods#model.Metrics#getnPrivateMethods()I7
+getnPublicMethods"model.Metrics#getnPublicMethods()I-
+getnRevisionmodel.Metrics#getnRevision()I7
+getnStaticMethods"model.Metrics#getnStaticMethods()I4
 setAverageChurn!model.Metrics#setAverageChurn(F)V:
 setAverageLocAdded$model.Metrics#setAverageLocAdded(F)V&
 setChurnmodel.Metrics#setChurn(I)V"
@@ -130,10 +136,7 @@ model.RepoB
 setLocTouchedmodel.Metrics#setLocTouched(I)V,
 setMaxChurnmodel.Metrics#setMaxChurn(I)V&
 setnAuthmodel.Metrics#setnAuth(I)V.
-setnRevisionmodel.Metrics#setnRevision(I)Vjava.lang.Object™
-controller.CSVGenerator+
-<init>!controller.CSVGenerator#<init>()VP
-buildCSVDcontroller.CSVGenerator#buildCSV(Ljava/util/List;)Ljava/lang/String;java.lang.ObjectÔ
+setnRevisionmodel.Metrics#setnRevision(I)Vjava.lang.ObjectÔ
 model.RepoFilex
 <init>nmodel.RepoFile#<init>(Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Lmodel/Metrics;Ljava/lang/Boolean;)V@
 getFileMetrics.model.RepoFile#getFileMetrics()Lmodel/Metrics;>
@@ -142,4 +145,7 @@ model.RepoB
 getNameFile.model.RepoFile#getNameFile()Ljava/lang/String;A
 getPathOfFile0model.RepoFile#getPathOfFile()Ljava/lang/String;G
 getRelatedCommits2model.RepoFile#getRelatedCommits()Ljava/util/List;?
-setItsBuggy0model.RepoFile#setItsBuggy(Ljava/lang/Boolean;)Vjava.lang.Object
+setItsBuggy0model.RepoFile#setItsBuggy(Ljava/lang/Boolean;)Vjava.lang.ObjectŒ
+controller.CSVGenerator+
+<init>!controller.CSVGenerator#<init>()Vt
+buildCSVhcontroller.CSVGenerator#buildCSV(Ljava/util/List;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;java.lang.Object

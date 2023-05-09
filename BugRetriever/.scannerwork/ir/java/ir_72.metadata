@@ -1,1 +1,1 @@
-model.Release#getReleaseDate()Ljava/util/Date;
+model.Release#getName()Ljava/lang/String;

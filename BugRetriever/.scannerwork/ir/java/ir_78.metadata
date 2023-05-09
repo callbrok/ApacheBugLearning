@@ -1,12 +1,1 @@
-controller.GitController#retrieveAllGitDataSet(Ljava/lang/String;)Ljava/util/List;
-model.ReleaseTag#instance-init#
-model.ReleaseTag#<init>()V
-java.util.ArrayList#instance-init#
-java.util.ArrayList#<init>(Ljava/util/Collection;)V
-controller.FileRetriever#instance-init#
-controller.JGitHelper#<init>()V
-controller.FileRetriever#<init>()V
-controller.JGitHelper#instance-init#
-controller.ReleaseTagRetriever#<init>()V
-controller.GitController#printAllGitDataSet(Ljava/util/List;)V
-controller.ReleaseTagRetriever#instance-init#
+controller.GitController#instance-init#

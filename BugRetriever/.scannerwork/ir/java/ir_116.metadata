@@ -1,1 +1,1 @@
-model.Metrics#getMaxChurn()I
+model.Metrics#getAverageChurn()F

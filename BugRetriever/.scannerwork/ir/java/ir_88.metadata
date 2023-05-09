@@ -1,1 +1,1 @@
-model.ReleaseTag#getReleaseFromJira()Lmodel/Release;
+model.ReleaseTag#setReferencedFilesList(Ljava/util/List;)V

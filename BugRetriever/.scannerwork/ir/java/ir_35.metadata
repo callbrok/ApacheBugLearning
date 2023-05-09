@@ -1,1 +1,1 @@
-controller.BugRetriever#instance-init#
+controller.BugRetriever#printBugInformation(Lmodel/Bug;I)V

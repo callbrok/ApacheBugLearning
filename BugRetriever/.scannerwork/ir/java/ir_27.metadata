@@ -1,1 +1,1 @@
-controller.ReleaseRetriever#instance-init#
+controller.ReleaseRetriever#setReleaseIndex(Ljava/util/List;)Ljava/util/List;

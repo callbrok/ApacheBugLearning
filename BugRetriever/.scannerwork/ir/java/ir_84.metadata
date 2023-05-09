@@ -1,1 +1,1 @@
-model.ReleaseTag#getCurrentRepo()Lmodel/Repo;
+model.ReleaseTag#getGitTag()Ljava/lang/String;

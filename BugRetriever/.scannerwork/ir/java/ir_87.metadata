@@ -1,1 +1,1 @@
-model.ReleaseTag#getRefObjectIdGetName()Ljava/lang/String;
+model.ReleaseTag#getReleaseFromJira()Lmodel/Release;

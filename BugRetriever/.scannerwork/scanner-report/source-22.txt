@@ -1,241 +1,89 @@
 package controller;
 
 import model.*;
-import org.eclipse.jgit.diff.*;
-import org.eclipse.jgit.lib.*;
-import org.eclipse.jgit.revwalk.RevCommit;
-import org.eclipse.jgit.revwalk.RevTree;
-import org.eclipse.jgit.revwalk.RevWalk;
-import org.eclipse.jgit.treewalk.*;
-import org.eclipse.jgit.util.io.DisabledOutputStream;
+import org.eclipse.jgit.api.Git;
+import org.eclipse.jgit.api.errors.GitAPIException;
+import org.eclipse.jgit.lib.Ref;
 
-import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
-import java.io.InputStreamReader;
+import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-public class MetricsRetriever {
+public class ReleaseTagRetriever {
 
-    public Metrics metricsHelper(ReleaseTag taggedReleaseToGetFileMetrics, ReleaseTag previousTaggedReleaseToGetFileMetrics, Boolean isFirst, TreeWalk treeWalk, List<Commit> relatedCommitsOfCurrentTaggedRelease) throws Exception {
+    public List<ReleaseTag> makeTagReleasesList(Repo project, List<Release> listOfJiRelease) throws GitAPIException {
+        ReleaseRetriever rls = new ReleaseRetriever();
 
-        // Retrieve LOC Metric -------------------------
-        int locMetric = locMetric(taggedReleaseToGetFileMetrics, taggedReleaseToGetFileMetrics.getCurrentRepo().getjGitRepository().findRef("HEAD").getObjectId(), treeWalk.getPathString());
-
-        // Retrieve others LOC Metrics -----------------
-        List<Integer> locMetrics = locOtherMetrics(taggedReleaseToGetFileMetrics, previousTaggedReleaseToGetFileMetrics, treeWalk, isFirst, relatedCommitsOfCurrentTaggedRelease);
-        // Integer list where:
-        //      1' Element: LOC Added
-        //      2' Element: Max LOC Added
-        //      3' Element: LOC Touched
-        //      4' Element: LOC Deleted
-        //      5' Element: Churn
-        //      6' Element: Max Churn
-        int locAdded = locMetrics.get(0);
-        int locMaxAdded = locMetrics.get(1);
-        int locTouchedMetric = locMetrics.get(2);
-        int locDeleted = locMetrics.get(3);
-
-        // Retrieve Number of Revision -----------------
-        int numberRevision = relatedCommitsOfCurrentTaggedRelease.size();
-
-        // Retrieve Average LOC Added ------------------
-        float averageLocAdded = 0;
-        if(numberRevision>0){averageLocAdded=(float)locAdded / numberRevision;};
-
-        // Retrieve Nauth Metric -----------------------
-        int nAuthMetric = numberAuthorsMetric(relatedCommitsOfCurrentTaggedRelease);
-
-        // Retrieve Churn Metric -----------------------
-        int churn = locMetrics.get(4);
-
-        // Retrieve Max Churn Metric -------------------
-        int maxChurn = locMetrics.get(5);
-
-        // Average Churn Metric ------------------------
-        float averageChurn = 0;
-        if(numberRevision>0){averageChurn=(float)churn / numberRevision;};
+        // Init list of ragged release's objects
+        List<ReleaseTag> listOfTagReleases = new ArrayList<>();
 
 
-        return new Metrics(
-                locMetric,
-                locTouchedMetric,
-                nAuthMetric,
-                locAdded,
-                locMaxAdded,
-                numberRevision,
-                averageLocAdded,
-                churn,
-                maxChurn,
-                averageChurn
-        );
-    }
+        Git git = project.getGitHandle();
 
+        System.out.println("\n\nListing all tagged release:");
 
-    private int locMetric(ReleaseTag taggedReleaseToGetFileMetrics, ObjectId objectId, String pathOfFile) throws IOException {
-        // Size (LOC):
-        //      Lines of code of current file on the current release.
-        Repository repository = taggedReleaseToGetFileMetrics.getCurrentRepo().getjGitRepository();
+        // Retrieve all project's tags ref object
+        List<Ref> call = git.tagList().call();
 
-        int nline = 0;
+        for (Ref ref : call) {
+            Release releaseToAdd = releasesTagJiraGitLinker(ref.getName(), listOfJiRelease);
 
-        RevWalk walk = new RevWalk(repository);
+            // Check match with one of Release retrived by Jira
+            if(releaseToAdd.getName().equals("NOMATCH")){continue;}
 
-        RevCommit commit = walk.parseCommit(objectId);
-        RevTree tree = commit.getTree();
+            // Set, Create and Add ReleaseTag objetc to valid tagged release list
+            listOfTagReleases.add(new ReleaseTag(
+                    ref.getName(),                  // Set tag name path
+                    releaseToAdd,                   // Set Release associated object
+                    project,                        // Set Repo objects
+                    ref.getObjectId().getName()     // Set value of ref object in the repository
+            ));
 
-        TreeWalk treeWalk = new TreeWalk(repository);
-        treeWalk.addTree(tree);
-        treeWalk.setRecursive(true);
-
-        while (treeWalk.next()) {
-            if (treeWalk.getPathString().equals(pathOfFile)) {
-
-                ObjectLoader loader = repository.open(treeWalk.getObjectId(0));
-
-                // loader.openstream passa un inputstream del laoder
-                BufferedReader reader = new BufferedReader(new InputStreamReader(loader.openStream()));
-                while(reader.ready()) {
-                    String line = reader.readLine();
-                    nline = nline + 1;
-                }
-
-                break;
-            }
+            System.out.println("\nAdded Tag: " + ref.getName());
         }
 
-        System.out.println(nline);
-        return nline;
+        return listOfTagReleases;
     }
 
+    private Release releasesTagJiraGitLinker(String releaseTagName, List<Release> listOfJiRelease){
+        // Initialize 'no-match' Release object
+        Release errorRelease = new Release("NOMATCH");
 
+        // Check if the tag name is referred to docker version, so there is into name 'docker' word
+        if(releaseTagName.matches("(.*)docker(.*)")){return errorRelease;}
 
-    private List<Integer> locOtherMetrics(ReleaseTag taggedReleaseToGetFileMetrics, ReleaseTag previousTaggedReleaseToGetFileMetrics, TreeWalk treeWalk, Boolean isFirst, List<Commit> relatedCommitsOfCurrentTaggedRelease) throws Exception {
-        // LOC Touched:
-        //      sum over revisions of LOC added and deleted.
-        List<Integer> locMetrics = new ArrayList<>(Arrays.asList(0,0,0,0,0,0));
+        // Take the tag release name form, the last substring after '-' character
+        //      example. 'refs/tags/release-4.2.1' --> substring take '4.2.1'
+        String versionToCheck = releaseTagName.substring(releaseTagName.lastIndexOf("-") + 1);
 
-        int linesAdded = 0;
-        int linesDeleted = 0;
-        int linesMaxAdded = 0;
-        int churn = 0;
-        int churnMax = 0;
+        // Check matches with released jira Release
+        for(Release releaseIndex: listOfJiRelease){
+            if(releaseIndex.getName().equals(versionToCheck)){ return releaseIndex;}
+        }
 
-        Repository repository = taggedReleaseToGetFileMetrics.getCurrentRepo().getjGitRepository();
+        // Return default Release, that allert no matches
+        return errorRelease;
+    }
 
-        // Scori tutti i commit che fanno riferimento a quel file
-        for(int k=0; k<relatedCommitsOfCurrentTaggedRelease.size(); k++){
+    public List<ReleaseTag> setBugginess(List<ReleaseTag> tagRelesesToDoThinks, String fileName, List<Release> affectedVersions, String releaseRange){
 
-            RevCommit commit = relatedCommitsOfCurrentTaggedRelease.get(k).getCommitFromGit();
-            RevCommit parent;
+        // Scroll all file of all Release
+        for(ReleaseTag rlsIndex : tagRelesesToDoThinks){
+            // Find a ReleaseTag Object that match with one of passed affected version
+            if(affectedVersions.stream().anyMatch(o -> rlsIndex.getReleaseFromJira().getName().equals(o.getName()))){
+                for(RepoFile rpIndex : rlsIndex.getReferencedFilesList()){
+                    // Control for Walk Forward bugginess
+                    if(!releaseRange.equals("ALL") && (rlsIndex.getReleaseFromJira().getIndex() >= Integer.parseInt(releaseRange)+1)){break;}
 
-            // #NOTE-TO-THINKING-OF:
-            //      If is the first commmit and there is a previous release of file, take parent for the first commit
-            //      the latest commit of previous release file
-            if(k==0 && !isFirst){
-                parent = takeLatestCommitOfTag(previousTaggedReleaseToGetFileMetrics, treeWalk.getPathString());
-                // If parent return null, the previous release doesn't have a commit
-                if(parent==null){continue;}
-            }
-            //      If is the first commmit and there isn't a previous release of file, add entire line size like
-            //      the file is just added
-            else if(k==0 && isFirst){
-                ObjectId commitId = repository.resolve(relatedCommitsOfCurrentTaggedRelease.get(0).getCommitFromGit().getId().getName());
-                int lineFirstCommit = locMetric(taggedReleaseToGetFileMetrics, commitId, treeWalk.getPathString());
-
-                linesAdded += lineFirstCommit;
-
-                // Check if is the max
-                if(lineFirstCommit>linesMaxAdded){linesMaxAdded=lineFirstCommit;}
-                continue;
-            }
-            //      Take previous commit for parent assign
-            else{parent = relatedCommitsOfCurrentTaggedRelease.get(k-1).getCommitFromGit();}
-
-            DiffFormatter df = new DiffFormatter(DisabledOutputStream.INSTANCE);
-            df.setRepository(repository);
-            df.setDiffComparator(RawTextComparator.DEFAULT);
-            df.setDetectRenames(true);
-
-            List<DiffEntry> diffs;
-            diffs = df.scan(parent.getTree(), commit.getTree());
-
-            int tempAdded = 0;
-            int tempDeleted = 0;
-
-            for (DiffEntry diff : diffs) {
-                if(diff.getNewPath().equals(treeWalk.getPathString())){
-                    for (Edit edit : df.toFileHeader(diff).toEditList()) {
-                        tempDeleted += edit.getEndA() - edit.getBeginA();
-                        tempAdded += edit.getEndB() - edit.getBeginB();
-                    }
+                    // Find that file that it will set buggy and correspond to the passed path
+                    if(rpIndex.getNameFile().equals(fileName)){rpIndex.setItsBuggy(true); break;}
                 }
             }
-
-            // Set line LOC
-            linesDeleted += tempDeleted;
-            linesAdded += tempAdded;
-
-            // Check max Added line
-            if(tempAdded>linesMaxAdded){linesMaxAdded=tempAdded;}
-
-            int tempChurn = Math.abs(tempAdded-tempDeleted);
-
-            // Check max Churn
-            if(tempChurn > churnMax){churnMax=tempChurn;}
-
-            churn += tempChurn;
-
-
-            System.out.println("PER IL COMMIT " + k + ": " + relatedCommitsOfCurrentTaggedRelease.get(k).getCommitFromGit().getShortMessage() + " AGGIUNTE: " + tempAdded + " ELIMINATE: " + tempDeleted);
-
         }
 
-        locMetrics.set(0, linesAdded);
-        locMetrics.set(1, linesMaxAdded);
-        locMetrics.set(2, linesAdded+linesDeleted);
-        locMetrics.set(3, linesDeleted);
-        locMetrics.set(4, churn);
-        locMetrics.set(5, churnMax);
-
-        return locMetrics;
+        return tagRelesesToDoThinks;
     }
-
-    private RevCommit takeLatestCommitOfTag(ReleaseTag previousTaggedReleaseToGetFileMetrics, String filePath){
-        // Retrieve the latest commit of passed file of passed tag Release
-        RevCommit commitToReturn = null;
-
-        for(RepoFile fileIndex : previousTaggedReleaseToGetFileMetrics.getReferencedFilesList()){
-            if(fileIndex.getPathOfFile().equals(filePath) && !fileIndex.getRelatedCommits().isEmpty()){
-                commitToReturn = fileIndex.getRelatedCommits().get(fileIndex.getRelatedCommits().size()-1).getCommitFromGit();
-            }
-        }
-
-        return commitToReturn;
-    }
-
-
-    private int numberAuthorsMetric(List<Commit> relatedCommitsOfCurrentTaggedRelease){
-        // Nauth:
-        //      number of authors
-
-        List<String> authorsName = new ArrayList<>();
-
-        // Scroll all commit related to current version of file
-        for(Commit commitIndex : relatedCommitsOfCurrentTaggedRelease){
-            // Get author's name of current commit
-            PersonIdent authorIdent = commitIndex.getCommitFromGit().getAuthorIdent();
-            // Check if current author it's just added to authors list
-            if(authorsName.contains(authorIdent.getName())){continue;}
-            // Else add it
-            authorsName.add(authorIdent.getName());
-        }
-
-        return authorsName.size();
-    }
-
-
-
 
 }

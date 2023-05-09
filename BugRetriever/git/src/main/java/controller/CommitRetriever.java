@@ -18,12 +18,8 @@ import java.util.List;
 
 public class CommitRetriever {
 
-    public List<Commit> bugListRefFile(String pathOfFile, ReleaseTag taggedReleaseToGetCommit, ReleaseTag previousTaggedRelease, Boolean isFirst, List<Bug> bugList) throws IOException, GitAPIException, ParseException {
-        BugRetriever gtb = new BugRetriever();
+    public List<Commit> bugListRefFile(String pathOfFile, ReleaseTag taggedReleaseToGetCommit, ReleaseTag previousTaggedRelease, Boolean isFirst) throws IOException, GitAPIException, ParseException {
         List<Commit> commitsToReturn = new ArrayList<>();
-
-        int commitCounter = 0;
-
 
         Git git = taggedReleaseToGetCommit.getCurrentRepo().getGitHandle();
 
@@ -31,10 +27,14 @@ public class CommitRetriever {
         Ref currentTag = git.getRepository().exactRef(taggedReleaseToGetCommit.getGitTag());
         Ref previousTag = git.getRepository().exactRef(previousTaggedRelease.getGitTag());
 
+        // Retrieve ref for lightweight tag (used in Syncope)
+        Ref peeledRefcurrent = git.getRepository().peel(currentTag);
+        Ref peeledRefprevious = git.getRepository().peel(previousTag);
+
         // Init commit list
         Iterable<RevCommit> logs = new ArrayList<>();
 
-        if(isFirst){
+        if(Boolean.TRUE.equals(isFirst)){
             // If I'm getting the files for the first tagged release, I don't set the tag's range
             logs = git.log()
                     .addPath( pathOfFile )      // File name to retrieve commits
@@ -43,7 +43,7 @@ public class CommitRetriever {
         else{
             logs = git.log()
                     .addPath( pathOfFile )                                                          // File name to retrieve commits
-                    .addRange(previousTag.getPeeledObjectId(), currentTag.getPeeledObjectId())      // Set tag range
+                    .addRange(peeledRefprevious.getPeeledObjectId(), peeledRefcurrent.getPeeledObjectId())      // Set tag range
                     .call();
         }
 
@@ -54,25 +54,18 @@ public class CommitRetriever {
             Commit commitToAdd = new Commit();
             commitToAdd.setCommitFromGit(rev);
 
-            // Check current commit
-            Bug currentBug = commitJiraGitLinker(rev, bugList);
-
-            // Check returned bug, if the name is different from 'NOMATCH' there is a match with Jira Bug
-            if(!currentBug.getNameKey().equals("NOMATCH")){commitToAdd.setCommitFromJira(currentBug);}
-
             // Add commit to commit list for passed file
             commitsToReturn.add(commitToAdd);
-
-            System.out.println("     -- AddedCommit: " + rev.getShortMessage() + "  |  ID: " + rev.getId().getName());
-            commitCounter++;
         }
 
+        // Reverse commit list
+        Collections.reverse(commitsToReturn);
 
         return commitsToReturn;
     }
 
 
-    private Bug commitJiraGitLinker(RevCommit commit, List<Bug> bugList){
+    public Bug commitJiraGitLinker(RevCommit commit, List<Bug> bugList){
 
         // Scroll all valid bug and find match with passed commit
         for(Bug validBugIndex: bugList){

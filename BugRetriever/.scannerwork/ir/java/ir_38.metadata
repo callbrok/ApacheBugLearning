@@ -1,1 +1,1 @@
-controller.BugRetriever#printBugInformation(Lmodel/Bug;I)V
+model.Repo#getApacheProjectName()Ljava/lang/String;

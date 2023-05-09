@@ -19,10 +19,10 @@ import java.util.regex.Pattern;
 
 public class MetricsRetriever {
 
-    public Metrics metricsHelper(ReleaseTag taggedReleaseToGetFileMetrics, ReleaseTag previousTaggedReleaseToGetFileMetrics, Boolean isFirst, TreeWalk treeWalk, List<Commit> relatedCommitsOfCurrentTaggedRelease) throws Exception {
+    public Metrics metricsHelper(ReleaseTag taggedReleaseToGetFileMetrics, ReleaseTag previousTaggedReleaseToGetFileMetrics, Boolean isFirst, String treeWalk, List<Commit> relatedCommitsOfCurrentTaggedRelease) throws Exception {
 
         // Retrieve LOC Metric -------------------------
-        List<Integer> locMetricAndNMethods = locAndMethodsNumberMetrics(taggedReleaseToGetFileMetrics, taggedReleaseToGetFileMetrics.getCurrentRepo().getjGitRepository().findRef("HEAD").getObjectId(), treeWalk.getPathString(), false);
+        List<Integer> locMetricAndNMethods = locAndMethodsNumberMetrics(taggedReleaseToGetFileMetrics, taggedReleaseToGetFileMetrics.getCurrentRepo().getjGitRepository().exactRef(taggedReleaseToGetFileMetrics.getGitTag()).getObjectId(), treeWalk, false);
         // Integer 'locMetricAndNMethods' list where:
         //      1' Element: LOC (Whit comment and blank lines)
         //      2' Element: NPBM (Number of public methods)
@@ -36,6 +36,7 @@ public class MetricsRetriever {
         int nStaticMethods = locMetricAndNMethods.get(3);
         int nMethods = locMetricAndNMethods.get(4);
         int nCommentedLines = locMetricAndNMethods.get(5);
+
 
         // Retrieve others LOC Metrics -----------------
         List<Integer> locMetrics = locOtherMetrics(taggedReleaseToGetFileMetrics, previousTaggedReleaseToGetFileMetrics, treeWalk, isFirst, relatedCommitsOfCurrentTaggedRelease);
@@ -176,7 +177,7 @@ public class MetricsRetriever {
     }
 
 
-    private List<Integer> locOtherMetrics(ReleaseTag taggedReleaseToGetFileMetrics, ReleaseTag previousTaggedReleaseToGetFileMetrics, TreeWalk treeWalk, Boolean isFirst, List<Commit> relatedCommitsOfCurrentTaggedRelease) throws Exception {
+    private List<Integer> locOtherMetrics(ReleaseTag taggedReleaseToGetFileMetrics, ReleaseTag previousTaggedReleaseToGetFileMetrics, String treeWalk, Boolean isFirst, List<Commit> relatedCommitsOfCurrentTaggedRelease) throws Exception {
         // LOC Touched:
         //      sum over revisions of LOC added and deleted.
         List<Integer> locMetrics = new ArrayList<>(Arrays.asList(0,0,0,0,0,0));
@@ -199,15 +200,16 @@ public class MetricsRetriever {
             //      If is the first commmit and there is a previous release of file, take parent for the first commit
             //      the latest commit of previous release file
             if(k==0 && !isFirst){
-                parent = takeLatestCommitOfTag(previousTaggedReleaseToGetFileMetrics, treeWalk.getPathString());
+                parent = takeLatestCommitOfTag(previousTaggedReleaseToGetFileMetrics, treeWalk);
                 // If parent return null, the previous release doesn't have a commit
                 if(parent==null){continue;}
+                continue;
             }
             //      If is the first commmit and there isn't a previous release of file, add entire line size like
             //      the file is just added
             else if(k==0 && isFirst){
                 ObjectId commitId = repository.resolve(relatedCommitsOfCurrentTaggedRelease.get(0).getCommitFromGit().getId().getName());
-                int lineFirstCommit = locAndMethodsNumberMetrics(taggedReleaseToGetFileMetrics, commitId, treeWalk.getPathString(), true).get(0);
+                int lineFirstCommit = locAndMethodsNumberMetrics(taggedReleaseToGetFileMetrics, commitId, treeWalk, true).get(0);
 
                 linesAdded += lineFirstCommit;
 
@@ -223,14 +225,14 @@ public class MetricsRetriever {
             df.setDiffComparator(RawTextComparator.DEFAULT);
             df.setDetectRenames(true);
 
-            List<DiffEntry> diffs;
+            List<DiffEntry> diffs = new ArrayList<>();
             diffs = df.scan(parent.getTree(), commit.getTree());
 
             int tempAdded = 0;
             int tempDeleted = 0;
 
             for (DiffEntry diff : diffs) {
-                if(diff.getNewPath().equals(treeWalk.getPathString())){
+                if(diff.getNewPath().equals(treeWalk)){
                     for (Edit edit : df.toFileHeader(diff).toEditList()) {
                         tempDeleted += edit.getEndA() - edit.getBeginA();
                         tempAdded += edit.getEndB() - edit.getBeginB();
@@ -253,7 +255,7 @@ public class MetricsRetriever {
             churn += tempChurn;
 
 
-            System.out.println("PER IL COMMIT " + k + ": " + relatedCommitsOfCurrentTaggedRelease.get(k).getCommitFromGit().getShortMessage() + " AGGIUNTE: " + tempAdded + " ELIMINATE: " + tempDeleted);
+            //System.out.println("PER IL COMMIT " + k + ": " + relatedCommitsOfCurrentTaggedRelease.get(k).getCommitFromGit().getShortMessage() + " AGGIUNTE: " + tempAdded + " ELIMINATE: " + tempDeleted);
 
         }
 

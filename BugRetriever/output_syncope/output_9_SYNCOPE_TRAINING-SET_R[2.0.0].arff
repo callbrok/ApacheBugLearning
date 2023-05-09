@@ -1,0 +1,22 @@
+@relation output_9_SYNCOPE_TRAINING-SET_R[2.0.0]
+
+@attribute Version string
+@attribute Filename string
+@attribute NR string
+@attribute NAUTHORS string
+@attribute LOC string
+@attribute LOC_ADDED string
+@attribute AVGLOCADDED string
+@attribute MAXLOCADDED string
+@attribute LOCTOUCHED string
+@attribute CHURN string
+@attribute AVGCHURN string
+@attribute MAXCHURN string
+@attribute NPBM string
+@attribute NPVM string
+@attribute NSM string
+@attribute NAM string
+@attribute LOCM string
+@attribute BUGGY string
+
+@data

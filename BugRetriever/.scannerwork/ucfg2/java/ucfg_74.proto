@@ -1,10 +1,10 @@
 
 =controller.Proportion#takeMedianPColdStart(Ljava/util/List;)Fi
-]C:/Users/Marco/GitHub/BugRetriever/BugRetriever/jira/src/main/java/controller/Proportion.javaî î(&"3*¯
+]C:/Users/Marco/GitHub/BugRetriever/BugRetriever/jira/src/main/java/controller/Proportion.javaï ï(&"3*¯
 2
-ó ó(tr
+ô ô(tr
 
-ó" ó(2	
+ô" ô(2	
 %2int"java.util.List#size()I*9
 
 __unknown_file (
@@ -12,7 +12,7 @@
 	projectsPjava.util.List2size()‘
 Ž
 
-ó ó(@
+ô ô(@
 %3java.lang.Float"
 __arrayGet*9
 
@@ -23,13 +23,13 @@ __arrayGet*9
 __unknown_file (
 """
 
-ó ó(A
+ô ô(A
 ""*Ì
 3
-ð ð(¼
+ñ ñ(¼
 ¹
 
-ð ð(#
+ñ ñ(#
 
 %0void"-java.util.Collections#sort(Ljava/util/List;)V*5
 
@@ -40,7 +40,7 @@ __arrayGet*9
 
 	projectsPjava.util.Listtr
 
-ò ò(	
+ó ó(	
 %1int"java.util.List#size()I*9
 
 __unknown_file (
@@ -49,9 +49,9 @@ __arrayGet*9
 2
 1*¹
 1
-õ õ(#tr
+ö ö(#tr
 
-õ( õ(8	
+ö( ö(8	
 %4int"java.util.List#size()I*9
 
 __unknown_file (
@@ -59,7 +59,7 @@ __arrayGet*9
 	projectsPjava.util.List2size()‘
 Ž
 
-õ õ(A
+ö ö(A
 %5java.lang.Float"
 __arrayGet*9
 
@@ -70,7 +70,7 @@ __arrayGet*9
 __unknown_file (
 ""tr
 
-ö( ö(8	
+÷( ÷(8	
 %6int"java.util.List#size()I*9
 
 __unknown_file (
@@ -78,7 +78,7 @@ __arrayGet*9
 	projectsPjava.util.List2size()‘
 Ž
 
-ö ö(=
+÷ ÷(=
 %7java.lang.Float"
 __arrayGet*9
 
@@ -89,9 +89,9 @@ __arrayGet*9
 __unknown_file (
 """
 
-ø ø('
+ù ù('
 "":)
 
-î' î(<
+ï' ï(<
 	projectsPjava.util.ListB
 controller.ProportionP

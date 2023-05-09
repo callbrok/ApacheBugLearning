@@ -1,96 +1,100 @@
 package controller;
 
-import model.Bug;
-import model.Commit;
-import model.ReleaseTag;
-import org.eclipse.jgit.api.Git;
-import org.eclipse.jgit.api.errors.GitAPIException;
+import model.*;
 import org.eclipse.jgit.lib.Ref;
+import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.revwalk.RevCommit;
+import org.eclipse.jgit.revwalk.RevTree;
+import org.eclipse.jgit.revwalk.RevWalk;
+import org.eclipse.jgit.treewalk.TreeWalk;
 
-import java.io.IOException;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
-public class CommitRetriever {
+public class FileRetriever {
 
-    private static List<Bug> LISTOFJIRABUG = new ArrayList<>();
+    // #NOTE-TO-THINKING-OF:
+    //      Fare considerazione su valutazione della bugginess, non considerando le classi test e
+    //      considerando le classi test, facendo capire se la loro analisi è impattante, sono molte le classi di
+    //      buggy quindi potrebbe essere impattante
+    private static final Boolean GETTESTCLASS = false;
 
-    public List<Commit> bugListRefFile(String pathOfFile, ReleaseTag taggedReleaseToGetCommit, ReleaseTag previousTaggedRelease, Boolean isFirst) throws IOException, GitAPIException, ParseException {
-        BugRetriever gtb = new BugRetriever();
-        List<Commit> commitsToReturn = new ArrayList<>();
+    public List<RepoFile> getAllFilesOfTagRelease(ReleaseTag taggedReleaseToGetFiles, ReleaseTag previousTaggedRelease, Boolean isFirst, List<Bug> bugList) throws Exception {
+        List<RepoFile> filesToReturn = new ArrayList<>();
 
-        int commitCounter = 0;
+        String fileExtension;
+        String fileName;
 
-        // If there aren't Jira commits, retrieve and set it
-        if(LISTOFJIRABUG.isEmpty()){LISTOFJIRABUG=gtb.getBug(
-                taggedReleaseToGetCommit.getCurrentRepo().getApacheProjectName(),  // Project's name from Repo object
-                false,
-                true
-        );}
+        // Point repository of current passed branch
+        Repository repository = taggedReleaseToGetFiles.getCurrentRepo().getjGitRepository();
 
-        Git git = taggedReleaseToGetCommit.getCurrentRepo().getGitHandle();
+        // Point tagged release with git-checkout
+        taggedReleaseToGetFiles.getCurrentRepo().getGitHandle().checkout().setName( taggedReleaseToGetFiles.getGitTag() ).call();
 
-        // Retrieve Ref object of passed tag
-        Ref currentTag = git.getRepository().exactRef(taggedReleaseToGetCommit.getGitTag());
-        Ref previousTag = git.getRepository().exactRef(previousTaggedRelease.getGitTag());
+        // Point current branch
+        Ref head = repository.findRef("HEAD");
 
-        // Init commit list
-        Iterable<RevCommit> logs = new ArrayList<>();
 
-        if(isFirst){
-            // If I'm getting the files for the first tagged release, I don't set the tag's range
-            logs = git.log()
-                    .addPath( pathOfFile )      // File name to retrieve commits
-                    .call();
+        // RevWalk allows to walk over commits based on some filtering that is defined
+        RevWalk walk = new RevWalk(repository);
+
+        RevCommit commit = walk.parseCommit(head.getObjectId());
+        RevTree tree = commit.getTree();
+        System.out.println("\n\n+----------------------------------------------------------------------------------------------------------------------+\n"
+                + "+++ Having tree: " + tree + " for TAG: " + taggedReleaseToGetFiles.getGitTag()  +
+                "\n+----------------------------------------------------------------------------------------------------------------------+\n\n" );
+
+        // Now use a TreeWalk to iterate over all files in the Tree recursively
+        // you can set Filters to narrow down the results if needed
+        TreeWalk treeWalk = new TreeWalk(repository);
+
+        treeWalk.addTree(tree);
+        treeWalk.setRecursive(true);
+
+        // Scroll all files of tagged release, listed in the treeWalk
+        while (treeWalk.next()) {
+
+            // Take the substring after the latest '/' character, so name of the file
+            fileName = treeWalk.getPathString().substring(treeWalk.getPathString().lastIndexOf("/") + 1);
+
+            // Take the substring after the latest '.' character, so the extension of the file
+            fileExtension = fileName.substring(fileName.lastIndexOf(".") + 1);
+
+            // If isn't a Java class skip it, WE NEED ONLY JAVA CLASSES TO CALCULATE BUGGINESS
+            // Check if we need skip test class, if yes skip it
+            if((!GETTESTCLASS && treeWalk.getPathString().matches("(.*)/test/(.*)")) || !fileExtension.equals("java")){continue;}
+
+            // If the current file match, search related commit that corrisponde to jira bug retrieved jet
+            CommitRetriever gtc = new CommitRetriever();
+            List<Commit> relatedCommitsOfCurrentTaggedRelease = gtc.bugListRefFile(treeWalk.getPathString(), taggedReleaseToGetFiles, previousTaggedRelease, isFirst, bugList);
+
+            // Reverse commit list
+            Collections.reverse(relatedCommitsOfCurrentTaggedRelease);
+
+
+            // Check returned list of commits
+            if(relatedCommitsOfCurrentTaggedRelease.isEmpty()){System.out.println("NESSUN COMMIT RELATIVO ALLA TAGGED RELEASE DEL SEGUENTE FILE");}
+
+
+            // Set file's metrics
+            MetricsRetriever mtr = new MetricsRetriever();
+            Metrics metricsToAdd = mtr.metricsHelper(taggedReleaseToGetFiles, previousTaggedRelease, isFirst, treeWalk, relatedCommitsOfCurrentTaggedRelease);
+
+
+            // Add file to the list
+            filesToReturn.add(new RepoFile(
+                    fileName,
+                    treeWalk.getPathString(),  // Path of current file
+                    relatedCommitsOfCurrentTaggedRelease,
+                    metricsToAdd,
+                    false
+            ));
+
+            System.out.println(" -> found: " + treeWalk.getPathString());
         }
-        else{
-            logs = git.log()
-                    .addPath( pathOfFile )                                                          // File name to retrieve commits
-                    .addRange(previousTag.getPeeledObjectId(), currentTag.getPeeledObjectId())      // Set tag range
-                    .call();
-        }
 
-
-        // Scroll commit
-        for (RevCommit rev : logs) {
-            // Init commit to add
-            Commit commitToAdd = new Commit();
-            commitToAdd.setCommitFromGit(rev);
-
-            // Check current commit
-            Bug currentBug = commitJiraGitLinker(rev);
-
-            // Check returned bug, if the name is different from 'NOMATCH' there is a match with Jira Bug
-            if(!currentBug.getNameKey().equals("NOMATCH")){commitToAdd.setCommitFromJira(currentBug);}
-
-            // Add commit to commit list for passed file
-            commitsToReturn.add(commitToAdd);
-
-            System.out.println("     -- AddedCommit: " + rev.getShortMessage() + "  |  ID: " + rev.getId().getName());
-            commitCounter++;
-        }
-
-
-        return commitsToReturn;
-    }
-
-
-    private Bug commitJiraGitLinker(RevCommit commit){
-
-        // Scroll all valid bug and find match with passed commit
-        for(Bug validBugIndex: LISTOFJIRABUG){
-
-            // If commit's message contains bug name like 'BOOKKEEPER-46', there is a match
-            if(commit.getShortMessage().matches("(.*)" + validBugIndex.getNameKey()  + "(.*)")){return validBugIndex;}
-
-        }
-
-        // If there isn't match, return a default bug error
-        return new Bug("NOMATCH");
+        return filesToReturn;
     }
 
 }

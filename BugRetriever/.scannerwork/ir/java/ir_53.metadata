@@ -1,1 +1,1 @@
-controller.SimpleProgressMonitor#endTask()V
+controller.SimpleProgressMonitor#isCancelled()Z

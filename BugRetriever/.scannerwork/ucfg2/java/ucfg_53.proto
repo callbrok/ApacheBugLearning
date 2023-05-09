@@ -1,15 +1,15 @@
 
-.model.Release#getReleaseDate()Ljava/util/Date;_
-UC:/Users/Marco/GitHub/BugRetriever/BugRetriever/jira/src/main/java/model/Release.java ("1*›
-1) (4h
-f
-) (4
-%0java.util.Date"__id*>
+)model.Release#getName()Ljava/lang/String;_
+UC:/Users/Marco/GitHub/BugRetriever/BugRetriever/jira/src/main/java/model/Release.java ("1*˜
+1# ('c
+a
+# ('
+%0java.lang.String"__id*7
 
-__unknown_file ("* 
-model.Release"
-releaseDate""
-" (5
-
-%0java.util.DateB
+__unknown_file (*
+model.Release"
+name"$
+ ((
+
+%0java.lang.StringB
 model.ReleaseH

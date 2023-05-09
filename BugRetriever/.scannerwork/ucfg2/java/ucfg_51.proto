@@ -1,7 +1,7 @@
 
-model.Release#getIndex()I_
-UC:/Users/Marco/GitHub/BugRetriever/BugRetriever/jira/src/main/java/model/Release.java ("1*!
-1" ('"
- ((
+model.Release#getId()I_
+UC:/Users/Marco/GitHub/BugRetriever/BugRetriever/jira/src/main/java/model/Release.java ("1*!
+1 (!"
+ ("
 ""B
 model.ReleaseHP

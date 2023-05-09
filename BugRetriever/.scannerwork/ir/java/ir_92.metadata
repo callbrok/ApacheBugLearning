@@ -1,2 +1,8 @@
-controller.Proportion#increment(Ljava/util/List;)F
+controller.Proportion#coldStart()Ljava/util/List;
+java.util.ArrayList#<init>()V
 controller.Proportion#pFormula(Lmodel/Bug;)F
+controller.ReleaseRetriever#instance-init#
+java.util.ArrayList#instance-init#
+controller.ReleaseRetriever#<init>()V
+controller.BugRetriever#<init>()V
+controller.BugRetriever#instance-init#

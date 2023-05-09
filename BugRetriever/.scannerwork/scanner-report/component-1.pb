@@ -1,2 +1,2 @@
-BugRetriever : 7135
-268H4	B,(https://github.com/callbrok/BugRetrieverB/+https://travis-ci.org/callbrok/BugRetrieverB3/https://github.com/callbrok/BugRetriever/issuesB,(https://github.com/callbrok/BugRetrieverRcallbrok_BugRetriever
+BugRetriever : 602415
+7W3	B,(https://github.com/callbrok/BugRetrieverB/+https://travis-ci.org/callbrok/BugRetrieverB3/https://github.com/callbrok/BugRetriever/issuesB,(https://github.com/callbrok/BugRetrieverRcallbrok_BugRetriever

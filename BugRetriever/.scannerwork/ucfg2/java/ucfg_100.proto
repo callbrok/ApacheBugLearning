@@ -1,16 +1,7 @@
 
-0model.RepoFile#getPathOfFile()Ljava/lang/String;_
-UC:/Users/Marco/GitHub/BugRetriever/BugRetriever/git/src/main/java/model/RepoFile.java ("1*Ÿ
-1* (4j
-h
-* (4
-%0java.lang.String"__id*>
-
-__unknown_file ("* 
-model.RepoFile"
-
-pathOfFile"$
-# (5
-
-%0java.lang.StringB
-model.RepoFileH
+model.Metrics#getnMethods()I^
+TC:/Users/Marco/GitHub/BugRetriever/BugRetriever/git/src/main/java/model/Metrics.javaL L("1*!
+1L% L(-"
+L L(.
+""B
+model.MetricsHP

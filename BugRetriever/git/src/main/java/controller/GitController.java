@@ -10,7 +10,7 @@ import java.util.List;
 
 public class GitController {
 
-    public List<ReleaseTag> retrieveAllGitDataSet(String projectName, String releaseRange) throws Exception {
+    public List<ReleaseTag> retrieveAllGitDataSet(String projectName, String releaseRange, List<ReleaseTag> finalListRelease) throws Exception {
 
         // From Jira
         ReleaseRetriever rls = new ReleaseRetriever();
@@ -18,6 +18,8 @@ public class GitController {
 
         List<Release> released = rls.getReleaseFromProject(projectName, true, releaseRange);
         List<Bug> bugList = gtb.getBug(projectName, false, released);
+
+        System.out.println("RELEASED SIZE: " + released.size());
 
 
         // From Git
@@ -27,31 +29,100 @@ public class GitController {
 
         Repo repoToDoThinks = gtp.getJGitRepository(projectName);
         List<ReleaseTag> tagRelesesToDoThinks = gttr.makeTagReleasesList(repoToDoThinks, released);
-        ReleaseTag previousTaggedRelease = new ReleaseTag();
-        Boolean isFirst;
+
+        System.out.println("RELEASE RANGE: " + releaseRange);
+        System.out.println("TAGTODOTHINKS SIZE: " + tagRelesesToDoThinks.size());
 
 
-        // Set referenced files for every tagged release
-        for (int i = 0; i < tagRelesesToDoThinks.size(); i++) {
 
-            if(i==0){previousTaggedRelease=tagRelesesToDoThinks.get(i); isFirst=true;}
-            else{previousTaggedRelease=tagRelesesToDoThinks.get(i-1); isFirst=false;}
+        // Set commit and metrics to all files
+        CommitRetriever cmtr = new CommitRetriever();
+        MetricsRetriever mtr = new MetricsRetriever();
 
-            tagRelesesToDoThinks.get(i).setReferencedFilesList(gtf.getAllFilesOfTagRelease(tagRelesesToDoThinks.get(i), previousTaggedRelease, isFirst, bugList));
-        }
+        if(releaseRange.equals("ALL")) {
+            // Set referenced files for every tagged release
+            for(int i = 0; i < tagRelesesToDoThinks.size(); i++) {
+                if(i==0){tagRelesesToDoThinks.get(i).setReferencedFilesList(gtf.getAllFilesOfTagRelease(tagRelesesToDoThinks.get(i), tagRelesesToDoThinks.get(i), true, bugList));}
+                else{tagRelesesToDoThinks.get(i).setReferencedFilesList(gtf.getAllFilesOfTagRelease(tagRelesesToDoThinks.get(i), tagRelesesToDoThinks.get(i-1), false, bugList));}
+            }
+            System.out.println("\n\nFATTO INSERIMENTO DI TUTTI I FILE");
 
-        // Set RepoFile's Bugginess
-        List<ReleaseTag> tagRelesesWithBugginess = new ArrayList<>(tagRelesesToDoThinks);
+            for (int k = 0; k < tagRelesesToDoThinks.size(); k++) {
+                for (RepoFile rpFile : tagRelesesToDoThinks.get(k).getReferencedFilesList()) {
+                    if (k == 0) {
+                        System.out.println("\n\nSTO FACENDO INSERIMENTO COMMIT PER IL FILE: " + rpFile.getPathOfFile() + " DELLA RELEASE CON TAG:" + tagRelesesToDoThinks.get(k).getGitTag());
+                        rpFile.setRelatedCommits(cmtr.bugListRefFile(rpFile.getPathOfFile(), tagRelesesToDoThinks.get(k), tagRelesesToDoThinks.get(k), true));
 
-        for(ReleaseTag rlsIndex : tagRelesesToDoThinks){
-            for(RepoFile rpIndex : rlsIndex.getReferencedFilesList()){
-                for(Commit cmIndex : rpIndex.getRelatedCommits()){
-                    if(cmIndex.getCommitFromJira()!=null){
-                        tagRelesesWithBugginess = gttr.setBugginess(tagRelesesWithBugginess, rpIndex.getNameFile(), cmIndex.getCommitFromJira().getAffectedVersions(), releaseRange);
+                        System.out.println("\n\nSTO FACENDO INSERIMENTO METRICHE PER IL FILE: " + rpFile.getPathOfFile() + " DELLA RELEASE CON TAG:" + tagRelesesToDoThinks.get(k).getGitTag());
+                        rpFile.setFileMetrics(mtr.metricsHelper(tagRelesesToDoThinks.get(k), tagRelesesToDoThinks.get(k), true, rpFile.getPathOfFile(), rpFile.getRelatedCommits()));
+                    }
+                    else {
+                        System.out.println("QUELLA PRIMA" + tagRelesesToDoThinks.get(k-1).getGitTag());
+                        System.out.println("\n\nSTO FACENDO INSERIMENTO COMMIT PER IL FILE: " + rpFile.getPathOfFile() + " DELLA RELEASE CON TAG:" + tagRelesesToDoThinks.get(k).getGitTag());
+                        rpFile.setRelatedCommits(cmtr.bugListRefFile(rpFile.getPathOfFile(), tagRelesesToDoThinks.get(k), tagRelesesToDoThinks.get(k-1), false));
+
+                        System.out.println("\n\nSTO FACENDO INSERIMENTO METRICHE PER IL FILE: " + rpFile.getPathOfFile() + " DELLA RELEASE CON TAG:" + tagRelesesToDoThinks.get(k).getGitTag());
+                        rpFile.setFileMetrics(mtr.metricsHelper(tagRelesesToDoThinks.get(k), tagRelesesToDoThinks.get(k-1), false, rpFile.getPathOfFile(), rpFile.getRelatedCommits()));
                     }
                 }
             }
         }
+
+
+        // Set metrics to all files after the fist time
+        if(!releaseRange.equals("ALL")) {
+            for(int i = 0; i < tagRelesesToDoThinks.size(); i++) {
+
+                // Set File list
+                tagRelesesToDoThinks.get(i).setReferencedFilesList(
+                        finalListRelease.get(i).getReferencedFilesList()
+                );
+                System.out.println("\n\nFATTO INSERIMENTO FILE");
+            }
+
+            for(int j = 0; j < tagRelesesToDoThinks.size(); j++){
+                for(int y=0; y<tagRelesesToDoThinks.get(j).getReferencedFilesList().size(); y++){
+
+                    // Reset Bugginess
+                    tagRelesesToDoThinks.get(j).getReferencedFilesList().get(y).setItsBuggy(false);
+
+                    // Set file Commits list
+                    tagRelesesToDoThinks.get(j).getReferencedFilesList().get(y).setRelatedCommits(
+                            finalListRelease.get(j).getReferencedFilesList().get(y).getRelatedCommits()
+                    );
+                    System.out.println("\n\nFATTO INSERIMENTO COMMIT");
+
+                    // Set file Metrics list
+                    tagRelesesToDoThinks.get(j).getReferencedFilesList().get(y).setFileMetrics(
+                            finalListRelease.get(j).getReferencedFilesList().get(y).getFileMetrics()
+                    );
+                    System.out.println("\n\nFATTO INSERIMENTO METRICHE " + tagRelesesToDoThinks.get(j).getGitTag());
+
+                }
+            }
+        }
+
+        // Set Jira bug matches and the reletad bugginess
+        List<ReleaseTag> tagRelesesWithBugginess = new ArrayList<>(tagRelesesToDoThinks);
+
+        for(ReleaseTag rlsIndex : tagRelesesToDoThinks){
+            for(RepoFile rpfInd : rlsIndex.getReferencedFilesList()){
+                for(Commit cmmIndex : rpfInd.getRelatedCommits()){
+
+                    // Check current commit
+                    Bug currentBug = cmtr.commitJiraGitLinker(cmmIndex.getCommitFromGit(), bugList);
+
+                    // Check returned bug, if the name is different from 'NOMATCH' there is a match with Jira Bug
+                    if(!currentBug.getNameKey().equals("NOMATCH")){
+                        cmmIndex.setCommitFromJira(currentBug);
+
+                        // If there is match, set bugginess
+                        tagRelesesWithBugginess = gttr.setBugginess(tagRelesesWithBugginess, rpfInd.getNameFile(), cmmIndex.getCommitFromJira().getAffectedVersions(), releaseRange);
+                    }
+                }
+            }
+        }
+
 
         // Print all dataset
         //printAllGitDataSet(tagRelesesWithBugginess);

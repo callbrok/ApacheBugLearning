@@ -62,38 +62,18 @@ public class FileRetriever {
             fileExtension = fileName.substring(fileName.lastIndexOf(".") + 1);
 
             // If isn't a Java class skip it, WE NEED ONLY JAVA CLASSES TO CALCULATE BUGGINESS
-            if(!fileExtension.equals("java")){continue;}
-
             // Check if we need skip test class, if yes skip it
-            if(!GETTESTCLASS && treeWalk.getPathString().matches("(.*)/test/(.*)")){continue;}
-
-            // If the current file match, search related commit that corrisponde to jira bug retrieved jet
-            CommitRetriever gtc = new CommitRetriever();
-            List<Commit> relatedCommitsOfCurrentTaggedRelease = gtc.bugListRefFile(treeWalk.getPathString(), taggedReleaseToGetFiles, previousTaggedRelease, isFirst, bugList);
-
-            // Reverse commit list
-            Collections.reverse(relatedCommitsOfCurrentTaggedRelease);
-
-
-            // Check returned list of commits
-            if(relatedCommitsOfCurrentTaggedRelease.isEmpty()){System.out.println("NESSUN COMMIT RELATIVO ALLA TAGGED RELEASE DEL SEGUENTE FILE");}
-
-
-            // Set file's metrics
-            MetricsRetriever mtr = new MetricsRetriever();
-            Metrics metricsToAdd = mtr.metricsHelper(taggedReleaseToGetFiles, previousTaggedRelease, isFirst, treeWalk, relatedCommitsOfCurrentTaggedRelease);
+            if((!GETTESTCLASS && treeWalk.getPathString().matches("(.*)/test/(.*)")) || !fileExtension.equals("java")){continue;}
 
 
             // Add file to the list
             filesToReturn.add(new RepoFile(
                     fileName,
                     treeWalk.getPathString(),  // Path of current file
-                    relatedCommitsOfCurrentTaggedRelease,
-                    metricsToAdd,
                     false
             ));
 
-            System.out.println(" -> found: " + treeWalk.getPathString());
+            //System.out.println(" -> found: " + treeWalk.getPathString());
         }
 
         return filesToReturn;

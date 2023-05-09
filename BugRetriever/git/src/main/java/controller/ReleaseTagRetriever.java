@@ -13,59 +13,30 @@ import java.util.List;
 
 public class ReleaseTagRetriever {
 
-    public List<ReleaseTag> makeTagReleasesList(Repo project, List<Release> listOfJiRelease) throws GitAPIException {
-        ReleaseRetriever rls = new ReleaseRetriever();
+    public List<ReleaseTag> makeTagReleasesList(Repo project, List<Release> listOfJiRelease){
 
         // Init list of ragged release's objects
         List<ReleaseTag> listOfTagReleases = new ArrayList<>();
 
 
-        Git git = project.getGitHandle();
-
-        System.out.println("\n\nListing all tagged release:");
-
-        // Retrieve all project's tags ref object
-        List<Ref> call = git.tagList().call();
-
-        for (Ref ref : call) {
-            Release releaseToAdd = releasesTagJiraGitLinker(ref.getName(), listOfJiRelease);
-
-            // Check match with one of Release retrived by Jira
-            if(releaseToAdd.getName().equals("NOMATCH")){continue;}
+        for (Release rlsIndex : listOfJiRelease) {
+            String projectRef="release";
+            if(project.getApacheProjectName().equals("SYNCOPE")){projectRef=project.getApacheProjectName().toLowerCase();}
+            String tagPathName = "refs/tags/" + projectRef + "-" + rlsIndex.getName();
 
             // Set, Create and Add ReleaseTag objetc to valid tagged release list
             listOfTagReleases.add(new ReleaseTag(
-                    ref.getName(),                  // Set tag name path
-                    releaseToAdd,                   // Set Release associated object
-                    project,                        // Set Repo objects
-                    ref.getObjectId().getName()     // Set value of ref object in the repository
+                    tagPathName,                    // Set tag name path
+                    rlsIndex,                       // Set Release associated object
+                    project                        // Set Repo objects
             ));
 
-            System.out.println("\nAdded Tag: " + ref.getName());
+            System.out.println("\nAdded Tag: " + rlsIndex.getName());
         }
 
         return listOfTagReleases;
     }
 
-    private Release releasesTagJiraGitLinker(String releaseTagName, List<Release> listOfJiRelease){
-        // Initialize 'no-match' Release object
-        Release errorRelease = new Release("NOMATCH");
-
-        // Check if the tag name is referred to docker version, so there is into name 'docker' word
-        if(releaseTagName.matches("(.*)docker(.*)")){return errorRelease;}
-
-        // Take the tag release name form, the last substring after '-' character
-        //      example. 'refs/tags/release-4.2.1' --> substring take '4.2.1'
-        String versionToCheck = releaseTagName.substring(releaseTagName.lastIndexOf("-") + 1);
-
-        // Check matches with released jira Release
-        for(Release releaseIndex: listOfJiRelease){
-            if(releaseIndex.getName().equals(versionToCheck)){ return releaseIndex;}
-        }
-
-        // Return default Release, that allert no matches
-        return errorRelease;
-    }
 
     public List<ReleaseTag> setBugginess(List<ReleaseTag> tagRelesesToDoThinks, String fileName, List<Release> affectedVersions, String releaseRange){
 

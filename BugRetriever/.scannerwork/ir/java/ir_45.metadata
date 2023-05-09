@@ -1,1 +1,1 @@
-model.Repo#getGitHandle()LGit;
+model.Repo#setGitHandle(LGit;)V

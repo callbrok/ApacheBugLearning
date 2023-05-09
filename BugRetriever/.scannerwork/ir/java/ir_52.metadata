@@ -1,1 +1,1 @@
-controller.SimpleProgressMonitor#update(I)V
+controller.SimpleProgressMonitor#endTask()V

@@ -1,7 +1,7 @@
 
 /__sonar_lambda_1$controller.ReleaseTagRetrievero
-eC:/Users/Marco/GitHub/BugRetriever/BugRetriever/git/src/main/java/controller/ReleaseTagRetriever.javaO2 O(r"startingBlock*∞
-startingBlockO2 O(rè
+eC:/Users/Marco/GitHub/BugRetriever/BugRetriever/git/src/main/java/controller/ReleaseTagRetriever.javaK2 K(r"startingBlock*∞
+startingBlockK2 K(rè
 å
 
 __unknown_file (
@@ -12,26 +12,26 @@ eC:/Users/Marco/GitHub/BugRetriever/BugRetriever/git/src/main/java/controller/Re
 
 rlsIndex*
 1*Õ
-1O7 O(?™ß
-O7 O(T
+1K7 K(?™ß
+K7 K(T
 %2model.Release"4model.ReleaseTag#getReleaseFromJira()Lmodel/Release;*:
 
 __unknown_file (
 
 rlsIndexmodel.ReleaseTag2getReleaseFromJira()éã
-O7 O(^
+K7 K(^
 %3java.lang.String")model.Release#getName()Ljava/lang/String;*1
 
 __unknown_file (
 
 %2model.Release2	getName()çä
-Of O(q
+Kf K(q
 %4java.lang.String")model.Release#getName()Ljava/lang/String;*0
 
 __unknown_file (
 
 omodel.Release2	getName()“œ
-O7 O(r
+K7 K(r
 %5boolean",java.lang.String#equals(Ljava/lang/Object;)Z*4
 
 __unknown_file (
@@ -41,9 +41,9 @@ eC:/Users/Marco/GitHub/BugRetriever/BugRetriever/git/src/main/java/controller/Re
 __unknown_file (
 
 %4java.lang.String2equals(Ljava/lang/Object;)"
-O7 O(r
+K7 K(r
 
 %5boolean:
-O2 O(3
+K2 K(3
 omodel.ReleaseB 
 java.util.function.Predicate

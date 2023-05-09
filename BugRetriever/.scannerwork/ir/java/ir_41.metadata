@@ -1,1 +1,1 @@
-model.Repo#getApacheProjectName()Ljava/lang/String;
+model.Repo#getPathOfLocalRepo()Ljava/io/File;

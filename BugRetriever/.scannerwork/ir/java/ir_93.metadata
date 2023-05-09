@@ -1,6 +1,2 @@
-controller.Proportion#coldStart()Ljava/util/List;
-java.util.ArrayList#<init>()V
-controller.Proportion#pFormula(Lmodel/Bug;)F
-java.util.ArrayList#instance-init#
-controller.BugRetriever#<init>()V
-controller.BugRetriever#instance-init#
+controller.Proportion#takeMedianPColdStart(Ljava/util/List;)F
+java.util.Collections#sort(Ljava/util/List;)V

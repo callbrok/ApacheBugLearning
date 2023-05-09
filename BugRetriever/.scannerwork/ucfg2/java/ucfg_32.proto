@@ -1,16 +1,16 @@
 
-3model.Repo#getApacheProjectName()Ljava/lang/String;[
-QC:/Users/Marco/GitHub/BugRetriever/BugRetriever/git/src/main/java/model/Repo.java (&"1*¢
-11 (Bm
-k
-1 (B
-%0java.lang.String"__id*A
+(model.Repo#getGitUrl()Ljava/lang/String;[
+QC:/Users/Marco/GitHub/BugRetriever/BugRetriever/git/src/main/java/model/Repo.java ("1*—
+1& (,b
+`
+& (,
+%0java.lang.String"__id*6
 
-__unknown_file (%*#
+__unknown_file (*
 
-model.Repo"
-apacheProjectName"$
-* (C
+model.Repo"
+gitUrl"$
+ (-
 
 %0java.lang.StringB
 
