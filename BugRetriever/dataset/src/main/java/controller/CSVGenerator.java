@@ -14,7 +14,7 @@ import java.util.List;
 
 public class CSVGenerator {
     public String buildCSV(List<ReleaseTag> tagRelesesWithBugginess, String fileVersionName, String datasetType) throws IOException {
-        String fileName = "output_" + datasetType + "-SET_R[" + fileVersionName + "].csv";
+        String fileName = "WalkForward_" + datasetType + "-SET_R[" + fileVersionName + "].csv";
 
         String[] headers = {"Version", "Filename", "NR", "NAUTHORS" ,"LOC", "LOC_ADDED", "AVGLOCADDED"
                 , "MAXLOCADDED", "LOCTOUCHED", "CHURN", "AVGCHURN", "MAXCHURN"

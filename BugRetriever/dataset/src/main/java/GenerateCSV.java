@@ -7,7 +7,7 @@ import java.util.List;
 
 public class GenerateCSV {
 
-    private static final String PROJECT="SYNCOPE";
+    private static final String PROJECT="BOOKKEEPER";
 
     public static void main(String[] args) throws Exception {
 

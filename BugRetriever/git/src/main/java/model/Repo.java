@@ -13,6 +13,8 @@ public class Repo {
     private File pathOfLocalRepo;
     private Repository jGitRepository;
     private Git gitHandle;
+    private String prefixTagPath;
+
 
     public Repo(String apacheProjectName, String gitUrl){
         this.apacheProjectName = apacheProjectName;
@@ -25,10 +27,12 @@ public class Repo {
     public Repository getjGitRepository() {return jGitRepository;}
     public File getPathOfLocalRepo() {return pathOfLocalRepo;}
     public Git getGitHandle() {return gitHandle;}
+    public String getPrefixTagPath() {return prefixTagPath;}
 
 
     // Setter
     public void setjGitRepository(Repository jGitRepository) {this.jGitRepository = jGitRepository;}
     public void setPathOfRepo(File pathOfRepo) {this.pathOfLocalRepo = pathOfRepo;}
     public void setGitHandle(Git gitHandle) {this.gitHandle = gitHandle;}
+    public void setPrefixTagPath(String prefixTagPath) {this.prefixTagPath = prefixTagPath;}
 }

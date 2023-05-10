@@ -20,9 +20,7 @@ public class ReleaseTagRetriever {
 
 
         for (Release rlsIndex : listOfJiRelease) {
-            String projectRef="release";
-            if(project.getApacheProjectName().equals("SYNCOPE")){projectRef=project.getApacheProjectName().toLowerCase();}
-            String tagPathName = "refs/tags/" + projectRef + "-" + rlsIndex.getName();
+            String tagPathName = project.getPrefixTagPath() + rlsIndex.getName();
 
             // Set, Create and Add ReleaseTag objetc to valid tagged release list
             listOfTagReleases.add(new ReleaseTag(

@@ -2,9 +2,11 @@ package controller;
 
 import model.Repo;
 import org.eclipse.jgit.api.Git;
+import org.eclipse.jgit.api.LogCommand;
 import org.eclipse.jgit.api.errors.GitAPIException;
 import org.eclipse.jgit.lib.ObjectId;
 import org.eclipse.jgit.lib.ObjectReader;
+import org.eclipse.jgit.lib.Ref;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.revwalk.RevCommit;
 import org.eclipse.jgit.revwalk.RevTree;
@@ -48,7 +50,8 @@ public class JGitHelper {
         //repoToCloneReturn.setPathOfRepo(cloneRepository(repoToCloneReturn));
 
         // FOR TESTING
-        repoToCloneReturn.setPathOfRepo(new File("C:\\Users\\Marco\\GitHub\\syncope"));
+        repoToCloneReturn.setPathOfRepo(new File("C:\\Users\\Marco\\GitHub\\bookkeeper"));
+
 
         FileRepositoryBuilder builder = new FileRepositoryBuilder();
 
@@ -62,7 +65,22 @@ public class JGitHelper {
         Git git = new Git(repoToCloneReturn.getjGitRepository());
         repoToCloneReturn.setGitHandle(git);
 
+        // Set the prefix tag
+        repoToCloneReturn.setPrefixTagPath(getPrefixTag(git));
+
         return repoToCloneReturn;
+    }
+
+    private String getPrefixTag(Git git) throws GitAPIException {
+        List<Ref> call = git.tagList().call();
+        String prefixToReturn = "";
+
+        for (Ref ref : call) {
+            prefixToReturn = ref.getName();
+            break;
+        }
+
+        return prefixToReturn.substring(0,  prefixToReturn.indexOf('-')+1);
     }
 
     private File cloneRepository(Repo repoToClone) throws IOException, GitAPIException {
