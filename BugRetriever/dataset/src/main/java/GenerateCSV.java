@@ -2,6 +2,7 @@ import controller.*;
 import model.Bug;
 import model.Release;
 import model.ReleaseTag;
+import model.Repo;
 
 import java.util.List;
 
@@ -15,7 +16,10 @@ public class GenerateCSV {
 
         // From Git
         GitController gtc = new GitController();
-        List<ReleaseTag> finalListRelease = gtc.retrieveAllGitDataSet(PROJECT, "ALL", null);
+        JGitHelper gtp = new JGitHelper();
+
+        Repo repoToDoThinks = gtp.getJGitRepository(PROJECT);
+        List<ReleaseTag> finalListRelease = gtc.retrieveAllGitDataSet("ALL", null, repoToDoThinks);
 
         System.out.println("SIZE DEL FINAL: " + finalListRelease.size());
 
@@ -28,7 +32,7 @@ public class GenerateCSV {
         // Apply Walk Forward
         for(int k=0; k<finalListRelease.size()-1; k++){
             // Build Training Set Dataset, with release in range 0-k
-            arff.buildArff(csv.buildCSV(gtc.retrieveAllGitDataSet(PROJECT, String.valueOf(k), finalListRelease), finalListRelease.get(k).getReleaseFromJira().getName(), k + "_" + PROJECT +"_TRAINING"));
+            arff.buildArff(csv.buildCSV(gtc.retrieveAllGitDataSet(String.valueOf(k), finalListRelease, repoToDoThinks), finalListRelease.get(k).getReleaseFromJira().getName(), k + "_" + PROJECT +"_TRAINING"));
 
             // Build Testing Set Dataset with k+1 Release
             arff.buildArff(csv.buildCSV(List.of(finalListRelease.get(k+1)), finalListRelease.get(k+1).getReleaseFromJira().getName(), k + "_" + PROJECT + "_TESTING"));

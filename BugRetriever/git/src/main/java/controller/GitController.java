@@ -10,24 +10,22 @@ import java.util.List;
 
 public class GitController {
 
-    public List<ReleaseTag> retrieveAllGitDataSet(String projectName, String releaseRange, List<ReleaseTag> finalListRelease) throws Exception {
+    public List<ReleaseTag> retrieveAllGitDataSet(String releaseRange, List<ReleaseTag> finalListRelease, Repo repoToDoThinks) throws Exception {
 
         // From Jira
         ReleaseRetriever rls = new ReleaseRetriever();
         BugRetriever gtb = new BugRetriever();
 
-        List<Release> released = rls.getReleaseFromProject(projectName, true, releaseRange);
-        List<Bug> bugList = gtb.getBug(projectName, false, released);
+        List<Release> released = rls.getReleaseFromProject(repoToDoThinks.getApacheProjectName(), true, releaseRange);
+        List<Bug> bugList = gtb.getBug(repoToDoThinks.getApacheProjectName(), false, released);
 
         System.out.println("RELEASED SIZE: " + released.size());
 
 
         // From Git
-        JGitHelper gtp = new JGitHelper();
         ReleaseTagRetriever gttr = new ReleaseTagRetriever();
         FileRetriever gtf = new FileRetriever();
 
-        Repo repoToDoThinks = gtp.getJGitRepository(projectName);
         List<ReleaseTag> tagRelesesToDoThinks = gttr.makeTagReleasesList(repoToDoThinks, released);
 
         System.out.println("RELEASE RANGE: " + releaseRange);

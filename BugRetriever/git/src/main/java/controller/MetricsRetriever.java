@@ -201,9 +201,9 @@ public class MetricsRetriever {
             //      the latest commit of previous release file
             if(k==0 && !isFirst){
                 parent = takeLatestCommitOfTag(previousTaggedReleaseToGetFileMetrics, treeWalk);
+
                 // If parent return null, the previous release doesn't have a commit
                 if(parent==null){continue;}
-                continue;
             }
             //      If is the first commmit and there isn't a previous release of file, add entire line size like
             //      the file is just added
@@ -219,6 +219,7 @@ public class MetricsRetriever {
             }
             //      Take previous commit for parent assign
             else{parent = relatedCommitsOfCurrentTaggedRelease.get(k-1).getCommitFromGit();}
+
 
             DiffFormatter df = new DiffFormatter(DisabledOutputStream.INSTANCE);
             df.setRepository(repository);
