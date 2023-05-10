@@ -50,7 +50,7 @@ public class JGitHelper {
         //repoToCloneReturn.setPathOfRepo(cloneRepository(repoToCloneReturn));
 
         // FOR TESTING
-        repoToCloneReturn.setPathOfRepo(new File("C:\\Users\\Marco\\GitHub\\bookkeeper"));
+        repoToCloneReturn.setPathOfRepo(new File("C:\\Users\\Marco\\GitHub\\syncope"));
 
 
         FileRepositoryBuilder builder = new FileRepositoryBuilder();

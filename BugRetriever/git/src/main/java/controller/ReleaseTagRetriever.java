@@ -29,7 +29,7 @@ public class ReleaseTagRetriever {
                     project                        // Set Repo objects
             ));
 
-            System.out.println("\nAdded Tag: " + rlsIndex.getName());
+            System.out.println("\nAdded Tag: " + tagPathName);
         }
 
         return listOfTagReleases;

@@ -20,7 +20,7 @@ public class FileRetriever {
     //      buggy quindi potrebbe essere impattante
     private static final Boolean GETTESTCLASS = false;
 
-    public List<RepoFile> getAllFilesOfTagRelease(ReleaseTag taggedReleaseToGetFiles, ReleaseTag previousTaggedRelease, Boolean isFirst, List<Bug> bugList) throws Exception {
+    public List<RepoFile> getAllFilesOfTagRelease(ReleaseTag taggedReleaseToGetFiles) throws Exception {
         List<RepoFile> filesToReturn = new ArrayList<>();
 
         String fileExtension;
@@ -52,6 +52,9 @@ public class FileRetriever {
         treeWalk.addTree(tree);
         treeWalk.setRecursive(true);
 
+        // Init an empty Commit list for avoid getting null list
+        List<Commit> tempCommitList = new ArrayList<Commit>();
+
         // Scroll all files of tagged release, listed in the treeWalk
         while (treeWalk.next()) {
 
@@ -70,7 +73,8 @@ public class FileRetriever {
             filesToReturn.add(new RepoFile(
                     fileName,
                     treeWalk.getPathString(),  // Path of current file
-                    false
+                    false,
+                    tempCommitList
             ));
 
             //System.out.println(" -> found: " + treeWalk.getPathString());

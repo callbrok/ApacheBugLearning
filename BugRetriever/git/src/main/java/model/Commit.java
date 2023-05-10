@@ -18,6 +18,10 @@ public class Commit {
         this.commitFromGit = null;
     }
 
+    public Commit(RevCommit commitFromGit){
+        this.commitFromGit = commitFromGit;
+    }
+
 
     // Setter
     public void setCommitFromGit(RevCommit commitFromGit) {this.commitFromGit = commitFromGit;}

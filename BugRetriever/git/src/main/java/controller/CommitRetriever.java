@@ -1,67 +1,79 @@
 package controller;
 
-import model.Bug;
-import model.Commit;
-import model.Release;
-import model.ReleaseTag;
+import model.*;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.GitAPIException;
+import org.eclipse.jgit.diff.DiffEntry;
+import org.eclipse.jgit.diff.DiffFormatter;
+import org.eclipse.jgit.diff.RawTextComparator;
+import org.eclipse.jgit.lib.ObjectId;
+import org.eclipse.jgit.lib.ObjectReader;
 import org.eclipse.jgit.lib.Ref;
+import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.revwalk.RevCommit;
+import org.eclipse.jgit.revwalk.RevTree;
+import org.eclipse.jgit.revwalk.RevWalk;
+import org.eclipse.jgit.treewalk.CanonicalTreeParser;
+import org.eclipse.jgit.util.io.DisabledOutputStream;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 public class CommitRetriever {
 
-    public List<Commit> bugListRefFile(String pathOfFile, ReleaseTag taggedReleaseToGetCommit, ReleaseTag previousTaggedRelease, Boolean isFirst) throws IOException, GitAPIException, ParseException {
-        List<Commit> commitsToReturn = new ArrayList<>();
+    public List<ReleaseTag> listCommitRetriever(List<ReleaseTag> tagRelesesToDoThinks, HashMap<String, List<RevCommit>> commitsMap, Repo repoToDoThinks, List<Bug> bugList) throws IOException {
+        Repository repository = repoToDoThinks.getjGitRepository();
+        Git git = repoToDoThinks.getGitHandle();
 
-        Git git = taggedReleaseToGetCommit.getCurrentRepo().getGitHandle();
+        // For each file
+        for(ReleaseTag rltIndex : tagRelesesToDoThinks){
 
-        // Retrieve Ref object of passed tag
-        Ref currentTag = git.getRepository().exactRef(taggedReleaseToGetCommit.getGitTag());
-        Ref previousTag = git.getRepository().exactRef(previousTaggedRelease.getGitTag());
+            // For each commit
+            for(RevCommit cmInd : commitsMap.get(rltIndex.getReleaseFromJira().getName())){
 
-        // Retrieve ref for lightweight tag (used in Syncope)
-        Ref peeledRefcurrent = git.getRepository().peel(currentTag);
-        Ref peeledRefprevious = git.getRepository().peel(previousTag);
+                // Do think if current commit has parent
+                if(cmInd.getParentCount()>0){
 
-        // Init commit list
-        Iterable<RevCommit> logs = new ArrayList<>();
+                    DiffFormatter formatter = new DiffFormatter(DisabledOutputStream.INSTANCE);
+                    formatter.setRepository(git.getRepository());
+                    formatter.setDiffComparator(RawTextComparator.DEFAULT);
+                    formatter.setDetectRenames(true);
 
-        if(Boolean.TRUE.equals(isFirst)){
-            // If I'm getting the files for the first tagged release, I don't set the tag's range
-            logs = git.log()
-                    .addPath( pathOfFile )      // File name to retrieve commits
-                    .call();
+                    ObjectId commitId = cmInd.getId();
+                    RevCommit parent = cmInd.getParent(0);
+
+                    if (parent != null) {
+                        ObjectId parentId = parent.getId();
+                        List<DiffEntry> diffs = formatter.scan(parentId, commitId);
+
+                        for (DiffEntry diff : diffs) {
+
+                            // For each file list of current ReleaseTag
+                            for (RepoFile rpfIndex : rltIndex.getReferencedFilesList()) {
+
+                                if (rpfIndex.getPathOfFile().equals(diff.getNewPath())) {
+
+                                    List<Commit> tempCommitList = new ArrayList<>(rpfIndex.getRelatedCommits());
+
+                                    // Insert commit and set list
+                                    tempCommitList.add(new Commit(cmInd));
+                                    rpfIndex.setRelatedCommits(tempCommitList);
+
+                                    break;
+                                }
+                            }
+
+                        }
+                    }
+
+                }
+
+            }
         }
-        else{
-            logs = git.log()
-                    .addPath( pathOfFile )                                                          // File name to retrieve commits
-                    .addRange(peeledRefprevious.getPeeledObjectId(), peeledRefcurrent.getPeeledObjectId())      // Set tag range
-                    .call();
-        }
 
-
-        // Scroll commit
-        for (RevCommit rev : logs) {
-            // Init commit to add
-            Commit commitToAdd = new Commit();
-            commitToAdd.setCommitFromGit(rev);
-
-            // Add commit to commit list for passed file
-            commitsToReturn.add(commitToAdd);
-        }
-
-        // Reverse commit list
-        Collections.reverse(commitsToReturn);
-
-        return commitsToReturn;
+        return tagRelesesToDoThinks;
     }
 
 
@@ -77,6 +89,66 @@ public class CommitRetriever {
 
         // If there isn't match, return a default bug error
         return new Bug("NOMATCH");
+    }
+
+
+    public HashMap<String, List<RevCommit>> mapCommitsByRelease(Repo currentRepo, List<Release> listOfJiraReleases) throws IOException, GitAPIException {
+        // Init RevCommit
+        RevCommit commitPrevTag = null;
+        RevCommit commitCurrTag = null;
+
+        // Init HashMap
+        HashMap<String, List<RevCommit>> commitsMap = new HashMap<String, List<RevCommit>>();
+
+        // Retrieve all commits of the passed project repo
+        Iterable<RevCommit> commits = currentRepo.getGitHandle().log().all().call();
+        List<RevCommit> allCommits = new ArrayList<>();
+        for(RevCommit cmt : commits){allCommits.add(cmt);}
+
+        // Reverse commit list
+        Collections.reverse(allCommits);
+
+
+        for(int k=0; k<listOfJiraReleases.size(); k++){
+            // Take data of current Tag
+            Ref currentTag = currentRepo.getGitHandle().getRepository().exactRef(
+                    currentRepo.getPrefixTagPath() + listOfJiraReleases.get(k).getName()
+            );
+            RevWalk walkCurrentTag = new RevWalk(currentRepo.getjGitRepository());
+            commitCurrTag = walkCurrentTag.parseCommit(currentTag.getObjectId());
+
+            if(k!=0){
+                // Take data of previous Tag
+                Ref prevTag = currentRepo.getGitHandle().getRepository().exactRef(
+                        currentRepo.getPrefixTagPath() + listOfJiraReleases.get(k-1).getName()
+                );
+                RevWalk walkPrevTag = new RevWalk(currentRepo.getjGitRepository());
+                commitPrevTag = walkPrevTag.parseCommit(prevTag.getObjectId());
+            }
+
+            // Init temp list of Commit objects
+            List<RevCommit> tempRevCommitList = new ArrayList<>();
+
+            for(RevCommit commit : allCommits) {
+
+                // If it's the first Release
+                if(k==0){
+                    if(commit.getAuthorIdent().getWhen().before(commitCurrTag.getAuthorIdent().getWhen())){tempRevCommitList.add(commit);}
+                    continue;
+                }
+
+                if(commit.getAuthorIdent().getWhen().after(commitPrevTag.getAuthorIdent().getWhen()) &&
+                        commit.getAuthorIdent().getWhen().before(commitCurrTag.getAuthorIdent().getWhen())){
+
+                    tempRevCommitList.add(commit);
+                }
+
+            }
+
+            commitsMap.put(listOfJiraReleases.get(k).getName(), tempRevCommitList);
+        }
+
+        return commitsMap;
     }
 
 }

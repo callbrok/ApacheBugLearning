@@ -20,10 +20,11 @@ public class RepoFile {
         this.itsBuggy=itsBuggy;
     }
 
-    public RepoFile(String nameFile, String pathOfFile, Boolean itsBuggy){
+    public RepoFile(String nameFile, String pathOfFile, Boolean itsBuggy, List<Commit> relatedCommits){
         this.nameFile = nameFile;
         this.pathOfFile = pathOfFile;
         this.itsBuggy=itsBuggy;
+        this.relatedCommits = relatedCommits;
     }
 
 
