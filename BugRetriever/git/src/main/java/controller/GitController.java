@@ -109,6 +109,8 @@ public class GitController {
 
                     // Check returned bug, if the name is different from 'NOMATCH' there is a match with Jira Bug
                     if(!currentBug.getNameKey().equals("NOMATCH")){
+                        System.out.println("TROVATO BUG: " + currentBug.getNameKey() + " DA COMMIT: " + cmmIndex.getCommitFromGit().getShortMessage() + " DEL FILE: " + rpfInd.getPathOfFile());
+
                         cmmIndex.setCommitFromJira(currentBug);
 
                         // If there is match, set bugginess

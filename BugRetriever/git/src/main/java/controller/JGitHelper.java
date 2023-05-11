@@ -12,6 +12,7 @@ import org.eclipse.jgit.revwalk.RevCommit;
 import org.eclipse.jgit.revwalk.RevTree;
 import org.eclipse.jgit.revwalk.RevWalk;
 import org.eclipse.jgit.storage.file.FileRepositoryBuilder;
+import org.eclipse.jgit.transport.TagOpt;
 import org.eclipse.jgit.treewalk.AbstractTreeIterator;
 import org.eclipse.jgit.treewalk.CanonicalTreeParser;
 
@@ -50,7 +51,7 @@ public class JGitHelper {
         //repoToCloneReturn.setPathOfRepo(cloneRepository(repoToCloneReturn));
 
         // FOR TESTING
-        repoToCloneReturn.setPathOfRepo(new File("C:\\Users\\Marco\\GitHub\\syncope"));
+        repoToCloneReturn.setPathOfRepo(new File("C:\\Users\\Marco\\GitHub\\bookkeeper"));
 
 
         FileRepositoryBuilder builder = new FileRepositoryBuilder();
@@ -72,6 +73,9 @@ public class JGitHelper {
     }
 
     private String getPrefixTag(Git git) throws GitAPIException {
+        // Fetch all remote tag
+        //git.fetch().setRemote("origin").setTagOpt(TagOpt.FETCH_TAGS).call();
+
         List<Ref> call = git.tagList().call();
         String prefixToReturn = "";
 

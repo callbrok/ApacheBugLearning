@@ -20,6 +20,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class CommitRetriever {
 
@@ -81,9 +83,12 @@ public class CommitRetriever {
 
         // Scroll all valid bug and find match with passed commit
         for(Bug validBugIndex: bugList){
+            // Setting regex for match the exact commit
+            final Pattern pattern = Pattern.compile(validBugIndex.getNameKey()  + "(?!\\d)");
+            final Matcher matcher = pattern.matcher(commit.getShortMessage());
 
             // If commit's message contains bug name like 'BOOKKEEPER-46', there is a match
-            if(commit.getShortMessage().matches("(.*)" + validBugIndex.getNameKey()  + "(.*)")){return validBugIndex;}
+            if(matcher.find()){return validBugIndex;}
 
         }
 
