@@ -1,7 +1,7 @@
 
-model.Release#getIndex()I_
-UC:/Users/Marco/GitHub/BugRetriever/BugRetriever/jira/src/main/java/model/Release.java ("1*!
-1" ('"
- ((
+"model.Metrics#getnStaticMethods()I^
+TC:/Users/Marco/GitHub/BugRetriever/BugRetriever/git/src/main/java/model/Metrics.javaK K( "1*!
+1K+ K(9"
+K$ K(:
 ""B
-model.ReleaseHP
+model.MetricsHP

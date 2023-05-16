@@ -1,7 +1,7 @@
 
- model.Metrics#getAverageChurn()F^
-TC:/Users/Marco/GitHub/BugRetriever/BugRetriever/git/src/main/java/model/Metrics.javaG G( "1*!
-1G+ G(7"
-G$ G(8
+model.Release#getId()I_
+UC:/Users/Marco/GitHub/BugRetriever/BugRetriever/jira/src/main/java/model/Release.java ("1*!
+1 (!"
+ ("
 ""B
-model.MetricsHP
+model.ReleaseHP

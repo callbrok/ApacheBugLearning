@@ -59,7 +59,7 @@ public class GenerateCSV {
             for(String featureSelection : featureSelectionCombination){
                 for(String balancing : balancingCombination){
                     for(String costSensitive : costSensitiveCombination){
-                        LOGGER.log(Level.INFO, ("ANALIZZO CONFIGURAZIONE: " + featureSelection + " | " + balancing + " | " + costSensitive));
+                        LOGGER.log(Level.INFO, () -> ("ANALIZZO CONFIGURAZIONE: " + featureSelection + " | " + balancing + " | " + costSensitive));
 
                         tempWeka = whp.evaluationWEKA(PROJECT, released, finalListRelease.get(k+1).getReleaseFromJira(), trainingArffPath, testingArffPath,
                                 featureSelection, balancing, costSensitive);
@@ -81,32 +81,7 @@ public class GenerateCSV {
 
 
         long endTime = System.currentTimeMillis();
-        LOGGER.log(Level.INFO, ("\n\nThat took " + (endTime - startTime) + " milliseconds"));
+        LOGGER.log(Level.INFO, () -> ("\n\nThat took " + (endTime - startTime) + " milliseconds"));
     }
 
-
-    private static void printEvaluationWEKAList(List<EvaluationWEKA> wekaListToPrint){
-
-        for(EvaluationWEKA ewi : wekaListToPrint){
-            LOGGER.log(Level.INFO, ("\n+ CLASSIFIER: " + ewi.getClassifier()));
-            LOGGER.log(Level.INFO, ("+ PROGETTO: " + ewi.getProjectName());
-            LOGGER.log(Level.INFO, ("+ TRAINING_RELEASE: "); for(Release rl : ewi.getTrainingReleases()){System.out.println(rl.getName());}
-            LOGGER.log(Level.INFO, ("+ TESTING_RELEASE: " + ewi.getTestingRelease().getName());
-            LOGGER.log(Level.INFO, ("+ FEATURE_SELECTION: " + ewi.getFeatureSelection());
-            LOGGER.log(Level.INFO, ("+ BALANCING: " + ewi.getBalancing());
-            LOGGER.log(Level.INFO, ("+ COST_SENSITIVE: " + ewi.getCostSensitive());
-            LOGGER.log(Level.INFO, ("+ TRAINING_PERCENTAGE: " + ewi.getTrainingPercentage());
-            LOGGER.log(Level.INFO, ("+ PRECISION: " + ewi.getPrecision());
-            LOGGER.log(Level.INFO, ("+ RECALL: " + ewi.getRecall());
-            System.out.println("+ AUC: " + ewi.getAuc());
-            System.out.println("+ KAPPA: " + ewi.getKappa());
-            System.out.println("+ ACCURATEZZA: " + ewi.getAccuracy());
-            System.out.println("+ TRUE_NEGATIVE: " + ewi.getTrueNegative());
-            System.out.println("+ TRUE_POSITIVE: " + ewi.getTruePositive());
-            System.out.println("+ FALSE_NEGATIVE: " + ewi.getFalseNegative());
-            System.out.println("+ FALSE_POSITIVE: " + ewi.getFalsePositive());
-        }
-
-
-    }
 }

@@ -1,1 +1,10 @@
-model.Commit#<init>(LRevCommit;)V
+controller.CSVGenerator#buildCSVFromGit(Ljava/util/List;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+java.util.ArrayList#<init>()V
+null
+java.io.FileWriter#<init>(Ljava/lang/String;)V
+java.lang.String#valueOf(I)Ljava/lang/String;
+java.io.File#<init>(Ljava/lang/String;)V
+java.io.FileWriter#instance-init#
+java.util.ArrayList#instance-init#
+java.io.File#instance-init#
+java.lang.String#valueOf(F)Ljava/lang/String;

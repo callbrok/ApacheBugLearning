@@ -1,15 +1,7 @@
 
-.model.Release#getReleaseDate()Ljava/util/Date;_
-UC:/Users/Marco/GitHub/BugRetriever/BugRetriever/jira/src/main/java/model/Release.java ("1*›
-1) (4h
-f
-) (4
-%0java.util.Date"__id*>
-
-__unknown_file ("* 
-model.Release"
-releaseDate""
-" (5
-
-%0java.util.DateB
-model.ReleaseH
+#model.Metrics#getnCommentedLines()I^
+TC:/Users/Marco/GitHub/BugRetriever/BugRetriever/git/src/main/java/model/Metrics.javaM M(!"1*!
+1M, M(;"
+M% M(<
+""B
+model.MetricsHP

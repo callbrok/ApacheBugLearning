@@ -11,8 +11,11 @@ import org.eclipse.jgit.treewalk.TreeWalk;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class FileRetriever {
+    private static final Logger LOGGER = Logger.getLogger( FileRetriever.class.getName() );
 
     // #NOTE-TO-THINKING-OF:
     //      Fare considerazione su valutazione della bugginess, non considerando le classi test e
@@ -41,9 +44,9 @@ public class FileRetriever {
 
         RevCommit commit = walk.parseCommit(head.getObjectId());
         RevTree tree = commit.getTree();
-        System.out.println("\n\n+----------------------------------------------------------------------------------------------------------------------+\n"
+        LOGGER.log(Level.INFO, ("\n\n+----------------------------------------------------------------------------------------------------------------------+\n"
                 + "+++ Having tree: " + tree + " for TAG: " + taggedReleaseToGetFiles.getGitTag()  +
-                "\n+----------------------------------------------------------------------------------------------------------------------+\n\n" );
+                "\n+----------------------------------------------------------------------------------------------------------------------+\n\n" ));
 
         // Now use a TreeWalk to iterate over all files in the Tree recursively
         // you can set Filters to narrow down the results if needed
@@ -53,7 +56,7 @@ public class FileRetriever {
         treeWalk.setRecursive(true);
 
         // Init an empty Commit list for avoid getting null list
-        List<Commit> tempCommitList = new ArrayList<Commit>();
+        List<Commit> tempCommitList = new ArrayList<>();
 
         // Scroll all files of tagged release, listed in the treeWalk
         while (treeWalk.next()) {
@@ -77,7 +80,6 @@ public class FileRetriever {
                     tempCommitList
             ));
 
-            //System.out.println(" -> found: " + treeWalk.getPathString());
         }
 
         return filesToReturn;

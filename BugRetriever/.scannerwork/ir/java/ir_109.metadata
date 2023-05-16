@@ -1,1 +1,2 @@
-model.ReleaseTag#getReferencedFilesList()Ljava/util/List;
+model.Bug#validCheckerHelperFirst(Lmodel/Release;Lmodel/Release;)Ljava/lang/Boolean;
+java.lang.String#equals(Ljava/lang/Object;)Z

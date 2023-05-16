@@ -11,8 +11,12 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ReleaseRetriever {
+    private static final Logger LOGGER = Logger.getLogger( ReleaseRetriever.class.getName() );
+
 
     public List<Release> getReleaseFromProject(String projectName, Boolean getHalfReleases, String releaseRange) throws IOException, ParseException {
         String url = "https://issues.apache.org/jira/rest/api/2/project//" + projectName;
@@ -83,14 +87,14 @@ public class ReleaseRetriever {
     public void printReleaseList(List<Release> released){
         // Print release objects list
 
-        System.out.print("\n\n+--------- LISTA RELEASE 'RELEASED' ---------\n\n");
+        LOGGER.log(Level.INFO, ("\n\n+--------- LISTA RELEASE 'RELEASED' ---------\n\n"));
 
         for (Release index : released) {
-            System.out.print(index.getIndex() + " | " + index.getId() + " | " + index.getName() + " | " + index.getReleaseDate() + "\n");
+            LOGGER.log(Level.INFO, (index.getIndex() + " | " + index.getId() + " | " + index.getName() + " | " + index.getReleaseDate() + "\n"));
         }
 
-        System.out.print("\n+ LA LISTA E'COMPOSTA DA " + released.size() + " RELEASE");
-        System.out.print("\n+--------------------------------------------\n\n");
+        LOGGER.log(Level.INFO, ("\n+ LA LISTA E'COMPOSTA DA " + released.size() + " RELEASE"));
+        LOGGER.log(Level.INFO, ("\n+--------------------------------------------\n\n"));
     }
 
 

@@ -1,1 +1,7 @@
-controller.JGitHelper#instance-init#
+controller.BugRetriever#injectedVersionsFromJsonFields(LJSONArray;Ljava/util/List;Ljava/util/List;Lmodel/Bug;Ljava/lang/Boolean;)Lmodel/Release;
+java.util.ArrayList#<init>()V
+java.util.Comparator#comparingLong(Ljava/util/function/ToLongFunction;)Ljava/util/Comparator;
+java.util.ArrayList#instance-init#
+java.lang.String#equals(Ljava/lang/Object;)Z
+model.Release#instance-init#
+model.Release#<init>(Ljava/lang/String;)V

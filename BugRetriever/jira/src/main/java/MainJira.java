@@ -7,8 +7,12 @@ import org.json.JSONException;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class MainJira {
+    private static final Logger LOGGER = Logger.getLogger( MainJira.class.getName() );
+
     private static final String PROJECT="BOOKKEEPER";
 
     public static void main(String[] args) throws IOException, JSONException, ParseException {
@@ -20,7 +24,7 @@ public class MainJira {
 
         List<Bug> validBug = gtb.getBug(PROJECT, false, released);
 
-        System.out.println("\n\n ------------------------------------------ \n\n");
+        LOGGER.log(Level.INFO, ("\n\n ------------------------------------------ \n\n"));
 
         int bugIndex = 0;
         for(Bug bg : validBug){

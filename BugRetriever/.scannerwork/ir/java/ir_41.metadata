@@ -1,1 +1,1 @@
-controller.MetricsRetriever#instance-init#
+model.Commit#<init>(Lmodel/Bug;LRevCommit;)V

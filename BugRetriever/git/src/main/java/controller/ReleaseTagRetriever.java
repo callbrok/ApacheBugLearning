@@ -10,8 +10,12 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ReleaseTagRetriever {
+    private static final Logger LOGGER = Logger.getLogger( ReleaseTagRetriever.class.getName() );
+
 
     public List<ReleaseTag> makeTagReleasesList(Repo project, List<Release> listOfJiRelease){
 
@@ -29,7 +33,7 @@ public class ReleaseTagRetriever {
                     project                        // Set Repo objects
             ));
 
-            System.out.println("\nAdded Tag: " + tagPathName);
+            LOGGER.log(Level.INFO, ("\nAdded Tag: " + tagPathName));
         }
 
         return listOfTagReleases;

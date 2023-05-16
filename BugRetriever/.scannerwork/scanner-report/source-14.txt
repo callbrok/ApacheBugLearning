@@ -26,26 +26,9 @@ public class EvaluationWEKA {
     private Double falseNegative;
 
 
-    public EvaluationWEKA(String projectName, List<Release> trainingReleases, Release testingRelease, String classifier, String featureSelection, String balancing, String costSensitive, Double trainingPercentage, Double precision, Double recall, Double auc, Double kappa, Double accuracy, Double trueNegative, Double truePositive, Double falsePositive, Double falseNegative) {
-        this.projectName = projectName;
-        this.trainingReleases = trainingReleases;
-        this.testingRelease = testingRelease;
-        this.classifier = classifier;
-        this.featureSelection = featureSelection;
-        this.balancing = balancing;
-        this.costSensitive = costSensitive;
-        this.trainingPercentage = trainingPercentage;
-        this.precision = precision;
-        this.recall = recall;
-        this.auc = auc;
-        this.kappa = kappa;
-        this.accuracy = accuracy;
-        this.trueNegative = trueNegative;
-        this.truePositive = truePositive;
-        this.falsePositive = falsePositive;
-        this.falseNegative = falseNegative;
+    public EvaluationWEKA() {
+        // Blank constructor
     }
-
 
     // Getter
     public String getProjectName() {return projectName;}
@@ -65,4 +48,25 @@ public class EvaluationWEKA {
     public Double getFalsePositive() {return falsePositive;}
     public Double getFalseNegative() {return falseNegative;}
     public Double getAccuracy() {return accuracy;}
+
+
+
+    // Setter
+    public void setProjectName(String projectName) {this.projectName = projectName;}
+    public void setTrainingReleases(List<Release> trainingReleases) {this.trainingReleases = trainingReleases;}
+    public void setTestingRelease(Release testingRelease) {this.testingRelease = testingRelease;}
+    public void setClassifier(String classifier) {this.classifier = classifier;}
+    public void setFeatureSelection(String featureSelection) {this.featureSelection = featureSelection;}
+    public void setBalancing(String balancing) {this.balancing = balancing;}
+    public void setCostSensitive(String costSensitive) {this.costSensitive = costSensitive;}
+    public void setTrainingPercentage(Double trainingPercentage) {this.trainingPercentage = trainingPercentage;}
+    public void setPrecision(Double precision) {this.precision = precision;}
+    public void setRecall(Double recall) {this.recall = recall;}
+    public void setAuc(Double auc) {this.auc = auc;}
+    public void setKappa(Double kappa) {this.kappa = kappa;}
+    public void setAccuracy(Double accuracy) {this.accuracy = accuracy;}
+    public void setTrueNegative(Double trueNegative) {this.trueNegative = trueNegative;}
+    public void setTruePositive(Double truePositive) {this.truePositive = truePositive;}
+    public void setFalsePositive(Double falsePositive) {this.falsePositive = falsePositive;}
+    public void setFalseNegative(Double falseNegative) {this.falseNegative = falseNegative;}
 }

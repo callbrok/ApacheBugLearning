@@ -12,8 +12,12 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class BugRetriever {
+    private static final Logger LOGGER = Logger.getLogger( BugRetriever.class.getName() );
+
 
     public List<Bug> getBug(String projectName, Boolean coldStartEnabler, List<Release> released) throws IOException, ParseException {
         List<Bug> validBug = new ArrayList<>();
@@ -186,58 +190,58 @@ public class BugRetriever {
     public void printBugInformation(Bug bug, int bugIndex){
 
         // Print Bug Number
-        System.out.print("\n+-- BUG N." + bugIndex);
+        LOGGER.log(Level.INFO, ("\n+-- BUG N." + bugIndex));
 
         // Print propotionaled
-        System.out.print("\n+ PROPORTION: " + bug.getPropotionaled());
+        LOGGER.log(Level.INFO, ("\n+ PROPORTION: " + bug.getPropotionaled()));
 
         // Print valid
-        System.out.print("\n+ VALID: " + bug.getValid());
+        LOGGER.log(Level.INFO, ("\n+ VALID: " + bug.getValid()));
 
         // Print namekey
-        System.out.print("\n+ NAME: " + bug.getNameKey());
+        LOGGER.log(Level.INFO, ("\n+ NAME: " + bug.getNameKey()));
 
         // Print Affected Version
         List<Release> affectedReleases = bug.getAffectedVersions();
-        System.out.print("\n+ AFFECTED VERSION: ");
+        LOGGER.log(Level.INFO, ("\n+ AFFECTED VERSION: "));
 
-        if(affectedReleases == null){System.out.print(" PASSATO VALORE null");}
+        if(affectedReleases == null){ LOGGER.log(Level.INFO, (" PASSATO VALORE null"));}
         else{
             for (Release index : affectedReleases) {
-                System.out.print(index.getName() + " ");
+                LOGGER.log(Level.INFO, (index.getName() + " "));
             }
         }
 
 
         // Print data creazione
-        System.out.print("\n+ DATA CREAZIONE: " + bug.getCreationTicketDate());
+        LOGGER.log(Level.INFO, ("\n+ DATA CREAZIONE: " + bug.getCreationTicketDate()));
 
         // Print data risoluzione
-        System.out.print("\n+ DATA RISOLUZIONE: " + bug.getResolutionTicketDate());
+        LOGGER.log(Level.INFO, ("\n+ DATA RISOLUZIONE: " + bug.getResolutionTicketDate()));
 
         // Print fixedversion
-        System.out.print("\n+ FIXED VERSION: ");
-        if(bug.getFixedVersions() == null){System.out.print(" PASSATO VALORE null");}
+        LOGGER.log(Level.INFO, ("\n+ FIXED VERSION: "));
+        if(bug.getFixedVersions() == null){ LOGGER.log(Level.INFO, (" PASSATO VALORE null"));}
         else {
-            System.out.print(bug.getFixedVersions().getName());
+            LOGGER.log(Level.INFO, (bug.getFixedVersions().getName()));
         }
 
         // Print openingversion
-        System.out.print("\n+ OPENING VERSION: ");
-        if(bug.getOpeningVersion() == null){System.out.print(" PASSATO VALORE null");}
+        LOGGER.log(Level.INFO, ("\n+ OPENING VERSION: "));
+        if(bug.getOpeningVersion() == null){ LOGGER.log(Level.INFO, (" PASSATO VALORE null"));}
         else {
-            System.out.print(bug.getOpeningVersion().getName());
+            LOGGER.log(Level.INFO, (bug.getOpeningVersion().getName()));
         }
 
         // Print injected version
-        System.out.print("\n+ INJECTED VERSION: ");
-        if(bug.getInjectedVersion() == null){System.out.print(" PASSATO VALORE null");}
+        LOGGER.log(Level.INFO, ("\n+ INJECTED VERSION: "));
+        if(bug.getInjectedVersion() == null){ LOGGER.log(Level.INFO, (" PASSATO VALORE null"));}
         else {
-            System.out.print(bug.getInjectedVersion().getName());
+            LOGGER.log(Level.INFO, (bug.getInjectedVersion().getName()));
         }
 
 
-        System.out.print("\n+--------------------------\n");
+        LOGGER.log(Level.INFO, ("\n+--------------------------\n"));
 
     }
 

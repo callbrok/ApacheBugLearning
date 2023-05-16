@@ -1,1 +1,1 @@
-model.Repo#instance-init#
+model.ReleaseTag#getReleaseFromJira()Lmodel/Release;

@@ -1,49 +1,7 @@
 
-/__sonar_lambda_1$controller.ReleaseTagRetrievero
-eC:/Users/Marco/GitHub/BugRetriever/BugRetriever/git/src/main/java/controller/ReleaseTagRetriever.java,2 ,(r"startingBlock*∞
-startingBlock,2 ,(rè
-å
-
-__unknown_file (
-rlsIndexmodel.ReleaseTag"__id*L
-
-__unknown_file (0*. 
-controller.ReleaseTagRetriever"
-
-rlsIndex*
-1*Õ
-1,7 ,(?™ß
-,7 ,(T
-%2model.Release"4model.ReleaseTag#getReleaseFromJira()Lmodel/Release;*:
-
-__unknown_file (
-
-rlsIndexmodel.ReleaseTag2getReleaseFromJira()éã
-,7 ,(^
-%3java.lang.String")model.Release#getName()Ljava/lang/String;*1
-
-__unknown_file (
-
-%2model.Release2	getName()çä
-,f ,(q
-%4java.lang.String")model.Release#getName()Ljava/lang/String;*0
-
-__unknown_file (
-
-omodel.Release2	getName()“œ
-,7 ,(r
-%5boolean",java.lang.String#equals(Ljava/lang/Object;)Z*4
-
-__unknown_file (
-
-%3java.lang.String*4
-
-__unknown_file (
-
-%4java.lang.String2equals(Ljava/lang/Object;)"
-,7 ,(r
-
-%5boolean:
-,2 ,(3
-omodel.ReleaseB 
-java.util.function.Predicate
+model.Metrics#getnRevision()I^
+TC:/Users/Marco/GitHub/BugRetriever/BugRetriever/git/src/main/java/model/Metrics.javaC C("1*!
+1C& C(/"
+C C(0
+""B
+model.MetricsHP

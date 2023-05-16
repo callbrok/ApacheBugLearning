@@ -1,17 +1,15 @@
 
--model.ReleaseTag#getCurrentRepo()Lmodel/Repo;a
-WC:/Users/Marco/GitHub/BugRetriever/BugRetriever/git/src/main/java/model/ReleaseTag.java ("1*–
-1) (4g
-e
-) (4
-%0
-model.Repo"__id*A
+(model.Bug#getNameKey()Ljava/lang/String;[
+QC:/Users/Marco/GitHub/BugRetriever/BugRetriever/jira/src/main/java/model/Bug.java ("1*—
+1' (.b
+`
+' (.
+%0java.lang.String"__id*6
 
-__unknown_file (%*#
-model.ReleaseTag"
-currentRepo"
-" (5
-
-%0
-model.RepoB
-model.ReleaseTagH
+__unknown_file (*
+	model.Bug"	
+nameKey"$
+  (/
+
+%0java.lang.StringB
+	model.BugH

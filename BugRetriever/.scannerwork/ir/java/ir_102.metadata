@@ -1,1 +1,1 @@
-controller.GitController#instance-init#
+model.Bug#getOpeningVersion()Lmodel/Release;

@@ -9,8 +9,12 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class GitController {
+    private static final Logger LOGGER = Logger.getLogger( GitController.class.getName() );
+
 
     public List<ReleaseTag> retrieveAllGitDataSet(List<Release> released, List<ReleaseTag> finalListRelease, Repo repoToDoThinks, Boolean doOnALLRelease) throws Exception {
 
@@ -36,35 +40,35 @@ public class GitController {
         if(doOnALLRelease) {
             // Set referenced files for every tagged release
             for(ReleaseTag rlIndex: tagRelesesToDoThinks){rlIndex.setReferencedFilesList(gtf.getAllFilesOfTagRelease(rlIndex));}
-            System.out.println("+ Settati tutti i file\n");
+            LOGGER.log(Level.INFO, ("+ Settati tutti i file\n"));
 
             // Retrieve commits map
             HashMap<String, List<RevCommit>> commitsMap = cmtr.mapCommitsByRelease(repoToDoThinks, released);
             // Set commit and return all list updated
             tagRelesesToDoThinks = cmtr.listCommitRetriever(tagRelesesToDoThinks, commitsMap, repoToDoThinks, bugList);
-            System.out.println("+ Settati tutti i commit per tutti i file\n");
+            LOGGER.log(Level.INFO, ("+ Settati tutti i commit per tutti i file\n"));
 
             // Set Metrics
             for (int k = 0; k < tagRelesesToDoThinks.size(); k++) {
                 for (RepoFile rpFile : tagRelesesToDoThinks.get(k).getReferencedFilesList()) {
                     if (k == 0) {
-                        System.out.println("\n+ Inserimento metriche per il file: " + rpFile.getPathOfFile() + "\n     release_tag: " + tagRelesesToDoThinks.get(k).getGitTag());
+                        LOGGER.log(Level.INFO, ("\n+ Inserimento metriche per il file: " + rpFile.getPathOfFile() + "\n     release_tag: " + tagRelesesToDoThinks.get(k).getGitTag()));
                         rpFile.setFileMetrics(mtr.metricsHelper(tagRelesesToDoThinks.get(k), tagRelesesToDoThinks.get(k), true, rpFile.getPathOfFile(), rpFile.getRelatedCommits()));
                     }
                     else {
-                        System.out.println("\n+ Inserimento metriche per il file: " + rpFile.getPathOfFile() + "\n     release_tag: " + tagRelesesToDoThinks.get(k-1).getGitTag());
+                        LOGGER.log(Level.INFO, ("\n+ Inserimento metriche per il file: " + rpFile.getPathOfFile() + "\n     release_tag: " + tagRelesesToDoThinks.get(k-1).getGitTag()));
                         rpFile.setFileMetrics(mtr.metricsHelper(tagRelesesToDoThinks.get(k), tagRelesesToDoThinks.get(k-1), false, rpFile.getPathOfFile(), rpFile.getRelatedCommits()));
                     }
                 }
             }
 
-            System.out.println("\n\n+ Settate tutte le metriche\n");
+            LOGGER.log(Level.INFO, ("\n\n+ Settate tutte le metriche\n"));
         }
 
 
         // Set metrics to all files after the fist time
         if(!doOnALLRelease) {
-            System.out.println("\n\n+ Sto settando le release per Walk Forward - STEP: " + (released.size()-1));
+            LOGGER.log(Level.INFO, ("\n\n+ Sto settando le release per Walk Forward - STEP: " + (released.size()-1)));
 
             for(int i = 0; i < tagRelesesToDoThinks.size(); i++) {
 
@@ -92,7 +96,7 @@ public class GitController {
                 }
             }
 
-            System.out.println("+ Tutte le release impostate per il Walk Forward - STEP: " + (released.size()-1));
+            LOGGER.log(Level.INFO, ("+ Tutte le release impostate per il Walk Forward - STEP: " + (released.size()-1)));
         }
 
 
@@ -117,7 +121,7 @@ public class GitController {
             }
         }
 
-        System.out.println("\n+ Settate tutte le bugginess\n");
+        LOGGER.log(Level.INFO, ("\n+ Settate tutte le bugginess\n"));
 
 
 
@@ -133,39 +137,39 @@ public class GitController {
         int counterFile=0;
 
         for(ReleaseTag rlstIndex : tagRelesesWithBugginess){
-            System.out.print("\n\n+----------------------------------------------------------------------------------------------------+\n" +
+            LOGGER.log(Level.INFO, ("\n\n+----------------------------------------------------------------------------------------------------+\n" +
                     "+                             RELEASE REFERED BY TAG: " + rlstIndex.getGitTag()  +
-                    "\n+----------------------------------------------------------------------------------------------------+\n\n");
+                    "\n+----------------------------------------------------------------------------------------------------+\n\n"));
 
             for(RepoFile rpfIndex : rlstIndex.getReferencedFilesList()){
                 counterFile = counterFile + 1;
 
-                System.out.print("\n\n+ FILE: " + rpfIndex.getPathOfFile());
-                System.out.print("\n+ NELLA RELEASE CON TAG: " + rlstIndex.getGitTag());
-                System.out.print("\n+ BUGGINESS: " + rpfIndex.getItsBuggy()); if(rpfIndex.getItsBuggy()){counterYes = counterYes + 1;}
-                System.out.print("\n+ POSSIEDE I SEGUENTI [" + rpfIndex.getRelatedCommits().size() + "] COMMIT:");
+                LOGGER.log(Level.INFO, ("\n\n+ FILE: " + rpfIndex.getPathOfFile()));
+                LOGGER.log(Level.INFO, ("\n+ NELLA RELEASE CON TAG: " + rlstIndex.getGitTag()));
+                LOGGER.log(Level.INFO, ("\n+ BUGGINESS: " + rpfIndex.getItsBuggy())); if(rpfIndex.getItsBuggy()){counterYes = counterYes + 1;}
+                LOGGER.log(Level.INFO, ("\n+ POSSIEDE I SEGUENTI [" + rpfIndex.getRelatedCommits().size() + "] COMMIT:"));
 
                 for(Commit comIndex : rpfIndex.getRelatedCommits()){
-                    if(rpfIndex.getRelatedCommits().isEmpty()){System.out.print("  NESSUN COMMIT ASSEGNATO"); continue;}
-                    if(comIndex.getCommitFromJira() != null){System.out.print("\n   JIRA-| " + comIndex.getCommitFromJira().getNameKey());continue;}
-                    System.out.print("\n    GIT-| " + comIndex.getCommitFromGit().getShortMessage());
+                    if(rpfIndex.getRelatedCommits().isEmpty()){ LOGGER.log(Level.INFO, ("  NESSUN COMMIT ASSEGNATO")); continue;}
+                    if(comIndex.getCommitFromJira() != null){ LOGGER.log(Level.INFO, ("\n   JIRA-| " + comIndex.getCommitFromJira().getNameKey()));continue;}
+                    LOGGER.log(Level.INFO, ("\n    GIT-| " + comIndex.getCommitFromGit().getShortMessage()));
                 }
 
-                System.out.print("\n+ METRICHE:");
-//                System.out.print("\n+    LOC              -| " + rpfIndex.getFileMetrics().getLoc());
-//                System.out.print("\n+    LOC_ADDED        -| " + rpfIndex.getFileMetrics().getLocAdded());
-//                System.out.print("\n+    LOC_MAX_ADDED    -| " + rpfIndex.getFileMetrics().getLocMaxAdded());
-//                System.out.print("\n+    LOC_TOUCHED      -| " + rpfIndex.getFileMetrics().getLocTouched());
-//                System.out.print("\n+    N_REVISION       -| " + rpfIndex.getFileMetrics().getnRevision());
-//                System.out.print("\n+    AVG_LOC_ADDED    -| " + rpfIndex.getFileMetrics().getAverageLocAdded());
-//                System.out.print("\n+    N_AUTHORS        -| " + rpfIndex.getFileMetrics().getnAuth());
-//                System.out.print("\n+    CHURN            -| " + rpfIndex.getFileMetrics().getChurn());
-//                System.out.print("\n+    MAX_CHURN        -| " + rpfIndex.getFileMetrics().getMaxChurn());
-//                System.out.print("\n+    AVG_CHURN        -| " + rpfIndex.getFileMetrics().getAverageChurn());
+                LOGGER.log(Level.INFO, ("\n+ METRICHE:"));
+                LOGGER.log(Level.INFO, ("\n+    LOC              -| " + rpfIndex.getFileMetrics().getLoc()));
+                LOGGER.log(Level.INFO, ("\n+    LOC_ADDED        -| " + rpfIndex.getFileMetrics().getLocAdded()));
+                LOGGER.log(Level.INFO, ("\n+    LOC_MAX_ADDED    -| " + rpfIndex.getFileMetrics().getLocMaxAdded()));
+                LOGGER.log(Level.INFO, ("\n+    LOC_TOUCHED      -| " + rpfIndex.getFileMetrics().getLocTouched()));
+                LOGGER.log(Level.INFO, ("\n+    N_REVISION       -| " + rpfIndex.getFileMetrics().getnRevision()));
+                LOGGER.log(Level.INFO, ("\n+    AVG_LOC_ADDED    -| " + rpfIndex.getFileMetrics().getAverageLocAdded()));
+                LOGGER.log(Level.INFO, ("\n+    N_AUTHORS        -| " + rpfIndex.getFileMetrics().getnAuth()));
+                LOGGER.log(Level.INFO, ("\n+    CHURN            -| " + rpfIndex.getFileMetrics().getChurn()));
+                LOGGER.log(Level.INFO, ("\n+    MAX_CHURN        -| " + rpfIndex.getFileMetrics().getMaxChurn()));
+                LOGGER.log(Level.INFO, ("\n+    AVG_CHURN        -| " + rpfIndex.getFileMetrics().getAverageChurn()));
             }
         }
 
-        System.out.println("\n\nI FILE BUGGY SONO: " + counterYes + " SU " + counterFile + " CLASSI TOTALI TRA LE VARIE RELEASE");
+        LOGGER.log(Level.INFO, ("\n\nI FILE BUGGY SONO: " + counterYes + " SU " + counterFile + " CLASSI TOTALI TRA LE VARIE RELEASE"));
     }
 
 }

@@ -1,1 +1,2 @@
-model.ReleaseTag#getReleaseFromJira()Lmodel/Release;
+model.Bug#validCheckerHelperSecond(Lmodel/Release;Lmodel/Release;Lmodel/Release;)Ljava/lang/Boolean;
+java.lang.String#equals(Ljava/lang/Object;)Z

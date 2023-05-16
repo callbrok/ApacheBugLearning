@@ -58,7 +58,6 @@ public class CSVGenerator {
         FileWriter out = new FileWriter(fileName);
         CSVPrinter printer = new CSVPrinter(out, CSVFormat.DEFAULT.withHeader(headers));
 
-        // Create a File linked to the same file using the name of this one;
         File f = new File(fileName);
 
         for (List<String> row : data) {

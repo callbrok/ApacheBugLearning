@@ -20,8 +20,12 @@ import weka.filters.supervised.instance.Resample;
 import weka.filters.supervised.instance.SpreadSubsample;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class WEKAHelper {
+    private static final Logger LOGGER = Logger.getLogger( WEKAHelper.class.getName() );
+
 
     // COST MATRIX
     private static final Double COSTFALSEPOSITIVE = 10.0;
@@ -90,26 +94,26 @@ public class WEKAHelper {
             eval = new Evaluation(testing, costSensitiveClassifier.getCostMatrix());
             eval.evaluateModel(costSensitiveClassifier, testing);
         }
-        System.out.println("   + fatto  - RANDOM FOREST");
-        EvaluationWEKA randomForestEvaluationWeka = new EvaluationWEKA(
-                projectName,
-                trainingReleases,
-                testingRelease,
-                RANDOM_FOREST,
-                featureSelectionIndicator,
-                balancingIndicator,
-                costSensitiveIndicator,
-                100.0*training.numInstances()/(training.numInstances()+testing.numInstances()),
-                eval.precision(0),
-                eval.recall(0),
-                eval.areaUnderROC(0),
-                eval.kappa(),
-                eval.pctCorrect(),
-                eval.numTrueNegatives(0),
-                eval.numTruePositives(0),
-                eval.numFalsePositives(0),
-                eval.numFalseNegatives(0)
-        );
+        LOGGER.log(Level.INFO, ("   + fatto  - RANDOM FOREST"));
+        EvaluationWEKA randomForestEvaluationWeka = new EvaluationWEKA();
+
+        randomForestEvaluationWeka.setProjectName(projectName);
+        randomForestEvaluationWeka.setTrainingReleases(trainingReleases);
+        randomForestEvaluationWeka.setTestingRelease(testingRelease);
+        randomForestEvaluationWeka.setClassifier(RANDOM_FOREST);
+        randomForestEvaluationWeka.setFeatureSelection(featureSelectionIndicator);
+        randomForestEvaluationWeka.setBalancing(balancingIndicator);
+        randomForestEvaluationWeka.setCostSensitive(costSensitiveIndicator);
+        randomForestEvaluationWeka.setTrainingPercentage(100.0*training.numInstances()/(training.numInstances()+testing.numInstances()));
+        randomForestEvaluationWeka.setPrecision(eval.precision(0));
+        randomForestEvaluationWeka.setRecall(eval.recall(0));
+        randomForestEvaluationWeka.setAuc(eval.areaUnderROC(0));
+        randomForestEvaluationWeka.setKappa(eval.kappa());
+        randomForestEvaluationWeka.setAccuracy(eval.pctCorrect());
+        randomForestEvaluationWeka.setTrueNegative(eval.numTrueNegatives(0));
+        randomForestEvaluationWeka.setTruePositive(eval.numTruePositives(0));
+        randomForestEvaluationWeka.setFalsePositive(eval.numFalsePositives(0));
+        randomForestEvaluationWeka.setFalseNegative(eval.numFalseNegatives(0));
 
 
         //     - Native Bayes
@@ -125,26 +129,26 @@ public class WEKAHelper {
             eval = new Evaluation(testing, costSensitiveClassifier.getCostMatrix());
             eval.evaluateModel(costSensitiveClassifier, testing);
         }
-        System.out.println("   + fatto  - NATIVE BAYES");
-        EvaluationWEKA nativeBayesEvaluationWeka = new EvaluationWEKA(
-                projectName,
-                trainingReleases,
-                testingRelease,
-                NATIVE_BAYES,
-                featureSelectionIndicator,
-                balancingIndicator,
-                costSensitiveIndicator,
-                100.0*training.numInstances()/(training.numInstances()+testing.numInstances()),
-                eval.precision(0),
-                eval.recall(0),
-                eval.areaUnderROC(0),
-                eval.kappa(),
-                eval.pctCorrect(),
-                eval.numTrueNegatives(0),
-                eval.numTruePositives(0),
-                eval.numFalsePositives(0),
-                eval.numFalseNegatives(0)
-        );
+        LOGGER.log(Level.INFO, ("   + fatto  - NATIVE BAYES"));
+        EvaluationWEKA nativeBayesEvaluationWeka = new EvaluationWEKA();
+
+        nativeBayesEvaluationWeka.setProjectName(projectName);
+        nativeBayesEvaluationWeka.setTrainingReleases(trainingReleases);
+        nativeBayesEvaluationWeka.setTestingRelease(testingRelease);
+        nativeBayesEvaluationWeka.setClassifier(NATIVE_BAYES);
+        nativeBayesEvaluationWeka.setFeatureSelection(featureSelectionIndicator);
+        nativeBayesEvaluationWeka.setBalancing(balancingIndicator);
+        nativeBayesEvaluationWeka.setCostSensitive(costSensitiveIndicator);
+        nativeBayesEvaluationWeka.setTrainingPercentage(100.0*training.numInstances()/(training.numInstances()+testing.numInstances()));
+        nativeBayesEvaluationWeka.setPrecision(eval.precision(0));
+        nativeBayesEvaluationWeka.setRecall(eval.recall(0));
+        nativeBayesEvaluationWeka.setAuc(eval.areaUnderROC(0));
+        nativeBayesEvaluationWeka.setKappa(eval.kappa());
+        nativeBayesEvaluationWeka.setAccuracy(eval.pctCorrect());
+        nativeBayesEvaluationWeka.setTrueNegative(eval.numTrueNegatives(0));
+        nativeBayesEvaluationWeka.setTruePositive(eval.numTruePositives(0));
+        nativeBayesEvaluationWeka.setFalsePositive(eval.numFalsePositives(0));
+        nativeBayesEvaluationWeka.setFalseNegative(eval.numFalseNegatives(0));
 
 
         //     - IBK
@@ -160,26 +164,26 @@ public class WEKAHelper {
             eval = new Evaluation(testing, costSensitiveClassifier.getCostMatrix());
             eval.evaluateModel(costSensitiveClassifier, testing);
         }
-        System.out.println("   + fatto  - IBK");
-        EvaluationWEKA IBKEvaluationWeka = new EvaluationWEKA(
-                projectName,
-                trainingReleases,
-                testingRelease,
-                IBK,
-                featureSelectionIndicator,
-                balancingIndicator,
-                costSensitiveIndicator,
-                100.0*training.numInstances()/(training.numInstances()+testing.numInstances()),
-                eval.precision(0),
-                eval.recall(0),
-                eval.areaUnderROC(0),
-                eval.kappa(),
-                eval.pctCorrect(),
-                eval.numTrueNegatives(0),
-                eval.numTruePositives(0),
-                eval.numFalsePositives(0),
-                eval.numFalseNegatives(0)
-        );
+        LOGGER.log(Level.INFO, ("   + fatto  - IBK"));
+        EvaluationWEKA IBKEvaluationWeka = new EvaluationWEKA();
+
+        IBKEvaluationWeka.setProjectName(projectName);
+        IBKEvaluationWeka.setTrainingReleases(trainingReleases);
+        IBKEvaluationWeka.setTestingRelease(testingRelease);
+        IBKEvaluationWeka.setClassifier(IBK);
+        IBKEvaluationWeka.setFeatureSelection(featureSelectionIndicator);
+        IBKEvaluationWeka.setBalancing(balancingIndicator);
+        IBKEvaluationWeka.setCostSensitive(costSensitiveIndicator);
+        IBKEvaluationWeka.setTrainingPercentage(100.0*training.numInstances()/(training.numInstances()+testing.numInstances()));
+        IBKEvaluationWeka.setPrecision(eval.precision(0));
+        IBKEvaluationWeka.setRecall(eval.recall(0));
+        IBKEvaluationWeka.setAuc(eval.areaUnderROC(0));
+        IBKEvaluationWeka.setKappa(eval.kappa());
+        IBKEvaluationWeka.setAccuracy(eval.pctCorrect());
+        IBKEvaluationWeka.setTrueNegative(eval.numTrueNegatives(0));
+        IBKEvaluationWeka.setTruePositive(eval.numTruePositives(0));
+        IBKEvaluationWeka.setFalsePositive(eval.numFalsePositives(0));
+        IBKEvaluationWeka.setFalseNegative(eval.numFalseNegatives(0));
 
 
         return List.of(randomForestEvaluationWeka, nativeBayesEvaluationWeka, IBKEvaluationWeka);

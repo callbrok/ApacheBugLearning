@@ -1,15 +1,15 @@
 
-4model.ReleaseTag#getReleaseFromJira()Lmodel/Release;a
-WC:/Users/Marco/GitHub/BugRetriever/BugRetriever/git/src/main/java/model/ReleaseTag.java (%"1* 
-10 (?n
-l
-0 (?
-%0model.Release"__id*E
+-model.Bug#getInjectedVersion()Lmodel/Release;[
+QC:/Users/Marco/GitHub/BugRetriever/BugRetriever/jira/src/main/java/model/Bug.java (%"1*™
+10 (?g
+e
+0 (?
+%0model.Release"__id*>
 
-__unknown_file ()*'
-model.ReleaseTag"
-releaseFromJira"!
-) (@
+__unknown_file ("* 
+	model.Bug"
+injectedVersion"!
+) (@
 
-%0model.ReleaseB
-model.ReleaseTagH
+%0model.ReleaseB
+	model.BugH

@@ -3,8 +3,11 @@ import model.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class GenerateCSV {
+    private static final Logger LOGGER = Logger.getLogger( GenerateCSV.class.getName() );
 
     private static final String PROJECT="BOOKKEEPER";
 
@@ -56,7 +59,7 @@ public class GenerateCSV {
             for(String featureSelection : featureSelectionCombination){
                 for(String balancing : balancingCombination){
                     for(String costSensitive : costSensitiveCombination){
-                        LOGGER.log(Level.INFO, ("ANALIZZO CONFIGURAZIONE: " + featureSelection + " | " + balancing + " | " + costSensitive);
+                        LOGGER.log(Level.INFO, () -> ("ANALIZZO CONFIGURAZIONE: " + featureSelection + " | " + balancing + " | " + costSensitive));
 
                         tempWeka = whp.evaluationWEKA(PROJECT, released, finalListRelease.get(k+1).getReleaseFromJira(), trainingArffPath, testingArffPath,
                                 featureSelection, balancing, costSensitive);
@@ -78,32 +81,7 @@ public class GenerateCSV {
 
 
         long endTime = System.currentTimeMillis();
-        LOGGER.log(Level.INFO, ("\n\nThat took " + (endTime - startTime) + " milliseconds");
+        LOGGER.log(Level.INFO, () -> ("\n\nThat took " + (endTime - startTime) + " milliseconds"));
     }
 
-
-    private static void printEvaluationWEKAList(List<EvaluationWEKA> wekaListToPrint){
-
-        for(EvaluationWEKA ewi : wekaListToPrint){
-            LOGGER.log(Level.INFO, ("\n+ CLASSIFIER: " + ewi.getClassifier());
-            LOGGER.log(Level.INFO, ("+ PROGETTO: " + ewi.getProjectName());
-            System.out.print("+ TRAINING_RELEASE: "); for(Release rl : ewi.getTrainingReleases()){LOGGER.log(Level.INFO, (rl.getName());}
-            LOGGER.log(Level.INFO, ("+ TESTING_RELEASE: " + ewi.getTestingRelease().getName());
-            LOGGER.log(Level.INFO, ("+ FEATURE_SELECTION: " + ewi.getFeatureSelection());
-            LOGGER.log(Level.INFO, ("+ BALANCING: " + ewi.getBalancing());
-            LOGGER.log(Level.INFO, ("+ COST_SENSITIVE: " + ewi.getCostSensitive());
-            LOGGER.log(Level.INFO, ("+ TRAINING_PERCENTAGE: " + ewi.getTrainingPercentage());
-            LOGGER.log(Level.INFO, ("+ PRECISION: " + ewi.getPrecision());
-            LOGGER.log(Level.INFO, ("+ RECALL: " + ewi.getRecall());
-            LOGGER.log(Level.INFO, ("+ AUC: " + ewi.getAuc());
-            LOGGER.log(Level.INFO, ("+ KAPPA: " + ewi.getKappa());
-            LOGGER.log(Level.INFO, ("+ ACCURATEZZA: " + ewi.getAccuracy());
-            LOGGER.log(Level.INFO, ("+ TRUE_NEGATIVE: " + ewi.getTrueNegative());
-            LOGGER.log(Level.INFO, ("+ TRUE_POSITIVE: " + ewi.getTruePositive());
-            LOGGER.log(Level.INFO, ("+ FALSE_NEGATIVE: " + ewi.getFalseNegative());
-            LOGGER.log(Level.INFO, ("+ FALSE_POSITIVE: " + ewi.getFalsePositive());
-        }
-
-
-    }
 }

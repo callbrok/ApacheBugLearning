@@ -1,21 +1,42 @@
 
-1model.RepoFile#getItsBuggyCSV()Ljava/lang/String;_
-UC:/Users/Marco/GitHub/BugRetriever/BugRetriever/git/src/main/java/model/RepoFile.java. .( "3*"
-2/ /(!"
-/ /("
-YES*€
-3/ /(i
-g
-/ /(
-%0java.lang.Boolean"__id*<
+Mcontroller.ReleaseRetriever#setReleaseIndex(Ljava/util/List;)Ljava/util/List;m
+cC:/Users/Marco/GitHub/BugRetriever/BugRetriever/jira/src/main/java/controller/ReleaseRetriever.javaJ J()"2*÷
+2N N(N
+L
+N N(
+indexmodel.Release"__id*"
 
-__unknown_file ( *
-model.RepoFile"
+__unknown_file (
+""
+Œ
+N N(
+indexmodel.Release"
+__arrayGet*8
+
+__unknown_file (
+
+releasesjava.util.List*"
+
+__unknown_file (
+""*
+3
+1*±
+3O O(œ™
+O O(
 
-itsBuggy*
-2
-1*!
-10 0("
-0 0(
-NOB
-model.RepoFileH
+%0void"model.Release#setIndex(I)V*4
+
+__unknown_file (
+
+indexmodel.Release*"
+
+__unknown_file (
+""2setIndex(I)*
+2*7
+1S S("(
+S S(
+
+releasesjava.util.List:&
+J* J(@
+releasesjava.util.ListB
+controller.ReleaseRetriever

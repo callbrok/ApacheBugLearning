@@ -1,7 +1,15 @@
 
-#model.Metrics#getnPrivateMethods()I^
-TC:/Users/Marco/GitHub/BugRetriever/BugRetriever/git/src/main/java/model/Metrics.javaJ J(!"1*!
-1J, J(;"
-J% J(<
-""B
-model.MetricsHP
+)model.Release#getName()Ljava/lang/String;_
+UC:/Users/Marco/GitHub/BugRetriever/BugRetriever/jira/src/main/java/model/Release.java ("1*˜
+1# ('c
+a
+# ('
+%0java.lang.String"__id*7
+
+__unknown_file (*
+model.Release"
+name"$
+ ((
+
+%0java.lang.StringB
+model.ReleaseH

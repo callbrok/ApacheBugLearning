@@ -1,15 +1,75 @@
 
-.model.RepoFile#getFileMetrics()Lmodel/Metrics;_
-UC:/Users/Marco/GitHub/BugRetriever/BugRetriever/git/src/main/java/model/RepoFile.java) )(!"1*ö
-1), )(7h
-f
-), )(7
-%0model.Metrics"__id*?
+,controller.Proportion#pFormula(Lmodel/Bug;)Fi
+]C:/Users/Marco/GitHub/BugRetriever/BugRetriever/jira/src/main/java/controller/Proportion.javaÅ Å("3*˛
+3
+Ö Ö(°û
+
+á á(7
+%0model.Release"+model.Bug#getFixedVersions()Lmodel/Release;*:
 
-__unknown_file (#*!
-model.RepoFile"
-fileMetrics"!
-)% )(8
+__unknown_file (
+
+bugToCalculateP	model.Bug2getFixedVersions()sq
+
+á á(B	
+%1int"model.Release#getIndex()I*1
+
+__unknown_file (
 
-%0model.MetricsB
-model.RepoFileH
+%0model.Release2
+getIndex()•¢
+
+áE á(i
+%2model.Release"-model.Bug#getInjectedVersion()Lmodel/Release;*:
+
+__unknown_file (
+
+bugToCalculateP	model.Bug2getInjectedVersion()sq
+
+áE á(t	
+%3int"model.Release#getIndex()I*1
+
+__unknown_file (
+
+%2model.Release2
+getIndex()°û
+
+à à(9
+%4model.Release"+model.Bug#getFixedVersions()Lmodel/Release;*:
+
+__unknown_file (
+
+bugToCalculateP	model.Bug2getFixedVersions()sq
+
+à à(D	
+%5int"model.Release#getIndex()I*1
+
+__unknown_file (
+
+%4model.Release2
+getIndex()£†
+
+àG à(j
+%6model.Release",model.Bug#getOpeningVersion()Lmodel/Release;*:
+
+__unknown_file (
+
+bugToCalculateP	model.Bug2getOpeningVersion()sq
+
+àG à(u	
+%7int"model.Release#getIndex()I*1
+
+__unknown_file (
+
+%6model.Release2
+getIndex()*
+1*%
+1
+ç ç(!"
+
+ç ç(/
+"":*
+
+Å Å(.
+bugToCalculateP	model.BugB
+controller.ProportionP

@@ -5,7 +5,7 @@ import org.eclipse.jgit.lib.ProgressMonitor;
 public class SimpleProgressMonitor implements ProgressMonitor {
     @Override
     public void start(int totalTasks) {
-        LOGGER.log(Level.INFO, ("Starting work on " + totalTasks + " tasks");
+        System.out.println("Starting work on " + totalTasks + " tasks");
     }
 
     @Override

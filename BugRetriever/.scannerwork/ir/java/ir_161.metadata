@@ -1,0 +1,5 @@
+controller.ReleaseTagRetriever#makeTagReleasesList(Lmodel/Repo;Ljava/util/List;)Ljava/util/List;
+java.util.ArrayList#<init>()V
+model.ReleaseTag#instance-init#
+java.util.ArrayList#instance-init#
+model.ReleaseTag#<init>(Ljava/lang/String;Lmodel/Release;Lmodel/Repo;)V

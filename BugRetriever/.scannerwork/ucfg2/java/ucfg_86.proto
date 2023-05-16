@@ -1,15 +1,15 @@
 
-9model.ReleaseTag#getReferencedFilesList()Ljava/util/List;a
-WC:/Users/Marco/GitHub/BugRetriever/BugRetriever/git/src/main/java/model/ReleaseTag.java (0"1*¦
-1; (Ns
-q
-; (N
-%0java.util.List"__id*I
+3model.Bug#getResolutionTicketDate()Ljava/util/Date;[
+QC:/Users/Marco/GitHub/BugRetriever/BugRetriever/jira/src/main/java/model/Bug.java ('"1* 
+12 (Fm
+k
+2 (F
+%0java.util.Date"__id*C
 
-__unknown_file (-*+
-model.ReleaseTag"
-referencedFilesList""
-4 (O
+__unknown_file ('*%
+	model.Bug"
+resolutionTicketDate""
++ (G
 
-%0java.util.ListB
-model.ReleaseTagH
+%0java.util.DateB
+	model.BugH

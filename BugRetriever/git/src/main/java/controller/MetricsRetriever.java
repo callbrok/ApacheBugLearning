@@ -50,7 +50,6 @@ public class MetricsRetriever {
         int locAdded = locMetrics.get(0);
         int locMaxAdded = locMetrics.get(1);
         int locTouchedMetric = locMetrics.get(2);
-        int locDeleted = locMetrics.get(3);
 
         // Retrieve Number of Revision -----------------
         int numberRevision = relatedCommitsOfCurrentTaggedRelease.size();

@@ -1,2 +1,1 @@
-controller.MetricsRetriever#takeLatestCommitOfTag(Lmodel/ReleaseTag;Ljava/lang/String;)LRevCommit;
-java.lang.String#equals(Ljava/lang/Object;)Z
+model.Commit#<init>(LRevCommit;)V

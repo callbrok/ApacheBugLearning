@@ -1,6 +1,6 @@
 SonarCloud plugins:
   - IaC Code Quality and Security 1.17.0.3976 (iac)
-  - PL/SQL Code Quality and Security 3.8.0.4948 (plsql)
+  - PL/SQL Code Quality and Security 3.9.0.5181 (plsql)
   - Scala Code Quality and Security 1.12.0.4259 (sonarscala)
   - C# Code Quality and Security 9.0.0.68202 (csharp)
   - Vulnerability Analysis 10.1.0-M1.20686 (security)
@@ -8,7 +8,7 @@ SonarCloud plugins:
   - HTML Code Quality and Security 3.7.1.3306 (web)
   - Flex Code Quality and Security 2.8.0.3166 (flex)
   - XML Code Quality and Security 2.7.0.3820 (xml)
-  - Text Code Quality and Security 2.0.2.1090 (text)
+  - Text Code Quality and Security 2.1.0.1163 (text)
   - VB.NET Code Quality and Security 9.0.0.68202 (vbnet)
   - Swift Code Quality and Security 4.8.0.5759 (swift)
   - CFamily Code Quality and Security 6.44.0.61773 (cpp)
@@ -19,13 +19,13 @@ SonarCloud plugins:
   - JaCoCo 1.3.0.1538 (jacoco)
   - Kotlin Code Quality and Security 2.15.0.2579 (kotlin)
   - Dataflow Bug Detection Rules for Java 1.14.0.3736 (dbdjavafrontend)
-  - T-SQL Code Quality and Security 1.8.0.5601 (tsql)
+  - T-SQL Code Quality and Security 1.9.0.5692 (tsql)
   - Apex Code Quality and Security 1.12.0.4259 (sonarapex)
   - JavaScript/TypeScript/CSS Code Quality and Security 10.2.0.21568 (javascript)
   - Ruby Code Quality and Security 1.12.0.4259 (ruby)
   - Vulnerability Rules for C# 10.1.0-M1.20686 (securitycsharpfrontend)
   - Vulnerability Rules for Java 10.1.0-M1.20686 (securityjavafrontend)
-  - License for SonarLint 8.0.0.40943 (license)
+  - License for SonarLint 8.0.0.41174 (license)
   - Vulnerability Rules for JS 10.1.0-M1.20686 (securityjsfrontend)
   - COBOL Code Quality 5.2.0.5949 (cobol)
   - Vulnerability Rules for Python 10.1.0-M1.20686 (securitypythonfrontend)
@@ -43,7 +43,7 @@ Global server settings:
   - sonar.auth.microsoft.enabled=true
   - sonar.core.id=1BD809FA-AWHW8ct9-T_TB3XqouNu
   - sonar.core.serverBaseURL=https://sonarcloud.io
-  - sonar.core.startTime=2023-05-11T15:06:31+0200
+  - sonar.core.startTime=2023-05-16T16:45:43+0200
   - sonar.dbcleaner.weeksBeforeDeletingAllSnapshots=260
   - sonar.dbcleaner.weeksBeforeKeepingOnlyOneSnapshotByMonth=4
   - sonar.dbcleaner.weeksBeforeKeepingOnlyOneSnapshotByWeek=1

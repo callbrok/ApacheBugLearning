@@ -58,7 +58,6 @@ public class CSVGenerator {
         FileWriter out = new FileWriter(fileName);
         CSVPrinter printer = new CSVPrinter(out, CSVFormat.DEFAULT.withHeader(headers));
 
-        // Create a File linked to the same file using the name of this one;
         File f = new File(fileName);
 
         for (List<String> row : data) {
@@ -76,7 +75,7 @@ public class CSVGenerator {
         String fileName = "WEKA-API_OUTPUT_" + wekaClassifierOutput.get(0).getProjectName() + "-" + wekaClassifierOutput.get(0).getClassifier() + ".csv";
 
         String[] headers = {"PROJECT", "TRAINING-RELEASES", "TEST-RELEASE", "CLASSIFIER" ,"FEATURE-SELECTION", "BALANCING", "COST-SENSITIVE",
-                "%TRAINING", "PRECISION", "RECALL", "AUC", "KAPPA", "ACCURACY", "TRUE-NEGATIVE", "TRUE-POSITIVE", "FALSE-POSITIVE", "FALSE-NEGATIVE"};
+                "%-TRAINING", "PRECISION", "RECALL", "AUC", "KAPPA", "ACCURACY", "TRUE-NEGATIVE", "TRUE-POSITIVE", "FALSE-POSITIVE", "FALSE-NEGATIVE"};
 
         List<List<String>> data = new ArrayList<>();
 

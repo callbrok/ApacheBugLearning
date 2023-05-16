@@ -10,8 +10,12 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Proportion {
+    private static final Logger LOGGER = Logger.getLogger( Proportion.class.getName() );
+
     // NOTE TO THINKING OF:
     //      Da discutere quando approssimo per difetto e quando per eccesso, potrei fare de studi
     //      per vedere quanti falsi positivi e negativi ho e come mi conviene
@@ -68,10 +72,10 @@ public class Proportion {
             // #NOTE TO THINKING OF:
             //      Perche prendo 5 come dice il paper?
             if(bugToCheckIncrement.size() > THRESHOLD){
-                System.out.print("\n\nSCATTATO INCREMENT PER IL BUG --> " + validBugP.getNameKey() + "\n");
+                LOGGER.log(Level.INFO, ("\n\nSCATTATO INCREMENT PER IL BUG --> " + validBugP.getNameKey() + "\n"));
                 p = increment(bugToCheckIncrement);
             }else{
-                System.out.print("\n\nSCATTATO COLD START PER IL BUG --> " + validBugP.getNameKey() + "\n");
+                LOGGER.log(Level.INFO, ("\n\nSCATTATO COLD START PER IL BUG --> " + validBugP.getNameKey() + "\n"));
                 p = takeMedianPColdStart(projectsP);
             }
 
@@ -82,9 +86,9 @@ public class Proportion {
             validBugP.setAffectedAndInjectedVersions(injectedVersion, released);
 
             // Print checking
-            System.out.print("\nCALCULATED AV: ");
-            for(Release rlsIndex : validBugP.getAffectedVersions()){System.out.print(rlsIndex.getIndex() + " ");}
-            System.out.print("\n-------------------\n\n");
+            LOGGER.log(Level.INFO, ("\nCALCULATED AV: "));
+            for(Release rlsIndex : validBugP.getAffectedVersions()){LOGGER.log(Level.INFO, (rlsIndex.getIndex() + " "));}
+            LOGGER.log(Level.INFO, ("\n-------------------\n\n"));
 
             // Flag the bug which use proportion
             validBugP.setPropotionaled(true);
@@ -154,7 +158,7 @@ public class Proportion {
         // Approximate 'injectedVersionIndex' by excess
         if(APROXIMATE){iv = iv.setScale(0, RoundingMode.HALF_UP);}
 
-        System.out.print(currBugToCalcProportion.getNameKey() + "| FV: " + currBugToCalcProportion.getFixedVersions().getIndex() + " | OV: " + currBugToCalcProportion.getOpeningVersion().getIndex() + "| P: " + p + "| IV: " + injectedVersionIndex + " --> " + iv.intValue() );
+        LOGGER.log(Level.INFO, (currBugToCalcProportion.getNameKey() + "| FV: " + currBugToCalcProportion.getFixedVersions().getIndex() + " | OV: " + currBugToCalcProportion.getOpeningVersion().getIndex() + "| P: " + p + "| IV: " + injectedVersionIndex + " --> " + iv.intValue() ));
 
 
         // Check if the calculated Injected Version's index match with one of Released tagged
@@ -229,7 +233,7 @@ public class Proportion {
             projectsP.add(projectP/pBugCounter);
 
             // Print current project's p
-            System.out.print("\nCALCULATED P FOR PROJECT '" + projectName + "' ---> P: " + projectP/pBugCounter);
+            LOGGER.log(Level.INFO, ("\nCALCULATED P FOR PROJECT '" + projectName + "' ---> P: " + projectP/pBugCounter));
         }
 
         // return projects p

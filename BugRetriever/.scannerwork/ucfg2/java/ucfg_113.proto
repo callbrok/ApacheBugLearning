@@ -1,7 +1,23 @@
 
-#model.Metrics#getAverageLocAdded()F^
-TC:/Users/Marco/GitHub/BugRetriever/BugRetriever/git/src/main/java/model/Metrics.javaD D(#"1*!
-1D. D(="
-D' D(>
-""B
-model.MetricsHP
+__sonar_lambda_3$`
+VC:/Users/Marco/GitHub/BugRetriever/BugRetriever/dataset/src/main/java/GenerateCSV.javaT T(a"1*’
+1T& T(6c
+a
+T& T(N
+%99java.lang.String"__concat*
+T& T(6
+\n\nThat took *
+T9 T(N
+""v
+t
+T& T(`
+%100java.lang.String"__concat*%
+T& T(N
+
+%99java.lang.String*
+TQ T(`
+ milliseconds"&
+T% T(a
+
+%100java.lang.StringB
+java.util.function.Supplier

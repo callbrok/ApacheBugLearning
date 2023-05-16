@@ -1,16 +1,22 @@
 
-/model.RepoFile#getItsBuggy()Ljava/lang/Boolean;_
-UC:/Users/Marco/GitHub/BugRetriever/BugRetriever/git/src/main/java/model/RepoFile.java* *("1*Ÿ
-1*) *(1i
-g
-*) *(1
-%0java.lang.Boolean"__id*<
+,__sonar_lambda_4$controller.ReleaseRetrieverm
+cC:/Users/Marco/GitHub/BugRetriever/BugRetriever/jira/src/main/java/controller/ReleaseRetriever.java;E ;(j"1*»
+1;L ;(Oš—
+;L ;(`
+%11java.util.Date".model.Release#getReleaseDate()Ljava/util/Date;*2
 
-__unknown_file ( *
-model.RepoFile"
-
-itsBuggy"%
-*" *(2
-
-%0java.lang.BooleanB
-model.RepoFileH
+__unknown_file (
+
+rlsmodel.Release2getReleaseDate()tr
+;L ;(j
+%12long"java.util.Date#getTime()J*3
+
+__unknown_file (
+
+%11java.util.Date2	getTime()"
+;L ;(j
+
+%12long: 
+;E ;(H
+rlsmodel.ReleaseB%#
+!java.util.function.ToLongFunction

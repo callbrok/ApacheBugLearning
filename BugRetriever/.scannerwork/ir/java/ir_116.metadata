@@ -1,2 +1,5 @@
-controller.Proportion#takeMedianPColdStart(Ljava/util/List;)F
-java.util.Collections#sort(Ljava/util/List;)V
+controller.JSONHelper#readAll(Ljava/io/Reader;)Ljava/lang/String;
+java.lang.StringBuilder#instance-init#
+java.lang.StringBuilder#<init>()V
+java.lang.StringBuilder#append(C)Ljava/lang/StringBuilder;
+java.lang.StringBuilder#toString()Ljava/lang/String;
