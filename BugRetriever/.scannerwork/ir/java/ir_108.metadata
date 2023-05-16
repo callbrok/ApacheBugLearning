@@ -1,1 +1,1 @@
-model.Metrics#getLocTouched()I
+model.ReleaseTag#getGitTag()Ljava/lang/String;

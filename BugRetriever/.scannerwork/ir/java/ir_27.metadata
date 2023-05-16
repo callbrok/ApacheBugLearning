@@ -1,1 +1,1 @@
-controller.ReleaseRetriever#setReleaseIndex(Ljava/util/List;)Ljava/util/List;
+model.Bug#getFixedVersions()Lmodel/Release;

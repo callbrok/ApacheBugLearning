@@ -1,15 +1,15 @@
 
-'model.Bug#getValid()Ljava/lang/Boolean;[
-QC:/Users/Marco/GitHub/BugRetriever/BugRetriever/jira/src/main/java/model/Bug.java! !("1*—
-1!% !(*a
-_
-!% !(*
-%0java.lang.Boolean"__id*4
+5model.EvaluationWEKA#getPrecision()Ljava/lang/Double;i
+_C:/Users/Marco/GitHub/BugRetriever/BugRetriever/dataset/src/main/java/model/EvaluationWEKA.java; ;("1*¤
+1;) ;(2o
+m
+;) ;(2
+%0java.lang.Double"__id*C
 
-__unknown_file (*
-	model.Bug"
-valid"%
-! !(+
-
-%0java.lang.BooleanB
-	model.BugH
+__unknown_file ('*%
+model.EvaluationWEKA"
+	precision"$
+;" ;(3
+
+%0java.lang.DoubleB
+model.EvaluationWEKAH

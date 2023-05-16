@@ -1,15 +1,15 @@
 
--model.Bug#getInjectedVersion()Lmodel/Release;[
-QC:/Users/Marco/GitHub/BugRetriever/BugRetriever/jira/src/main/java/model/Bug.java (%"1*™
-10 (?g
-e
-0 (?
-%0model.Release"__id*>
+<model.EvaluationWEKA#getFeatureSelection()Ljava/lang/String;i
+_C:/Users/Marco/GitHub/BugRetriever/BugRetriever/dataset/src/main/java/model/EvaluationWEKA.java7 7(%"1*«
+170 7(@v
+t
+70 7(@
+%0java.lang.String"__id*J
 
-__unknown_file ("* 
-	model.Bug"
-injectedVersion"!
-) (@
-
-%0model.ReleaseB
-	model.BugH
+__unknown_file (.*,
+model.EvaluationWEKA"
+featureSelection"$
+7) 7(A
+
+%0java.lang.StringB
+model.EvaluationWEKAH

@@ -1,2 +1,1 @@
-model.Bug#validCheckerHelperFirst(Lmodel/Release;Lmodel/Release;)Ljava/lang/Boolean;
-java.lang.String#equals(Ljava/lang/Object;)Z
+model.EvaluationWEKA#getFalsePositive()Ljava/lang/Double;

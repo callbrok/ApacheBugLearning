@@ -1,15 +1,15 @@
 
-,model.Bug#getOpeningVersion()Lmodel/Release;[
-QC:/Users/Marco/GitHub/BugRetriever/BugRetriever/jira/src/main/java/model/Bug.java   ($"1*˜
-1 /  (=f
-d
- /  (=
-%0model.Release"__id*=
+>model.EvaluationWEKA#getTrainingPercentage()Ljava/lang/Double;i
+_C:/Users/Marco/GitHub/BugRetriever/BugRetriever/dataset/src/main/java/model/EvaluationWEKA.java: :('"1*­
+1:2 :(Dx
+v
+:2 :(D
+%0java.lang.Double"__id*L
 
-__unknown_file (!*
-	model.Bug"
-openingVersion"!
- (  (>
-
-%0model.ReleaseB
-	model.BugH
+__unknown_file (0*.
+model.EvaluationWEKA"
+trainingPercentage"$
+:+ :(E
+
+%0java.lang.DoubleB
+model.EvaluationWEKAH

@@ -1,55 +1,15 @@
 
-Acontroller.JSONHelper#readAll(Ljava/io/Reader;)Ljava/lang/String;g
-]C:/Users/Marco/GitHub/BugRetriever/BugRetriever/jira/src/main/java/controller/JSONHelper.java (!"4*é
-2 (ÔÑ
- ( 
-%3java.lang.StringBuilder":java.lang.StringBuilder#append(C)Ljava/lang/StringBuilder;*;
+1model.Bug#getCreationTicketDate()Ljava/util/Date;[
+QC:/Users/Marco/GitHub/BugRetriever/BugRetriever/jira/src/main/java/model/Bug.java (%"1*ž
+10 (Bk
+i
+0 (B
+%0java.util.Date"__id*A
 
-__unknown_file (
-
-sbjava.lang.StringBuilder*"
-
-__unknown_file (
-""2	append(C)*
-3*‚
-3 (ki
- (	
-%2int"java.io.Reader#read()I*2
-
-__unknown_file (
+__unknown_file (%*#
+	model.Bug"
+creationTicketDate""
+) (C
 
-rdjava.io.Reader2read()*
-2
-1*¼
-4 (.DB
- (,
-%0java.lang.StringBuilder"java.lang.StringBuilderr
-p
- (.
-%1"!java.lang.StringBuilder#<init>()V*;
-
-__unknown_file (
-
-%0java.lang.StringBuildern
-l
- (/
-sbjava.lang.StringBuilder"__id*;
-
-__unknown_file (
-
-%0java.lang.StringBuilder*
-3*Ú
-1 (¤¡
- (
-%4java.lang.String"4java.lang.StringBuilder#toString()Ljava/lang/String;*;
-
-__unknown_file (
-
-sbjava.lang.StringBuilder2
-toString()"$
- (
-
-%4java.lang.String: 
-" (+
-rdjava.io.ReaderB"
-controller.JSONHelper
+%0java.util.DateB
+	model.BugH

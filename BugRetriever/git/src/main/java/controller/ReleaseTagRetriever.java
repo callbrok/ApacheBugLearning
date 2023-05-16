@@ -36,7 +36,7 @@ public class ReleaseTagRetriever {
     }
 
 
-    public List<ReleaseTag> setBugginess(List<ReleaseTag> tagRelesesToDoThinks, String fileName, List<Release> affectedVersions, String releaseRange){
+    public List<ReleaseTag> setBugginess(List<ReleaseTag> tagRelesesToDoThinks, String fileName, List<Release> affectedVersions, List<Release> released, Boolean doOnALLRelease){
 
         // Scroll all file of all Release
         for(ReleaseTag rlsIndex : tagRelesesToDoThinks){
@@ -44,7 +44,7 @@ public class ReleaseTagRetriever {
             if(affectedVersions.stream().anyMatch(o -> rlsIndex.getReleaseFromJira().getName().equals(o.getName()))){
                 for(RepoFile rpIndex : rlsIndex.getReferencedFilesList()){
                     // Control for Walk Forward bugginess
-                    if(!releaseRange.equals("ALL") && (rlsIndex.getReleaseFromJira().getIndex() >= Integer.parseInt(releaseRange)+1)){break;}
+                    if(!doOnALLRelease && (rlsIndex.getReleaseFromJira().getIndex() >= released.size())){break;}
 
                     // Find that file that it will set buggy and correspond to the passed path
                     if(rpIndex.getNameFile().equals(fileName)){rpIndex.setItsBuggy(true); break;}

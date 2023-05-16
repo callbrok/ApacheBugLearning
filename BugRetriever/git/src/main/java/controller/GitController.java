@@ -12,13 +12,12 @@ import java.util.List;
 
 public class GitController {
 
-    public List<ReleaseTag> retrieveAllGitDataSet(String releaseRange, List<ReleaseTag> finalListRelease, Repo repoToDoThinks) throws Exception {
+    public List<ReleaseTag> retrieveAllGitDataSet(List<Release> released, List<ReleaseTag> finalListRelease, Repo repoToDoThinks, Boolean doOnALLRelease) throws Exception {
 
         // From Jira
         ReleaseRetriever rls = new ReleaseRetriever();
         BugRetriever gtb = new BugRetriever();
 
-        List<Release> released = rls.getReleaseFromProject(repoToDoThinks.getApacheProjectName(), true, releaseRange);
         List<Bug> bugList = gtb.getBug(repoToDoThinks.getApacheProjectName(), false, released);
         // ------------------------------------
 
@@ -34,7 +33,7 @@ public class GitController {
         CommitRetriever cmtr = new CommitRetriever();
         MetricsRetriever mtr = new MetricsRetriever();
 
-        if(releaseRange.equals("ALL")) {
+        if(doOnALLRelease) {
             // Set referenced files for every tagged release
             for(ReleaseTag rlIndex: tagRelesesToDoThinks){rlIndex.setReferencedFilesList(gtf.getAllFilesOfTagRelease(rlIndex));}
             System.out.println("+ Settati tutti i file\n");
@@ -64,8 +63,8 @@ public class GitController {
 
 
         // Set metrics to all files after the fist time
-        if(!releaseRange.equals("ALL")) {
-            System.out.println("\n\n+ Sto settando le release per Walk Forward");
+        if(!doOnALLRelease) {
+            System.out.println("\n\n+ Sto settando le release per Walk Forward - STEP: " + (released.size()-1));
 
             for(int i = 0; i < tagRelesesToDoThinks.size(); i++) {
 
@@ -93,7 +92,7 @@ public class GitController {
                 }
             }
 
-            System.out.println("+ Tutte le release impostate per il Walk Forward");
+            System.out.println("+ Tutte le release impostate per il Walk Forward - STEP: " + (released.size()-1));
         }
 
 
@@ -109,18 +108,16 @@ public class GitController {
 
                     // Check returned bug, if the name is different from 'NOMATCH' there is a match with Jira Bug
                     if(!currentBug.getNameKey().equals("NOMATCH")){
-                        System.out.println("TROVATO BUG: " + currentBug.getNameKey() + " DA COMMIT: " + cmmIndex.getCommitFromGit().getShortMessage() + " DEL FILE: " + rpfInd.getPathOfFile());
-
                         cmmIndex.setCommitFromJira(currentBug);
 
                         // If there is match, set bugginess
-                        tagRelesesWithBugginess = gttr.setBugginess(tagRelesesWithBugginess, rpfInd.getNameFile(), cmmIndex.getCommitFromJira().getAffectedVersions(), releaseRange);
+                        tagRelesesWithBugginess = gttr.setBugginess(tagRelesesWithBugginess, rpfInd.getNameFile(), cmmIndex.getCommitFromJira().getAffectedVersions(), released, doOnALLRelease);
                     }
                 }
             }
         }
 
-        System.out.println("+ Settate tutte le bugginess\n");
+        System.out.println("\n+ Settate tutte le bugginess\n");
 
 
 

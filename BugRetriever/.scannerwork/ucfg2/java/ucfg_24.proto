@@ -1,42 +1,15 @@
 
-Mcontroller.ReleaseRetriever#setReleaseIndex(Ljava/util/List;)Ljava/util/List;m
-cC:/Users/Marco/GitHub/BugRetriever/BugRetriever/jira/src/main/java/controller/ReleaseRetriever.javaF F()"2*˜
-2J J(N
-L
-J J(
-indexmodel.Release"__id*"
+/model.Bug#getAffectedVersions()Ljava/util/List;[
+QC:/Users/Marco/GitHub/BugRetriever/BugRetriever/jira/src/main/java/model/Bug.java (,"1*ú
+17 (Gi
+g
+7 (G
+%0java.util.List"__id*?
 
-__unknown_file (
-""è
-å
-J J(
-indexmodel.Release"
-__arrayGet*8
-
-__unknown_file (
-
-releasesjava.util.List*"
-
-__unknown_file (
-""*
-3
-1*±
-3K K(úô
-K K(
-
-%0void"model.Release#setIndex(I)V*4
-
-__unknown_file (
-
-indexmodel.Release*"
-
-__unknown_file (
-""2setIndex(I)*
-2*7
-1O O("(
-O O(
-
-releasesjava.util.List:&
-F* F(@
-releasesjava.util.ListB
-controller.ReleaseRetriever
+__unknown_file (#*!
+	model.Bug"
+affectedVersions""
+0 (H
+
+%0java.util.ListB
+	model.BugH

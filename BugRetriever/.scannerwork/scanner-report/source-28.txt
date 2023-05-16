@@ -1,40 +1,34 @@
 package model;
 
-import java.io.File;
-import java.util.List;
+import org.eclipse.jgit.revwalk.RevCommit;
 
-public class RepoFile {
-
-    private String nameFile;
-    private String pathOfFile;
-    private List<Commit> relatedCommits;
-    private Metrics fileMetrics;
-    private Boolean itsBuggy;
+public class Commit {
 
 
-    public RepoFile(String nameFile, String pathOfFile, List<Commit> relatedCommits, Metrics fileMetrics, Boolean itsBuggy){
-        this.nameFile = nameFile;
-        this.pathOfFile = pathOfFile;
-        this.relatedCommits = relatedCommits;
-        this.fileMetrics = fileMetrics;
-        this.itsBuggy=itsBuggy;
+    private Bug commitFromJira;
+    private RevCommit commitFromGit;
+
+    public Commit(Bug jiraBug, RevCommit commitFromGit){
+        this.commitFromJira = jiraBug;
+        this.commitFromGit = commitFromGit;
+    }
+
+    public Commit(){
+        this.commitFromJira = null;
+        this.commitFromGit = null;
+    }
+
+    public Commit(RevCommit commitFromGit){
+        this.commitFromGit = commitFromGit;
     }
 
 
     // Setter
-    public void setItsBuggy(Boolean itsBuggy) {this.itsBuggy = itsBuggy;}
+    public void setCommitFromGit(RevCommit commitFromGit) {this.commitFromGit = commitFromGit;}
+    public void setCommitFromJira(Bug commitFromJira) {this.commitFromJira = commitFromJira;}
 
 
     // Getter
-    public String getPathOfFile() {return pathOfFile;}
-    public List<Commit> getRelatedCommits() {return relatedCommits;}
-    public Metrics getFileMetrics() {return fileMetrics;}
-    public Boolean getItsBuggy() {return itsBuggy;}
-    public String getNameFile() {return nameFile;}
-
-
-    public String getItsBuggyCSV(){
-        if(itsBuggy){return "YES";}
-        return "NO";
-    }
+    public Bug getCommitFromJira() {return commitFromJira;}
+    public RevCommit getCommitFromGit() {return commitFromGit;}
 }

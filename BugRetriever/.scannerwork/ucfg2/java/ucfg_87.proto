@@ -1,7 +1,15 @@
 
-model.Metrics#getLoc()I^
-TC:/Users/Marco/GitHub/BugRetriever/BugRetriever/git/src/main/java/model/Metrics.java> >("1*!
-1>  >(#"
-> >($
-""B
-model.MetricsHP
+4model.ReleaseTag#getReleaseFromJira()Lmodel/Release;a
+WC:/Users/Marco/GitHub/BugRetriever/BugRetriever/git/src/main/java/model/ReleaseTag.java (%"1* 
+10 (?n
+l
+0 (?
+%0model.Release"__id*E
+
+__unknown_file ()*'
+model.ReleaseTag"
+releaseFromJira"!
+) (@
+
+%0model.ReleaseB
+model.ReleaseTagH

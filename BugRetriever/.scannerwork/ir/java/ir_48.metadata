@@ -1,1 +1,1 @@
-controller.SimpleProgressMonitor#instance-init#
+controller.ReleaseRetriever#printReleaseList(Ljava/util/List;)V

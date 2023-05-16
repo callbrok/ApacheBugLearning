@@ -1,7 +1,17 @@
 
-model.Release#getId()I_
-UC:/Users/Marco/GitHub/BugRetriever/BugRetriever/jira/src/main/java/model/Release.java ("1*!
-1 (!"
- ("
-""B
-model.ReleaseHP
+(model.Repo#getGitUrl()Ljava/lang/String;[
+QC:/Users/Marco/GitHub/BugRetriever/BugRetriever/git/src/main/java/model/Repo.java ("1*—
+1& (,b
+`
+& (,
+%0java.lang.String"__id*6
+
+__unknown_file (*
+
+model.Repo"
+gitUrl"$
+ (-
+
+%0java.lang.StringB
+
+model.RepoH

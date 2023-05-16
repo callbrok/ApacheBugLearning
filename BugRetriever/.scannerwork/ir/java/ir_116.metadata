@@ -1,1 +1,2 @@
-model.Metrics#getAverageChurn()F
+controller.Proportion#takeMedianPColdStart(Ljava/util/List;)F
+java.util.Collections#sort(Ljava/util/List;)V

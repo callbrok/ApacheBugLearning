@@ -1,306 +1,159 @@
 package controller;
 
 import model.*;
-import org.eclipse.jgit.diff.*;
-import org.eclipse.jgit.lib.*;
+import org.eclipse.jgit.api.Git;
+import org.eclipse.jgit.api.errors.GitAPIException;
+import org.eclipse.jgit.diff.DiffEntry;
+import org.eclipse.jgit.diff.DiffFormatter;
+import org.eclipse.jgit.diff.RawTextComparator;
+import org.eclipse.jgit.lib.ObjectId;
+import org.eclipse.jgit.lib.ObjectReader;
+import org.eclipse.jgit.lib.Ref;
+import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.revwalk.RevCommit;
 import org.eclipse.jgit.revwalk.RevTree;
 import org.eclipse.jgit.revwalk.RevWalk;
-import org.eclipse.jgit.treewalk.*;
+import org.eclipse.jgit.treewalk.CanonicalTreeParser;
 import org.eclipse.jgit.util.io.DisabledOutputStream;
 
-import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.text.ParseException;
+import java.util.*;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class MetricsRetriever {
+public class CommitRetriever {
 
-    public Metrics metricsHelper(ReleaseTag taggedReleaseToGetFileMetrics, ReleaseTag previousTaggedReleaseToGetFileMetrics, Boolean isFirst, TreeWalk treeWalk, List<Commit> relatedCommitsOfCurrentTaggedRelease) throws Exception {
+    public List<ReleaseTag> listCommitRetriever(List<ReleaseTag> tagRelesesToDoThinks, HashMap<String, List<RevCommit>> commitsMap, Repo repoToDoThinks, List<Bug> bugList) throws IOException {
+        Repository repository = repoToDoThinks.getjGitRepository();
+        Git git = repoToDoThinks.getGitHandle();
 
-        // Retrieve LOC Metric -------------------------
-        List<Integer> locMetricAndNMethods = locAndMethodsNumberMetrics(taggedReleaseToGetFileMetrics, taggedReleaseToGetFileMetrics.getCurrentRepo().getjGitRepository().findRef("HEAD").getObjectId(), treeWalk.getPathString(), false);
-        // Integer 'locMetricAndNMethods' list where:
-        //      1' Element: LOC (Whit comment and blank lines)
-        //      2' Element: NPBM (Number of public methods)
-        //      3' Element: NPVM (Number of private methods)
-        //      4' Element: NSM (Number of static methods)
-        //      5' Element: NAM (Number of all method's class)
-        //      6' Element: LOCM (Number of commented lines)
-        int locMetric = locMetricAndNMethods.get(0);
-        int nPublicMethods = locMetricAndNMethods.get(1);
-        int nPrivateMethods = locMetricAndNMethods.get(2);
-        int nStaticMethods = locMetricAndNMethods.get(3);
-        int nMethods = locMetricAndNMethods.get(4);
-        int nCommentedLines = locMetricAndNMethods.get(5);
+        // For each file
+        for(ReleaseTag rltIndex : tagRelesesToDoThinks){
 
-        // Retrieve others LOC Metrics -----------------
-        List<Integer> locMetrics = locOtherMetrics(taggedReleaseToGetFileMetrics, previousTaggedReleaseToGetFileMetrics, treeWalk, isFirst, relatedCommitsOfCurrentTaggedRelease);
-        // Integer 'locMetrics' list where:
-        //      1' Element: LOC Added
-        //      2' Element: Max LOC Added
-        //      3' Element: LOC Touched
-        //      4' Element: LOC Deleted
-        //      5' Element: Churn
-        //      6' Element: Max Churn
-        int locAdded = locMetrics.get(0);
-        int locMaxAdded = locMetrics.get(1);
-        int locTouchedMetric = locMetrics.get(2);
-        int locDeleted = locMetrics.get(3);
+            // For each commit
+            for(RevCommit cmInd : commitsMap.get(rltIndex.getReleaseFromJira().getName())){
 
-        // Retrieve Number of Revision -----------------
-        int numberRevision = relatedCommitsOfCurrentTaggedRelease.size();
+                // Do think if current commit has parent
+                if(cmInd.getParentCount()>0){
 
-        // Retrieve Average LOC Added ------------------
-        float averageLocAdded = 0;
-        if(numberRevision>0){averageLocAdded=(float)locAdded / numberRevision;};
+                    DiffFormatter formatter = new DiffFormatter(DisabledOutputStream.INSTANCE);
+                    formatter.setRepository(git.getRepository());
+                    formatter.setDiffComparator(RawTextComparator.DEFAULT);
+                    formatter.setDetectRenames(true);
 
-        // Retrieve Nauth Metric -----------------------
-        int nAuthMetric = numberAuthorsMetric(relatedCommitsOfCurrentTaggedRelease);
+                    ObjectId commitId = cmInd.getId();
+                    RevCommit parent = cmInd.getParent(0);
 
-        // Retrieve Churn Metric -----------------------
-        int churn = locMetrics.get(4);
+                    if (parent != null) {
+                        ObjectId parentId = parent.getId();
+                        List<DiffEntry> diffs = formatter.scan(parentId, commitId);
 
-        // Retrieve Max Churn Metric -------------------
-        int maxChurn = locMetrics.get(5);
+                        for (DiffEntry diff : diffs) {
 
-        // Average Churn Metric ------------------------
-        float averageChurn = 0;
-        if(numberRevision>0){averageChurn=(float)churn / numberRevision;};
+                            // For each file list of current ReleaseTag
+                            for (RepoFile rpfIndex : rltIndex.getReferencedFilesList()) {
 
+                                if (rpfIndex.getPathOfFile().equals(diff.getNewPath())) {
 
-        return new Metrics(
-                locMetric,
-                locTouchedMetric,
-                nAuthMetric,
-                locAdded,
-                locMaxAdded,
-                numberRevision,
-                averageLocAdded,
-                churn,
-                maxChurn,
-                averageChurn,
-                nPublicMethods,
-                nPrivateMethods,
-                nStaticMethods,
-                nMethods,
-                nCommentedLines
-        );
-    }
+                                    List<Commit> tempCommitList = new ArrayList<>(rpfIndex.getRelatedCommits());
 
+                                    // Insert commit and set list
+                                    tempCommitList.add(new Commit(cmInd));
+                                    rpfIndex.setRelatedCommits(tempCommitList);
 
-    private List<Integer> locAndMethodsNumberMetrics(ReleaseTag taggedReleaseToGetFileMetrics, ObjectId objectId, String pathOfFile, Boolean skipRegex) throws IOException {
-        // Size (LOC):
-        //      Lines of code of current file on the current release.
-        Repository repository = taggedReleaseToGetFileMetrics.getCurrentRepo().getjGitRepository();
-        List<Integer> locMetricsAndNMethods = new ArrayList<>(Arrays.asList(0,0,0,0,0,0));
+                                    break;
+                                }
+                            }
 
-        int nline = 0;
-        int nPublicMethods = 0;
-        int nPrivateMethods = 0;
-        int nStaticMethods = 0;
-        int nMethods = 0;
-        int blankLine = 0;
-        int nCommentedLines = 0;
-
-        // Regex Pattern for methods declaration
-        Pattern patternPublicMethod = Pattern.compile("(?:(?:public)+\\s+)+[$_\\w<>\\[\\]\\s]*\\s+[\\$_\\w]+\\([^\\)]*\\)?\\s*\\{?[^\\}]*\\}?");
-        Pattern patternPrivateMethod = Pattern.compile("(?:(?:private)+\\s+)+[$_\\w<>\\[\\]\\s]*\\s+[\\$_\\w]+\\([^\\)]*\\)?\\s*\\{?[^\\}]*\\}?");
-        Pattern patternStaticMethod = Pattern.compile("(?:(?:static)+\\s+)+[$_\\w<>\\[\\]\\s]*\\s+[\\$_\\w]+\\([^\\)]*\\)?\\s*\\{?[^\\}]*\\}?");
-        Pattern patternAllMethods = Pattern.compile("(?:(?:public|private|protected|static|final|native|synchronized|abstract|transient)+\\s+)+[$_\\w<>\\[\\]\\s]*\\s+[\\$_\\w]+\\([^\\)]*\\)?\\s*\\{?[^\\}]*\\}?");
-
-        // Regex Pattern for comments
-        //      Search on the line for the sequence of characters: */
-        Pattern patternComment1 = Pattern.compile("\\*/");
-        //      Search on the line for the sequence of characters: /*
-        Pattern patternComment2 = Pattern.compile("\\/\\*");
-        //      Search on the line for the sequence of characters: //
-        Pattern patternComment3 = Pattern.compile("//");
-        //      Search on the line for the character * but not followed by character =, so to
-        //      distinguish comments from mathematical expressions
-        Pattern patternComment4 = Pattern.compile("\\*[^=]");
-
-
-        RevWalk walk = new RevWalk(repository);
-
-        RevCommit commit = walk.parseCommit(objectId);
-        RevTree tree = commit.getTree();
-
-        TreeWalk treeWalk = new TreeWalk(repository);
-        treeWalk.addTree(tree);
-        treeWalk.setRecursive(true);
-
-        while (treeWalk.next()) {
-            if (treeWalk.getPathString().equals(pathOfFile)) {
-
-                ObjectLoader loader = repository.open(treeWalk.getObjectId(0));
-
-                // loader.openstream passa un inputstream del laoder
-                BufferedReader reader = new BufferedReader(new InputStreamReader(loader.openStream()));
-                while(reader.ready()) {
-                    String line = reader.readLine();
-
-                    // LOC metric counter
-                    nline = nline + 1;
-
-                    if(skipRegex){continue;}
-
-                    // Methods counter
-                    if(patternPublicMethod.matcher(line).find()){nPublicMethods+=1;}
-                    if(patternPrivateMethod.matcher(line).find()){nPrivateMethods+=1;}
-                    if(patternStaticMethod.matcher(line).find()){nStaticMethods+=1;}
-                    if(patternAllMethods.matcher(line).find()){nMethods+=1;}
-
-                    // Comments counter
-                    if(patternComment1.matcher(line).find() || patternComment2.matcher(line).find() || patternComment3.matcher(line).find() || patternComment4.matcher(line).find()){nCommentedLines+=1;}
-
-                    // Blank-line counter
-                    if(line.trim().isEmpty()){blankLine += 1;}
-                }
-
-                break;
-            }
-        }
-
-        locMetricsAndNMethods.set(0, nline);
-        locMetricsAndNMethods.set(1, nPublicMethods);
-        locMetricsAndNMethods.set(2, nPrivateMethods);
-        locMetricsAndNMethods.set(3, nStaticMethods);
-        locMetricsAndNMethods.set(4, nMethods);
-        locMetricsAndNMethods.set(5, nCommentedLines);
-
-        return locMetricsAndNMethods;
-    }
-
-
-    private List<Integer> locOtherMetrics(ReleaseTag taggedReleaseToGetFileMetrics, ReleaseTag previousTaggedReleaseToGetFileMetrics, TreeWalk treeWalk, Boolean isFirst, List<Commit> relatedCommitsOfCurrentTaggedRelease) throws Exception {
-        // LOC Touched:
-        //      sum over revisions of LOC added and deleted.
-        List<Integer> locMetrics = new ArrayList<>(Arrays.asList(0,0,0,0,0,0));
-
-        int linesAdded = 0;
-        int linesDeleted = 0;
-        int linesMaxAdded = 0;
-        int churn = 0;
-        int churnMax = 0;
-
-        Repository repository = taggedReleaseToGetFileMetrics.getCurrentRepo().getjGitRepository();
-
-        // Scori tutti i commit che fanno riferimento a quel file
-        for(int k=0; k<relatedCommitsOfCurrentTaggedRelease.size(); k++){
-
-            RevCommit commit = relatedCommitsOfCurrentTaggedRelease.get(k).getCommitFromGit();
-            RevCommit parent;
-
-            // #NOTE-TO-THINKING-OF:
-            //      If is the first commmit and there is a previous release of file, take parent for the first commit
-            //      the latest commit of previous release file
-            if(k==0 && !isFirst){
-                parent = takeLatestCommitOfTag(previousTaggedReleaseToGetFileMetrics, treeWalk.getPathString());
-                // If parent return null, the previous release doesn't have a commit
-                if(parent==null){continue;}
-            }
-            //      If is the first commmit and there isn't a previous release of file, add entire line size like
-            //      the file is just added
-            else if(k==0 && isFirst){
-                ObjectId commitId = repository.resolve(relatedCommitsOfCurrentTaggedRelease.get(0).getCommitFromGit().getId().getName());
-                int lineFirstCommit = locAndMethodsNumberMetrics(taggedReleaseToGetFileMetrics, commitId, treeWalk.getPathString(), true).get(0);
-
-                linesAdded += lineFirstCommit;
-
-                // Check if is the max
-                if(lineFirstCommit>linesMaxAdded){linesMaxAdded=lineFirstCommit;}
-                continue;
-            }
-            //      Take previous commit for parent assign
-            else{parent = relatedCommitsOfCurrentTaggedRelease.get(k-1).getCommitFromGit();}
-
-            DiffFormatter df = new DiffFormatter(DisabledOutputStream.INSTANCE);
-            df.setRepository(repository);
-            df.setDiffComparator(RawTextComparator.DEFAULT);
-            df.setDetectRenames(true);
-
-            List<DiffEntry> diffs;
-            diffs = df.scan(parent.getTree(), commit.getTree());
-
-            int tempAdded = 0;
-            int tempDeleted = 0;
-
-            for (DiffEntry diff : diffs) {
-                if(diff.getNewPath().equals(treeWalk.getPathString())){
-                    for (Edit edit : df.toFileHeader(diff).toEditList()) {
-                        tempDeleted += edit.getEndA() - edit.getBeginA();
-                        tempAdded += edit.getEndB() - edit.getBeginB();
+                        }
                     }
+
                 }
-            }
 
-            // Set line LOC
-            linesDeleted += tempDeleted;
-            linesAdded += tempAdded;
-
-            // Check max Added line
-            if(tempAdded>linesMaxAdded){linesMaxAdded=tempAdded;}
-
-            int tempChurn = Math.abs(tempAdded-tempDeleted);
-
-            // Check max Churn
-            if(tempChurn > churnMax){churnMax=tempChurn;}
-
-            churn += tempChurn;
-
-
-            System.out.println("PER IL COMMIT " + k + ": " + relatedCommitsOfCurrentTaggedRelease.get(k).getCommitFromGit().getShortMessage() + " AGGIUNTE: " + tempAdded + " ELIMINATE: " + tempDeleted);
-
-        }
-
-        locMetrics.set(0, linesAdded);
-        locMetrics.set(1, linesMaxAdded);
-        locMetrics.set(2, linesAdded+linesDeleted);
-        locMetrics.set(3, linesDeleted);
-        locMetrics.set(4, churn);
-        locMetrics.set(5, churnMax);
-
-        return locMetrics;
-    }
-
-
-    private RevCommit takeLatestCommitOfTag(ReleaseTag previousTaggedReleaseToGetFileMetrics, String filePath){
-        // Retrieve the latest commit of passed file of passed tag Release
-        RevCommit commitToReturn = null;
-
-        for(RepoFile fileIndex : previousTaggedReleaseToGetFileMetrics.getReferencedFilesList()){
-            if(fileIndex.getPathOfFile().equals(filePath) && !fileIndex.getRelatedCommits().isEmpty()){
-                commitToReturn = fileIndex.getRelatedCommits().get(fileIndex.getRelatedCommits().size()-1).getCommitFromGit();
             }
         }
 
-        return commitToReturn;
+        return tagRelesesToDoThinks;
     }
 
 
-    private int numberAuthorsMetric(List<Commit> relatedCommitsOfCurrentTaggedRelease){
-        // Nauth:
-        //      number of authors
+    public Bug commitJiraGitLinker(RevCommit commit, List<Bug> bugList){
 
-        List<String> authorsName = new ArrayList<>();
+        // Scroll all valid bug and find match with passed commit
+        for(Bug validBugIndex: bugList){
+            // Setting regex for match the exact commit
+            final Pattern pattern = Pattern.compile(validBugIndex.getNameKey()  + "(?!\\d)");
+            final Matcher matcher = pattern.matcher(commit.getShortMessage());
 
-        // Scroll all commit related to current version of file
-        for(Commit commitIndex : relatedCommitsOfCurrentTaggedRelease){
-            // Get author's name of current commit
-            PersonIdent authorIdent = commitIndex.getCommitFromGit().getAuthorIdent();
-            // Check if current author it's just added to authors list
-            if(authorsName.contains(authorIdent.getName())){continue;}
-            // Else add it
-            authorsName.add(authorIdent.getName());
+            // If commit's message contains bug name like 'BOOKKEEPER-46', there is a match
+            if(matcher.find()){return validBugIndex;}
+
         }
 
-        return authorsName.size();
+        // If there isn't match, return a default bug error
+        return new Bug("NOMATCH");
     }
 
 
+    public HashMap<String, List<RevCommit>> mapCommitsByRelease(Repo currentRepo, List<Release> listOfJiraReleases) throws IOException, GitAPIException {
+        // Init RevCommit
+        RevCommit commitPrevTag = null;
+        RevCommit commitCurrTag = null;
+
+        // Init HashMap
+        HashMap<String, List<RevCommit>> commitsMap = new HashMap<String, List<RevCommit>>();
+
+        // Retrieve all commits of the passed project repo
+        Iterable<RevCommit> commits = currentRepo.getGitHandle().log().all().call();
+        List<RevCommit> allCommits = new ArrayList<>();
+        for(RevCommit cmt : commits){allCommits.add(cmt);}
+
+        // Reverse commit list
+        Collections.reverse(allCommits);
+
+
+        for(int k=0; k<listOfJiraReleases.size(); k++){
+            // Take data of current Tag
+            Ref currentTag = currentRepo.getGitHandle().getRepository().exactRef(
+                    currentRepo.getPrefixTagPath() + listOfJiraReleases.get(k).getName()
+            );
+            RevWalk walkCurrentTag = new RevWalk(currentRepo.getjGitRepository());
+            commitCurrTag = walkCurrentTag.parseCommit(currentTag.getObjectId());
+
+            if(k!=0){
+                // Take data of previous Tag
+                Ref prevTag = currentRepo.getGitHandle().getRepository().exactRef(
+                        currentRepo.getPrefixTagPath() + listOfJiraReleases.get(k-1).getName()
+                );
+                RevWalk walkPrevTag = new RevWalk(currentRepo.getjGitRepository());
+                commitPrevTag = walkPrevTag.parseCommit(prevTag.getObjectId());
+            }
+
+            // Init temp list of Commit objects
+            List<RevCommit> tempRevCommitList = new ArrayList<>();
+
+            for(RevCommit commit : allCommits) {
+
+                // If it's the first Release
+                if(k==0){
+                    if(commit.getAuthorIdent().getWhen().before(commitCurrTag.getAuthorIdent().getWhen())){tempRevCommitList.add(commit);}
+                    continue;
+                }
+
+                if(commit.getAuthorIdent().getWhen().after(commitPrevTag.getAuthorIdent().getWhen()) &&
+                        commit.getAuthorIdent().getWhen().before(commitCurrTag.getAuthorIdent().getWhen())){
+
+                    tempRevCommitList.add(commit);
+                }
+
+            }
+
+            commitsMap.put(listOfJiraReleases.get(k).getName(), tempRevCommitList);
+        }
+
+        return commitsMap;
+    }
 
 }

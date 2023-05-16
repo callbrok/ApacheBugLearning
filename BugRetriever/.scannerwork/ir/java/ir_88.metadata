@@ -1,1 +1,1 @@
-model.ReleaseTag#setReferencedFilesList(Ljava/util/List;)V
+model.Commit#setCommitFromJira(Lmodel/Bug;)V

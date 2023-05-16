@@ -1,15 +1,5 @@
-controller.GitController#retrieveAllGitDataSet(Ljava/lang/String;Ljava/lang/String;)Ljava/util/List;
-model.ReleaseTag#<init>()V
-java.util.ArrayList#instance-init#
-java.util.ArrayList#<init>(Ljava/util/Collection;)V
-controller.ReleaseTagRetriever#<init>()V
-controller.ReleaseTagRetriever#instance-init#
-model.ReleaseTag#instance-init#
+MainJira#main([Ljava/lang/String;)V
 controller.ReleaseRetriever#instance-init#
-controller.FileRetriever#instance-init#
 controller.ReleaseRetriever#<init>()V
-controller.JGitHelper#<init>()V
-controller.FileRetriever#<init>()V
 controller.BugRetriever#<init>()V
-controller.JGitHelper#instance-init#
 controller.BugRetriever#instance-init#

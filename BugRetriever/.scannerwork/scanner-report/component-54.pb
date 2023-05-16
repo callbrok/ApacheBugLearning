@@ -1,1 +1,1 @@
-6 2javaX‘hr!jira/src/main/java/model/Bug.java
+6 2javaX"hr-jira/src/main/java/controller/JSONHelper.java

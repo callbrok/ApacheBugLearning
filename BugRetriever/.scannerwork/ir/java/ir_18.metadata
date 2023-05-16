@@ -1,1 +1,1 @@
-controller.JGitHelper#instance-init#
+model.EvaluationWEKA#getAccuracy()Ljava/lang/Double;

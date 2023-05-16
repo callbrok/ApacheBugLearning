@@ -1,1 +1,1 @@
-model.Bug#getNameKey()Ljava/lang/String;
+model.EvaluationWEKA#getTrainingReleases()Ljava/util/List;

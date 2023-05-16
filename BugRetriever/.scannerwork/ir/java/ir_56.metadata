@@ -1,5 +1,1 @@
-MainJira#main([Ljava/lang/String;)V
-controller.ReleaseRetriever#instance-init#
-controller.ReleaseRetriever#<init>()V
-controller.BugRetriever#<init>()V
-controller.BugRetriever#instance-init#
+model.Repo#instance-init#

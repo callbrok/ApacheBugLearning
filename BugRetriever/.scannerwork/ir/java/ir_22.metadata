@@ -1,6 +1,1 @@
-controller.MetricsRetriever#metricsHelper(Lmodel/ReleaseTag;Lmodel/ReleaseTag;Ljava/lang/Boolean;LTreeWalk;Ljava/util/List;)Lmodel/Metrics;
-controller.MetricsRetriever#locAndMethodsNumberMetrics(Lmodel/ReleaseTag;LObjectId;Ljava/lang/String;Ljava/lang/Boolean;)Ljava/util/List;
-model.Metrics#<init>(IIIIIIFIIFIIIII)V
-controller.MetricsRetriever#numberAuthorsMetric(Ljava/util/List;)I
-model.Metrics#instance-init#
-controller.MetricsRetriever#locOtherMetrics(Lmodel/ReleaseTag;Lmodel/ReleaseTag;LTreeWalk;Ljava/lang/Boolean;Ljava/util/List;)Ljava/util/List;
+model.Bug#getNameKey()Ljava/lang/String;

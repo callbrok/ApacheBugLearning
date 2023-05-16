@@ -1,1 +1,1 @@
-7 2javaXhr%jira/src/main/java/model/Release.java
+7 2javaXŒhr-jira/src/main/java/controller/Proportion.java

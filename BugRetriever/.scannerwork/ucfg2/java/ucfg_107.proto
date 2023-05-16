@@ -1,16 +1,7 @@
 
-/model.RepoFile#getItsBuggy()Ljava/lang/Boolean;_
-UC:/Users/Marco/GitHub/BugRetriever/BugRetriever/git/src/main/java/model/RepoFile.java   ("1*Ÿ
-1 )  (1i
-g
- )  (1
-%0java.lang.Boolean"__id*<
-
-__unknown_file ( *
-model.RepoFile"
-
-itsBuggy"%
- "  (2
-
-%0java.lang.BooleanB
-model.RepoFileH
+model.Metrics#getLoc()I^
+TC:/Users/Marco/GitHub/BugRetriever/BugRetriever/git/src/main/java/model/Metrics.java> >("1*!
+1>  >(#"
+> >($
+""B
+model.MetricsHP

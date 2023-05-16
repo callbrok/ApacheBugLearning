@@ -1,1 +1,1 @@
-5 2javaX!hr jira/src/main/java/MainJira.java
+5 2javaXõhr/jira/src/main/java/controller/BugRetriever.java

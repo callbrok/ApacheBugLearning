@@ -1,1 +1,0 @@
-1 2javaXõhr/jira/src/main/java/controller/BugRetriever.java

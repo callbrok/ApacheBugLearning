@@ -1,15 +1,15 @@
 
-/model.Bug#getAffectedVersions()Ljava/util/List;[
-QC:/Users/Marco/GitHub/BugRetriever/BugRetriever/jira/src/main/java/model/Bug.java (,"1*œ
-17 (Gi
-g
-7 (G
-%0java.util.List"__id*?
+5model.EvaluationWEKA#getBalancing()Ljava/lang/String;i
+_C:/Users/Marco/GitHub/BugRetriever/BugRetriever/dataset/src/main/java/model/EvaluationWEKA.java8 8("1*¤
+18) 8(2o
+m
+8) 8(2
+%0java.lang.String"__id*C
 
-__unknown_file (#*!
-	model.Bug"
-affectedVersions""
-0 (H
-
-%0java.util.ListB
-	model.BugH
+__unknown_file ('*%
+model.EvaluationWEKA"
+	balancing"$
+8" 8(3
+
+%0java.lang.StringB
+model.EvaluationWEKAH

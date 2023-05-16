@@ -1,97 +1,15 @@
 
-=controller.Proportion#takeMedianPColdStart(Ljava/util/List;)Fi
-]C:/Users/Marco/GitHub/BugRetriever/BugRetriever/jira/src/main/java/controller/Proportion.javaï ï(&"3*¯
-2
-ô ô(tr
-
-ô" ô(2	
-%2int"java.util.List#size()I*9
+)model.Release#getName()Ljava/lang/String;_
+UC:/Users/Marco/GitHub/BugRetriever/BugRetriever/jira/src/main/java/model/Release.java ("1*˜
+1# ('c
+a
+# ('
+%0java.lang.String"__id*7
 
-__unknown_file (
-
-	projectsPjava.util.List2size()‘
-Ž
-
-ô ô(@
-%3java.lang.Float"
-__arrayGet*9
-
-__unknown_file (
-
-	projectsPjava.util.List*"
-
-__unknown_file (
-"""
-
-ô ô(A
-""*Ì
-3
-ñ ñ(¼
-¹
-
-ñ ñ(#
-
-%0void"-java.util.Collections#sort(Ljava/util/List;)V*5
-
-__unknown_file ("
-java.util.Collections*9
-
-__unknown_file (
-
-	projectsPjava.util.Listtr
-
-ó ó(	
-%1int"java.util.List#size()I*9
-
-__unknown_file (
-
-	projectsPjava.util.List2size()*
-2
-1*¹
-1
-ö ö(#tr
-
-ö( ö(8	
-%4int"java.util.List#size()I*9
-
-__unknown_file (
-
-	projectsPjava.util.List2size()‘
-Ž
-
-ö ö(A
-%5java.lang.Float"
-__arrayGet*9
-
-__unknown_file (
-
-	projectsPjava.util.List*"
-
-__unknown_file (
-""tr
-
-÷( ÷(8	
-%6int"java.util.List#size()I*9
-
-__unknown_file (
-
-	projectsPjava.util.List2size()‘
-Ž
-
-÷ ÷(=
-%7java.lang.Float"
-__arrayGet*9
-
-__unknown_file (
-
-	projectsPjava.util.List*"
-
-__unknown_file (
-"""
-
-ù ù('
-"":)
-
-ï' ï(<
-	projectsPjava.util.ListB
-controller.ProportionP
+__unknown_file (*
+model.Release"
+name"$
+ ((
+
+%0java.lang.StringB
+model.ReleaseH

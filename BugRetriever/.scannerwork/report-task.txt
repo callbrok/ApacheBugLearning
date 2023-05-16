@@ -1,7 +1,7 @@
 organization=callbrok
 projectKey=callbrok_BugRetriever
 serverUrl=https://sonarcloud.io
-serverVersion=8.0.0.40746
+serverVersion=8.0.0.40943
 dashboardUrl=https://sonarcloud.io/dashboard?id=callbrok_BugRetriever
-ceTaskId=AYf84rsoXAGOB1ushIbg
-ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AYf84rsoXAGOB1ushIbg
+ceTaskId=AYghXo1TUQyM4SDtKDfR
+ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AYghXo1TUQyM4SDtKDfR

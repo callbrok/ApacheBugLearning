@@ -1,22 +1,15 @@
 
-,__sonar_lambda_0$controller.ReleaseRetrieverm
-cC:/Users/Marco/GitHub/BugRetriever/BugRetriever/jira/src/main/java/controller/ReleaseRetriever.java7E 7(j"1*»
-17L 7(Oš—
-7L 7(`
-%11java.util.Date".model.Release#getReleaseDate()Ljava/util/Date;*2
+3model.Bug#getResolutionTicketDate()Ljava/util/Date;[
+QC:/Users/Marco/GitHub/BugRetriever/BugRetriever/jira/src/main/java/model/Bug.java ('"1* 
+12 (Fm
+k
+2 (F
+%0java.util.Date"__id*C
 
-__unknown_file (
+__unknown_file ('*%
+	model.Bug"
+resolutionTicketDate""
++ (G
 
-rlsmodel.Release2getReleaseDate()tr
-7L 7(j
-%12long"java.util.Date#getTime()J*3
-
-__unknown_file (
-
-%11java.util.Date2	getTime()"
-7L 7(j
-
-%12long: 
-7E 7(H
-rlsmodel.ReleaseB%#
-!java.util.function.ToLongFunction
+%0java.util.DateB
+	model.BugH

@@ -1,16 +1,7 @@
 
-.model.RepoFile#getNameFile()Ljava/lang/String;_
-UC:/Users/Marco/GitHub/BugRetriever/BugRetriever/git/src/main/java/model/RepoFile.java! !("1*ù
-1!( !(0h
-f
-!( !(0
-%0java.lang.String"__id*<
-
-__unknown_file ( *
-model.RepoFile"
-
-nameFile"$
-!! !(1
-
-%0java.lang.StringB
-model.RepoFileH
+model.Metrics#getLocTouched()I^
+TC:/Users/Marco/GitHub/BugRetriever/BugRetriever/git/src/main/java/model/Metrics.java? ?("1*!
+1?' ?(1"
+?  ?(2
+""B
+model.MetricsHP

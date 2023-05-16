@@ -1,8 +1,1 @@
-controller.CommitRetriever#bugListRefFile(Ljava/lang/String;Lmodel/ReleaseTag;Lmodel/ReleaseTag;Ljava/lang/Boolean;Ljava/util/List;)Ljava/util/List;
-java.util.ArrayList#<init>()V
-java.util.ArrayList#instance-init#
-controller.CommitRetriever#commitJiraGitLinker(LRevCommit;Ljava/util/List;)Lmodel/Bug;
-java.lang.String#equals(Ljava/lang/Object;)Z
-model.Commit#<init>()V
-java.lang.Boolean#equals(Ljava/lang/Object;)Z
-model.Commit#instance-init#
+model.Bug#getPropotionaled()Ljava/lang/Boolean;

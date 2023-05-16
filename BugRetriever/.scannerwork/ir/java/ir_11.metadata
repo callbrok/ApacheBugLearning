@@ -1,1 +1,1 @@
-model.Bug#getPropotionaled()Ljava/lang/Boolean;
+model.EvaluationWEKA#getRecall()Ljava/lang/Double;

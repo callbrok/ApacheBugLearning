@@ -1,15 +1,15 @@
 
-(model.Bug#getNameKey()Ljava/lang/String;[
-QC:/Users/Marco/GitHub/BugRetriever/BugRetriever/jira/src/main/java/model/Bug.java ("1*—
-1' (.b
-`
-' (.
-%0java.lang.String"__id*6
+:model.EvaluationWEKA#getTrainingReleases()Ljava/util/List;i
+_C:/Users/Marco/GitHub/BugRetriever/BugRetriever/dataset/src/main/java/model/EvaluationWEKA.java4 4(,"1*§
+147 4(Gt
+r
+47 4(G
+%0java.util.List"__id*J
 
-__unknown_file (*
-	model.Bug"	
-nameKey"$
-  (/
-
-%0java.lang.StringB
-	model.BugH
+__unknown_file (.*,
+model.EvaluationWEKA"
+trainingReleases""
+40 4(H
+
+%0java.util.ListB
+model.EvaluationWEKAH

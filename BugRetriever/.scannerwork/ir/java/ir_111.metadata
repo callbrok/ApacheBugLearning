@@ -1,1 +1,1 @@
-model.Metrics#getLocMaxAdded()I
+model.ReleaseTag#setReferencedFilesList(Ljava/util/List;)V

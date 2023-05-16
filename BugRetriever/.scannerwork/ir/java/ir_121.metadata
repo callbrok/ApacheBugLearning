@@ -1,1 +1,1 @@
-model.Metrics#getnCommentedLines()I
+model.Metrics#setLocTouched(I)V

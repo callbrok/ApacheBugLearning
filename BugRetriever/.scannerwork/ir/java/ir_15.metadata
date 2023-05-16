@@ -1,1 +1,1 @@
-model.Bug#setPropotionaled(Ljava/lang/Boolean;)V
+model.EvaluationWEKA#getTruePositive()Ljava/lang/Double;

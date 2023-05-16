@@ -1,1 +1,2 @@
-controller.BugRetriever#printBugInformation(Lmodel/Bug;I)V
+model.Bug#validCheckerHelperFirst(Lmodel/Release;Lmodel/Release;)Ljava/lang/Boolean;
+java.lang.String#equals(Ljava/lang/Object;)Z

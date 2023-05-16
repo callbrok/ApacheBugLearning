@@ -1,1 +1,1 @@
-model.Commit#instance-init#
+model.Repo#getjGitRepository()LRepository;
