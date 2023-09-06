@@ -1,1 +1,1 @@
-5 2javaXùhr/jira/src/main/java/controller/BugRetriever.java
+5 2xmlXhrjira/pom.xml

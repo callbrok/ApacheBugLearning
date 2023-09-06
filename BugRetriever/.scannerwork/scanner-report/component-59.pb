@@ -1,1 +1,1 @@
-; 2javaXhr%jira/src/main/java/model/Release.java
+; 2javaX‘hr!jira/src/main/java/model/Bug.java

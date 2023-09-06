@@ -1,15 +1,15 @@
 
-'model.Bug#getValid()Ljava/lang/Boolean;[
-QC:/Users/Marco/GitHub/BugRetriever/BugRetriever/jira/src/main/java/model/Bug.java! !("1*—
-1!% !(*a
-_
-!% !(*
-%0java.lang.Boolean"__id*4
+3model.Bug#getResolutionTicketDate()Ljava/util/Date;]
+S/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/jira/src/main/java/model/Bug.java ('"1* 
+12 (Fm
+k
+2 (F
+%0java.util.Date"__id*C
 
-__unknown_file (*
-	model.Bug"
-valid"%
-! !(+
-
-%0java.lang.BooleanB
+__unknown_file ('*%
+	model.Bug"
+resolutionTicketDate""
++ (G
+
+%0java.util.DateB
 	model.BugH

@@ -1,16 +1,15 @@
 
-.model.RepoFile#getNameFile()Ljava/lang/String;_
-UC:/Users/Marco/GitHub/BugRetriever/BugRetriever/git/src/main/java/model/RepoFile.java+ +("1*ù
-1+( +(0h
-f
-+( +(0
-%0java.lang.String"__id*<
+2model.RepoFile#getRelatedCommits()Ljava/util/List;a
+W/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/git/src/main/java/model/RepoFile.java( (()"1*ü
+1(4 ((Bl
+j
+(4 ((B
+%0java.util.List"__id*B
 
-__unknown_file ( *
-model.RepoFile"
-
-nameFile"$
-+! +(1
-
-%0java.lang.StringB
+__unknown_file (&*$
+model.RepoFile"
+relatedCommits""
+(- ((C
+
+%0java.util.ListB
 model.RepoFileH

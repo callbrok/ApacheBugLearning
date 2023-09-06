@@ -1,1 +1,1 @@
-model.RepoFile#getItsBuggyCSV()Ljava/lang/String;
+controller.SimpleProgressMonitor#isCancelled()Z

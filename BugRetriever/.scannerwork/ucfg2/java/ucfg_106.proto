@@ -1,17 +1,59 @@
 
-3model.Repo#getApacheProjectName()Ljava/lang/String;[
-QC:/Users/Marco/GitHub/BugRetriever/BugRetriever/git/src/main/java/model/Repo.java (&"1*¢
-11 (Bm
-k
-1 (B
-%0java.lang.String"__id*A
+&__sonar_lambda_3$controller.JGitHelperh
+^/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/git/src/main/java/controller/JGitHelper.javam m(f"startingBlock*Æ
+startingBlockm m(fÜ
+É
 
-__unknown_file (%*#
-
-model.Repo"
-apacheProjectName"$
-* (C
+__unknown_file (
+repoToClone
+model.Repo"__id*F
+
+__unknown_file (**(
+controller.JGitHelper"
+repoToCloneÑ
+Å
+
+__unknown_file (
+	localPathjava.io.File"__id*D
+
+__unknown_file ((*&
+controller.JGitHelper"
+	localPath*
+1*±
+1m' m(6ïí
+m9 m(P
+%9java.lang.String"(model.Repo#getGitUrl()Ljava/lang/String;*7
+
+__unknown_file (
+
+repoToClone
+model.Repo2getGitUrl()t
+r
+m' m(P
+%10java.lang.String"__concat*
+m' m(6
+Cloning from *$
+m9 m(P
 
-%0java.lang.StringB
-
-model.RepoH
+%9java.lang.Stringl
+j
+m' m(Y
+%11java.lang.String"__concat*%
+m' m(P
+
+%10java.lang.String*
+mS m(Y
+ to 
+}
+m' m(e
+%12java.lang.String"__concat*%
+m' m(Y
+
+%11java.lang.String*'
+m\ m(e
+
+	localPathjava.io.File"%
+m& m(f
+
+%12java.lang.StringB
+java.util.function.Supplier

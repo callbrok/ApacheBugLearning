@@ -1,2 +1,1 @@
-model.Bug#setBug(Ljava/lang/String;Ljava/util/Date;Ljava/util/Date;Lmodel/Release;Lmodel/Release;)V
-model.Bug#validCheckerHelperFirst(Lmodel/Release;Lmodel/Release;)Ljava/lang/Boolean;
+model.Bug#<init>()V

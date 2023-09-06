@@ -20,24 +20,27 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class JGitHelper {
     private static final Logger LOGGER = Logger.getLogger( JGitHelper.class.getName() );
+    private static final String PROJECT_PATH = "C:\\Users\\Marco\\Desktop\\bookkeeper";
 
 
     // Initialize project's repo object
-    private static final List<Repo> GITPROJECTS = new ArrayList<>() {{
-        add(new Repo("BOOKKEEPER", "https://github.com/apache/bookkeeper.git"));
-        add(new Repo("AVRO", "https://github.com/apache/avro.git"));
-        add(new Repo("STORM", "https://github.com/apache/storm.git"));
-        add(new Repo("OPENJPA", "https://github.com/apache/openjpa.git"));
-        add(new Repo("ZOOKEEPER", "https://github.com/apache/zookeeper.git"));
-        add(new Repo("SYNCOPE", "https://github.com/apache/syncope.git"));
-        add(new Repo("TAJO", "https://github.com/apache/tajo.git"));
-    }};
+    private static final List<Repo> GITPROJECTS = new ArrayList<>(
+            Arrays.asList(new Repo("BOOKKEEPER", "https://github.com/apache/bookkeeper.git"),
+                    new Repo("AVRO", "https://github.com/apache/avro.git"),
+                    new Repo("STORM", "https://github.com/apache/storm.git"),
+                    new Repo("OPENJPA", "https://github.com/apache/openjpa.git"),
+                    new Repo("ZOOKEEPER", "https://github.com/apache/zookeeper.git"),
+                    new Repo("SYNCOPE", "https://github.com/apache/syncope.git"),
+                    new Repo("TAJO", "https://github.com/apache/tajo.git")
+            ));
+
 
     public Repo getJGitRepository(String projectName) throws IOException, GitAPIException {
         // Init Repo to clone and return object
@@ -50,13 +53,16 @@ public class JGitHelper {
 
         // IMPLEMENTARE SISTEMA DI ERRORE CHE MANDA IN BREAK IL SISTEMA
         // If passed projectName doesn't match, return an error
-        if(repoToCloneReturn == null){System.out.print("\nERRORE | Il progetto '" + projectName + "' passato NON CORRISPONDE A NESSUN PROGETTO ANALIZZABILE.\n"); return null;}
+        if(repoToCloneReturn == null){
+            LOGGER.log(Level.INFO, () ->  ("\nERRORE | Il progetto '" + projectName + "' passato NON CORRISPONDE A NESSUN PROGETTO ANALIZZABILE.\n"));
+            return null;
+        }
 
         // Clone and set the local path where repo was cloned
         //repoToCloneReturn.setPathOfRepo(cloneRepository(repoToCloneReturn));
 
         // FOR TESTING
-        repoToCloneReturn.setPathOfRepo(new File("C:\\Users\\Marco\\GitHub\\bookkeeper"));
+        repoToCloneReturn.setPathOfRepo(new File(PROJECT_PATH));
 
 
         FileRepositoryBuilder builder = new FileRepositoryBuilder();

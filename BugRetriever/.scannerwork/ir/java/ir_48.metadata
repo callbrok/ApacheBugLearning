@@ -1,1 +1,1 @@
-controller.GitController#instance-init#
+model.Commit#getCommitFromGit()LRevCommit;

@@ -1,1 +1,12 @@
-model.ReleaseTag#getCurrentRepo()Lmodel/Repo;
+controller.GitController#notDoOnALLRelease(Ljava/util/List;Ljava/util/List;Ljava/util/List;)Ljava/util/List;
+==
+setRelatedCommits model.RepoFile#setRelatedCommits(Ljava/util/List;)V
+getRelatedCommits model.RepoFile#getRelatedCommits()Ljava/util/List;
+setItsBuggy model.RepoFile#setItsBuggy(Ljava/lang/Boolean;)V
+log java.util.logging.Logger#log(Ljava/util/logging/Level;Ljava/lang/String;)V
+get java.util.List#get(I)Ljava/lang/Object;
+setFileMetrics model.RepoFile#setFileMetrics(Lmodel/Metrics;)V
+size java.util.List#size()I
+getReferencedFilesList model.ReleaseTag#getReferencedFilesList()Ljava/util/List;
+setReferencedFilesList model.ReleaseTag#setReferencedFilesList(Ljava/util/List;)V
+getFileMetrics model.RepoFile#getFileMetrics()Lmodel/Metrics;

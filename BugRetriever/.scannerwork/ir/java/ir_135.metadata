@@ -1,1 +1,1 @@
-model.Release#getIndex()I
+model.Repo#getGitHandle()LGit;

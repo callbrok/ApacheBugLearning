@@ -56,7 +56,7 @@ public class MetricsRetriever {
 
         // Retrieve Average LOC Added ------------------
         float averageLocAdded = 0;
-        if(numberRevision>0){averageLocAdded=(float)locAdded / numberRevision;};
+        if(numberRevision>0){averageLocAdded=(float)locAdded / numberRevision;}
 
         // Retrieve Nauth Metric -----------------------
         int nAuthMetric = numberAuthorsMetric(relatedCommitsOfCurrentTaggedRelease);
@@ -69,7 +69,7 @@ public class MetricsRetriever {
 
         // Average Churn Metric ------------------------
         float averageChurn = 0;
-        if(numberRevision>0){averageChurn=(float)churn / numberRevision;};
+        if(numberRevision>0){averageChurn=(float)churn / numberRevision;}
 
 
         return new Metrics(

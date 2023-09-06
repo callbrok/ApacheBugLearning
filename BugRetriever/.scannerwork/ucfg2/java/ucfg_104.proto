@@ -1,55 +1,34 @@
 
-Acontroller.JSONHelper#readAll(Ljava/io/Reader;)Ljava/lang/String;g
-]C:/Users/Marco/GitHub/BugRetriever/BugRetriever/jira/src/main/java/controller/JSONHelper.java (!"4*é
-2 (ÔÑ
- ( 
-%3java.lang.StringBuilder":java.lang.StringBuilder#append(C)Ljava/lang/StringBuilder;*;
+&__sonar_lambda_2$controller.JGitHelperi
+^/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/git/src/main/java/controller/JGitHelper.java9# 9(”"startingBlock*®
+startingBlock	9# 9(”Œ
+‰
 
 __unknown_file (
-
-sbjava.lang.StringBuilder*"
+projectNamejava.lang.String"__id*F
 
-__unknown_file (
-""2	append(C)*
-3*‚
-3 (ki
- (	
-%2int"java.io.Reader#read()I*2
-
-__unknown_file (
-
-rdjava.io.Reader2read()*
-2
-1*¼
-4 (.DB
- (,
-%0java.lang.StringBuilder"java.lang.StringBuilderr
-p
- (.
-%1"!java.lang.StringBuilder#<init>()V*;
-
-__unknown_file (
-
-%0java.lang.StringBuildern
-l
- (/
-sbjava.lang.StringBuilder"__id*;
-
-__unknown_file (
-
-%0java.lang.StringBuilder*
-3*Ú
-1 (¤¡
- (
-%4java.lang.String"4java.lang.StringBuilder#toString()Ljava/lang/String;*;
-
-__unknown_file (
-
-sbjava.lang.StringBuilder2
-toString()"$
- (
+__unknown_file (**(
+controller.JGitHelper"
+projectName*
+1*æ
+19+ 9(Eˆ
+…
+9+ 9(S
+%6java.lang.String"__concat*(
+9+ 9(E
+\nERRORE | Il progetto '*-
+9H 9(S!
+
+projectNamejava.lang.String¤
+¡
+	9+ 9(“
+%7java.lang.String"__concat*$
+9+ 9(S
 
-%4java.lang.String: 
-" (+
-rdjava.io.ReaderB"
-controller.JSONHelper
+%6java.lang.String*L
+	9V 9(“?=
+;' passato NON CORRISPONDE A NESSUN PROGETTO ANALIZZABILE.\n"%
+	9* 9(”
+
+%7java.lang.StringB
+java.util.function.Supplier

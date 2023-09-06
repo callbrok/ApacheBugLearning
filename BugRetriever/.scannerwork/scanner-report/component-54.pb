@@ -1,1 +1,1 @@
-6 2javaX"hr-jira/src/main/java/controller/JSONHelper.java
+6 2javaXùhr/jira/src/main/java/controller/BugRetriever.java

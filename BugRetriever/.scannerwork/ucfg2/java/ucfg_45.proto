@@ -1,17 +1,77 @@
 
--model.ReleaseTag#getCurrentRepo()Lmodel/Repo;a
-WC:/Users/Marco/GitHub/BugRetriever/BugRetriever/git/src/main/java/model/ReleaseTag.java ("1*ñ
-1) (4g
-e
-) (4
-%0
-model.Repo"__id*A
+__sonar_lambda_0$k
+`/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/dataset/src/main/java/starter/GenerateCSV.java@/ @(ë"startingBlock*–
+startingBlock	@/ @(ëî
+ë
 
-__unknown_file (%*#
-model.ReleaseTag"
-currentRepo"
-" (5
-
-%0
-model.RepoB
-model.ReleaseTagH
+__unknown_file ($
+featureSelectionjava.lang.String"__id*I
+
+__unknown_file (-*+
+starter.GenerateCSV"
+featureSelectionÜ
+É
+
+__unknown_file (
+	balancingjava.lang.String"__id*B
+
+__unknown_file (&*$
+starter.GenerateCSV"
+	balancingé
+ã
+
+__unknown_file (!
+costSensitivejava.lang.String"__id*F
+
+__unknown_file (**(
+starter.GenerateCSV"
+costSensitive*
+1*π
+1@6 @(Qè
+å
+@6 @(d
+%76java.lang.String"__concat*)
+@6 @(Q
+ANALIZZO CONFIGURAZIONE: *2
+@T @(d&
+$
+featureSelectionjava.lang.Stringk
+i
+@6 @(l
+%77java.lang.String"__concat*%
+@6 @(d
+
+%76java.lang.String*
+@g @(l
+ | Ñ
+Å
+@6 @(x
+%78java.lang.String"__concat*%
+@6 @(l
+
+%77java.lang.String*+
+@o @(x
+
+	balancingjava.lang.Stringm
+k
+	@6 @(Ä
+%79java.lang.String"__concat*%
+@6 @(x
+
+%78java.lang.String*
+	@{ @(Ä
+ | å
+â
+	@6 @(ê
+%80java.lang.String"__concat*&
+	@6 @(Ä
+
+%79java.lang.String*1
+
+@É @(ê#
+!
+costSensitivejava.lang.String"&
+	@5 @(ë
+
+%80java.lang.StringB
+java.util.function.Supplier

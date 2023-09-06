@@ -1,1 +1,1 @@
-model.Commit#getCommitFromJira()Lmodel/Bug;
+model.Commit#setCommitFromJira(Lmodel/Bug;)V

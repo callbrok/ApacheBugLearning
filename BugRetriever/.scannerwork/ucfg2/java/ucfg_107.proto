@@ -1,17 +1,7 @@
 
-(model.Repo#getGitUrl()Ljava/lang/String;[
-QC:/Users/Marco/GitHub/BugRetriever/BugRetriever/git/src/main/java/model/Repo.java ("1*—
-1& (,b
-`
-& (,
-%0java.lang.String"__id*6
-
-__unknown_file (*
-
-model.Repo"
-gitUrl"$
- (-
-
-%0java.lang.StringB
-
-model.RepoH
+&__sonar_lambda_4$controller.JGitHelperh
+^/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/git/src/main/java/controller/JGitHelper.javat# t(i"1*!
+1t+ t(@"
+t* t(i
+""B
+	!Unknown!

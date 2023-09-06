@@ -1,16 +1,16 @@
 
-/model.RepoFile#getItsBuggy()Ljava/lang/Boolean;_
-UC:/Users/Marco/GitHub/BugRetriever/BugRetriever/git/src/main/java/model/RepoFile.java* *("1*Ÿ
-1*) *(1i
-g
-*) *(1
-%0java.lang.Boolean"__id*<
+0model.RepoFile#getPathOfFile()Ljava/lang/String;a
+W/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/git/src/main/java/model/RepoFile.java' '("1*Ÿ
+1'* '(4j
+h
+'* '(4
+%0java.lang.String"__id*>
 
-__unknown_file ( *
-model.RepoFile"
+__unknown_file ("* 
+model.RepoFile"
 
-itsBuggy"%
-*" *(2
-
-%0java.lang.BooleanB
+pathOfFile"$
+'# '(5
+
+%0java.lang.StringB
 model.RepoFileH

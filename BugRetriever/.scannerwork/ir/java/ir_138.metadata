@@ -1,1 +1,1 @@
-model.Release#setIndex(I)V
+model.Repo#setPathOfRepo(Ljava/io/File;)V

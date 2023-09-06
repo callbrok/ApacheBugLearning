@@ -1,1 +1,5 @@
-model.Repo#getGitUrl()Ljava/lang/String;
+model.Bug#validCheckerHelperSecond(Lmodel/Release;Lmodel/Release;Lmodel/Release;)Ljava/lang/Boolean;
+java.lang.String#equals(Ljava/lang/Object;)Z
+==
+getName model.Release#getName()Ljava/lang/String;
+getIndex model.Release#getIndex()I

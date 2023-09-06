@@ -1,1 +1,1 @@
-model.Metrics#getLoc()I
+model.Metrics#setLocAdded(I)V

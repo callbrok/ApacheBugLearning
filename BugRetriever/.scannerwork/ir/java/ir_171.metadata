@@ -1,1 +1,3 @@
-model.RepoFile#getRelatedCommits()Ljava/util/List;
+controller.SimpleProgressMonitor#start(I)V
+==
+println java.io.PrintStream#println(Ljava/lang/String;)V

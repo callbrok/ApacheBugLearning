@@ -1,1 +1,1 @@
-model.Bug#getPropotionaled()Ljava/lang/Boolean;
+model.Bug#<init>(Ljava/lang/String;)V

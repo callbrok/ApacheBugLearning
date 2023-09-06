@@ -1,5 +1,1 @@
-controller.Proportion#getInjectedVersionFromP(FLmodel/Bug;Ljava/util/List;)Lmodel/Release;
-java.math.BigDecimal#instance-init#
-java.math.BigDecimal#<init>(D)V
-model.Release#instance-init#
-model.Release#<init>(Ljava/lang/String;)V
+MainJira#<init>()V

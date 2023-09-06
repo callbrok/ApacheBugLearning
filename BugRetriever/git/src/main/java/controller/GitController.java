@@ -9,6 +9,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -19,7 +20,6 @@ public class GitController {
     public List<ReleaseTag> retrieveAllGitDataSet(List<Release> released, List<ReleaseTag> finalListRelease, Repo repoToDoThinks, Boolean doOnALLRelease) throws Exception {
 
         // From Jira
-        ReleaseRetriever rls = new ReleaseRetriever();
         BugRetriever gtb = new BugRetriever();
 
         List<Bug> bugList = gtb.getBug(repoToDoThinks.getApacheProjectName(), false, released);
@@ -27,7 +27,6 @@ public class GitController {
 
         // From Git
         ReleaseTagRetriever gttr = new ReleaseTagRetriever();
-        FileRetriever gtf = new FileRetriever();
 
         List<ReleaseTag> tagRelesesToDoThinks = gttr.makeTagReleasesList(repoToDoThinks, released);
         // ------------------------------------
@@ -35,68 +34,15 @@ public class GitController {
 
         // Set commit and metrics to all files
         CommitRetriever cmtr = new CommitRetriever();
-        MetricsRetriever mtr = new MetricsRetriever();
 
-        if(doOnALLRelease) {
-            // Set referenced files for every tagged release
-            for(ReleaseTag rlIndex: tagRelesesToDoThinks){rlIndex.setReferencedFilesList(gtf.getAllFilesOfTagRelease(rlIndex));}
-            LOGGER.log(Level.INFO, ("+ Settati tutti i file\n"));
-
-            // Retrieve commits map
-            HashMap<String, List<RevCommit>> commitsMap = cmtr.mapCommitsByRelease(repoToDoThinks, released);
-            // Set commit and return all list updated
-            tagRelesesToDoThinks = cmtr.listCommitRetriever(tagRelesesToDoThinks, commitsMap, repoToDoThinks, bugList);
-            LOGGER.log(Level.INFO, ("+ Settati tutti i commit per tutti i file\n"));
-
-            // Set Metrics
-            for (int k = 0; k < tagRelesesToDoThinks.size(); k++) {
-                for (RepoFile rpFile : tagRelesesToDoThinks.get(k).getReferencedFilesList()) {
-                    if (k == 0) {
-                        LOGGER.log(Level.INFO, ("\n+ Inserimento metriche per il file: " + rpFile.getPathOfFile() + "\n     release_tag: " + tagRelesesToDoThinks.get(k).getGitTag()));
-                        rpFile.setFileMetrics(mtr.metricsHelper(tagRelesesToDoThinks.get(k), tagRelesesToDoThinks.get(k), true, rpFile.getPathOfFile(), rpFile.getRelatedCommits()));
-                    }
-                    else {
-                        LOGGER.log(Level.INFO, ("\n+ Inserimento metriche per il file: " + rpFile.getPathOfFile() + "\n     release_tag: " + tagRelesesToDoThinks.get(k-1).getGitTag()));
-                        rpFile.setFileMetrics(mtr.metricsHelper(tagRelesesToDoThinks.get(k), tagRelesesToDoThinks.get(k-1), false, rpFile.getPathOfFile(), rpFile.getRelatedCommits()));
-                    }
-                }
-            }
-
-            LOGGER.log(Level.INFO, ("\n\n+ Settate tutte le metriche\n"));
+        if(Boolean.TRUE.equals(doOnALLRelease)) {
+           tagRelesesToDoThinks = doOnALLRelease(tagRelesesToDoThinks, repoToDoThinks, released);
         }
 
 
         // Set metrics to all files after the fist time
-        if(!doOnALLRelease) {
-            LOGGER.log(Level.INFO, ("\n\n+ Sto settando le release per Walk Forward - STEP: " + (released.size()-1)));
-
-            for(int i = 0; i < tagRelesesToDoThinks.size(); i++) {
-
-                // Set File list
-                tagRelesesToDoThinks.get(i).setReferencedFilesList(
-                        finalListRelease.get(i).getReferencedFilesList()
-                );
-            }
-
-            for(int j = 0; j < tagRelesesToDoThinks.size(); j++){
-                for(int y=0; y<tagRelesesToDoThinks.get(j).getReferencedFilesList().size(); y++){
-
-                    // Reset Bugginess
-                    tagRelesesToDoThinks.get(j).getReferencedFilesList().get(y).setItsBuggy(false);
-
-                    // Set file Commits list
-                    tagRelesesToDoThinks.get(j).getReferencedFilesList().get(y).setRelatedCommits(
-                            finalListRelease.get(j).getReferencedFilesList().get(y).getRelatedCommits()
-                    );
-
-                    // Set file Metrics list
-                    tagRelesesToDoThinks.get(j).getReferencedFilesList().get(y).setFileMetrics(
-                            finalListRelease.get(j).getReferencedFilesList().get(y).getFileMetrics()
-                    );
-                }
-            }
-
-            LOGGER.log(Level.INFO, ("+ Tutte le release impostate per il Walk Forward - STEP: " + (released.size()-1)));
+        if(Boolean.FALSE.equals(doOnALLRelease)) {
+            tagRelesesToDoThinks = notDoOnALLRelease(tagRelesesToDoThinks, finalListRelease, released);
         }
 
 
@@ -130,6 +76,77 @@ public class GitController {
 
         return tagRelesesWithBugginess;
     }
+
+    private List<ReleaseTag> doOnALLRelease(List<ReleaseTag> tagRelesesToDoThinks, Repo repoToDoThinks, List<Release> released) throws Exception {
+        // From Git
+        FileRetriever gtf = new FileRetriever();
+
+        // Set commit and metrics to all files
+        CommitRetriever cmtr = new CommitRetriever();
+        MetricsRetriever mtr = new MetricsRetriever();
+
+        // Set referenced files for every tagged release
+        for(ReleaseTag rlIndex: tagRelesesToDoThinks){rlIndex.setReferencedFilesList(gtf.getAllFilesOfTagRelease(rlIndex));}
+        LOGGER.log(Level.INFO, ("+ Settati tutti i file\n"));
+
+        // Retrieve commits map
+        Map<String, List<RevCommit>> commitsMap = cmtr.mapCommitsByRelease(repoToDoThinks, released);
+        // Set commit and return all list updated
+        tagRelesesToDoThinks = cmtr.listCommitRetriever(tagRelesesToDoThinks, commitsMap, repoToDoThinks);
+        LOGGER.log(Level.INFO, ("+ Settati tutti i commit per tutti i file\n"));
+
+        // Set Metrics
+        for (int k = 0; k < tagRelesesToDoThinks.size(); k++) {
+            for (RepoFile rpFile : tagRelesesToDoThinks.get(k).getReferencedFilesList()) {
+                if (k == 0) {
+                    LOGGER.log(Level.INFO, ("\n+ Inserimento metriche per il file: " + rpFile.getPathOfFile() + "\n     release_tag: " + tagRelesesToDoThinks.get(k).getGitTag()));
+                    rpFile.setFileMetrics(mtr.metricsHelper(tagRelesesToDoThinks.get(k), tagRelesesToDoThinks.get(k), true, rpFile.getPathOfFile(), rpFile.getRelatedCommits()));
+                }
+                else {
+                    LOGGER.log(Level.INFO, ("\n+ Inserimento metriche per il file: " + rpFile.getPathOfFile() + "\n     release_tag: " + tagRelesesToDoThinks.get(k-1).getGitTag()));
+                    rpFile.setFileMetrics(mtr.metricsHelper(tagRelesesToDoThinks.get(k), tagRelesesToDoThinks.get(k-1), false, rpFile.getPathOfFile(), rpFile.getRelatedCommits()));
+                }
+            }
+        }
+
+        LOGGER.log(Level.INFO, ("\n\n+ Settate tutte le metriche\n"));
+        return tagRelesesToDoThinks;
+    }
+
+    private List<ReleaseTag> notDoOnALLRelease(List<ReleaseTag> tagRelesesToDoThinks, List<ReleaseTag> finalListRelease, List<Release> released){
+
+        LOGGER.log(Level.INFO, ("\n\n+ Sto settando le release per Walk Forward - STEP: " + (released.size()-1)));
+
+        for(int i = 0; i < tagRelesesToDoThinks.size(); i++) {
+
+            // Set File list
+            tagRelesesToDoThinks.get(i).setReferencedFilesList(
+                    finalListRelease.get(i).getReferencedFilesList()
+            );
+        }
+
+        for(int j = 0; j < tagRelesesToDoThinks.size(); j++){
+            for(int y=0; y<tagRelesesToDoThinks.get(j).getReferencedFilesList().size(); y++){
+
+                // Reset Bugginess
+                tagRelesesToDoThinks.get(j).getReferencedFilesList().get(y).setItsBuggy(false);
+
+                // Set file Commits list
+                tagRelesesToDoThinks.get(j).getReferencedFilesList().get(y).setRelatedCommits(
+                        finalListRelease.get(j).getReferencedFilesList().get(y).getRelatedCommits()
+                );
+
+                // Set file Metrics list
+                tagRelesesToDoThinks.get(j).getReferencedFilesList().get(y).setFileMetrics(
+                        finalListRelease.get(j).getReferencedFilesList().get(y).getFileMetrics()
+                );
+            }
+        }
+
+        LOGGER.log(Level.INFO, ("+ Tutte le release impostate per il Walk Forward - STEP: " + (released.size()-1)));
+        return tagRelesesToDoThinks;
+    }
+
 
     private void printAllGitDataSet(List<ReleaseTag> tagRelesesWithBugginess){
         // Print alla data inside the ReleaseTag objects list

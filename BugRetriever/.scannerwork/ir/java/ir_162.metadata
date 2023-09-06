@@ -1,2 +1,8 @@
-controller.ReleaseTagRetriever#setBugginess(Ljava/util/List;Ljava/lang/String;Ljava/util/List;Ljava/util/List;Ljava/lang/Boolean;)Ljava/util/List;
-java.lang.String#equals(Ljava/lang/Object;)Z
+controller.ReleaseRetriever#printReleaseList(Ljava/util/List;)V
+==
+getReleaseDate model.Release#getReleaseDate()Ljava/util/Date;
+getName model.Release#getName()Ljava/lang/String;
+log java.util.logging.Logger#log(Ljava/util/logging/Level;Ljava/lang/String;)V
+getIndex model.Release#getIndex()I
+getId model.Release#getId()I
+size java.util.List#size()I

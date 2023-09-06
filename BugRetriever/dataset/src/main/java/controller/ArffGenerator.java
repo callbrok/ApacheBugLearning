@@ -49,7 +49,7 @@ public class ArffGenerator {
         saver.writeBatch();
 
 
-        // Setting attribute BUGGY class to {YES,NO}
+        // Setting attribute BUGGY class to YES,NO
         Path path = Paths.get(f.getAbsolutePath());
         List<String> lines = Files.readAllLines(path, StandardCharsets.UTF_8);
         lines.set(19 - 1, "@attribute BUGGY {YES,NO}");

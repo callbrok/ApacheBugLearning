@@ -1,5 +1,7 @@
-controller.JSONHelper#readAll(Ljava/io/Reader;)Ljava/lang/String;
-java.lang.StringBuilder#instance-init#
-java.lang.StringBuilder#<init>()V
-java.lang.StringBuilder#append(C)Ljava/lang/StringBuilder;
-java.lang.StringBuilder#toString()Ljava/lang/String;
+model.Bug#setAffectedAndInjectedVersions(Lmodel/Release;Ljava/util/List;)V
+java.util.List#of(Ljava/lang/Object;)Ljava/util/List;
+model.Bug#calculatedAffectedVersions(Ljava/util/List;)Ljava/util/List;
+java.lang.String#equals(Ljava/lang/Object;)Z
+model.Bug#validCheckerHelperSecond(Lmodel/Release;Lmodel/Release;Lmodel/Release;)Ljava/lang/Boolean;
+==
+getName model.Release#getName()Ljava/lang/String;

@@ -1,16 +1,1 @@
-controller.GitController#retrieveAllGitDataSet(Ljava/util/List;Ljava/util/List;Lmodel/Repo;Ljava/lang/Boolean;)Ljava/util/List;
-controller.MetricsRetriever#<init>()V
-java.util.ArrayList#instance-init#
-java.util.ArrayList#<init>(Ljava/util/Collection;)V
-controller.CommitRetriever#<init>()V
-controller.MetricsRetriever#instance-init#
-controller.ReleaseTagRetriever#<init>()V
-controller.ReleaseTagRetriever#instance-init#
-controller.CommitRetriever#instance-init#
-controller.ReleaseRetriever#instance-init#
-java.lang.String#equals(Ljava/lang/Object;)Z
-controller.FileRetriever#instance-init#
-controller.ReleaseRetriever#<init>()V
-controller.FileRetriever#<init>()V
-controller.BugRetriever#<init>()V
-controller.BugRetriever#instance-init#
+controller.GitController#instance-init#

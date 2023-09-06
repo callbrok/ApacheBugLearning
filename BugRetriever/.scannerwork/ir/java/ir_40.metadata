@@ -1,1 +1,13 @@
-model.Commit#instance-init#
+controller.BugRetriever#printBugInformation(Lmodel/Bug;I)V
+==
+getFixedVersions model.Bug#getFixedVersions()Lmodel/Release;
+getResolutionTicketDate model.Bug#getResolutionTicketDate()Ljava/util/Date;
+getOpeningVersion model.Bug#getOpeningVersion()Lmodel/Release;
+getNameKey model.Bug#getNameKey()Ljava/lang/String;
+getAffectedVersions model.Bug#getAffectedVersions()Ljava/util/List;
+getName model.Release#getName()Ljava/lang/String;
+getInjectedVersion model.Bug#getInjectedVersion()Lmodel/Release;
+log java.util.logging.Logger#log(Ljava/util/logging/Level;Ljava/lang/String;)V
+getValid model.Bug#getValid()Ljava/lang/Boolean;
+getPropotionaled model.Bug#getPropotionaled()Ljava/lang/Boolean;
+getCreationTicketDate model.Bug#getCreationTicketDate()Ljava/util/Date;

@@ -1,1 +1,1 @@
- 2javaX˜hr,git/src/main/java/controller/JGitHelper.java
+ 2javaXÁhr/git/src/main/java/controller/GitController.java

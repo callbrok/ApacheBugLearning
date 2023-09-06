@@ -25,8 +25,7 @@ import java.util.regex.Pattern;
 
 public class CommitRetriever {
 
-    public List<ReleaseTag> listCommitRetriever(List<ReleaseTag> tagRelesesToDoThinks, HashMap<String, List<RevCommit>> commitsMap, Repo repoToDoThinks, List<Bug> bugList) throws IOException {
-        Repository repository = repoToDoThinks.getjGitRepository();
+    public List<ReleaseTag> listCommitRetriever(List<ReleaseTag> tagRelesesToDoThinks, Map<String, List<RevCommit>> commitsMap, Repo repoToDoThinks) throws IOException {
         Git git = repoToDoThinks.getGitHandle();
 
         // For each file
@@ -38,37 +37,7 @@ public class CommitRetriever {
                 // Do think if current commit has parent
                 if(cmInd.getParentCount()>0){
 
-                    DiffFormatter formatter = new DiffFormatter(DisabledOutputStream.INSTANCE);
-                    formatter.setRepository(git.getRepository());
-                    formatter.setDiffComparator(RawTextComparator.DEFAULT);
-                    formatter.setDetectRenames(true);
-
-                    ObjectId commitId = cmInd.getId();
-                    RevCommit parent = cmInd.getParent(0);
-
-                    if (parent != null) {
-                        ObjectId parentId = parent.getId();
-                        List<DiffEntry> diffs = formatter.scan(parentId, commitId);
-
-                        for (DiffEntry diff : diffs) {
-
-                            // For each file list of current ReleaseTag
-                            for (RepoFile rpfIndex : rltIndex.getReferencedFilesList()) {
-
-                                if (rpfIndex.getPathOfFile().equals(diff.getNewPath())) {
-
-                                    List<Commit> tempCommitList = new ArrayList<>(rpfIndex.getRelatedCommits());
-
-                                    // Insert commit and set list
-                                    tempCommitList.add(new Commit(cmInd));
-                                    rpfIndex.setRelatedCommits(tempCommitList);
-
-                                    break;
-                                }
-                            }
-
-                        }
-                    }
+                   rltIndex = commitListSetterToFileAndToRelease(git, rltIndex, cmInd);
 
                 }
 
@@ -76,6 +45,46 @@ public class CommitRetriever {
         }
 
         return tagRelesesToDoThinks;
+    }
+
+
+    public ReleaseTag commitListSetterToFileAndToRelease(Git git, ReleaseTag rltIndex, RevCommit cmInd) throws IOException {
+        // Split up method for complexity problem - Sonar
+
+        DiffFormatter formatter = new DiffFormatter(DisabledOutputStream.INSTANCE);
+        formatter.setRepository(git.getRepository());
+        formatter.setDiffComparator(RawTextComparator.DEFAULT);
+        formatter.setDetectRenames(true);
+
+        ObjectId commitId = cmInd.getId();
+        RevCommit parent = cmInd.getParent(0);
+
+        if (parent != null) {
+            ObjectId parentId = parent.getId();
+            List<DiffEntry> diffs = formatter.scan(parentId, commitId);
+
+            for (DiffEntry diff : diffs) {
+
+                // For each file list of current ReleaseTag
+                for (RepoFile rpfIndex : rltIndex.getReferencedFilesList()) {
+
+                    if (rpfIndex.getPathOfFile().equals(diff.getNewPath())) {
+
+                        List<Commit> tempCommitList = new ArrayList<>(rpfIndex.getRelatedCommits());
+
+                        // Insert commit and set list
+                        tempCommitList.add(new Commit(cmInd));
+                        rpfIndex.setRelatedCommits(tempCommitList);
+
+                        break;
+                    }
+                }
+
+            }
+        }
+
+        return rltIndex;
+
     }
 
 
@@ -97,13 +106,13 @@ public class CommitRetriever {
     }
 
 
-    public HashMap<String, List<RevCommit>> mapCommitsByRelease(Repo currentRepo, List<Release> listOfJiraReleases) throws IOException, GitAPIException {
+    public Map<String, List<RevCommit>> mapCommitsByRelease(Repo currentRepo, List<Release> listOfJiraReleases) throws IOException, GitAPIException {
         // Init RevCommit
         RevCommit commitPrevTag = null;
         RevCommit commitCurrTag = null;
 
         // Init HashMap
-        HashMap<String, List<RevCommit>> commitsMap = new HashMap<String, List<RevCommit>>();
+        HashMap<String, List<RevCommit>> commitsMap = new HashMap<>();
 
         // Retrieve all commits of the passed project repo
         Iterable<RevCommit> commits = currentRepo.getGitHandle().log().all().call();
@@ -138,7 +147,7 @@ public class CommitRetriever {
 
                 // If it's the first Release
                 if(k==0){
-                    if(commit.getAuthorIdent().getWhen().before(commitCurrTag.getAuthorIdent().getWhen())){tempRevCommitList.add(commit);}
+                    tempRevCommitList = commitCheckerAndSetter(tempRevCommitList, commitCurrTag, commit);
                     continue;
                 }
 
@@ -154,6 +163,13 @@ public class CommitRetriever {
         }
 
         return commitsMap;
+    }
+
+    public List<RevCommit> commitCheckerAndSetter(List<RevCommit> tempRevCommitList, RevCommit commitCurrTag, RevCommit commit){
+        if(commit.getAuthorIdent().getWhen().before(commitCurrTag.getAuthorIdent().getWhen())){
+            tempRevCommitList.add(commit);
+        }
+        return  tempRevCommitList;
     }
 
 }

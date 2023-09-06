@@ -1,7 +1,1 @@
-controller.CommitRetriever#listCommitRetriever(Ljava/util/List;Ljava/util/HashMap;Lmodel/Repo;Ljava/util/List;)Ljava/util/List;
-null
-java.lang.String#equals(Ljava/lang/Object;)Z
-java.util.ArrayList#instance-init#
-java.util.ArrayList#<init>(Ljava/util/Collection;)V
-model.Commit#<init>(LRevCommit;)V
-model.Commit#instance-init#
+model.Release#<init>(Ljava/lang/String;)V

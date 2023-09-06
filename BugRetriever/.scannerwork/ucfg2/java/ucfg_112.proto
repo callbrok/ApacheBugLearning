@@ -1,77 +1,17 @@
 
-__sonar_lambda_2$a
-VC:/Users/Marco/GitHub/BugRetriever/BugRetriever/dataset/src/main/java/GenerateCSV.java>/ >(‘"startingBlock*¶
-startingBlock	>/ >(‘Œ
-‰
-
-__unknown_file ($
-featureSelectionjava.lang.String"__id*A
-
-__unknown_file (%*#
-GenerateCSV"
-featureSelection}
-{
-
-__unknown_file (
-	balancingjava.lang.String"__id*:
-
-__unknown_file (*
-GenerateCSV"
-	balancing†
-ƒ
-
-__unknown_file (!
-costSensitivejava.lang.String"__id*>
-
-__unknown_file ("* 
-GenerateCSV"
-costSensitive*
-1*¹
-1>6 >(Q
-Œ
->6 >(d
-%76java.lang.String"__concat*)
->6 >(Q
-ANALIZZO CONFIGURAZIONE: *2
->T >(d&
-$
-featureSelectionjava.lang.Stringk
-i
->6 >(l
-%77java.lang.String"__concat*%
->6 >(d
-
-%76java.lang.String*
->g >(l
- | „
-
->6 >(x
-%78java.lang.String"__concat*%
->6 >(l
-
-%77java.lang.String*+
->o >(x
-
-	balancingjava.lang.Stringm
+3model.Repo#getApacheProjectName()Ljava/lang/String;]
+S/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/git/src/main/java/model/Repo.java (&"1*¢
+11 (Bm
 k
-	>6 >(€
-%79java.lang.String"__concat*%
->6 >(x
-
-%78java.lang.String*
-	>{ >(€
- | Œ
-‰
-	>6 >(
-%80java.lang.String"__concat*&
-	>6 >(€
-
-%79java.lang.String*1
+1 (B
+%0java.lang.String"__id*A
+
+__unknown_file (%*#
 
->ƒ >(#
-!
-costSensitivejava.lang.String"&
-	>5 >(‘
-
-%80java.lang.StringB
-java.util.function.Supplier
+model.Repo"
+apacheProjectName"$
+* (C
+
+%0java.lang.StringB
+
+model.RepoH

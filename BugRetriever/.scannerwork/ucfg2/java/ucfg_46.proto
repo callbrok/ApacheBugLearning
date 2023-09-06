@@ -1,15 +1,23 @@
 
-.model.ReleaseTag#getGitTag()Ljava/lang/String;a
-WC:/Users/Marco/GitHub/BugRetriever/BugRetriever/git/src/main/java/model/ReleaseTag.java ("1*ù
-1& (,h
-f
-& (,
-%0java.lang.String"__id*<
+__sonar_lambda_1$j
+`/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/dataset/src/main/java/starter/GenerateCSV.javaV V(a"1*í
+1V& V(6c
+a
+V& V(N
+%99java.lang.String"__concat*
+V& V(6
+\n\nThat took *
+V9 V(N
+""v
+t
+V& V(`
+%100java.lang.String"__concat*%
+V& V(N
+
+%99java.lang.String*
+VQ V(`
+ milliseconds"&
+V% V(a
 
-__unknown_file ( *
-model.ReleaseTag"
-gitTag"$
- (-
-
-%0java.lang.StringB
-model.ReleaseTagH
+%100java.lang.StringB
+java.util.function.Supplier

@@ -1,1 +1,1 @@
-8 2javaXfhr3jira/src/main/java/controller/ReleaseRetriever.java
+8 2javaXêhr-jira/src/main/java/controller/Proportion.java

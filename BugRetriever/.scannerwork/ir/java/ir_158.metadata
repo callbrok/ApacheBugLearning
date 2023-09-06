@@ -1,1 +1,6 @@
-controller.SimpleProgressMonitor#isCancelled()Z
+controller.Proportion#pFormula(Lmodel/Bug;)F
+==
+getFixedVersions model.Bug#getFixedVersions()Lmodel/Release;
+getOpeningVersion model.Bug#getOpeningVersion()Lmodel/Release;
+getInjectedVersion model.Bug#getInjectedVersion()Lmodel/Release;
+getIndex model.Release#getIndex()I

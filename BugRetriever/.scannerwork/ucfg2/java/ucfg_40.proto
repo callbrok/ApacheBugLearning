@@ -1,6 +1,6 @@
 
-+model.Commit#getCommitFromJira()Lmodel/Bug;]
-SC:/Users/Marco/GitHub/BugRetriever/BugRetriever/git/src/main/java/model/Commit.java   ( "1*“
++model.Commit#getCommitFromJira()Lmodel/Bug;_
+U/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/git/src/main/java/model/Commit.java   ( "1*“
 1 +  (9e
 c
  +  (9

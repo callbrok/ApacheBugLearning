@@ -1,23 +1,17 @@
 
-__sonar_lambda_3$`
-VC:/Users/Marco/GitHub/BugRetriever/BugRetriever/dataset/src/main/java/GenerateCSV.javaT T(a"1*’
-1T& T(6c
-a
-T& T(N
-%99java.lang.String"__concat*
-T& T(6
-\n\nThat took *
-T9 T(N
-""v
-t
-T& T(`
-%100java.lang.String"__concat*%
-T& T(N
-
-%99java.lang.String*
-TQ T(`
- milliseconds"&
-T% T(a
+(model.Repo#getGitUrl()Ljava/lang/String;]
+S/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/git/src/main/java/model/Repo.java ("1*—
+1& (,b
+`
+& (,
+%0java.lang.String"__id*6
 
-%100java.lang.StringB
-java.util.function.Supplier
+__unknown_file (*
+
+model.Repo"
+gitUrl"$
+ (-
+
+%0java.lang.StringB
+
+model.RepoH

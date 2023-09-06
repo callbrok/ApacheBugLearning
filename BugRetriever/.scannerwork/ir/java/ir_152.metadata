@@ -1,6 +1,1 @@
-controller.CommitRetriever#commitJiraGitLinker(LRevCommit;Ljava/util/List;)Lmodel/Bug;
-java.util.regex.Pattern#matcher(Ljava/lang/CharSequence;)Ljava/util/regex/Matcher;
-model.Bug#<init>(Ljava/lang/String;)V
-java.util.regex.Matcher#find()Z
-java.util.regex.Pattern#compile(Ljava/lang/String;)Ljava/util/regex/Pattern;
-model.Bug#instance-init#
+controller.Proportion#instance-init#

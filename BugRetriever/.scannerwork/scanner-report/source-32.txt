@@ -1,50 +1,38 @@
 package model;
 
+import org.eclipse.jgit.api.Git;
+import org.eclipse.jgit.lib.Repository;
+
 import java.io.File;
-import java.util.List;
 
-public class RepoFile {
-
-    private String nameFile;
-    private String pathOfFile;
-    private List<Commit> relatedCommits;
-    private Metrics fileMetrics;
-    private Boolean itsBuggy;
+public class Repo {
 
 
-    public RepoFile(String nameFile, String pathOfFile, List<Commit> relatedCommits, Metrics fileMetrics, Boolean itsBuggy){
-        this.nameFile = nameFile;
-        this.pathOfFile = pathOfFile;
-        this.relatedCommits = relatedCommits;
-        this.fileMetrics = fileMetrics;
-        this.itsBuggy=itsBuggy;
+    private final String apacheProjectName;
+    private final String gitUrl;
+    private File pathOfLocalRepo;
+    private Repository jGitRepository;
+    private Git gitHandle;
+    private String prefixTagPath;
+
+
+    public Repo(String apacheProjectName, String gitUrl){
+        this.apacheProjectName = apacheProjectName;
+        this.gitUrl = gitUrl;
     }
 
-    public RepoFile(String nameFile, String pathOfFile, Boolean itsBuggy, List<Commit> relatedCommits){
-        this.nameFile = nameFile;
-        this.pathOfFile = pathOfFile;
-        this.itsBuggy=itsBuggy;
-        this.relatedCommits = relatedCommits;
-    }
+    // Getter
+    public String getApacheProjectName() {return apacheProjectName;}
+    public String getGitUrl() {return gitUrl;}
+    public Repository getjGitRepository() {return jGitRepository;}
+    public File getPathOfLocalRepo() {return pathOfLocalRepo;}
+    public Git getGitHandle() {return gitHandle;}
+    public String getPrefixTagPath() {return prefixTagPath;}
 
 
     // Setter
-    public void setItsBuggy(Boolean itsBuggy) {this.itsBuggy = itsBuggy;}
-    public void setRelatedCommits(List<Commit> relatedCommits) {this.relatedCommits = relatedCommits;}
-    public void setFileMetrics(Metrics fileMetrics) {this.fileMetrics = fileMetrics;}
-
-
-
-    // Getter
-    public String getPathOfFile() {return pathOfFile;}
-    public List<Commit> getRelatedCommits() {return relatedCommits;}
-    public Metrics getFileMetrics() {return fileMetrics;}
-    public Boolean getItsBuggy() {return itsBuggy;}
-    public String getNameFile() {return nameFile;}
-
-
-    public String getItsBuggyCSV(){
-        if(itsBuggy){return "YES";}
-        return "NO";
-    }
+    public void setjGitRepository(Repository jGitRepository) {this.jGitRepository = jGitRepository;}
+    public void setPathOfRepo(File pathOfRepo) {this.pathOfLocalRepo = pathOfRepo;}
+    public void setGitHandle(Git gitHandle) {this.gitHandle = gitHandle;}
+    public void setPrefixTagPath(String prefixTagPath) {this.prefixTagPath = prefixTagPath;}
 }

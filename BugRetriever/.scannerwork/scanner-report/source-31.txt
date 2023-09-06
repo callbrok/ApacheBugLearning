@@ -1,38 +1,31 @@
 package model;
 
-import org.eclipse.jgit.api.Git;
-import org.eclipse.jgit.lib.Repository;
+import java.util.List;
 
-import java.io.File;
+public class ReleaseTag {
 
-public class Repo {
-
-
-    private final String apacheProjectName;
-    private final String gitUrl;
-    private File pathOfLocalRepo;
-    private Repository jGitRepository;
-    private Git gitHandle;
-    private String prefixTagPath;
+    private String gitTag;
+    private Release releaseFromJira;
+    private Repo currentRepo;
+    private List<RepoFile> referencedFilesList;
 
 
-    public Repo(String apacheProjectName, String gitUrl){
-        this.apacheProjectName = apacheProjectName;
-        this.gitUrl = gitUrl;
+    public ReleaseTag(String gitTag, Release releaseFromJira, Repo currentRepo){
+        this.gitTag = gitTag;
+        this.releaseFromJira = releaseFromJira;
+        this.currentRepo = currentRepo;
     }
 
-    // Getter
-    public String getApacheProjectName() {return apacheProjectName;}
-    public String getGitUrl() {return gitUrl;}
-    public Repository getjGitRepository() {return jGitRepository;}
-    public File getPathOfLocalRepo() {return pathOfLocalRepo;}
-    public Git getGitHandle() {return gitHandle;}
-    public String getPrefixTagPath() {return prefixTagPath;}
+    public ReleaseTag(){}
+
+
+    //Getter
+    public Repo getCurrentRepo() {return currentRepo;}
+    public String getGitTag() {return gitTag;}
+    public List<RepoFile> getReferencedFilesList() {return referencedFilesList;}
+    public Release getReleaseFromJira() {return releaseFromJira;}
 
 
     // Setter
-    public void setjGitRepository(Repository jGitRepository) {this.jGitRepository = jGitRepository;}
-    public void setPathOfRepo(File pathOfRepo) {this.pathOfLocalRepo = pathOfRepo;}
-    public void setGitHandle(Git gitHandle) {this.gitHandle = gitHandle;}
-    public void setPrefixTagPath(String prefixTagPath) {this.prefixTagPath = prefixTagPath;}
+    public void setReferencedFilesList(List<RepoFile> referencedFilesList) {this.referencedFilesList = referencedFilesList;}
 }

@@ -1,1 +1,13 @@
-controller.SimpleProgressMonitor#start(I)V
+controller.Proportion#getInjectedVersionFromP(FLmodel/Bug;Ljava/util/List;)Lmodel/Release;
+java.math.BigDecimal#instance-init#
+java.math.BigDecimal#<init>(D)V
+model.Release#instance-init#
+model.Release#<init>(Ljava/lang/String;)V
+==
+getFixedVersions model.Bug#getFixedVersions()Lmodel/Release;
+getOpeningVersion model.Bug#getOpeningVersion()Lmodel/Release;
+getNameKey model.Bug#getNameKey()Ljava/lang/String;
+setScale java.math.BigDecimal#setScale(ILjava/math/RoundingMode;)Ljava/math/BigDecimal;
+getIndex model.Release#getIndex()I
+log java.util.logging.Logger#log(Ljava/util/logging/Level;Ljava/lang/String;)V
+intValue java.math.BigDecimal#intValue()I

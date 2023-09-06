@@ -43,11 +43,16 @@
 model.Commit 
 <init>model.Commit#<init>()V@
 getCommitFromJira+model.Commit#getCommitFromJira()Lmodel/Bug;A
-setCommitFromJira,model.Commit#setCommitFromJira(Lmodel/Bug;)Vjava.lang.Object Ë
+setCommitFromJira,model.Commit#setCommitFromJira(Lmodel/Bug;)Vjava.lang.Object È
 controller.GitController,
-<init>"controller.GitController#<init>()VT
+<init>"controller.GitController#<init>()Vw
+doOnALLReleaseecontroller.GitController#doOnALLRelease(Ljava/util/List;Lmodel/Repo;Ljava/util/List;)Ljava/util/List;
+notDoOnALLReleaselcontroller.GitController#notDoOnALLRelease(Ljava/util/List;Ljava/util/List;Ljava/util/List;)Ljava/util/List;T
 printAllGitDataSet>controller.GitController#printAllGitDataSet(Ljava/util/List;)V˜
-retrieveAllGitDataSetcontroller.GitController#retrieveAllGitDataSet(Ljava/util/List;Ljava/util/List;Lmodel/Repo;Ljava/lang/Boolean;)Ljava/util/List;java.lang.Object’
+retrieveAllGitDataSetcontroller.GitController#retrieveAllGitDataSet(Ljava/util/List;Ljava/util/List;Lmodel/Repo;Ljava/lang/Boolean;)Ljava/util/List;java.lang.Objectˆ
+starter.GenerateCSV'
+<init>starter.GenerateCSV#<init>()V6
+main.starter.GenerateCSV#main([Ljava/lang/String;)Vjava.lang.Object’
 model.ReleaseTag$
 <init>model.ReleaseTag#<init>()VQ
 <init>Gmodel.ReleaseTag#<init>(Ljava/lang/String;Lmodel/Release;Lmodel/Repo;)V?
@@ -132,10 +137,7 @@ model.RepoB
 getPathOfLocalRepo-model.Repo#getPathOfLocalRepo()Ljava/io/File;C
 getPrefixTagPath/model.Repo#getPrefixTagPath()Ljava/lang/String;:
 setPathOfRepo)model.Repo#setPathOfRepo(Ljava/io/File;)VD
-setPrefixTagPath0model.Repo#setPrefixTagPath(Ljava/lang/String;)Vjava.lang.Object p
-GenerateCSV
-<init>GenerateCSV#<init>()V.
-main&GenerateCSV#main([Ljava/lang/String;)Vjava.lang.Objectg
+setPrefixTagPath0model.Repo#setPrefixTagPath(Ljava/lang/String;)Vjava.lang.Object g
 MainJira
 <init>MainJira#<init>()V+
 main#MainJira#main([Ljava/lang/String;)Vjava.lang.Object„
