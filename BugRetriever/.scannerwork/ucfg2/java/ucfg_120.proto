@@ -1,7 +1,7 @@
 
-model.Release#getIndex()Ia
-W/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/jira/src/main/java/model/Release.java ("1*!
-1" ('"
- ((
-""B
-model.ReleaseHP
+/controller.SimpleProgressMonitor#isCancelled()Zs
+i/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/git/src/main/java/controller/SimpleProgressMonitor.java ("1*!
+1 ("
+ (
+""B$"
+ controller.SimpleProgressMonitorHP

@@ -2,26 +2,24 @@ package controller;
 
 import org.eclipse.jgit.lib.ProgressMonitor;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class SimpleProgressMonitor implements ProgressMonitor {
-    @Override
-    public void start(int totalTasks) {
-        System.out.println("Starting work on " + totalTasks + " tasks");
-    }
+
+    private static final Logger LOGGER = Logger.getLogger( SimpleProgressMonitor.class.getName() );
 
     @Override
-    public void beginTask(String title, int totalWork) {
-        System.out.println("Start " + title + ": " + totalWork);
-    }
+    public void start(int totalTasks) {LOGGER.log(Level.INFO, () -> "Starting work on " + totalTasks + " tasks");}
 
     @Override
-    public void update(int completed) {
-        System.out.print(completed + "-");
-    }
+    public void beginTask(String title, int totalWork) {LOGGER.log(Level.INFO, () -> "Start " + title + ": " + totalWork);}
 
     @Override
-    public void endTask() {
-        System.out.println("Done");
-    }
+    public void update(int completed) {LOGGER.log(Level.INFO, () -> completed + "-");}
+
+    @Override
+    public void endTask() {LOGGER.log(Level.INFO, ("Done"));}
 
     @Override
     public boolean isCancelled() {
@@ -30,6 +28,6 @@ public class SimpleProgressMonitor implements ProgressMonitor {
 
     @Override
     public void showDuration(boolean b) {
-
+        // Do nothing
     }
 }

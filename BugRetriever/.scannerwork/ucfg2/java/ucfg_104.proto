@@ -1,34 +1,15 @@
 
-&__sonar_lambda_2$controller.JGitHelperi
-^/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/git/src/main/java/controller/JGitHelper.java9# 9(”"startingBlock*®
-startingBlock	9# 9(”Œ
-‰
+.model.Release#getReleaseDate()Ljava/util/Date;a
+W/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/jira/src/main/java/model/Release.java ("1*›
+1) (4h
+f
+) (4
+%0java.util.Date"__id*>
 
-__unknown_file (
-projectNamejava.lang.String"__id*F
-
-__unknown_file (**(
-controller.JGitHelper"
-projectName*
-1*æ
-19+ 9(Eˆ
-…
-9+ 9(S
-%6java.lang.String"__concat*(
-9+ 9(E
-\nERRORE | Il progetto '*-
-9H 9(S!
-
-projectNamejava.lang.String¤
-¡
-	9+ 9(“
-%7java.lang.String"__concat*$
-9+ 9(S
-
-%6java.lang.String*L
-	9V 9(“?=
-;' passato NON CORRISPONDE A NESSUN PROGETTO ANALIZZABILE.\n"%
-	9* 9(”
-
-%7java.lang.StringB
-java.util.function.Supplier
+__unknown_file ("* 
+model.Release"
+releaseDate""
+" (5
+
+%0java.util.DateB
+model.ReleaseH

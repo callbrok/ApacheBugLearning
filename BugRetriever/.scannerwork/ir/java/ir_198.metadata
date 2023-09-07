@@ -1,0 +1,5 @@
+controller.Proportion#takeMedianPColdStart(Ljava/util/List;)F
+java.util.Collections#sort(Ljava/util/List;)V
+==
+get java.util.List#get(I)Ljava/lang/Object;
+size java.util.List#size()I

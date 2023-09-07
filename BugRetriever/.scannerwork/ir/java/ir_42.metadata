@@ -1,1 +1,1 @@
-model.Commit#<init>(Lmodel/Bug;LRevCommit;)V
+model.Commit#getCommitFromJira()Lmodel/Bug;

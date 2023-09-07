@@ -17,14 +17,17 @@ import java.util.logging.Logger;
 
 public class BugRetriever {
     private static final Logger LOGGER = Logger.getLogger( BugRetriever.class.getName() );
+    private static final String FIELDS = "fields";
 
 
     public List<Bug> getBug(String projectName, Boolean coldStartEnabler, List<Release> released) throws IOException, ParseException {
         List<Bug> validBug = new ArrayList<>();
         List<Bug> validBugNoProportion = new ArrayList<>();
 
+        JSONHelper jsonhlp = new JSONHelper();
 
-        int j,totalBug;
+        int j;
+        int totalBug;
         int i=0;
 
         do{
@@ -36,7 +39,8 @@ public class BugRetriever {
                     "%22%20%3D%20%22closed%22)%20AND%20%20%22resolution%22%20%3D%20%22fixed%22%20" + "%20ORDER%20BY%20key%20ASC" +
                     "&fields=key,resolutiondate,versions,created,fixVersions&startAt=" + i + "&maxResults=" + j;
 
-            JSONObject json = JSONHelper.readJsonFromUrl(url);
+
+            JSONObject json = jsonhlp.readJsonFromUrl(url);
 
             // Retrieve number of total BUG
             totalBug = json.getInt("total");
@@ -56,10 +60,10 @@ public class BugRetriever {
                 String nameKey = currentJsonIssue.getString("key");
 
                 // Retrieve resolution ticket date
-                Date resolutionTicketDate = new SimpleDateFormat("yyyy-MM-dd").parse(currentJsonIssue.getJSONObject("fields").getString("resolutiondate"));
+                Date resolutionTicketDate = new SimpleDateFormat("yyyy-MM-dd").parse(currentJsonIssue.getJSONObject(FIELDS).getString("resolutiondate"));
 
                 // Retrieve creation ticket date
-                Date creationTicketDate = new SimpleDateFormat("yyyy-MM-dd").parse(currentJsonIssue.getJSONObject("fields").getString("created"));
+                Date creationTicketDate = new SimpleDateFormat("yyyy-MM-dd").parse(currentJsonIssue.getJSONObject(FIELDS).getString("created"));
 
                 // Retrieve Fixed Version release
                 Release fixedVersion = retrieveFixedANDOpeningVersion(resolutionTicketDate, released);
@@ -76,11 +80,11 @@ public class BugRetriever {
                 bug.setBug(nameKey, resolutionTicketDate, creationTicketDate, openingVersion, fixedVersion);
 
                 // If after setting the bug is not valid skip it
-                if(!bug.getValid()){continue;}
+                if(Boolean.FALSE.equals(bug.getValid())){continue;}
 
                 //  Retrieve Injected versions
-                JSONArray jsonArrayAV = currentJsonIssue.getJSONObject("fields").getJSONArray("versions");
-                Release injectedVersion = injectedVersionsFromJsonFields(jsonArrayAV, released, validBug, bug, coldStartEnabler);     // passo a proportion quindi ad affected version la lista dei bug creati fino ad adesso
+                JSONArray jsonArrayAV = currentJsonIssue.getJSONObject(FIELDS).getJSONArray("versions");
+                Release injectedVersion = injectedVersionsFromJsonFields(jsonArrayAV, released, bug);     // passo a proportion quindi ad affected version la lista dei bug creati fino ad adesso
 
                 // Set affected version to current valid bug, there are three situation:
                 //      1. There are valid affected version, and there was set
@@ -97,7 +101,7 @@ public class BugRetriever {
                 //
                 bug.setAffectedAndInjectedVersions(injectedVersion, released);
 
-                if(bug.getValid()){validBug.add(bug);}
+                if(Boolean.TRUE.equals(bug.getValid())){validBug.add(bug);}
 
             }
 
@@ -106,14 +110,8 @@ public class BugRetriever {
 
 
         // If I'm in Cold Start process pass buf that not required proportion algorithm
-        if(coldStartEnabler){
-            // Scroll all stored bugs of current project
-            for(Bug validBugIndex: validBug){
-                // If I'm in cold start process skip bug that required proportiona lgorithm
-                if(validBugIndex.getAffectedVersions().get(0).getName().equals("DOPROPORTION")){continue;}
-                validBugNoProportion.add(validBugIndex);
-            }
-            return validBugNoProportion;
+        if(Boolean.TRUE.equals(coldStartEnabler)){
+            return coldStartValidBugNoProportion(validBug, validBugNoProportion);
         }
 
         // Else do proportion algorithms
@@ -122,7 +120,18 @@ public class BugRetriever {
     }
 
 
-    private Release injectedVersionsFromJsonFields(JSONArray jsonArray, List<Release> released, List<Bug> actualValidBugList, Bug currentBug, Boolean coldStartEnabler) throws IOException, ParseException {
+    private List<Bug> coldStartValidBugNoProportion( List<Bug> validBug, List<Bug> validBugNoProportion){
+        // Scroll all stored bugs of current project
+        for(Bug validBugIndex: validBug){
+            // If I'm in cold start process skip bug that required proportiona lgorithm
+            if(validBugIndex.getAffectedVersions().get(0).getName().equals("DOPROPORTION")){continue;}
+            validBugNoProportion.add(validBugIndex);
+        }
+        return validBugNoProportion;
+    }
+
+
+    private Release injectedVersionsFromJsonFields(JSONArray jsonArray, List<Release> released, Bug currentBug) {
         List<Release> affectedVersionReleases = new ArrayList<>();
 
         // If there are at least one affected version, retrieve affected version release from their name
@@ -168,7 +177,7 @@ public class BugRetriever {
     }
 
 
-    private Release retrieveFixedANDOpeningVersion(Date TicketDate, List<Release> released) throws IOException, ParseException {
+    private Release retrieveFixedANDOpeningVersion(Date ticketDate, List<Release> released){
         // The fixed version is the first release after the closing ticket date
         // The opening version is the first release after the creation ticket date
 
@@ -178,7 +187,7 @@ public class BugRetriever {
 
         // Return the first release tagged released after the resolution/creation ticket date
         for (Release releaseIndex : released) {
-            if (TicketDate.before(releaseIndex.getReleaseDate())) {
+            if (ticketDate.before(releaseIndex.getReleaseDate())) {
                 return releaseIndex;
             }
         }
@@ -186,11 +195,12 @@ public class BugRetriever {
         return releaseToReturn;
     }
 
+    private static final String PASSATO_NULL = " PASSATO VALORE null";
 
     public void printBugInformation(Bug bug, int bugIndex){
 
         // Print Bug Number
-        LOGGER.log(Level.INFO, ("\n+-- BUG N." + bugIndex));
+        LOGGER.log(Level.INFO, () -> "\n+-- BUG N." + bugIndex);
 
         // Print propotionaled
         LOGGER.log(Level.INFO, ("\n+ PROPORTION: " + bug.getPropotionaled()));
@@ -205,7 +215,7 @@ public class BugRetriever {
         List<Release> affectedReleases = bug.getAffectedVersions();
         LOGGER.log(Level.INFO, ("\n+ AFFECTED VERSION: "));
 
-        if(affectedReleases == null){ LOGGER.log(Level.INFO, (" PASSATO VALORE null"));}
+        if(affectedReleases == null){ LOGGER.log(Level.INFO, (PASSATO_NULL));}
         else{
             for (Release index : affectedReleases) {
                 LOGGER.log(Level.INFO, (index.getName() + " "));
@@ -221,21 +231,21 @@ public class BugRetriever {
 
         // Print fixedversion
         LOGGER.log(Level.INFO, ("\n+ FIXED VERSION: "));
-        if(bug.getFixedVersions() == null){ LOGGER.log(Level.INFO, (" PASSATO VALORE null"));}
+        if(bug.getFixedVersions() == null){ LOGGER.log(Level.INFO, (PASSATO_NULL));}
         else {
             LOGGER.log(Level.INFO, (bug.getFixedVersions().getName()));
         }
 
         // Print openingversion
         LOGGER.log(Level.INFO, ("\n+ OPENING VERSION: "));
-        if(bug.getOpeningVersion() == null){ LOGGER.log(Level.INFO, (" PASSATO VALORE null"));}
+        if(bug.getOpeningVersion() == null){ LOGGER.log(Level.INFO, (PASSATO_NULL));}
         else {
             LOGGER.log(Level.INFO, (bug.getOpeningVersion().getName()));
         }
 
         // Print injected version
         LOGGER.log(Level.INFO, ("\n+ INJECTED VERSION: "));
-        if(bug.getInjectedVersion() == null){ LOGGER.log(Level.INFO, (" PASSATO VALORE null"));}
+        if(bug.getInjectedVersion() == null){ LOGGER.log(Level.INFO, (PASSATO_NULL));}
         else {
             LOGGER.log(Level.INFO, (bug.getInjectedVersion().getName()));
         }

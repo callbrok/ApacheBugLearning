@@ -1,1 +1,27 @@
-model.Metrics#getnStaticMethods()I
+controller.MetricsRetriever#metricsHelper(Lmodel/ReleaseTag;Lmodel/ReleaseTag;Ljava/lang/Boolean;Ljava/lang/String;Ljava/util/List;)Lmodel/Metrics;
+controller.MetricsRetriever#locOtherMetrics(Lmodel/ReleaseTag;Lmodel/ReleaseTag;Ljava/lang/String;Ljava/lang/Boolean;Ljava/util/List;)Ljava/util/List;
+controller.MetricsRetriever#locAndMethodsNumberMetrics(Lmodel/ReleaseTag;LObjectId;Ljava/lang/String;Ljava/lang/Boolean;)Ljava/util/List;
+controller.MetricsRetriever#numberAuthorsMetric(Ljava/util/List;)I
+model.Metrics#<init>()V
+model.Metrics#instance-init#
+==
+getGitTag model.ReleaseTag#getGitTag()Ljava/lang/String;
+setnAuth model.Metrics#setnAuth(I)V
+setAverageLocAdded model.Metrics#setAverageLocAdded(F)V
+setnStaticMethods model.Metrics#setnStaticMethods(I)V
+setnPublicMethods model.Metrics#setnPublicMethods(I)V
+get java.util.List#get(I)Ljava/lang/Object;
+getCurrentRepo model.ReleaseTag#getCurrentRepo()Lmodel/Repo;
+setnRevision model.Metrics#setnRevision(I)V
+setnMethods model.Metrics#setnMethods(I)V
+setnCommentedLines model.Metrics#setnCommentedLines(I)V
+setLocTouched model.Metrics#setLocTouched(I)V
+setnPrivateMethods model.Metrics#setnPrivateMethods(I)V
+setLoc model.Metrics#setLoc(I)V
+setMaxChurn model.Metrics#setMaxChurn(I)V
+setLocAdded model.Metrics#setLocAdded(I)V
+setLocMaxAdded model.Metrics#setLocMaxAdded(I)V
+getjGitRepository model.Repo#getjGitRepository()LRepository;
+setAverageChurn model.Metrics#setAverageChurn(F)V
+setChurn model.Metrics#setChurn(I)V
+size java.util.List#size()I

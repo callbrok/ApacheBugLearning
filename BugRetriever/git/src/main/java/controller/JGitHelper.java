@@ -27,7 +27,7 @@ import java.util.logging.Logger;
 
 public class JGitHelper {
     private static final Logger LOGGER = Logger.getLogger( JGitHelper.class.getName() );
-    private static final String PROJECT_PATH = "C:\\Users\\Marco\\Desktop\\bookkeeper";
+    private static final String PROJECT_PATH = "C:\\"+"Users\\"+"Marco\\"+"Desktop\\"+"bookkeeper";
 
 
     // Initialize project's repo object
@@ -90,10 +90,7 @@ public class JGitHelper {
         List<Ref> call = git.tagList().call();
         String prefixToReturn = "";
 
-        for (Ref ref : call) {
-            prefixToReturn = ref.getName();
-            break;
-        }
+        prefixToReturn = call.get(0).getName();
 
         return prefixToReturn.substring(0,  prefixToReturn.indexOf('-')+1);
     }

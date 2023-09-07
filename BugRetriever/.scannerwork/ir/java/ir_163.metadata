@@ -1,1 +1,1 @@
-controller.CommitRetriever#instance-init#
+model.ReleaseTag#getReferencedFilesList()Ljava/util/List;

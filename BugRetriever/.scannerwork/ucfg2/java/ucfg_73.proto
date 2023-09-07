@@ -1,7 +1,7 @@
 
-model.Metrics#getChurn()I`
-V/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/git/src/main/java/model/Metrics.javaE E("1*!
-1E" E('"
-E E((
+ model.Metrics#getAverageChurn()F`
+V/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/git/src/main/java/model/Metrics.java: :( "1*!
+1:+ :(7"
+:$ :(8
 ""B
 model.MetricsHP

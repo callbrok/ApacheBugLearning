@@ -1,0 +1,4 @@
+controller.CommitRetriever#listCommitRetriever(Ljava/util/List;Ljava/util/Map;Lmodel/Repo;)Ljava/util/List;
+==
+commitListSetterToFileAndToRelease controller.CommitRetriever#commitListSetterToFileAndToRelease(LGit;Lmodel/ReleaseTag;LRevCommit;)Lmodel/ReleaseTag;
+getGitHandle model.Repo#getGitHandle()LGit;

@@ -1,1 +1,1 @@
-model.Commit#setCommitFromGit(LRevCommit;)V
+controller.GitController#<init>()V

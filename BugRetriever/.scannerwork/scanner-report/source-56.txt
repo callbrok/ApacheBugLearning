@@ -37,7 +37,7 @@ public class Proportion {
     //      Quindi setto la condizione a 'false' se voglio imprescindibilmente rispettare il dogma !NON POSSO USARE I DATI
     //      DEL FUTURO PER PREDIRRE IL PASSATO! Altrimenti se settato a 'true' si calcola p supponendo che tutti i progetti
     //      presi in cosiderazione hanno una data di chiusura prima del bug corrente.
-    private static final Boolean DONTCAREFUTUREONPASTDATE=true;
+
 
     public List<Bug> proportionAlgoHelper(List<Bug> actualValidBugList, List<Release> released) throws IOException, ParseException {
         // Calcola la injected version qui
@@ -53,7 +53,7 @@ public class Proportion {
         float p = 0;
 
         // Init list for proportion increment checker
-        List<Bug> bugToCheckIncrement = new ArrayList<>();
+        List<Bug> bugToCheckIncrement;
 
         // Init p for indicated projects for proportion cold start approach
         List<Float> projectsP = coldStart();
@@ -107,7 +107,7 @@ public class Proportion {
         //GetBugInfo gtb = new GetBugInfo();
 
         for (Bug validBugP : actualValidBugList) {
-            if(validBugP.getFixedVersions().getIndex() > currrentBug.getOpeningVersion().getIndex() || validBugP.getAffectedVersions().get(0).getName().equals("DOPROPORTION") || currrentBug.getPropotionaled()){continue;}
+            if(validBugP.getFixedVersions().getIndex() > currrentBug.getOpeningVersion().getIndex() || validBugP.getAffectedVersions().get(0).getName().equals("DOPROPORTION") || Boolean.TRUE.equals(currrentBug.getPropotionaled())){continue;}
             bugToDoIncrement.add(validBugP);
 
             //gtb.printBugInformation(validBugP, 0);
@@ -122,14 +122,14 @@ public class Proportion {
         //      IV = FV - (FV - OV) * P
         // and return the associated Release Object
 
-        float injectedVersionIndex = (float)0;
+        float injectedVersionIndex;
 
         // If Opening Version it's equals to Fixed Version set (FV-OV)=1
         // #NOTE-TO-THINKING-OF:
         //      Dato che se OV e FV sono uguali, quando faccio la sottrazione mi viene uguale, se mi viene uguale
         //      e svolgo la formula di p IV mi verra sempre uguale a FV, e quindi poi verranno scartati alla fine perche
         //      IV=OV=FV --- TUTTO QUESTO NEL CALCOLO DELL'IV DEL BUG A CUI STO APPLICANDO PROPORTION INCREMENTAL
-        float subFvOv = currBugToCalcProportion.getFixedVersions().getIndex() - currBugToCalcProportion.getOpeningVersion().getIndex();
+        int subFvOv = currBugToCalcProportion.getFixedVersions().getIndex() - currBugToCalcProportion.getOpeningVersion().getIndex();
 
         if(subFvOv == 0){
             injectedVersionIndex = currBugToCalcProportion.getFixedVersions().getIndex() - (1 * p);
@@ -151,12 +151,12 @@ public class Proportion {
         //      il parametro newScale di Big decimal mi dice quale valore dopo la virgola devo
         //      approssimare
         //
-        BigDecimal iv = new BigDecimal(injectedVersionIndex);
+        BigDecimal iv = BigDecimal.valueOf(injectedVersionIndex);
 
         // Approximate 'injectedVersionIndex' by defect
-        if(!APROXIMATE){iv = iv.setScale(0, RoundingMode.HALF_DOWN);}
+        if(Boolean.FALSE.equals(APROXIMATE)){iv = iv.setScale(0, RoundingMode.HALF_DOWN);}
         // Approximate 'injectedVersionIndex' by excess
-        if(APROXIMATE){iv = iv.setScale(0, RoundingMode.HALF_UP);}
+        if(Boolean.TRUE.equals(APROXIMATE)){iv = iv.setScale(0, RoundingMode.HALF_UP);}
 
         LOGGER.log(Level.INFO, (currBugToCalcProportion.getNameKey() + "| FV: " + currBugToCalcProportion.getFixedVersions().getIndex() + " | OV: " + currBugToCalcProportion.getOpeningVersion().getIndex() + "| P: " + p + "| IV: " + injectedVersionIndex + " --> " + iv.intValue() ));
 
@@ -179,7 +179,7 @@ public class Proportion {
         // of valid bug calculate until proportion algorithm's call
 
         // Init the P variable to return for Injected Version calc
-        float finalP = (float)0;
+        float finalP = 0;
 
         // Init counter of valid bug which we use for calc P
         int pBugCounter = 0;
@@ -199,6 +199,8 @@ public class Proportion {
         }
         // System.out.println("  --------- Fine increment pe questo Bug\n");
 
+        if(pBugCounter==0){pBugCounter=1;}
+
         return finalP/pBugCounter;
     }
 
@@ -209,7 +211,7 @@ public class Proportion {
 
         // Scroll through the project's names list
         for (String projectName : PROJECTODOCOLDSTART) {
-            float projectP = (float)0;
+            float projectP = 0;
             int pBugCounter = 0;
 
             // #NOTE-TO-THINKING-OF:
@@ -229,6 +231,7 @@ public class Proportion {
                 pBugCounter = pBugCounter + 1;
             }
 
+            if(pBugCounter==0){pBugCounter=1;}
             // Store the project's calculated p (mean of all p of the current project) to a float array
             projectsP.add(projectP/pBugCounter);
 
@@ -258,7 +261,8 @@ public class Proportion {
         // Do the p variable formula:
         //      P = (FV - IV) / (FV - OV)
 
-        int numeratore, denominatore;
+        int numeratore;
+        int denominatore;
 
         numeratore = bugToCalculateP.getFixedVersions().getIndex() - bugToCalculateP.getInjectedVersion().getIndex();
         denominatore = bugToCalculateP.getFixedVersions().getIndex() - bugToCalculateP.getOpeningVersion().getIndex();

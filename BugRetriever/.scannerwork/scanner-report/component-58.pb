@@ -1,1 +1,1 @@
-: 2javaX%hr jira/src/main/java/MainJira.java
+: 2javaXŠhr!jira/src/main/java/model/Bug.java

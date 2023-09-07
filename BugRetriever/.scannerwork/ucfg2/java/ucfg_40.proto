@@ -1,15 +1,32 @@
 
-+model.Commit#getCommitFromJira()Lmodel/Bug;_
-U/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/git/src/main/java/model/Commit.java   ( "1*“
-1 +  (9e
-c
- +  (9
-%0	model.Bug"__id*@
+)__sonar_lambda_0$controller.GitControllerk
+a/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/git/src/main/java/controller/GitController.javav v(t"startingBlock*¨
+startingBlockv v(t‡
+„
 
-__unknown_file ($*"
-model.Commit"
-commitFromJira"
- $  (:
-
-%0	model.BugB
-model.CommitH
+__unknown_file (
+releasedjava.util.List"__id*F
+
+__unknown_file (**(
+controller.GitController"
+
+released*
+1*µ
+1v% v(^qo
+vb v(q	
+%3int"java.util.List#size()I*8
+
+__unknown_file (
+
+releasedjava.util.List2size()Œ
+‰
+v% v(t
+%4java.lang.String"__concat*G
+v% v(^;9
+7\n\n+ Sto settando le release per Walk Forward - STEP: *
+va v(t
+"""$
+v% v(t
+
+%4java.lang.StringB
+java.util.function.Supplier

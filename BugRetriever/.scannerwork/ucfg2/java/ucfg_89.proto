@@ -1,15 +1,15 @@
 
-(model.Bug#getNameKey()Ljava/lang/String;]
-S/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/jira/src/main/java/model/Bug.java ("1*—
-1' (.b
-`
-' (.
-%0java.lang.String"__id*6
+3controller.MetricsRetriever#checkLinesMaxAdded(II)Ip
+d/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/git/src/main/java/controller/MetricsRetriever.javaÚ Ú(""1*%
+1
+Ü Ü("
+
+Ü Ü(
+"": 
 
-__unknown_file (*
-	model.Bug"	
-nameKey"$
-  (/
-
-%0java.lang.StringB
-	model.BugH
+__unknown_file (
+"": 
+
+__unknown_file (
+""B
+controller.MetricsRetrieverP

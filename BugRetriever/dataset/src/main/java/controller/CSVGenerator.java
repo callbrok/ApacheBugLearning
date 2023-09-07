@@ -71,6 +71,7 @@ public class CSVGenerator {
     }
 
 
+
     public void buildCSVFromWEKA(List<EvaluationWEKA> wekaClassifierOutput) throws IOException {
         String fileName = "WEKA-API_OUTPUT_" + wekaClassifierOutput.get(0).getProjectName() + "-" + wekaClassifierOutput.get(0).getClassifier() + ".csv";
 

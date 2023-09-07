@@ -1,6 +1,5 @@
 package model;
 
-import java.io.File;
 import java.util.List;
 
 public class RepoFile {
@@ -44,7 +43,7 @@ public class RepoFile {
 
 
     public String getItsBuggyCSV(){
-        if(itsBuggy){return "YES";}
+        if(Boolean.TRUE.equals(itsBuggy)){return "YES";}
         return "NO";
     }
 }

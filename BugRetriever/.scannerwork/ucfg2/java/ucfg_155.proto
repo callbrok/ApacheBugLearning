@@ -1,16 +1,15 @@
 
-/model.RepoFile#getItsBuggy()Ljava/lang/Boolean;a
-W/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/git/src/main/java/model/RepoFile.java* *("1*Ÿ
-1*) *(1i
-g
-*) *(1
-%0java.lang.Boolean"__id*<
++model.Bug#getFixedVersions()Lmodel/Release;]
+S/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/jira/src/main/java/model/Bug.java (#"1*–
+1. (:d
+b
+. (:
+%0model.Release"__id*;
 
-__unknown_file ( *
-model.RepoFile"
-
-itsBuggy"%
-*" *(2
-
-%0java.lang.BooleanB
-model.RepoFileH
+__unknown_file (*
+	model.Bug"
+fixedVersion"!
+' (;
+
+%0model.ReleaseB
+	model.BugH

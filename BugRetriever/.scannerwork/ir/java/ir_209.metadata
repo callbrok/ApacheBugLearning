@@ -1,0 +1,10 @@
+controller.ReleaseTagRetriever#setBugginess(Ljava/util/List;Ljava/lang/String;Ljava/util/List;Ljava/util/List;Ljava/lang/Boolean;)Ljava/util/List;
+java.lang.String#equals(Ljava/lang/Object;)Z
+controller.ReleaseTagRetriever#checkWalkForwardBugginess(Ljava/lang/Boolean;Lmodel/ReleaseTag;Ljava/util/List;)Ljava/lang/Boolean;
+java.lang.Boolean#equals(Ljava/lang/Object;)Z
+==
+getNameFile model.RepoFile#getNameFile()Ljava/lang/String;
+stream java.util.Collection#stream()Ljava/util/stream/Stream;
+setItsBuggy model.RepoFile#setItsBuggy(Ljava/lang/Boolean;)V
+anyMatch java.util.stream.Stream#anyMatch(Ljava/util/function/Predicate;)Z
+getReferencedFilesList model.ReleaseTag#getReferencedFilesList()Ljava/util/List;

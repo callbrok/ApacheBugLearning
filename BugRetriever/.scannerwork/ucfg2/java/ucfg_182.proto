@@ -1,0 +1,53 @@
+
+‚controller.ReleaseTagRetriever#checkWalkForwardBugginess(Ljava/lang/Boolean;Lmodel/ReleaseTag;Ljava/util/List;)Ljava/lang/Boolean;q
+g/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/git/src/main/java/controller/ReleaseTagRetriever.javaA A(-"3*¥
+2C8 C(@ª§
+C8 C(U
+%2model.Release"4model.ReleaseTag#getReleaseFromJira()Lmodel/Release;*:
+
+__unknown_file (
+
+rlsIndexmodel.ReleaseTag2getReleaseFromJira()qo
+C8 C(`	
+%3int"model.Release#getIndex()I*1
+
+__unknown_file (
+
+%2model.Release2
+getIndex()qo
+Cd C(s	
+%4int"java.util.List#size()I*8
+
+__unknown_file (
+
+releasedjava.util.List2size()*
+1*Ê
+3C C(O
+M
+C C(
+%0java.lang.Boolean"__id*"
+
+__unknown_file (
+""áÞ
+C C(3
+%1boolean"-java.lang.Boolean#equals(Ljava/lang/Object;)Z*5
+
+__unknown_file (
+
+%0java.lang.Boolean*A
+
+__unknown_file (%
+#
+doOnALLReleasejava.lang.Boolean2equals(Ljava/lang/Object;)*
+2
+1*!
+1C C(u"
+C C(u
+"":/
+A. A(E#
+doOnALLReleasejava.lang.Boolean:(
+AF A(Z
+rlsIndexmodel.ReleaseTag:&
+A[ A(q
+releasedjava.util.ListB" 
+controller.ReleaseTagRetriever

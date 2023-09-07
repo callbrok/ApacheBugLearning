@@ -33,7 +33,7 @@ public class ReleaseTagRetriever {
                     project                        // Set Repo objects
             ));
 
-            LOGGER.log(Level.INFO, ("\nAdded Tag: " + tagPathName));
+            LOGGER.log(Level.INFO, () -> "\nAdded Tag: " + tagPathName);
         }
 
         return listOfTagReleases;
@@ -47,16 +47,26 @@ public class ReleaseTagRetriever {
             // Find a ReleaseTag Object that match with one of passed affected version
             if(affectedVersions.stream().anyMatch(o -> rlsIndex.getReleaseFromJira().getName().equals(o.getName()))){
                 for(RepoFile rpIndex : rlsIndex.getReferencedFilesList()){
+
                     // Control for Walk Forward bugginess
-                    if(!doOnALLRelease && (rlsIndex.getReleaseFromJira().getIndex() >= released.size())){break;}
+                    Boolean skipLoop = checkWalkForwardBugginess(doOnALLRelease, rlsIndex, released);
 
                     // Find that file that it will set buggy and correspond to the passed path
-                    if(rpIndex.getNameFile().equals(fileName)){rpIndex.setItsBuggy(true); break;}
+                    if(Boolean.FALSE.equals(skipLoop) && rpIndex.getNameFile().equals(fileName)){rpIndex.setItsBuggy(true); skipLoop=true;}
+
+                    if(Boolean.TRUE.equals(skipLoop)){break;}
                 }
             }
         }
 
         return tagRelesesToDoThinks;
     }
+
+    private Boolean checkWalkForwardBugginess(Boolean doOnALLRelease, ReleaseTag rlsIndex, List<Release> released){
+        // Control for Walk Forward bugginess
+        return Boolean.FALSE.equals(doOnALLRelease) && (rlsIndex.getReleaseFromJira().getIndex() >= released.size());
+    }
+
+
 
 }

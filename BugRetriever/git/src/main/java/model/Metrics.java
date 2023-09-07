@@ -21,27 +21,8 @@ public class Metrics {
     private int nCommentedLines;
 
 
-    public Metrics(int loc, int locTouched, int nAuth, int locAdded, int locMaxAdded, int nRevision,
-                   float averageLocAdded, int churn, int maxChurn, float averageChurn, int nPublicMethods,
-                   int nPrivateMethods, int nStaticMethods, int nMethods, int nCommentedLines){
-
-        this.loc = loc;
-        this.locTouched = locTouched;
-        this.nAuth = nAuth;
-        this.locAdded = locAdded;
-        this.locMaxAdded = locMaxAdded;
-        this.nRevision = nRevision;
-        this.averageLocAdded = averageLocAdded;
-        this.churn = churn;
-        this.maxChurn = maxChurn;
-        this.averageChurn = averageChurn;
-
-        // Me Metrics
-        this.nPublicMethods = nPublicMethods;
-        this.nPrivateMethods = nPrivateMethods;
-        this.nStaticMethods = nStaticMethods;
-        this.nMethods = nMethods;
-        this.nCommentedLines = nCommentedLines;
+    public Metrics(){
+        // Init metrics object
     }
 
 
@@ -56,6 +37,12 @@ public class Metrics {
     public void setChurn(int churn) {this.churn = churn;}
     public void setMaxChurn(int maxChurn) {this.maxChurn = maxChurn;}
     public void setAverageChurn(float averageChurn) {this.averageChurn = averageChurn;}
+
+    public void setnPublicMethods(int nPublicMethods) {this.nPublicMethods = nPublicMethods;}
+    public void setnPrivateMethods(int nPrivateMethods) {this.nPrivateMethods = nPrivateMethods;}
+    public void setnStaticMethods(int nStaticMethods) {this.nStaticMethods = nStaticMethods;}
+    public void setnMethods(int nMethods) {this.nMethods = nMethods;}
+    public void setnCommentedLines(int nCommentedLines) {this.nCommentedLines = nCommentedLines;}
 
 
     // Getter

@@ -1,17 +1,24 @@
 
-(model.Repo#getGitUrl()Ljava/lang/String;]
-S/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/git/src/main/java/model/Repo.java ("1*—
-1& (,b
-`
-& (,
-%0java.lang.String"__id*6
-
-__unknown_file (*
-
-model.Repo"
-gitUrl"$
- (-
+1__sonar_lambda_7$controller.SimpleProgressMonitors
+i/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/git/src/main/java/controller/SimpleProgressMonitor.java> (o"1*ˆ
+1D (We
+c
+D (d
+%3java.lang.String"__concat*!
+D (W
+Starting work on *
+Z (d
+""l
+j
+D (o
+%4java.lang.String"__concat*$
+D (d
 
-%0java.lang.StringB
-
-model.RepoH
+%3java.lang.String*
+g (o
+
+ tasks"$
+D (o
+
+%4java.lang.StringB
+java.util.function.Supplier

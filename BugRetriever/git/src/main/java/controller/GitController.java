@@ -115,7 +115,7 @@ public class GitController {
 
     private List<ReleaseTag> notDoOnALLRelease(List<ReleaseTag> tagRelesesToDoThinks, List<ReleaseTag> finalListRelease, List<Release> released){
 
-        LOGGER.log(Level.INFO, ("\n\n+ Sto settando le release per Walk Forward - STEP: " + (released.size()-1)));
+        LOGGER.log(Level.INFO, () -> "\n\n+ Sto settando le release per Walk Forward - STEP: " + (released.size()-1));
 
         for(int i = 0; i < tagRelesesToDoThinks.size(); i++) {
 
@@ -143,7 +143,7 @@ public class GitController {
             }
         }
 
-        LOGGER.log(Level.INFO, ("+ Tutte le release impostate per il Walk Forward - STEP: " + (released.size()-1)));
+        LOGGER.log(Level.INFO, () -> "+ Tutte le release impostate per il Walk Forward - STEP: " + (released.size()-1));
         return tagRelesesToDoThinks;
     }
 
@@ -163,8 +163,8 @@ public class GitController {
 
                 LOGGER.log(Level.INFO, ("\n\n+ FILE: " + rpfIndex.getPathOfFile()));
                 LOGGER.log(Level.INFO, ("\n+ NELLA RELEASE CON TAG: " + rlstIndex.getGitTag()));
-                LOGGER.log(Level.INFO, ("\n+ BUGGINESS: " + rpfIndex.getItsBuggy())); if(rpfIndex.getItsBuggy()){counterYes = counterYes + 1;}
-                LOGGER.log(Level.INFO, ("\n+ POSSIEDE I SEGUENTI [" + rpfIndex.getRelatedCommits().size() + "] COMMIT:"));
+                LOGGER.log(Level.INFO, ("\n+ BUGGINESS: " + rpfIndex.getItsBuggy())); if(Boolean.TRUE.equals(rpfIndex.getItsBuggy())){counterYes = counterYes + 1;}
+                LOGGER.log(Level.INFO, () -> "\n+ POSSIEDE I SEGUENTI [" + rpfIndex.getRelatedCommits().size() + "] COMMIT:");
 
                 for(Commit comIndex : rpfIndex.getRelatedCommits()){
                     if(rpfIndex.getRelatedCommits().isEmpty()){ LOGGER.log(Level.INFO, ("  NESSUN COMMIT ASSEGNATO")); continue;}

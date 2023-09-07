@@ -1,1 +1,3 @@
-controller.FileRetriever#<init>()V
+model.Bug#setBug(Ljava/lang/String;Ljava/util/Date;Ljava/util/Date;Lmodel/Release;Lmodel/Release;)V
+java.lang.Boolean#equals(Ljava/lang/Object;)Z
+model.Bug#validCheckerHelperFirst(Lmodel/Release;Lmodel/Release;)Ljava/lang/Boolean;

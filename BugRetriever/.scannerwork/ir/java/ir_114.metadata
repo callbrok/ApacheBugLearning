@@ -1,1 +1,1 @@
-model.Bug#getPropotionaled()Ljava/lang/Boolean;
+model.Repo#getPrefixTagPath()Ljava/lang/String;

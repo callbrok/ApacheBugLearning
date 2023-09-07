@@ -1,1 +1,3 @@
-model.Repo#instance-init#
+controller.ReleaseRetriever#setReleaseIndex(Ljava/util/List;)Ljava/util/List;
+==
+setIndex model.Release#setIndex(I)V

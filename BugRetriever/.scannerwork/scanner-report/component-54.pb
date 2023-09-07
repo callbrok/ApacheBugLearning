@@ -1,1 +1,1 @@
-6 2javaXùhr/jira/src/main/java/controller/BugRetriever.java
+6 2javaXƒhr/jira/src/main/java/controller/BugRetriever.java

@@ -1,1 +1,1 @@
-model.Metrics#setLocAdded(I)V
+model.Metrics#getLocTouched()I

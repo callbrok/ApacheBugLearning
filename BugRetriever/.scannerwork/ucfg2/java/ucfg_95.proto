@@ -1,15 +1,17 @@
 
-,model.Bug#getOpeningVersion()Lmodel/Release;]
-S/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/jira/src/main/java/model/Bug.java   ($"1*˜
-1 /  (=f
-d
- /  (=
-%0model.Release"__id*=
+3model.Repo#getApacheProjectName()Ljava/lang/String;]
+S/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/git/src/main/java/model/Repo.java (&"1*¢
+11 (Bm
+k
+1 (B
+%0java.lang.String"__id*A
 
-__unknown_file (!*
-	model.Bug"
-openingVersion"!
- (  (>
-
-%0model.ReleaseB
-	model.BugH
+__unknown_file (%*#
+
+model.Repo"
+apacheProjectName"$
+* (C
+
+%0java.lang.StringB
+
+model.RepoH

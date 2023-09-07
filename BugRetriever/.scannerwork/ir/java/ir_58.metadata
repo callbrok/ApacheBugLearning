@@ -1,1 +1,1 @@
-model.ReleaseTag#<init>(Ljava/lang/String;Lmodel/Release;Lmodel/Repo;)V
+model.Metrics#setLocMaxAdded(I)V

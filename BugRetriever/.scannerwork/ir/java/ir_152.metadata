@@ -1,1 +1,2 @@
-controller.Proportion#instance-init#
+model.RepoFile#getItsBuggyCSV()Ljava/lang/String;
+java.lang.Boolean#equals(Ljava/lang/Object;)Z

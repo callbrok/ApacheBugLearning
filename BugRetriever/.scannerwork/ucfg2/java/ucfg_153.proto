@@ -1,15 +1,15 @@
 
-2model.RepoFile#getRelatedCommits()Ljava/util/List;a
-W/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/git/src/main/java/model/RepoFile.java( (()"1*Ÿ
-1(4 ((Bl
-j
-(4 ((B
-%0java.util.List"__id*B
+-model.Bug#getInjectedVersion()Lmodel/Release;]
+S/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/jira/src/main/java/model/Bug.java (%"1*™
+10 (?g
+e
+0 (?
+%0model.Release"__id*>
 
-__unknown_file (&*$
-model.RepoFile"
-relatedCommits""
-(- ((C
-
-%0java.util.ListB
-model.RepoFileH
+__unknown_file ("* 
+	model.Bug"
+injectedVersion"!
+) (@
+
+%0model.ReleaseB
+	model.BugH

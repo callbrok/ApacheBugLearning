@@ -1,1 +1,1 @@
-model.Bug#getAffectedVersions()Ljava/util/List;
+model.Repo#getGitUrl()Ljava/lang/String;

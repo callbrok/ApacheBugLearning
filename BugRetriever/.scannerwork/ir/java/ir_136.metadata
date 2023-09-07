@@ -1,1 +1,3 @@
-model.Repo#getPrefixTagPath()Ljava/lang/String;
+controller.SimpleProgressMonitor#endTask()V
+==
+log java.util.logging.Logger#log(Ljava/util/logging/Level;Ljava/lang/String;)V

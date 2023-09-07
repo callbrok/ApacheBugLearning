@@ -1,15 +1,15 @@
 
-1model.Bug#getCreationTicketDate()Ljava/util/Date;]
-S/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/jira/src/main/java/model/Bug.java (%"1*ž
-10 (Bk
-i
-0 (B
-%0java.util.Date"__id*A
+.controller.MetricsRetriever#checkChurnMax(II)Ip
+d/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/git/src/main/java/controller/MetricsRetriever.javaß ß("1*%
+1
+á á("
+
+á á(
+"": 
 
-__unknown_file (%*#
-	model.Bug"
-creationTicketDate""
-) (C
-
-%0java.util.DateB
-	model.BugH
+__unknown_file (
+"": 
+
+__unknown_file (
+""B
+controller.MetricsRetrieverP

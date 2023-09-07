@@ -1,0 +1,213 @@
+
+Gcontroller.JGitHelper#getJGitRepository(Ljava/lang/String;)Lmodel/Repo;h
+^/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/git/src/main/java/controller/JGitHelper.java- -(!"8*Ê
+29 9(V
+T
+9 9(
+%3java.util.logging.Logger"__id*"
+
+__unknown_file (
+""U
+S
+9 9(!
+%4java.util.logging.Level"__id*"
+
+__unknown_file (
+""ç
+ä
+	9# 9(î!
+%5java.util.function.Supplier"__declareFunction*G
+
+__unknown_file (+)
+'__sonar_lambda_11$controller.JGitHelperñ
+ì
+
+__unknown_file (2
+!
+%5java.util.function.Supplier"
+projectName"__id*=
+
+__unknown_file (!
+
+projectNamejava.lang.StringÍÁ
+	9 9(ï
+
+%8void"Ujava.util.logging.Logger#log(Ljava/util/logging/Level;Ljava/util/function/Supplier;)V*<
+
+__unknown_file ( 
+
+%3java.util.logging.Logger*;
+
+__unknown_file (
+
+%4java.util.logging.Level*?
+
+__unknown_file (#
+!
+%5java.util.function.Supplier2;log(Ljava/util/logging/Level;Ljava/util/function/Supplier;)"
+: :(
+""*ˆ
+42 2(O
+M
+2 2(
+	repoIndex
+model.Repo"__id*"
+
+__unknown_file (
+""ä
+á
+2 2(
+	repoIndex
+model.Repo"
+__arrayGet*2
+
+__unknown_file (
+
+%0java.util.List*"
+
+__unknown_file (
+""*	
+2
+6
+1*Å
+53W 3(`j
+h
+3E 3(`
+repoToCloneReturn
+model.Repo"__id*5
+
+__unknown_file (
+
+	repoIndex
+model.Repo*
+2
+1*ü
+63 3(©¶
+3 3(/
+%1java.lang.String"3model.Repo#getApacheProjectName()Ljava/lang/String;*5
+
+__unknown_file (
+
+	repoIndex
+model.Repo2getApacheProjectName()€ÿ
+3 3(C
+%2boolean",java.lang.String#equals(Ljava/lang/Object;)Z*4
+
+__unknown_file (
+
+%1java.lang.String*=
+
+__unknown_file (!
+
+projectNamejava.lang.String2equals(Ljava/lang/Object;)*
+4
+5*`
+72 2('L
+J
+2 2('
+%0java.util.List"__id*"
+
+__unknown_file (
+""*
+4*k
+8/! /(%W
+U
+/ /(&
+repoToCloneReturn
+model.Repo"__id*"
+
+__unknown_file (
+""*
+7*ô
+1A A(m
+k
+A1 A(=
+%9java.lang.String"__id*A
+
+__unknown_file (%#
+!C:\Users\Marco\Desktop\bookkeeper/-
+A, A(0
+%10java.io.File"java.io.Fileß
+§
+A( A(>
+%11"(java.io.File#<init>(Ljava/lang/String;)V*1
+
+__unknown_file (
+
+%10java.io.File*4
+
+__unknown_file (
+
+%9java.lang.String÷”
+A A(?
+%12void")model.Repo#setPathOfRepo(Ljava/io/File;)V*=
+
+__unknown_file (!
+
+repoToCloneReturn
+model.Repo*1
+
+__unknown_file (
+
+%10java.io.File2setPathOfRepo(Ljava/io/File;)¶£
+I I(B
+%13java.io.File"-model.Repo#getPathOfLocalRepo()Ljava/io/File;*=
+
+__unknown_file (!
+
+repoToCloneReturn
+model.Repo2getPathOfLocalRepo()≈¬
+G J(
+%14"+model.Repo#setjGitRepository(LRepository;)V*=
+
+__unknown_file (!
+
+repoToCloneReturn
+model.Repo*"
+
+__unknown_file (
+""2setjGitRepository(LRepository;)îë
+M M(?
+%15"*model.Repo#getjGitRepository()LRepository;*=
+
+__unknown_file (!
+
+repoToCloneReturn
+model.Repo2getjGitRepository()≠™
+N N(+
+%16"model.Repo#setGitHandle(LGit;)V*=
+
+__unknown_file (!
+
+repoToCloneReturn
+model.Repo*"
+
+__unknown_file (
+""2setGitHandle(LGit;)¨
+©
+Q+ Q(<
+%17";controller.JGitHelper#getPrefixTag(LGit;)Ljava/lang/String;*5
+
+__unknown_file (
+controller.JGitHelper*"
+
+__unknown_file (
+""–Õ
+Q Q(=
+%18"0model.Repo#setPrefixTagPath(Ljava/lang/String;)V*=
+
+__unknown_file (!
+
+repoToCloneReturn
+model.Repo*#
+
+__unknown_file (
+
+%172$setPrefixTagPath(Ljava/lang/String;)"-
+S S(!!
+
+repoToCloneReturn
+model.Repo:+
+-" -(4
+projectNamejava.lang.StringB
+controller.JGitHelperH

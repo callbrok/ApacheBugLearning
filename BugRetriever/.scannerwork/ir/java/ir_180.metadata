@@ -1,11 +1,1 @@
-controller.ReleaseTagRetriever#setBugginess(Ljava/util/List;Ljava/lang/String;Ljava/util/List;Ljava/util/List;Ljava/lang/Boolean;)Ljava/util/List;
-java.lang.String#equals(Ljava/lang/Object;)Z
-==
-getNameFile model.RepoFile#getNameFile()Ljava/lang/String;
-getReleaseFromJira model.ReleaseTag#getReleaseFromJira()Lmodel/Release;
-stream java.util.Collection#stream()Ljava/util/stream/Stream;
-setItsBuggy model.RepoFile#setItsBuggy(Ljava/lang/Boolean;)V
-anyMatch java.util.stream.Stream#anyMatch(Ljava/util/function/Predicate;)Z
-getIndex model.Release#getIndex()I
-getReferencedFilesList model.ReleaseTag#getReferencedFilesList()Ljava/util/List;
-size java.util.List#size()I
+model.Bug#getValid()Ljava/lang/Boolean;

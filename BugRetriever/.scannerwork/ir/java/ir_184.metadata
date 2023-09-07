@@ -1,1 +1,6 @@
-model.RepoFile#<init>(Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Lmodel/Metrics;Ljava/lang/Boolean;)V
+model.Bug#calculatedAffectedVersions(Ljava/util/List;)Ljava/util/List;
+java.util.ArrayList#<init>()V
+java.util.ArrayList#instance-init#
+==
+add java.util.List#add(Ljava/lang/Object;)Z
+getIndex model.Release#getIndex()I

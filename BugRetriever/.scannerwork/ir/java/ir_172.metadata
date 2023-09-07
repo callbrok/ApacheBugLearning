@@ -1,3 +1,1 @@
-controller.SimpleProgressMonitor#beginTask(Ljava/lang/String;I)V
-==
-println java.io.PrintStream#println(Ljava/lang/String;)V
+model.Bug#<init>()V

@@ -1,22 +1,37 @@
 
-,__sonar_lambda_5$controller.ReleaseRetrievero
-e/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/jira/src/main/java/controller/ReleaseRetriever.java;E ;(j"1*»
-1;L ;(Oš—
-;L ;(`
-%11java.util.Date".model.Release#getReleaseDate()Ljava/util/Date;*2
+1model.RepoFile#getItsBuggyCSV()Ljava/lang/String;a
+W/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/git/src/main/java/model/RepoFile.java- -( "3*"
+2.1 .(6"
+.* .(7
+YES*©
+3. .(O
+M
+. .(
+%0java.lang.Boolean"__id*"
 
-__unknown_file (
-
-rlsmodel.Release2getReleaseDate()tr
-;L ;(j
-%12long"java.util.Date#getTime()J*3
+__unknown_file (
+""i
+g
+. .('
+%1java.lang.Boolean"__id*<
 
-__unknown_file (
-
-%11java.util.Date2	getTime()"
-;L ;(j
-
-%12long: 
-;E ;(H
-rlsmodel.ReleaseB%#
-!java.util.function.ToLongFunction
+__unknown_file ( *
+model.RepoFile"
+
+itsBuggyÕÒ
+. .((
+%2boolean"-java.lang.Boolean#equals(Ljava/lang/Object;)Z*5
+
+__unknown_file (
+
+%0java.lang.Boolean*5
+
+__unknown_file (
+
+%1java.lang.Boolean2equals(Ljava/lang/Object;)*
+2
+1*!
+1/ /("
+/ /(
+NOB
+model.RepoFileH

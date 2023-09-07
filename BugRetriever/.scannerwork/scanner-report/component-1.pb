@@ -1,2 +1,2 @@
-BugRetriever :#6ô	
-;7 :<859!B,(https://github.com/callbrok/BugRetrieverB/+https://travis-ci.org/callbrok/BugRetrieverB3/https://github.com/callbrok/BugRetriever/issuesB,(https://github.com/callbrok/BugRetrieverRcallbrok_BugRetriever
+BugRetriever :#ô	<
+7;59 6:8B,(https://github.com/callbrok/BugRetrieverB/+https://travis-ci.org/callbrok/BugRetrieverB3/https://github.com/callbrok/BugRetriever/issuesB,(https://github.com/callbrok/BugRetrieverRcallbrok_BugRetriever

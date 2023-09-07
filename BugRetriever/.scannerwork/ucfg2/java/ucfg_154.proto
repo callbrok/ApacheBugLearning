@@ -1,15 +1,15 @@
 
-.model.RepoFile#getFileMetrics()Lmodel/Metrics;a
-W/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/git/src/main/java/model/RepoFile.java) )(!"1*š
-1), )(7h
-f
-), )(7
-%0model.Metrics"__id*?
+/model.Bug#getAffectedVersions()Ljava/util/List;]
+S/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/jira/src/main/java/model/Bug.java (,"1*œ
+17 (Gi
+g
+7 (G
+%0java.util.List"__id*?
 
-__unknown_file (#*!
-model.RepoFile"
-fileMetrics"!
-)% )(8
-
-%0model.MetricsB
-model.RepoFileH
+__unknown_file (#*!
+	model.Bug"
+affectedVersions""
+0 (H
+
+%0java.util.ListB
+	model.BugH

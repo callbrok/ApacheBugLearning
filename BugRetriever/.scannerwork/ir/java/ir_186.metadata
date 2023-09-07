@@ -1,1 +1,7 @@
-model.RepoFile#setItsBuggy(Ljava/lang/Boolean;)V
+model.Bug#validCheckerHelperFirst(Lmodel/Release;Lmodel/Release;)Ljava/lang/Boolean;
+java.lang.String#equals(Ljava/lang/Object;)Z
+==
+getReleaseDate model.Release#getReleaseDate()Ljava/util/Date;
+after java.util.Date#after(Ljava/util/Date;)Z
+getName model.Release#getName()Ljava/lang/String;
+getIndex model.Release#getIndex()I

@@ -1,0 +1,97 @@
+
+=controller.Proportion#takeMedianPColdStart(Ljava/util/List;)Fk
+_/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/jira/src/main/java/controller/Proportion.javaö ö(&"3*¯
+2
+û û(tr
+
+û" û(2	
+%2int"java.util.List#size()I*9
+
+__unknown_file (
+
+	projectsPjava.util.List2size()‘
+Ž
+
+û û(@
+%3java.lang.Float"
+__arrayGet*9
+
+__unknown_file (
+
+	projectsPjava.util.List*"
+
+__unknown_file (
+"""
+
+û û(A
+""*Ì
+3
+ø ø(¼
+¹
+
+ø ø(#
+
+%0void"-java.util.Collections#sort(Ljava/util/List;)V*5
+
+__unknown_file ("
+java.util.Collections*9
+
+__unknown_file (
+
+	projectsPjava.util.Listtr
+
+ú ú(	
+%1int"java.util.List#size()I*9
+
+__unknown_file (
+
+	projectsPjava.util.List2size()*
+2
+1*¹
+1
+ý ý(#tr
+
+ý( ý(8	
+%4int"java.util.List#size()I*9
+
+__unknown_file (
+
+	projectsPjava.util.List2size()‘
+Ž
+
+ý ý(A
+%5java.lang.Float"
+__arrayGet*9
+
+__unknown_file (
+
+	projectsPjava.util.List*"
+
+__unknown_file (
+""tr
+
+þ( þ(8	
+%6int"java.util.List#size()I*9
+
+__unknown_file (
+
+	projectsPjava.util.List2size()‘
+Ž
+
+þ þ(=
+%7java.lang.Float"
+__arrayGet*9
+
+__unknown_file (
+
+	projectsPjava.util.List*"
+
+__unknown_file (
+"""
+
+€ €('
+"":)
+
+ö' ö(<
+	projectsPjava.util.ListB
+controller.ProportionP

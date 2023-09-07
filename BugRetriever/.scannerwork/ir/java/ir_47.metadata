@@ -1,1 +1,21 @@
-model.Commit#getCommitFromJira()Lmodel/Bug;
+controller.GitController#doOnALLRelease(Ljava/util/List;Lmodel/Repo;Ljava/util/List;)Ljava/util/List;
+controller.CommitRetriever#instance-init#
+controller.MetricsRetriever#<init>()V
+controller.FileRetriever#instance-init#
+controller.FileRetriever#<init>()V
+controller.CommitRetriever#<init>()V
+controller.MetricsRetriever#instance-init#
+==
+getGitTag model.ReleaseTag#getGitTag()Ljava/lang/String;
+log java.util.logging.Logger#log(Ljava/util/logging/Level;Ljava/lang/String;)V
+get java.util.List#get(I)Ljava/lang/Object;
+getAllFilesOfTagRelease controller.FileRetriever#getAllFilesOfTagRelease(Lmodel/ReleaseTag;)Ljava/util/List;
+metricsHelper controller.MetricsRetriever#metricsHelper(Lmodel/ReleaseTag;Lmodel/ReleaseTag;Ljava/lang/Boolean;Ljava/lang/String;Ljava/util/List;)Lmodel/Metrics;
+listCommitRetriever controller.CommitRetriever#listCommitRetriever(Ljava/util/List;Ljava/util/Map;Lmodel/Repo;)Ljava/util/List;
+getRelatedCommits model.RepoFile#getRelatedCommits()Ljava/util/List;
+mapCommitsByRelease controller.CommitRetriever#mapCommitsByRelease(Lmodel/Repo;Ljava/util/List;)Ljava/util/Map;
+setFileMetrics model.RepoFile#setFileMetrics(Lmodel/Metrics;)V
+getPathOfFile model.RepoFile#getPathOfFile()Ljava/lang/String;
+setReferencedFilesList model.ReleaseTag#setReferencedFilesList(Ljava/util/List;)V
+size java.util.List#size()I
+getReferencedFilesList model.ReleaseTag#getReferencedFilesList()Ljava/util/List;

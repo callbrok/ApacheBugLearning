@@ -1,17 +1,43 @@
 
-/model.Repo#getPrefixTagPath()Ljava/lang/String;]
-S/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/git/src/main/java/model/Repo.java (""1*ž
-1- (:i
-g
-- (:
-%0java.lang.String"__id*=
+1__sonar_lambda_8$controller.SimpleProgressMonitors
+i/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/git/src/main/java/controller/SimpleProgressMonitor.javaO (x"startingBlock*¬
+startingBlockO (x‹
+ˆ
 
-__unknown_file (!*
-
-model.Repo"
-prefixTagPath"$
-& (;
+__unknown_file (
+titlejava.lang.String"__id*K
+
+__unknown_file (/*-"
+ controller.SimpleProgressMonitor"
+title*
+1*ø
+1U (]o
+m
+U (e
+%3java.lang.String"__concat*
+U (]
+
+Start *'
+` (e
+
+titlejava.lang.Stringh
+f
+U (l
+%4java.lang.String"__concat*$
+U (e
 
-%0java.lang.StringB
-
-model.RepoH
+%3java.lang.String*
+h (l
+: h
+f
+U (x
+%5java.lang.String"__concat*$
+U (l
+
+%4java.lang.String*
+o (x
+"""$
+U (x
+
+%5java.lang.StringB
+java.util.function.Supplier

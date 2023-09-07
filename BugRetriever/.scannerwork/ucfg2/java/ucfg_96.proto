@@ -1,15 +1,17 @@
 
-'model.Bug#getValid()Ljava/lang/Boolean;]
-S/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/jira/src/main/java/model/Bug.java! !("1*—
-1!% !(*a
-_
-!% !(*
-%0java.lang.Boolean"__id*4
+(model.Repo#getGitUrl()Ljava/lang/String;]
+S/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/git/src/main/java/model/Repo.java ("1*—
+1& (,b
+`
+& (,
+%0java.lang.String"__id*6
 
-__unknown_file (*
-	model.Bug"
-valid"%
-! !(+
-
-%0java.lang.BooleanB
-	model.BugH
+__unknown_file (*
+
+model.Repo"
+gitUrl"$
+ (-
+
+%0java.lang.StringB
+
+model.RepoH

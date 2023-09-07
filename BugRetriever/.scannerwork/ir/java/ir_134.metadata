@@ -1,1 +1,3 @@
-model.Repo#getPathOfLocalRepo()Ljava/io/File;
+controller.SimpleProgressMonitor#beginTask(Ljava/lang/String;I)V
+==
+log java.util.logging.Logger#log(Ljava/util/logging/Level;Ljava/util/function/Supplier;)V

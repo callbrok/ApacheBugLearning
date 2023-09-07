@@ -45,7 +45,7 @@ public class Bug {
 
         // Check integrity conditions, the bug will be discarded if respect at least one condition
         // explained in "validCheckerHelperFirst" method
-        if(!validCheckerHelperFirst(openingVersion, fixedVersion)){
+        if(Boolean.FALSE.equals(validCheckerHelperFirst(openingVersion, fixedVersion))){
             this.valid = false;
             return;
         }
@@ -76,7 +76,7 @@ public class Bug {
 
         // Check integrity conditions, the bug will be discarded if respect at least one condition
         // explained in "validCheckerHelperSecond" method
-        if(!validCheckerHelperSecond(this.openingVersion, this.fixedVersion, this.injectedVersion)){
+        if(Boolean.FALSE.equals(validCheckerHelperSecond(this.openingVersion, this.fixedVersion, this.injectedVersion))){
             this.valid = false;
         }
     }
@@ -116,11 +116,8 @@ public class Bug {
         // CONDITION 3
         if(openingVersion.getReleaseDate().after(fixedVersion.getReleaseDate())){return false;}
 
-        // CONDITION 6
-        if((fixedVersion.getIndex() == 1) && (openingVersion.getIndex() == 1)){return false;}
-
-        // Return the positive valid condition
-        return true;
+        // CONDITION 6 or Return the positive valid condition
+        return (fixedVersion.getIndex() != 1) || (openingVersion.getIndex() != 1);
     }
 
     private Boolean validCheckerHelperSecond(Release openingVersion, Release fixedVersion, Release injectedVersion){
@@ -132,12 +129,8 @@ public class Bug {
         // CONDITION 4
         if(fixedVersion.getName().equals(injectedVersion.getName()) && injectedVersion.getName().equals(openingVersion.getName())){return false;}
 
-        // CONDITION 5
-        if(injectedVersion.getIndex() > openingVersion.getIndex()){return false;}
-
-
-        // Return the positive valid condition
-        return true;
+        // CONDITION 5 or Return the positive valid condition
+        return injectedVersion.getIndex() <= openingVersion.getIndex();
     }
 
 

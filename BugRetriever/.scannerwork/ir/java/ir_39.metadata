@@ -1,6 +1,1 @@
-controller.BugRetriever#retrieveFixedANDOpeningVersion(Ljava/util/Date;Ljava/util/List;)Lmodel/Release;
-model.Release#instance-init#
-model.Release#<init>(Ljava/lang/String;)V
-==
-getReleaseDate model.Release#getReleaseDate()Ljava/util/Date;
-before java.util.Date#before(Ljava/util/Date;)Z
+model.Commit#<init>(LRevCommit;)V

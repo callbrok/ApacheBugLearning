@@ -1,15 +1,55 @@
 
-/model.Bug#getAffectedVersions()Ljava/util/List;]
-S/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/jira/src/main/java/model/Bug.java (,"1*œ
-17 (Gi
-g
-7 (G
-%0java.util.List"__id*?
+Acontroller.JSONHelper#readAll(Ljava/io/Reader;)Ljava/lang/String;i
+_/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/jira/src/main/java/controller/JSONHelper.java ("4*é
+2 (ÔÑ
+ ( 
+%3java.lang.StringBuilder":java.lang.StringBuilder#append(C)Ljava/lang/StringBuilder;*;
 
-__unknown_file (#*!
-	model.Bug"
-affectedVersions""
-0 (H
+__unknown_file (
+
+sbjava.lang.StringBuilder*"
+
+__unknown_file (
+""2	append(C)*
+3*‚
+3 (ki
+ (	
+%2int"java.io.Reader#read()I*2
+
+__unknown_file (
 
-%0java.util.ListB
-	model.BugH
+rdjava.io.Reader2read()*
+2
+1*¼
+4 (.DB
+ (,
+%0java.lang.StringBuilder"java.lang.StringBuilderr
+p
+ (.
+%1"!java.lang.StringBuilder#<init>()V*;
+
+__unknown_file (
+
+%0java.lang.StringBuildern
+l
+ (/
+sbjava.lang.StringBuilder"__id*;
+
+__unknown_file (
+
+%0java.lang.StringBuilder*
+3*Ú
+1 (¤¡
+ (
+%4java.lang.String"4java.lang.StringBuilder#toString()Ljava/lang/String;*;
+
+__unknown_file (
+
+sbjava.lang.StringBuilder2
+toString()"$
+ (
+
+%4java.lang.String: 
+ ($
+rdjava.io.ReaderB
+controller.JSONHelper
