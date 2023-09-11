@@ -1,5 +1,14 @@
-controller.MetricsRetriever#publicMethodCounter(Ljava/lang/String;I)I
-java.util.regex.Pattern#matcher(Ljava/lang/CharSequence;)Ljava/util/regex/Matcher;
-controller.MetricsRetriever#regexSelector(Lcontroller/MetricsRetriever$methodType;)Ljava/lang/String;
-java.util.regex.Matcher#find()Z
-java.util.regex.Pattern#compile(Ljava/lang/String;)Ljava/util/regex/Pattern;
+controller.BugRetriever#printBugInformation(Lmodel/Bug;I)V
+==
+getFixedVersions model.Bug#getFixedVersions()Lmodel/Release;
+getResolutionTicketDate model.Bug#getResolutionTicketDate()Ljava/util/Date;
+getOpeningVersion model.Bug#getOpeningVersion()Lmodel/Release;
+getNameKey model.Bug#getNameKey()Ljava/lang/String;
+getAffectedVersions model.Bug#getAffectedVersions()Ljava/util/List;
+getName model.Release#getName()Ljava/lang/String;
+getInjectedVersion model.Bug#getInjectedVersion()Lmodel/Release;
+log java.util.logging.Logger#log(Ljava/util/logging/Level;Ljava/lang/String;)V
+log java.util.logging.Logger#log(Ljava/util/logging/Level;Ljava/util/function/Supplier;)V
+getValid model.Bug#getValid()Ljava/lang/Boolean;
+getPropotionaled model.Bug#getPropotionaled()Ljava/lang/Boolean;
+getCreationTicketDate model.Bug#getCreationTicketDate()Ljava/util/Date;

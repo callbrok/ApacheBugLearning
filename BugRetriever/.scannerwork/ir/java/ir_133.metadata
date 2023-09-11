@@ -1,3 +1,1 @@
-controller.SimpleProgressMonitor#start(I)V
-==
-log java.util.logging.Logger#log(Ljava/util/logging/Level;Ljava/util/function/Supplier;)V
+model.Release#<init>(ILjava/lang/String;Ljava/util/Date;)V

@@ -1,1 +1,1 @@
-controller.MetricsRetriever#regexSelector(Lcontroller/MetricsRetriever$methodType;)Ljava/lang/String;
+model.Repo#getGitUrl()Ljava/lang/String;

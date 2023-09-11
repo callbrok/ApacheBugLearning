@@ -1,1 +1,10 @@
-model.Metrics#getLocAdded()I
+controller.MetricsRetriever#takeLatestCommitOfTag(Lmodel/ReleaseTag;Ljava/lang/String;)LRevCommit;
+java.lang.String#equals(Ljava/lang/Object;)Z
+==
+getRelatedCommits model.RepoFile#getRelatedCommits()Ljava/util/List;
+getCommitFromGit model.Commit#getCommitFromGit()LRevCommit;
+isEmpty java.util.List#isEmpty()Z
+get java.util.List#get(I)Ljava/lang/Object;
+getPathOfFile model.RepoFile#getPathOfFile()Ljava/lang/String;
+getReferencedFilesList model.ReleaseTag#getReferencedFilesList()Ljava/util/List;
+size java.util.List#size()I

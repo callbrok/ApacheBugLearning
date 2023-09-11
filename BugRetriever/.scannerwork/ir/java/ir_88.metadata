@@ -1,1 +1,14 @@
-controller.MetricsRetriever#<init>()V
+controller.BugRetriever#injectedVersionsFromJsonFields(LJSONArray;Ljava/util/List;Lmodel/Bug;)Lmodel/Release;
+java.util.ArrayList#<init>()V
+java.util.Comparator#comparingLong(Ljava/util/function/ToLongFunction;)Ljava/util/Comparator;
+java.util.ArrayList#instance-init#
+java.lang.String#equals(Ljava/lang/Object;)Z
+model.Release#instance-init#
+model.Release#<init>(Ljava/lang/String;)V
+==
+setPropotionaled model.Bug#setPropotionaled(Ljava/lang/Boolean;)V
+getName model.Release#getName()Ljava/lang/String;
+add java.util.List#add(Ljava/lang/Object;)Z
+isEmpty java.util.List#isEmpty()Z
+get java.util.List#get(I)Ljava/lang/Object;
+sort java.util.List#sort(Ljava/util/Comparator;)V

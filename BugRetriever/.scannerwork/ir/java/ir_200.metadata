@@ -1,1 +1,1 @@
-controller.CommitRetriever#instance-init#
+model.RepoFile#getItsBuggy()Ljava/lang/Boolean;

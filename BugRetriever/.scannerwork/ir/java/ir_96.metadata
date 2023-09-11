@@ -1,3 +1,1 @@
-controller.MetricsRetriever#blankLineCounter(Ljava/lang/String;I)I
-java.lang.String#isEmpty()Z
-java.lang.String#trim()Ljava/lang/String;
+model.Repo#getPathOfLocalRepo()Ljava/io/File;

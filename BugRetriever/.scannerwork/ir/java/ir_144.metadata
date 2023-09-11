@@ -1,1 +1,32 @@
-model.RepoFile#setItsBuggy(Ljava/lang/Boolean;)V
+starter.GenerateCSV#main([Ljava/lang/String;)V
+controller.WEKAHelper#<init>()V
+java.util.ArrayList#<init>()V
+java.util.List#of(Ljava/lang/Object;)Ljava/util/List;
+java.util.ArrayList#instance-init#
+controller.GitController#<init>()V
+controller.CSVGenerator#<init>()V
+controller.GitController#instance-init#
+java.lang.String#valueOf(I)Ljava/lang/String;
+controller.ReleaseRetriever#instance-init#
+controller.ArffGenerator#instance-init#
+controller.ReleaseRetriever#<init>()V
+controller.JGitHelper#<init>()V
+controller.CSVGenerator#instance-init#
+java.lang.System#currentTimeMillis()J
+controller.JGitHelper#instance-init#
+controller.WEKAHelper#instance-init#
+controller.ArffGenerator#<init>()V
+==
+getJGitRepository controller.JGitHelper#getJGitRepository(Ljava/lang/String;)Lmodel/Repo;
+retrieveAllGitDataSet controller.GitController#retrieveAllGitDataSet(Ljava/util/List;Ljava/util/List;Lmodel/Repo;Ljava/lang/Boolean;)Ljava/util/List;
+buildCSVFromWEKA controller.CSVGenerator#buildCSVFromWEKA(Ljava/util/List;)V
+getName model.Release#getName()Ljava/lang/String;
+add java.util.List#add(Ljava/lang/Object;)Z
+get java.util.List#get(I)Ljava/lang/Object;
+getReleaseFromProject controller.ReleaseRetriever#getReleaseFromProject(Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;)Ljava/util/List;
+buildArff controller.ArffGenerator#buildArff(Ljava/lang/String;)Ljava/lang/String;
+buildCSVFromGit controller.CSVGenerator#buildCSVFromGit(Ljava/util/List;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+getReleaseFromJira model.ReleaseTag#getReleaseFromJira()Lmodel/Release;
+evaluationWEKA controller.WEKAHelper#evaluationWEKA(Ljava/lang/String;Ljava/util/List;Lmodel/Release;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/util/List;
+log java.util.logging.Logger#log(Ljava/util/logging/Level;Ljava/util/function/Supplier;)V
+size java.util.List#size()I

@@ -1,60 +1,15 @@
 
-)__sonar_lambda_2$controller.GitControllerm
-a/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/git/src/main/java/controller/GitController.java§' §(|"startingBlock*ª
-startingBlock
-§' §(|‡
-„
+,model.Bug#getOpeningVersion()Lmodel/Release;]
+S/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/jira/src/main/java/model/Bug.java   ($"1*˜
+1 /  (=f
+d
+ /  (=
+%0model.Release"__id*=
 
-__unknown_file (
-rpfIndexmodel.RepoFile"__id*F
-
-__unknown_file (**(
-controller.GitController"
-
-rpfIndex*
-1*Ê
-1
-§- §(H©¦
-
-§K §(g
-%29java.util.List"2model.RepoFile#getRelatedCommits()Ljava/util/List;*8
-
-__unknown_file (
-
-rpfIndexmodel.RepoFile2getRelatedCommits()om
-
-§K §(n
-
-%30int"java.util.List#size()I*3
-
-__unknown_file (
-
-%29java.util.List2size()z
-x
-
-§- §(n
-%31java.lang.String"__concat*+
-
-§- §(H
-\n+ POSSIEDE I SEGUENTI [*
-
-§K §(n
-
-
-%30intw
-u
-
-§- §(|
-%32java.lang.String"__concat*'
-
-§- §(n
-
-%31java.lang.String*
-
-§q §(|
-	] COMMIT:"'
-
-§- §(|
-
-%32java.lang.StringB
-java.util.function.Supplier
+__unknown_file (!*
+	model.Bug"
+openingVersion"!
+ (  (>
+
+%0model.ReleaseB
+	model.BugH

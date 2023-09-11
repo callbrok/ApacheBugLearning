@@ -1,1 +1,3 @@
-model.Metrics#setnCommentedLines(I)V
+controller.MetricsRetriever#blankLineCounter(Ljava/lang/String;I)I
+java.lang.String#isEmpty()Z
+java.lang.String#trim()Ljava/lang/String;

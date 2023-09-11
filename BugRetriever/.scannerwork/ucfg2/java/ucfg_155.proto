@@ -1,15 +1,7 @@
 
-+model.Bug#getFixedVersions()Lmodel/Release;]
-S/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/jira/src/main/java/model/Bug.java (#"1*–
-1. (:d
-b
-. (:
-%0model.Release"__id*;
-
-__unknown_file (*
-	model.Bug"
-fixedVersion"!
-' (;
-
-%0model.ReleaseB
-	model.BugH
+#model.Metrics#getAverageLocAdded()F`
+V/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/git/src/main/java/model/Metrics.java7 7(#"1*!
+17. 7(="
+7' 7(>
+""B
+model.MetricsHP

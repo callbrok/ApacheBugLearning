@@ -1,15 +1,7 @@
 
-(model.Bug#getNameKey()Ljava/lang/String;]
-S/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/jira/src/main/java/model/Bug.java ("1*—
-1' (.b
-`
-' (.
-%0java.lang.String"__id*6
-
-__unknown_file (*
-	model.Bug"	
-nameKey"$
-  (/
-
-%0java.lang.StringB
-	model.BugH
+model.Metrics#getLocTouched()I`
+V/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/git/src/main/java/model/Metrics.java2 2("1*!
+12' 2(1"
+2  2(2
+""B
+model.MetricsHP

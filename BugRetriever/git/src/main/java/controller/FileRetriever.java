@@ -17,10 +17,6 @@ import java.util.logging.Logger;
 public class FileRetriever {
     private static final Logger LOGGER = Logger.getLogger( FileRetriever.class.getName() );
 
-    // #NOTE-TO-THINKING-OF:
-    //      Fare considerazione su valutazione della bugginess, non considerando le classi test e
-    //      considerando le classi test, facendo capire se la loro analisi è impattante, sono molte le classi di
-    //      buggy quindi potrebbe essere impattante
     private static final Boolean GETTESTCLASS = false;
 
     public List<RepoFile> getAllFilesOfTagRelease(ReleaseTag taggedReleaseToGetFiles) throws Exception {

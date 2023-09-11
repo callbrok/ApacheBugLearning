@@ -1,32 +1,43 @@
 
-Bcontroller.MetricsRetriever#blankLineCounter(Ljava/lang/String;I)Ip
-d/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/git/src/main/java/controller/MetricsRetriever.java ( "3*¶
-3
-Ò Ò(íè
-
-Ò Ò(
-%0java.lang.String")java.lang.String#trim()Ljava/lang/String;*6
+1__sonar_lambda_5$controller.SimpleProgressMonitors
+i/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/git/src/main/java/controller/SimpleProgressMonitor.javaO (x"startingBlock*¨
+startingBlockO (xã
+à
 
-__unknown_file (
+__unknown_file (
+titlejava.lang.String"__id*K
 
-linejava.lang.String2trim(){y
-
-Ò Ò( 
-%1boolean"java.lang.String#isEmpty()Z*4
-
-__unknown_file (
+__unknown_file (/*-"
+ controller.SimpleProgressMonitor"
+title*
+1*¯
+1U (]o
+m
+U (e
+%3java.lang.String"__concat*
+U (]
+
+Start *'
+` (e
+
+titlejava.lang.Stringh
+f
+U (l
+%4java.lang.String"__concat*$
+U (e
 
-%0java.lang.String2	isEmpty()*
-1*%
-1
-Û Û("
-
-Û Û(
-"":&
-
-! (-
-linejava.lang.String: 
-
-__unknown_file (
-""B
-controller.MetricsRetrieverP
+%3java.lang.String*
+h (l
+: h
+f
+U (x
+%5java.lang.String"__concat*$
+U (l
+
+%4java.lang.String*
+o (x
+"""$
+U (x
+
+%5java.lang.StringB
+java.util.function.Supplier

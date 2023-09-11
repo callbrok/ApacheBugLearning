@@ -1,7 +1,94 @@
 
-#model.Metrics#getnPrivateMethods()I`
-V/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/git/src/main/java/model/Metrics.java= =(!"1*!
-1=, =(;"
-=% =(<
-""B
-model.MetricsHP
+gcontroller.BugRetriever#retrieveFixedANDOpeningVersion(Ljava/util/Date;Ljava/util/List;)Lmodel/Release;m
+a/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/jira/src/main/java/controller/BugRetriever.java¤ ¤(2"6*‹
+2
+­ ­(!W
+U
+
+­ ­(!
+releaseIndexmodel.Release"__id*"
+
+__unknown_file (
+""˜
+•
+
+­ ­(!
+releaseIndexmodel.Release"
+__arrayGet*8
+
+__unknown_file (
+
+releasedjava.util.List*"
+
+__unknown_file (
+""*
+4
+1*>
+3
+¯ ¯(#"-
+
+¯ ¯($
+
+releaseIndexmodel.Release*“
+4
+® ®(¤¡
+
+®" ®(?
+%2java.util.Date".model.Release#getReleaseDate()Ljava/util/Date;*;
+
+__unknown_file (
+
+releaseIndexmodel.Release2getReleaseDate()ÒÏ
+
+® ®(@
+%3boolean"(java.util.Date#before(Ljava/util/Date;)Z*:
+
+__unknown_file (
+
+
+ticketDatejava.util.Date*2
+
+__unknown_file (
+
+%2java.util.Date2before(Ljava/util/Date;)*
+2
+3*Ï
+6
+ª. ª(420
+
+ª& ª(-
+%0model.Release"model.Release™
+–
+
+ª" ª(5
+%1")model.Release#<init>(Ljava/lang/String;)V*1
+
+__unknown_file (
+
+%0model.Release*$
+
+__unknown_file (
+NULLi
+g
+
+ª ª(6 
+releaseToReturnmodel.Release"__id*1
+
+__unknown_file (
+
+%0model.Release*
+2*A
+1
+³ ³("0
+
+³ ³("
+ 
+releaseToReturnmodel.Release:*
+
+¤3 ¤(C
+
+ticketDatejava.util.Date:(
+
+¤D ¤(Z
+releasedjava.util.ListB
+controller.BugRetriever

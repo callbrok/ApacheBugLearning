@@ -1,7 +1,15 @@
 
-model.Metrics#getLocTouched()I`
-V/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/git/src/main/java/model/Metrics.java2 2("1*!
-12' 2(1"
-2  2(2
-""B
-model.MetricsHP
+.controller.MetricsRetriever#checkChurnMax(II)Ip
+d/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/git/src/main/java/controller/MetricsRetriever.javaÞ Þ("1*%
+1
+à à("
+
+à à(
+"": 
+
+__unknown_file (
+"": 
+
+__unknown_file (
+""B
+controller.MetricsRetrieverP

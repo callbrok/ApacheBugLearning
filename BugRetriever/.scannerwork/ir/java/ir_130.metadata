@@ -1,8 +1,1 @@
-controller.ReleaseRetriever#printReleaseList(Ljava/util/List;)V
-==
-getReleaseDate model.Release#getReleaseDate()Ljava/util/Date;
-getName model.Release#getName()Ljava/lang/String;
-log java.util.logging.Logger#log(Ljava/util/logging/Level;Ljava/lang/String;)V
-getIndex model.Release#getIndex()I
-log java.util.logging.Logger#log(Ljava/util/logging/Level;Ljava/util/function/Supplier;)V
-getId model.Release#getId()I
+model.Release#getName()Ljava/lang/String;

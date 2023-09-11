@@ -1,11 +1,1 @@
-starterjira.MainJira#main([Ljava/lang/String;)V
-controller.ReleaseRetriever#instance-init#
-controller.ReleaseRetriever#<init>()V
-controller.BugRetriever#<init>()V
 controller.BugRetriever#instance-init#
-==
-printReleaseList controller.ReleaseRetriever#printReleaseList(Ljava/util/List;)V
-getBug controller.BugRetriever#getBug(Ljava/lang/String;Ljava/lang/Boolean;Ljava/util/List;)Ljava/util/List;
-log java.util.logging.Logger#log(Ljava/util/logging/Level;Ljava/lang/String;)V
-printBugInformation controller.BugRetriever#printBugInformation(Lmodel/Bug;I)V
-getReleaseFromProject controller.ReleaseRetriever#getReleaseFromProject(Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;)Ljava/util/List;

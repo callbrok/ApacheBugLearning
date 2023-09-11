@@ -1,16 +1,97 @@
 
-/model.RepoFile#getItsBuggy()Ljava/lang/Boolean;a
-W/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/git/src/main/java/model/RepoFile.java) )("1*Ÿ
-1)) )(1i
-g
-)) )(1
-%0java.lang.Boolean"__id*<
-
-__unknown_file ( *
-model.RepoFile"
+=controller.Proportion#takeMedianPColdStart(Ljava/util/List;)Fk
+_/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/jira/src/main/java/controller/Proportion.javaÉ É(&"3*¯
+2
+Î Î(tr
 
-itsBuggy"%
-)" )(2
-
-%0java.lang.BooleanB
-model.RepoFileH
+Î" Î(2	
+%2int"java.util.List#size()I*9
+
+__unknown_file (
+
+	projectsPjava.util.List2size()‘
+Ž
+
+Î Î(@
+%3java.lang.Float"
+__arrayGet*9
+
+__unknown_file (
+
+	projectsPjava.util.List*"
+
+__unknown_file (
+"""
+
+Î Î(A
+""*Ì
+3
+Ë Ë(¼
+¹
+
+Ë Ë(#
+
+%0void"-java.util.Collections#sort(Ljava/util/List;)V*5
+
+__unknown_file ("
+java.util.Collections*9
+
+__unknown_file (
+
+	projectsPjava.util.Listtr
+
+Í Í(	
+%1int"java.util.List#size()I*9
+
+__unknown_file (
+
+	projectsPjava.util.List2size()*
+2
+1*¹
+1
+Ð Ð(#tr
+
+Ð( Ð(8	
+%4int"java.util.List#size()I*9
+
+__unknown_file (
+
+	projectsPjava.util.List2size()‘
+Ž
+
+Ð Ð(A
+%5java.lang.Float"
+__arrayGet*9
+
+__unknown_file (
+
+	projectsPjava.util.List*"
+
+__unknown_file (
+""tr
+
+Ñ( Ñ(8	
+%6int"java.util.List#size()I*9
+
+__unknown_file (
+
+	projectsPjava.util.List2size()‘
+Ž
+
+Ñ Ñ(=
+%7java.lang.Float"
+__arrayGet*9
+
+__unknown_file (
+
+	projectsPjava.util.List*"
+
+__unknown_file (
+"""
+
+Ó Ó('
+"":)
+
+É' É(<
+	projectsPjava.util.ListB
+controller.ProportionP

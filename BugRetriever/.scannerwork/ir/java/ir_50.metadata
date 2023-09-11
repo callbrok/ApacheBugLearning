@@ -1,1 +1,6 @@
-starter.GenerateCSV#<init>()V
+model.Bug#calculatedAffectedVersions(Ljava/util/List;)Ljava/util/List;
+java.util.ArrayList#<init>()V
+java.util.ArrayList#instance-init#
+==
+add java.util.List#add(Ljava/lang/Object;)Z
+getIndex model.Release#getIndex()I

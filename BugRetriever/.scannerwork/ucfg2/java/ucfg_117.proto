@@ -1,15 +1,23 @@
 
-1__sonar_lambda_9$controller.SimpleProgressMonitors
-i/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/git/src/main/java/controller/SimpleProgressMonitor.java> (S"1*Š
-1D (MU
-S
-D (S
-%3java.lang.String"__concat*
-D (M
-""*
-P (S
--"$
-D (S
-
-%3java.lang.StringB
+__sonar_lambda_12$j
+`/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/dataset/src/main/java/starter/GenerateCSV.javaV V(a"1*’
+1V& V(6c
+a
+V& V(N
+%99java.lang.String"__concat*
+V& V(6
+\n\nThat took *
+V9 V(N
+""v
+t
+V& V(`
+%100java.lang.String"__concat*%
+V& V(N
+
+%99java.lang.String*
+VQ V(`
+ milliseconds"&
+V% V(a
+
+%100java.lang.StringB
 java.util.function.Supplier

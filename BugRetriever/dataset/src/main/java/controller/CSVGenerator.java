@@ -20,7 +20,11 @@ public class CSVGenerator {
 
         String[] headers = {"Version", "Filename", "NR", "NAUTHORS" ,"LOC", "LOC_ADDED", "AVGLOCADDED"
                 , "MAXLOCADDED", "LOCTOUCHED", "CHURN", "AVGCHURN", "MAXCHURN"
-                , "NPBM", "NPVM", "NSM", "NAM", "LOCM"
+                , "NPBM"
+                , "NPVM"
+                , "NSM"
+                , "NAM"
+                , "LOCM"
                 , "BUGGY"};
 
         List<List<String>> data = new ArrayList<>();

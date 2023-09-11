@@ -1,26 +1,0 @@
-
-0__sonar_lambda_14$controller.ReleaseTagRetrieverq
-g/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/git/src/main/java/controller/ReleaseTagRetriever.java$# $(F"startingBlock*¶
-startingBlock$# $(F•
-’
-
-__unknown_file (
-tagPathNamejava.lang.String"__id*O
-
-__unknown_file (3*1 
-controller.ReleaseTagRetriever"
-tagPathName*
-1*³
-1$) $(8}
-{
-$) $(F
-%11java.lang.String"__concat*
-$) $(8
-\nAdded Tag: *-
-$; $(F!
-
-tagPathNamejava.lang.String"%
-$) $(F
-
-%11java.lang.StringB
-java.util.function.Supplier

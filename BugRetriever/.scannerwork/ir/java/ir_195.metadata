@@ -1,13 +1,1 @@
-controller.Proportion#getInjectedVersionFromP(FLmodel/Bug;Ljava/util/List;)Lmodel/Release;
-java.lang.Boolean#equals(Ljava/lang/Object;)Z
-model.Release#instance-init#
-model.Release#<init>(Ljava/lang/String;)V
-java.math.BigDecimal#valueOf(D)Ljava/math/BigDecimal;
-==
-getFixedVersions model.Bug#getFixedVersions()Lmodel/Release;
-getOpeningVersion model.Bug#getOpeningVersion()Lmodel/Release;
-getNameKey model.Bug#getNameKey()Ljava/lang/String;
-setScale java.math.BigDecimal#setScale(ILjava/math/RoundingMode;)Ljava/math/BigDecimal;
-getIndex model.Release#getIndex()I
-log java.util.logging.Logger#log(Ljava/util/logging/Level;Ljava/lang/String;)V
-intValue java.math.BigDecimal#intValue()I
+model.RepoFile#setRelatedCommits(Ljava/util/List;)V

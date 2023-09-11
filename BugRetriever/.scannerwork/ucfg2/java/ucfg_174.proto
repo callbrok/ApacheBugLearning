@@ -1,49 +1,37 @@
 
-2controller.Proportion#increment(Ljava/util/List;)Fk
-_/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/jira/src/main/java/controller/Proportion.java± ±("4*ù
-4
-ø ø("X
-V
-
-ø ø("
-validBugIncrement	model.Bug"__id*"
+1model.RepoFile#getItsBuggyCSV()Ljava/lang/String;a
+W/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/git/src/main/java/model/RepoFile.java- -( "3*"
+2.1 .(6"
+.* .(7
+YES*©
+3. .(O
+M
+. .(
+%0java.lang.Boolean"__id*"
 
 __unknown_file (
-""©
-¶
-
-ø ø("
-validBugIncrement	model.Bug"
-__arrayGet*H
+""i
+g
+. .('
+%1java.lang.Boolean"__id*<
 
-__unknown_file (,
-*
-validBugListForIncrementjava.util.List*"
-
-__unknown_file (
-""*
-5
-1*÷
-5
-¿ ¿(%ø
-º
+__unknown_file ( *
+model.RepoFile"
 
-¿ ¿(8
-%0float",controller.Proportion#pFormula(Lmodel/Bug;)F*5
+itsBuggy’“
+. .((
+%2boolean"-java.lang.Boolean#equals(Ljava/lang/Object;)Z*5
 
-__unknown_file (
-controller.Proportion*<
+__unknown_file (
+
+%0java.lang.Boolean*5
 
-__unknown_file ( 
-
-validBugIncrement	model.Bug*
-4*%
-1
-Ã Ã("
-
-Ã Ã("
-"":8
-
-± ±(>*
-validBugListForIncrementjava.util.ListB
-controller.ProportionP
+__unknown_file (
+
+%1java.lang.Boolean2equals(Ljava/lang/Object;)*
+2
+1*!
+1/ /("
+/ /(
+NOB
+model.RepoFileH

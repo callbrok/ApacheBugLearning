@@ -1,1 +1,1 @@
-model.Repo#setGitHandle(LGit;)V
+model.Commit#<init>(Lmodel/Bug;LRevCommit;)V

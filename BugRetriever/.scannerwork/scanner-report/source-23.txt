@@ -72,7 +72,7 @@ public class GitController {
 
 
         // Print all dataset
-        //printAllGitDataSet(tagRelesesWithBugginess);
+        // method
 
         return tagRelesesWithBugginess;
     }
@@ -148,45 +148,6 @@ public class GitController {
     }
 
 
-    private void printAllGitDataSet(List<ReleaseTag> tagRelesesWithBugginess){
-        // Print alla data inside the ReleaseTag objects list
-        int counterYes=0;
-        int counterFile=0;
 
-        for(ReleaseTag rlstIndex : tagRelesesWithBugginess){
-            LOGGER.log(Level.INFO, ("\n\n+----------------------------------------------------------------------------------------------------+\n" +
-                    "+                             RELEASE REFERED BY TAG: " + rlstIndex.getGitTag()  +
-                    "\n+----------------------------------------------------------------------------------------------------+\n\n"));
-
-            for(RepoFile rpfIndex : rlstIndex.getReferencedFilesList()){
-                counterFile = counterFile + 1;
-
-                LOGGER.log(Level.INFO, ("\n\n+ FILE: " + rpfIndex.getPathOfFile()));
-                LOGGER.log(Level.INFO, ("\n+ NELLA RELEASE CON TAG: " + rlstIndex.getGitTag()));
-                LOGGER.log(Level.INFO, ("\n+ BUGGINESS: " + rpfIndex.getItsBuggy())); if(Boolean.TRUE.equals(rpfIndex.getItsBuggy())){counterYes = counterYes + 1;}
-                LOGGER.log(Level.INFO, () -> "\n+ POSSIEDE I SEGUENTI [" + rpfIndex.getRelatedCommits().size() + "] COMMIT:");
-
-                for(Commit comIndex : rpfIndex.getRelatedCommits()){
-                    if(rpfIndex.getRelatedCommits().isEmpty()){ LOGGER.log(Level.INFO, ("  NESSUN COMMIT ASSEGNATO")); continue;}
-                    if(comIndex.getCommitFromJira() != null){ LOGGER.log(Level.INFO, ("\n   JIRA-| " + comIndex.getCommitFromJira().getNameKey()));continue;}
-                    LOGGER.log(Level.INFO, ("\n    GIT-| " + comIndex.getCommitFromGit().getShortMessage()));
-                }
-
-                LOGGER.log(Level.INFO, ("\n+ METRICHE:"));
-                LOGGER.log(Level.INFO, ("\n+    LOC              -| " + rpfIndex.getFileMetrics().getLoc()));
-                LOGGER.log(Level.INFO, ("\n+    LOC_ADDED        -| " + rpfIndex.getFileMetrics().getLocAdded()));
-                LOGGER.log(Level.INFO, ("\n+    LOC_MAX_ADDED    -| " + rpfIndex.getFileMetrics().getLocMaxAdded()));
-                LOGGER.log(Level.INFO, ("\n+    LOC_TOUCHED      -| " + rpfIndex.getFileMetrics().getLocTouched()));
-                LOGGER.log(Level.INFO, ("\n+    N_REVISION       -| " + rpfIndex.getFileMetrics().getnRevision()));
-                LOGGER.log(Level.INFO, ("\n+    AVG_LOC_ADDED    -| " + rpfIndex.getFileMetrics().getAverageLocAdded()));
-                LOGGER.log(Level.INFO, ("\n+    N_AUTHORS        -| " + rpfIndex.getFileMetrics().getnAuth()));
-                LOGGER.log(Level.INFO, ("\n+    CHURN            -| " + rpfIndex.getFileMetrics().getChurn()));
-                LOGGER.log(Level.INFO, ("\n+    MAX_CHURN        -| " + rpfIndex.getFileMetrics().getMaxChurn()));
-                LOGGER.log(Level.INFO, ("\n+    AVG_CHURN        -| " + rpfIndex.getFileMetrics().getAverageChurn()));
-            }
-        }
-
-        LOGGER.log(Level.INFO, ("\n\nI FILE BUGGY SONO: " + counterYes + " SU " + counterFile + " CLASSI TOTALI TRA LE VARIE RELEASE"));
-    }
 
 }

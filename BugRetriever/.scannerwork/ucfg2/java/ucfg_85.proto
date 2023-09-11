@@ -1,112 +1,24 @@
 
-econtroller.MetricsRetriever#regexSelector(Lcontroller/MetricsRetriever$methodType;)Ljava/lang/String;p
-d/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/git/src/main/java/controller/MetricsRetriever.javaÊ Ê( "2*®
-2
-Ë Ë(W
-U
-
-Ë Ë(
-	wordToAddjava.lang.String"__id*"
-
-__unknown_file (
-""f
-d
-
-Î Î(,
-%0&controller.MetricsRetriever$methodType"__id*"
-
-__unknown_file (
-""f
-d
-
-Ñ Ñ(,
-%1&controller.MetricsRetriever$methodType"__id*"
-
-__unknown_file (
-""f
-d
-
-Ô Ô(,
-%2&controller.MetricsRetriever$methodType"__id*"
-
-__unknown_file (
-""*
-3
-4
-5
-6*¹
-3
-× Ø(k¢
-Ÿ
-
-Ø Ø(j
-	wordToAddjava.lang.String"__id*l
-
-__unknown_file (PN
-Lpublic|private|protected|static|final|native|synchronized|abstract|transient*
-1*q
-4
-Ô Ö([
-Y
-
-Õ Õ("
-	wordToAddjava.lang.String"__id*&
-
-__unknown_file (
-
-static*
-1*r
-5
-Ñ Ó(\
-Z
-
-Ò Ò(#
-	wordToAddjava.lang.String"__id*'
-
-__unknown_file (	
-private*
-1*q
-6
-Î Ð([
-Y
-
-Ï Ï("
-	wordToAddjava.lang.String"__id*&
-
-__unknown_file (
-
-public*
-1*ì
-1
-Û Û(y
-w
-
-Û Û(#
-%3java.lang.String"__concat*
-
-Û Û(
-
-(?:(?:*-
-
-Û Û(#
-
-	wordToAddjava.lang.String·
-´
-
-Û Û(q
-%4java.lang.String"__concat*&
-
-Û Û(#
+1__sonar_lambda_4$controller.SimpleProgressMonitors
+i/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/git/src/main/java/controller/SimpleProgressMonitor.java> (o"1*ˆ
+1D (We
+c
+D (d
+%3java.lang.String"__concat*!
+D (W
+Starting work on *
+Z (d
+""l
+j
+D (o
+%4java.lang.String"__concat*$
+D (d
 
-%3java.lang.String*\
-
-Û% Û(qNL
-J)+\\s+)+[$_\\w<>\\[\\]\\s]*\\s+[\\$_\\w]+\\([^\\)]*\\)?\\s*\\{?[^\\}]*\\}?"&
-
-Û Û(r
+%3java.lang.String*
+g (o
+
+ tasks"$
+D (o
 
-%4java.lang.String:;
-
-Ê! Ê(/-
-mtp&controller.MetricsRetriever$methodTypeB
-controller.MetricsRetriever
+%4java.lang.StringB
+java.util.function.Supplier

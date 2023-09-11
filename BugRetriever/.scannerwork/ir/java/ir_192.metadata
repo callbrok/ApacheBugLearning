@@ -1,4 +1,1 @@
-controller.JGitHelper#deleteRepository(Lmodel/Repo;)V
-==
-getGitHandle model.Repo#getGitHandle()LGit;
-log java.util.logging.Logger#log(Ljava/util/logging/Level;Ljava/lang/String;)V
+model.RepoFile#<init>(Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Lmodel/Metrics;Ljava/lang/Boolean;)V

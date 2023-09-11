@@ -1,15 +1,15 @@
 
-3controller.MetricsRetriever#checkLinesMaxAdded(II)Ip
-d/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/git/src/main/java/controller/MetricsRetriever.javaÚ Ú(""1*%
-1
-Ü Ü("
-
-Ü Ü(
-"": 
-
-__unknown_file (
-"": 
-
-__unknown_file (
-""B
-controller.MetricsRetrieverP
+1__sonar_lambda_6$controller.SimpleProgressMonitors
+i/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/git/src/main/java/controller/SimpleProgressMonitor.java> (S"1*Š
+1D (MU
+S
+D (S
+%3java.lang.String"__concat*
+D (M
+""*
+P (S
+-"$
+D (S
+
+%3java.lang.StringB
+java.util.function.Supplier

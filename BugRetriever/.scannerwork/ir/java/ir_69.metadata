@@ -1,1 +1,4 @@
-model.Metrics#getLoc()I
+controller.MetricsRetriever#tempDifferencesFileCounter(Ljava/util/List;LDiffFormatter;Ljava/lang/String;)Ljava/util/List;
+java.util.ArrayList#instance-init#
+java.util.ArrayList#<init>(Ljava/util/Collection;)V
+java.util.Arrays#asList([Ljava/lang/Object;)Ljava/util/List;

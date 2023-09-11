@@ -1,1 +1,1 @@
-controller.ReleaseRetriever#<init>()V
+model.Release#getId()I

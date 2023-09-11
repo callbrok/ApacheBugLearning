@@ -1,1 +1,1 @@
-model.Commit#<init>(LRevCommit;)V
+model.Bug#getNameKey()Ljava/lang/String;

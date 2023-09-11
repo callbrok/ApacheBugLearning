@@ -1,1 +1,1 @@
-model.Commit#<init>(Lmodel/Bug;LRevCommit;)V
+model.Bug#<init>(Ljava/lang/String;)V

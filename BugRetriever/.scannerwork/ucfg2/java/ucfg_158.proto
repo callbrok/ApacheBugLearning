@@ -1,15 +1,7 @@
 
-/model.Bug#getPropotionaled()Ljava/lang/Boolean;]
-S/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/jira/src/main/java/model/Bug.java" "(#"1*Ÿ
-1". "(;i
-g
-". "(;
-%0java.lang.Boolean"__id*<
-
-__unknown_file ( *
-	model.Bug"
-propotionaled"%
-"' "(<
-
-%0java.lang.BooleanB
-	model.BugH
+ model.Metrics#getAverageChurn()F`
+V/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/git/src/main/java/model/Metrics.java: :( "1*!
+1:+ :(7"
+:$ :(8
+""B
+model.MetricsHP
