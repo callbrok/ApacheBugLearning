@@ -102,17 +102,13 @@ public class Proportion {
         float injectedVersionIndex;
 
         // If Opening Version it's equals to Fixed Version set (FV-OV)=1
-        // #NOTE-TO-THINKING-OF:
-        //      Dato che se OV e FV sono uguali, quando faccio la sottrazione mi viene uguale, se mi viene uguale
-        //      e svolgo la formula di p IV mi verra sempre uguale a FV, e quindi poi verranno scartati alla fine perche
-        //      IV=OV=FV --- TUTTO QUESTO NEL CALCOLO DELL'IV DEL BUG A CUI STO APPLICANDO PROPORTION INCREMENTAL
         int subFvOv = currBugToCalcProportion.getFixedVersions().getIndex() - currBugToCalcProportion.getOpeningVersion().getIndex();
 
         if(subFvOv == 0){
             injectedVersionIndex = currBugToCalcProportion.getFixedVersions().getIndex() - (1 * p);
         }else{injectedVersionIndex = currBugToCalcProportion.getFixedVersions().getIndex() - (subFvOv * p);}
 
-        // If the Injected Version is < 1, it's set to 1
+
         if(injectedVersionIndex<1){injectedVersionIndex=1;}
 
         BigDecimal iv = BigDecimal.valueOf(injectedVersionIndex);

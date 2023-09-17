@@ -1,18 +1,18 @@
 
 2controller.Proportion#increment(Ljava/util/List;)Fk
-_/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/jira/src/main/java/controller/Proportion.java‹ ‹("4*
+_/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/jira/src/main/java/controller/Proportion.java‡ ‡("4*
 4
-˜ ˜("X
+” ”("X
 V
 
-˜ ˜("
+” ”("
 validBugIncrement	model.Bug"__id*"
 
 __unknown_file (
 ""©
 ¦
 
-˜ ˜("
+” ”("
 validBugIncrement	model.Bug"
 __arrayGet*H
 
@@ -25,10 +25,10 @@ __arrayGet*H
 5
 1*Ö
 5
-™ ™(%¿
+• •(%¿
 ¼
 
-™ ™(8
+• •(8
 %0float",controller.Proportion#pFormula(Lmodel/Bug;)F*5
 
 __unknown_file (
@@ -39,11 +39,11 @@ __arrayGet*H
 validBugIncrement	model.Bug*
 4*%
 1
-£ £("
+Ÿ Ÿ("
 
-£ £("
+Ÿ Ÿ("
 "":8
 
-‹ ‹(>*
+‡ ‡(>*
 validBugListForIncrementjava.util.ListB
 controller.ProportionP

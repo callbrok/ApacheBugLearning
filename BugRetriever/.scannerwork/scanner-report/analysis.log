@@ -25,7 +25,7 @@ SonarCloud plugins:
   - Ruby Code Quality and Security 1.14.0.4481 (ruby)
   - Vulnerability Rules for C# 10.2.0.22608 (securitycsharpfrontend)
   - Vulnerability Rules for Java 10.2.0.22608 (securityjavafrontend)
-  - License for SonarLint 8.0.0.46037 (license)
+  - License for SonarLint 8.0.0.46314 (license)
   - Vulnerability Rules for JS 10.2.0.22608 (securityjsfrontend)
   - COBOL Code Quality 5.5.0.6450 (cobol)
   - Vulnerability Rules for Python 10.2.0.22608 (securitypythonfrontend)

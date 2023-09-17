@@ -1,17 +1,17 @@
 
 ,controller.Proportion#pFormula(Lmodel/Bug;)Fk
-_/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/jira/src/main/java/controller/Proportion.java× ×("3*þ
+_/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/jira/src/main/java/controller/Proportion.javaÓ Ó("3*þ
 3
-Û Û(¡ž
+× ×(¡ž
 
-Þ Þ(7
+Ú Ú(7
 %0model.Release"+model.Bug#getFixedVersions()Lmodel/Release;*:
 
 __unknown_file (
 
 bugToCalculateP	model.Bug2getFixedVersions()sq
 
-Þ Þ(B	
+Ú Ú(B	
 %1int"model.Release#getIndex()I*1
 
 __unknown_file (
@@ -19,14 +19,14 @@ _/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/jira/src/main/java/controller
 %0model.Release2
 getIndex()¥¢
 
-ÞE Þ(i
+ÚE Ú(i
 %2model.Release"-model.Bug#getInjectedVersion()Lmodel/Release;*:
 
 __unknown_file (
 
 bugToCalculateP	model.Bug2getInjectedVersion()sq
 
-ÞE Þ(t	
+ÚE Ú(t	
 %3int"model.Release#getIndex()I*1
 
 __unknown_file (
@@ -34,14 +34,14 @@ getIndex()¥¢
 %2model.Release2
 getIndex()¡ž
 
-ß ß(9
+Û Û(9
 %4model.Release"+model.Bug#getFixedVersions()Lmodel/Release;*:
 
 __unknown_file (
 
 bugToCalculateP	model.Bug2getFixedVersions()sq
 
-ß ß(D	
+Û Û(D	
 %5int"model.Release#getIndex()I*1
 
 __unknown_file (
@@ -49,14 +49,14 @@ getIndex()¡ž
 %4model.Release2
 getIndex()£ 
 
-ßG ß(j
+ÛG Û(j
 %6model.Release",model.Bug#getOpeningVersion()Lmodel/Release;*:
 
 __unknown_file (
 
 bugToCalculateP	model.Bug2getOpeningVersion()sq
 
-ßG ß(u	
+ÛG Û(u	
 %7int"model.Release#getIndex()I*1
 
 __unknown_file (
@@ -65,11 +65,11 @@ getIndex()£ 
 getIndex()*
 1*%
 1
-ä ä(!"
+à à(!"
 
-ä ä(/
+à à(/
 "":*
 
-× ×(.
+Ó Ó(.
 bugToCalculateP	model.BugB
 controller.ProportionP

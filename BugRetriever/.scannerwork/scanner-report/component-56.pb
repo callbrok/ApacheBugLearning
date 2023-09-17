@@ -1,1 +1,1 @@
-8 2javaXçhr-jira/src/main/java/controller/Proportion.java
+8 2javaXãhr-jira/src/main/java/controller/Proportion.java

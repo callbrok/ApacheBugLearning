@@ -243,6 +243,10 @@ public class WEKAHelper {
             }
             case BEST_FIRST -> {
                 BestFirst bestFirst = new BestFirst();
+                //-D <0 = backward | 1 = forward | 2 = bi-directional>
+                //        Direction of search. (default = 1)
+                bestFirst.setOptions(new String[] {"-D", "1"});
+
                 AttributeSelection filter = new AttributeSelection();
                 CfsSubsetEval eval = new CfsSubsetEval();
 
@@ -258,7 +262,7 @@ public class WEKAHelper {
                 filteredTraining.setClassIndex(numAttrFiltered - 1);
                 testingFiltered.setClassIndex(numAttrFiltered - 1);
 
-                return List.of(training, testing);
+                return List.of(filteredTraining, testingFiltered);
             }
 
             default -> throw new IllegalArgumentException("IMPOSSIBILE APPLICARE UNA TECNICA DI FEATURE SELECTION");
