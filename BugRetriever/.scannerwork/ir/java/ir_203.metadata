@@ -1,1 +1,13 @@
-controller.CSVGenerator#instance-init#
+controller.CommitRetriever#commitListSetterToFileAndToRelease(LGit;Lmodel/ReleaseTag;LRevCommit;)Lmodel/ReleaseTag;
+null
+java.lang.String#equals(Ljava/lang/Object;)Z
+java.util.ArrayList#instance-init#
+java.util.ArrayList#<init>(Ljava/util/Collection;)V
+model.Commit#<init>(LRevCommit;)V
+model.Commit#instance-init#
+==
+setRelatedCommits model.RepoFile#setRelatedCommits(Ljava/util/List;)V
+getRelatedCommits model.RepoFile#getRelatedCommits()Ljava/util/List;
+add java.util.List#add(Ljava/lang/Object;)Z
+getPathOfFile model.RepoFile#getPathOfFile()Ljava/lang/String;
+getReferencedFilesList model.ReleaseTag#getReferencedFilesList()Ljava/util/List;

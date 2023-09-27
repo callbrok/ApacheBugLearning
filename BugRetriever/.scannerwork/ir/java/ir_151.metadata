@@ -1,1 +1,1 @@
-model.ReleaseTag#getReleaseFromJira()Lmodel/Release;
+model.RepoFile#getNameFile()Ljava/lang/String;

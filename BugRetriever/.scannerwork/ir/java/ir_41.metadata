@@ -1,1 +1,1 @@
-model.Bug#getResolutionTicketDate()Ljava/util/Date;
+model.Commit#setCommitFromJira(Lmodel/Bug;)V

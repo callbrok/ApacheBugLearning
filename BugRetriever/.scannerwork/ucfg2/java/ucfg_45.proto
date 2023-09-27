@@ -1,15 +1,77 @@
 
-/model.Bug#getPropotionaled()Ljava/lang/Boolean;]
-S/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/jira/src/main/java/model/Bug.java" "(#"1*Ÿ
-1". "(;i
-g
-". "(;
-%0java.lang.Boolean"__id*<
+__sonar_lambda_3$k
+`/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/dataset/src/main/java/starter/GenerateCSV.java@/ @(‘"startingBlock*Ð
+startingBlock	@/ @(‘”
+‘
 
-__unknown_file ( *
-	model.Bug"
-propotionaled"%
-"' "(<
+__unknown_file ($
+featureSelectionjava.lang.String"__id*I
+
+__unknown_file (-*+
+starter.GenerateCSV"
+featureSelection†
+ƒ
+
+__unknown_file (
+	balancingjava.lang.String"__id*B
+
+__unknown_file (&*$
+starter.GenerateCSV"
+	balancingŽ
+‹
+
+__unknown_file (!
+costSensitivejava.lang.String"__id*F
+
+__unknown_file (**(
+starter.GenerateCSV"
+costSensitive*
+1*¹
+1@6 @(Q
+Œ
+@6 @(d
+%76java.lang.String"__concat*)
+@6 @(Q
+ANALIZZO CONFIGURAZIONE: *2
+@T @(d&
+$
+featureSelectionjava.lang.Stringk
+i
+@6 @(l
+%77java.lang.String"__concat*%
+@6 @(d
 
-%0java.lang.BooleanB
-	model.BugH
+%76java.lang.String*
+@g @(l
+ | „
+
+@6 @(x
+%78java.lang.String"__concat*%
+@6 @(l
+
+%77java.lang.String*+
+@o @(x
+
+	balancingjava.lang.Stringm
+k
+	@6 @(€
+%79java.lang.String"__concat*%
+@6 @(x
+
+%78java.lang.String*
+	@{ @(€
+ | Œ
+‰
+	@6 @(
+%80java.lang.String"__concat*&
+	@6 @(€
+
+%79java.lang.String*1
+
+@ƒ @(#
+!
+costSensitivejava.lang.String"&
+	@5 @(‘
+
+%80java.lang.StringB
+java.util.function.Supplier

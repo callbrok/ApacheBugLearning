@@ -1,1 +1,1 @@
-model.Metrics#setnStaticMethods(I)V
+model.Bug#getNameKey()Ljava/lang/String;

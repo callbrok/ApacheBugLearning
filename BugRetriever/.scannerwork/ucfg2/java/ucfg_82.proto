@@ -1,17 +1,81 @@
 
-/model.Repo#getPrefixTagPath()Ljava/lang/String;]
-S/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/git/src/main/java/model/Repo.java (""1*û
-1- (:i
-g
-- (:
-%0java.lang.String"__id*=
+Fcontroller.MetricsRetriever#privateMethodCounter(Ljava/lang/String;I)Ip
+d/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/git/src/main/java/controller/MetricsRetriever.javaØ Ø($"3*®
+
+3
+±' ±(.f
+d
+
+±E ±(O,
+%0&controller.MetricsRetriever$methodType"__id*"
 
-__unknown_file (!*
+__unknown_file (
+""f
+d
 
-model.Repo"
-prefixTagPath"$
-& (;
+±E ±(W,
+%1&controller.MetricsRetriever$methodType"__id*"
+
+__unknown_file (
+""ó
+î
+
+±7 ±(X
+%2java.lang.String"econtroller.MetricsRetriever#regexSelector(Lcontroller/MetricsRetriever$methodType;)Ljava/lang/String;*;
+
+__unknown_file (
+controller.MetricsRetriever*J
+
+__unknown_file (.
+,
+%1&controller.MetricsRetriever$methodTypeÎ
+Ë
+
+±' ±(Y
+%3java.util.regex.Pattern"Ljava.util.regex.Pattern#compile(Ljava/lang/String;)Ljava/util/regex/Pattern;*7
+
+__unknown_file ("
+java.util.regex.Pattern*4
+
+__unknown_file (
 
-%0java.lang.StringB
+%2java.lang.StringÉ
+Ä
 
-model.RepoH
+± ±(Z/
+patternPrivateMethodjava.util.regex.Pattern"__id*;
+
+__unknown_file (
+
+%3java.util.regex.Pattern¨©
+
+¥ ¥(-
+%4java.util.regex.Matcher"Rjava.util.regex.Pattern#matcher(Ljava/lang/CharSequence;)Ljava/util/regex/Matcher;*M
+
+__unknown_file (1
+/
+patternPrivateMethodjava.util.regex.Pattern*6
+
+__unknown_file (
+
+linejava.lang.String2!matcher(Ljava/lang/CharSequence;)ÑÅ
+
+¥ ¥(4
+%5boolean"java.util.regex.Matcher#find()Z*;
+
+__unknown_file (
+
+%4java.util.regex.Matcher2find()*
+1*%
+1
+µ µ("
+
+µ µ(
+"":&
+
+Ø% Ø(1
+linejava.lang.String: 
+
+__unknown_file (
+""B
+controller.MetricsRetrieverP

@@ -1,1 +1,13 @@
-model.RepoFile#getPathOfFile()Ljava/lang/String;
+controller.Proportion#coldStart()Ljava/util/List;
+java.util.ArrayList#<init>()V
+controller.Proportion#pFormula(Lmodel/Bug;)F
+controller.ReleaseRetriever#instance-init#
+java.util.ArrayList#instance-init#
+controller.ReleaseRetriever#<init>()V
+controller.BugRetriever#<init>()V
+controller.BugRetriever#instance-init#
+==
+add java.util.List#add(Ljava/lang/Object;)Z
+getBug controller.BugRetriever#getBug(Ljava/lang/String;Ljava/lang/Boolean;Ljava/util/List;)Ljava/util/List;
+log java.util.logging.Logger#log(Ljava/util/logging/Level;Ljava/lang/String;)V
+getReleaseFromProject controller.ReleaseRetriever#getReleaseFromProject(Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;)Ljava/util/List;

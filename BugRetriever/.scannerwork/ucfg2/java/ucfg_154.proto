@@ -1,7 +1,15 @@
 
-model.Metrics#getnRevision()I`
-V/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/git/src/main/java/model/Metrics.java6 6("1*!
-16& 6(/"
-6 6(0
-""B
-model.MetricsHP
+/model.Bug#getAffectedVersions()Ljava/util/List;]
+S/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/jira/src/main/java/model/Bug.java (,"1*œ
+17 (Gi
+g
+7 (G
+%0java.util.List"__id*?
+
+__unknown_file (#*!
+	model.Bug"
+affectedVersions""
+0 (H
+
+%0java.util.ListB
+	model.BugH

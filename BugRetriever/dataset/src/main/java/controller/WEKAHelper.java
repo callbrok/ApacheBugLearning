@@ -245,7 +245,7 @@ public class WEKAHelper {
                 BestFirst bestFirst = new BestFirst();
                 //-D <0 = backward | 1 = forward | 2 = bi-directional>
                 //        Direction of search. (default = 1)
-                bestFirst.setOptions(new String[] {"-D", "1"});
+                bestFirst.setOptions(new String[] {"-D", "0"});
 
                 AttributeSelection filter = new AttributeSelection();
                 CfsSubsetEval eval = new CfsSubsetEval();

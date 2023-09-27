@@ -1,6 +1,7 @@
 package controller;
 
 import model.Repo;
+import org.apache.commons.io.FileUtils;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.LogCommand;
 import org.eclipse.jgit.api.errors.GitAPIException;
@@ -17,17 +18,18 @@ import org.eclipse.jgit.treewalk.AbstractTreeIterator;
 import org.eclipse.jgit.treewalk.CanonicalTreeParser;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class JGitHelper {
     private static final Logger LOGGER = Logger.getLogger( JGitHelper.class.getName() );
-    private static final String PROJECT_PATH = "C:\\"+"Users\\"+"Marco\\"+"Desktop\\"+"syncope";
 
 
     // Initialize project's repo object
@@ -43,6 +45,11 @@ public class JGitHelper {
 
 
     public Repo getJGitRepository(String projectName) throws IOException, GitAPIException {
+        Properties configurationProperties = new Properties();
+        configurationProperties.load(new FileInputStream("configuration.properties"));
+
+        String projectPath = configurationProperties.getProperty("project_path");
+
         // Init Repo to clone and return object
         Repo repoToCloneReturn = null;
 
@@ -58,11 +65,14 @@ public class JGitHelper {
             return null;
         }
 
-        // Clone and set the local path where repo was cloned
 
-
-        // FOR TESTING
-        repoToCloneReturn.setPathOfRepo(new File(PROJECT_PATH));
+        if(configurationProperties.getProperty("use_local").equals("false")){
+            // Clone and set the local path where repo was cloned
+            repoToCloneReturn.setPathOfRepo(cloneRepository(repoToCloneReturn));
+        }else {
+            // Use local project
+            repoToCloneReturn.setPathOfRepo(new File(projectPath));
+        }
 
 
         FileRepositoryBuilder builder = new FileRepositoryBuilder();
@@ -85,6 +95,7 @@ public class JGitHelper {
 
     private String getPrefixTag(Git git) throws GitAPIException {
         // Fetch all remote tag
+        //git.fetch().setRemote("origin").setTagOpt(TagOpt.FETCH_TAGS).call();
 
         List<Ref> call = git.tagList().call();
         String prefixToReturn = "";
@@ -94,15 +105,47 @@ public class JGitHelper {
         return prefixToReturn.substring(0,  prefixToReturn.indexOf('-')+1);
     }
 
- 
+    private File cloneRepository(Repo repoToClone) throws IOException, GitAPIException {
 
-    public void deleteRepository(Repo projectRepo) throws IOException {
+        // Prepare new folder for the cloned repository
+        File localPath = File.createTempFile("MarcoPurificato_Retriever" + repoToClone.getApacheProjectName() + "_", "");
+
+        Files.delete(localPath.toPath());
+
+        // Clone repo
+        LOGGER.log(Level.INFO, () ->  ("Cloning from " + repoToClone.getGitUrl() + " to " + localPath));
+        try (Git result = Git.cloneRepository()
+                .setURI(repoToClone.getGitUrl())
+                .setDirectory(localPath)
+                .setProgressMonitor(new SimpleProgressMonitor())
+                .call()) {
+            // Note: the call() returns an opened repository already which needs to be closed to avoid file handle leaks!
+            LOGGER.log(Level.INFO, () ->  ("Having repository: " + result.getRepository().getDirectory()));
+
+            // Set gitHandle for the repo
+            //
+            // #NOTE-TO-THINKING-OF:
+            //      Mi tengo l'handle del progetto corrente cosi da non riaprirlo ogni volta
+            //      e chiuderlo alla fine facilmente
+            repoToClone.setGitHandle(result);
+        }
+
+        return localPath;
+    }
+
+    public void teardownAll(Repo projectRepo) throws IOException {
+        Properties configurationProperties = new Properties();
+        configurationProperties.load(new FileInputStream("configuration.properties"));
+
         // Close handle
         projectRepo.getGitHandle().close();
         LOGGER.log(Level.INFO, ("\n\nHANDLE CLOSED"));
 
-        // clean up here to not keep using more and more disk-space for these samples
-
+        if(configurationProperties.getProperty("use_local").equals("false")){
+            // clean up here to not keep using more and more disk-space for these samples
+            FileUtils.deleteDirectory(projectRepo.getPathOfLocalRepo());
+            LOGGER.log(Level.INFO, ("\nREPO DELETED"));
+        }
     }
 
 

@@ -1,3 +1,7 @@
-controller.SimpleProgressMonitor#beginTask(Ljava/lang/String;I)V
+controller.JSONHelper#readAll(Ljava/io/Reader;)Ljava/lang/String;
+java.lang.StringBuilder#instance-init#
+java.lang.StringBuilder#<init>()V
+java.lang.StringBuilder#append(C)Ljava/lang/StringBuilder;
+java.lang.StringBuilder#toString()Ljava/lang/String;
 ==
-log java.util.logging.Logger#log(Ljava/util/logging/Level;Ljava/util/function/Supplier;)V
+read java.io.Reader#read()I

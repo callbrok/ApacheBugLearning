@@ -1,15 +1,40 @@
 
-/model.Bug#getAffectedVersions()Ljava/util/List;]
-S/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/jira/src/main/java/model/Bug.java (,"1*œ
-17 (Gi
-g
-7 (G
-%0java.util.List"__id*?
+)__sonar_lambda_1$controller.GitControllerm
+a/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/git/src/main/java/controller/GitController.java’ ’(v"startingBlock*ª
+startingBlock
+’ ’(v‡
+„
 
-__unknown_file (#*!
-	model.Bug"
-affectedVersions""
-0 (H
-
-%0java.util.ListB
-	model.BugH
+__unknown_file (
+releasedjava.util.List"__id*F
+
+__unknown_file (**(
+controller.GitController"
+
+released*
+1*Æ
+1
+’% ’(`tr
+
+’d ’(s
+
+%38int"java.util.List#size()I*8
+
+__unknown_file (
+
+releasedjava.util.List2size()•
+’
+
+’% ’(v
+%39java.lang.String"__concat*K
+
+’% ’(`=;
+9+ Tutte le release impostate per il Walk Forward - STEP: *
+
+’c ’(v
+"""'
+
+’% ’(v
+
+%39java.lang.StringB
+java.util.function.Supplier

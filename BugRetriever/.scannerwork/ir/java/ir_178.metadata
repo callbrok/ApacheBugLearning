@@ -1,1 +1,1 @@
-model.Metrics#getnAuth()I
+model.Bug#getFixedVersions()Lmodel/Release;

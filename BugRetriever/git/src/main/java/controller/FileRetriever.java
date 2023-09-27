@@ -8,19 +8,24 @@ import org.eclipse.jgit.revwalk.RevTree;
 import org.eclipse.jgit.revwalk.RevWalk;
 import org.eclipse.jgit.treewalk.TreeWalk;
 
+import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class FileRetriever {
     private static final Logger LOGGER = Logger.getLogger( FileRetriever.class.getName() );
 
-    private static final Boolean GETTESTCLASS = false;
 
     public List<RepoFile> getAllFilesOfTagRelease(ReleaseTag taggedReleaseToGetFiles) throws Exception {
         List<RepoFile> filesToReturn = new ArrayList<>();
+
+        Properties configurationProperties = new Properties();
+        configurationProperties.load(new FileInputStream("configuration.properties"));
+
 
         String fileExtension;
         String fileName;
@@ -65,7 +70,7 @@ public class FileRetriever {
 
             // If isn't a Java class skip it, WE NEED ONLY JAVA CLASSES TO CALCULATE BUGGINESS
             // Check if we need skip test class, if yes skip it
-            if((!GETTESTCLASS && treeWalk.getPathString().matches("(.*)/test/(.*)")) || !fileExtension.equals("java")){continue;}
+            if((configurationProperties.getProperty("get_test_classes").equals("false") && treeWalk.getPathString().matches("(.*)/test/(.*)")) || !fileExtension.equals("java")){continue;}
 
 
             // Add file to the list

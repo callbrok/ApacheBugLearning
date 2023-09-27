@@ -1,1 +1,33 @@
-model.Metrics#setMaxChurn(I)V
+controller.CSVGenerator#buildCSVFromWEKA(Ljava/util/List;)V
+java.util.ArrayList#<init>()V
+null
+java.io.FileWriter#<init>(Ljava/lang/String;)V
+java.lang.StringBuilder#instance-init#
+java.lang.String#valueOf(Ljava/lang/Object;)Ljava/lang/String;
+java.io.FileWriter#instance-init#
+java.lang.StringBuilder#append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+java.util.ArrayList#instance-init#
+java.lang.StringBuilder#<init>()V
+java.lang.StringBuilder#toString()Ljava/lang/String;
+==
+getPrecision model.EvaluationWEKA#getPrecision()Ljava/lang/Double;
+getTestingRelease model.EvaluationWEKA#getTestingRelease()Lmodel/Release;
+getRecall model.EvaluationWEKA#getRecall()Ljava/lang/Double;
+add java.util.List#add(Ljava/lang/Object;)Z
+getName model.Release#getName()Ljava/lang/String;
+getBalancing model.EvaluationWEKA#getBalancing()Ljava/lang/String;
+getTruePositive model.EvaluationWEKA#getTruePositive()Ljava/lang/Double;
+getFeatureSelection model.EvaluationWEKA#getFeatureSelection()Ljava/lang/String;
+close java.io.OutputStreamWriter#close()V
+get java.util.List#get(I)Ljava/lang/Object;
+getProjectName model.EvaluationWEKA#getProjectName()Ljava/lang/String;
+getTrainingPercentage model.EvaluationWEKA#getTrainingPercentage()Ljava/lang/Double;
+getFalseNegative model.EvaluationWEKA#getFalseNegative()Ljava/lang/Double;
+getFalsePositive model.EvaluationWEKA#getFalsePositive()Ljava/lang/Double;
+getTrainingReleases model.EvaluationWEKA#getTrainingReleases()Ljava/util/List;
+getAuc model.EvaluationWEKA#getAuc()Ljava/lang/Double;
+getKappa model.EvaluationWEKA#getKappa()Ljava/lang/Double;
+getTrueNegative model.EvaluationWEKA#getTrueNegative()Ljava/lang/Double;
+getClassifier model.EvaluationWEKA#getClassifier()Ljava/lang/String;
+getCostSensitive model.EvaluationWEKA#getCostSensitive()Ljava/lang/String;
+getAccuracy model.EvaluationWEKA#getAccuracy()Ljava/lang/Double;

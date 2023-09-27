@@ -312,6 +312,7 @@ public class MetricsRetriever {
 
             churn += tempChurn;
 
+            //System.out.println("PER IL COMMIT " + k + ": " + relatedCommitsOfCurrentTaggedRelease.get(k).getCommitFromGit().getShortMessage() + " AGGIUNTE: " + tempAdded + " ELIMINATE: " + tempDeleted);
         }
 
         locMetrics.set(0, linesAdded);

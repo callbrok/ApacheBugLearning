@@ -1,7 +1,15 @@
 
-model.Metrics#getChurn()I`
-V/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/git/src/main/java/model/Metrics.java8 8("1*!
-18" 8('"
-8 8((
-""B
-model.MetricsHP
+,model.Bug#getOpeningVersion()Lmodel/Release;]
+S/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/jira/src/main/java/model/Bug.java   ($"1*˜
+1 /  (=f
+d
+ /  (=
+%0model.Release"__id*=
+
+__unknown_file (!*
+	model.Bug"
+openingVersion"!
+ (  (>
+
+%0model.ReleaseB
+	model.BugH

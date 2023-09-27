@@ -1,20 +1,7 @@
 
-(__sonar_lambda_3$controller.BugRetrieverm
-a/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/jira/src/main/java/controller/BugRetriever.java» »(>"1*Ÿ
-1
-»% »(3f
-d
-
-»% »(>
-%3java.lang.String"__concat*
-
-»% »(3
-\n+-- BUG N.*
-
-»6 »(>
-"""&
-
-»% »(>
-
-%3java.lang.StringB
-java.util.function.Supplier
+"model.Metrics#getnStaticMethods()I`
+V/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/git/src/main/java/model/Metrics.java> >( "1*!
+1>+ >(9"
+>$ >(:
+""B
+model.MetricsHP

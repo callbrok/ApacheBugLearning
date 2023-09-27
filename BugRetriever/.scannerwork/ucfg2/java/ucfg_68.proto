@@ -1,22 +1,7 @@
 
-,__sonar_lambda_1$controller.ReleaseRetrievero
-e/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/jira/src/main/java/controller/ReleaseRetriever.java:E :(j"1*»
-1:L :(Oš—
-:L :(`
-%13java.util.Date".model.Release#getReleaseDate()Ljava/util/Date;*2
-
-__unknown_file (
-
-rlsmodel.Release2getReleaseDate()tr
-:L :(j
-%14long"java.util.Date#getTime()J*3
-
-__unknown_file (
-
-%13java.util.Date2	getTime()"
-:L :(j
-
-%14long: 
-:E :(H
-rlsmodel.ReleaseB%#
-!java.util.function.ToLongFunction
+model.Metrics#getLocMaxAdded()I`
+V/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/git/src/main/java/model/Metrics.java5 5("1*!
+15( 5(3"
+5! 5(4
+""B
+model.MetricsHP

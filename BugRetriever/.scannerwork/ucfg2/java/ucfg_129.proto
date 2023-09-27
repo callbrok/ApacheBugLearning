@@ -1,49 +1,15 @@
 
-2controller.Proportion#increment(Ljava/util/List;)Fk
-_/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/jira/src/main/java/controller/Proportion.javaá á("4*ù
-4
-î î("X
-V
-
-î î("
-validBugIncrement	model.Bug"__id*"
+2model.RepoFile#getRelatedCommits()Ljava/util/List;a
+W/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/git/src/main/java/model/RepoFile.java' '()"1*ü
+1'4 '(Bl
+j
+'4 '(B
+%0java.util.List"__id*B
 
-__unknown_file (
-""©
-¶
-
-î î("
-validBugIncrement	model.Bug"
-__arrayGet*H
-
-__unknown_file (,
-*
-validBugListForIncrementjava.util.List*"
-
-__unknown_file (
-""*
-5
-1*÷
-5
-ï ï(%ø
-º
-
-ï ï(8
-%0float",controller.Proportion#pFormula(Lmodel/Bug;)F*5
-
-__unknown_file (
-controller.Proportion*<
-
-__unknown_file ( 
-
-validBugIncrement	model.Bug*
-4*%
-1
-ü ü("
-
-ü ü("
-"":8
-
-á á(>*
-validBugListForIncrementjava.util.ListB
-controller.ProportionP
+__unknown_file (&*$
+model.RepoFile"
+relatedCommits""
+'- '(C
+
+%0java.util.ListB
+model.RepoFileH

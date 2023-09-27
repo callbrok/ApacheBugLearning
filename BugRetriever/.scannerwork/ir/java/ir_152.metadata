@@ -1,1 +1,2 @@
-model.ReleaseTag#setReferencedFilesList(Ljava/util/List;)V
+model.RepoFile#getItsBuggyCSV()Ljava/lang/String;
+java.lang.Boolean#equals(Ljava/lang/Object;)Z

@@ -1,1 +1,1 @@
-model.Bug#getInjectedVersion()Lmodel/Release;
+model.Commit#getCommitFromJira()Lmodel/Bug;

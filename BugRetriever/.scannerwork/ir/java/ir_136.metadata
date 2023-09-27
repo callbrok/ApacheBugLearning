@@ -1,1 +1,3 @@
-controller.FileRetriever#<init>()V
+controller.SimpleProgressMonitor#endTask()V
+==
+log java.util.logging.Logger#log(Ljava/util/logging/Level;Ljava/lang/String;)V

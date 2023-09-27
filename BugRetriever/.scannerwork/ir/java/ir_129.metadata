@@ -1,1 +1,3 @@
-model.Release#getIndex()I
+controller.ReleaseRetriever#setReleaseIndex(Ljava/util/List;)Ljava/util/List;
+==
+setIndex model.Release#setIndex(I)V

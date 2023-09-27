@@ -1,1 +1,4 @@
-model.Repo#getjGitRepository()LRepository;
+controller.MetricsRetriever#commentsCounter(Ljava/lang/String;I)I
+java.util.regex.Pattern#matcher(Ljava/lang/CharSequence;)Ljava/util/regex/Matcher;
+java.util.regex.Matcher#find()Z
+java.util.regex.Pattern#compile(Ljava/lang/String;)Ljava/util/regex/Pattern;

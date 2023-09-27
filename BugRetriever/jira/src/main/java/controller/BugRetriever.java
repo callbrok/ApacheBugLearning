@@ -73,6 +73,10 @@ public class BugRetriever {
 
 
                 // Set all bug field except the Affected Version List
+                // #NOTE-TO-THINKING-OF:
+                //      lo faccio prima cosi mi posso passare direttamente il bug con la opening e la fix
+                //      del bug attuale che mi servono nel proportion
+                //
                 bug.setBug(nameKey, resolutionTicketDate, creationTicketDate, openingVersion, fixedVersion);
 
                 // If after setting the bug is not valid skip it
@@ -89,6 +93,11 @@ public class BugRetriever {
                 //      3. I'm in cold start process, so I need to discard all bugs that need proportion and so bug with has the
                 //         first Affected Version Release name: "DOPROPORTION"
                 //      4. After setting the affected version the bug is found to be invalid
+                //
+                // #NOTE-TO-THINKING-OF:
+                //      Io non mi fido di jira quindi uso il retrieve delle affected solo per prendere il primo
+                //      valore cioe l'IV, unico valore che devo per forza prendere da Jira se presente, poi le affected
+                //      me le calcolo da me, anche se paradoissalmente sono indicate nel ticket
                 //
                 bug.setAffectedAndInjectedVersions(injectedVersion, released);
 
@@ -151,6 +160,13 @@ public class BugRetriever {
         // If I'm in Cold Start don't do proportion algorithm, store only the bugs that have all parameters
         // for pFormula, so also the Injected Version, cold start enabler it was set to 'true' for skip
         // proportion algorithm and return a default irrilevant list of release
+        //
+        // #NOTE-TO-THINKING-OF:
+        //      Il campo affectedVersion di un ticket Jira puo' indicare tutte release non released
+        //      e quindi me le calcolo con propotion, nessuna release (incuranza umana) e calcolo
+        //      con proportion, release taggate released con release non taggate e prendo solo quelle
+        //      "released".
+        //
         if(( jsonArray.isEmpty() || affectedVersionReleases.isEmpty() )){return new Release("DOPROPORTION");}
 
         // Order affected version list by date ASC

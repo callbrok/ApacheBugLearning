@@ -1,1 +1,1 @@
-model.Metrics#getLocTouched()I
+model.Bug#getAffectedVersions()Ljava/util/List;

@@ -1,1 +1,2 @@
-model.RepoFile#setFileMetrics(Lmodel/Metrics;)V
+controller.Proportion#increment(Ljava/util/List;)F
+controller.Proportion#pFormula(Lmodel/Bug;)F

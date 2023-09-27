@@ -1,44 +1,7 @@
 
-,__sonar_lambda_2$controller.ReleaseRetrievero
-e/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/jira/src/main/java/controller/ReleaseRetriever.java_ _(a"startingBlock*«
-startingBlock_ _(aŠ
-‡
-
-__unknown_file (
-releasedjava.util.List"__id*I
-
-__unknown_file (-*+
-controller.ReleaseRetriever"
-
-released*
-1*’
-1_% _(Brp
-_E _(T
-
-%20int"java.util.List#size()I*8
-
-__unknown_file (
-
-releasedjava.util.List2size()v
-t
-_% _(T
-%21java.lang.String"__concat*+
-_% _(B
-\n+ LA LISTA E'COMPOSTA DA *
-_E _(T
-
-
-%20intp
-n
-_% _(a
-%22java.lang.String"__concat*%
-_% _(T
-
-%21java.lang.String*
-_W _(a
-
- RELEASE"%
-_% _(a
-
-%22java.lang.StringB
-java.util.function.Supplier
+model.Metrics#getChurn()I`
+V/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/git/src/main/java/model/Metrics.java8 8("1*!
+18" 8('"
+8 8((
+""B
+model.MetricsHP

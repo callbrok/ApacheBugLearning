@@ -1,15 +1,15 @@
 
-(model.Bug#getNameKey()Ljava/lang/String;]
-S/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/jira/src/main/java/model/Bug.java ("1*—
-1' (.b
-`
-' (.
-%0java.lang.String"__id*6
++model.Commit#getCommitFromJira()Lmodel/Bug;_
+U/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/git/src/main/java/model/Commit.java   ( "1*“
+1 +  (9e
+c
+ +  (9
+%0	model.Bug"__id*@
 
-__unknown_file (*
-	model.Bug"	
-nameKey"$
-  (/
-
-%0java.lang.StringB
-	model.BugH
+__unknown_file ($*"
+model.Commit"
+commitFromJira"
+ $  (:
+
+%0	model.BugB
+model.CommitH

@@ -1,0 +1,6 @@
+controller.ReleaseTagRetriever#checkWalkForwardBugginess(Ljava/lang/Boolean;Lmodel/ReleaseTag;Ljava/util/List;)Ljava/lang/Boolean;
+java.lang.Boolean#equals(Ljava/lang/Object;)Z
+==
+getReleaseFromJira model.ReleaseTag#getReleaseFromJira()Lmodel/Release;
+getIndex model.Release#getIndex()I
+size java.util.List#size()I

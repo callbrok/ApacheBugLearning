@@ -1,5 +1,1 @@
-controller.MetricsRetriever#privateMethodCounter(Ljava/lang/String;I)I
-java.util.regex.Pattern#matcher(Ljava/lang/CharSequence;)Ljava/util/regex/Matcher;
-controller.MetricsRetriever#regexSelector(Lcontroller/MetricsRetriever$methodType;)Ljava/lang/String;
-java.util.regex.Matcher#find()Z
-java.util.regex.Pattern#compile(Ljava/lang/String;)Ljava/util/regex/Pattern;
+model.Metrics#setAverageChurn(F)V

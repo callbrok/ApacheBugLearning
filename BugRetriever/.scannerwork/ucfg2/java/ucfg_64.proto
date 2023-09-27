@@ -1,15 +1,7 @@
 
-3controller.MetricsRetriever#checkLinesMaxAdded(II)Ip
-d/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/git/src/main/java/controller/MetricsRetriever.javaÙ Ù(""1*%
-1
-Û Û("
-
-Û Û(
-"": 
-
-__unknown_file (
-"": 
-
-__unknown_file (
-""B
-controller.MetricsRetrieverP
+model.Metrics#getLoc()I`
+V/C:/Users/Marco/Desktop/BugRetriever/BugRetriever/git/src/main/java/model/Metrics.java1 1("1*!
+11  1(#"
+1 1($
+""B
+model.MetricsHP

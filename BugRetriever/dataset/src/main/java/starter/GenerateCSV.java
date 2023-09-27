@@ -3,19 +3,31 @@ package starter;
 import controller.*;
 import model.*;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class GenerateCSV {
+
     private static final Logger LOGGER = Logger.getLogger( GenerateCSV.class.getName() );
 
-    private static final String PROJECT="BOOKKEEPER";
 
     public static void main(String[] args) throws Exception {
 
         long startTime = System.currentTimeMillis();
+        Properties configurationProperties = new Properties();
+        configurationProperties.load(new FileInputStream("configuration.properties"));
+
+        String project = configurationProperties.getProperty("project");
 
         // From JIRA
         ReleaseRetriever rrt = new ReleaseRetriever();
@@ -24,8 +36,8 @@ public class GenerateCSV {
         GitController gtc = new GitController();
         JGitHelper gtp = new JGitHelper();
 
-        Repo repoToDoThinks = gtp.getJGitRepository(PROJECT);
-        List<Release> released = rrt.getReleaseFromProject(PROJECT, true, "ALL");
+        Repo repoToDoThinks = gtp.getJGitRepository(project);
+        List<Release> released = rrt.getReleaseFromProject(project, true, "ALL");
         List<ReleaseTag> finalListRelease = gtc.retrieveAllGitDataSet(released, null, repoToDoThinks, true);
 
         // From DataSet
@@ -33,7 +45,7 @@ public class GenerateCSV {
         ArffGenerator arff = new ArffGenerator();
         WEKAHelper whp = new WEKAHelper();
 
-        csv.buildCSVFromGit(finalListRelease, "ALL",  PROJECT +"_ALL");
+        csv.buildCSVFromGit(finalListRelease, "ALL",  project +"_ALL");
 
         // From WEKA
         List<EvaluationWEKA> wekaRandomForestList = new ArrayList<>();
@@ -49,10 +61,10 @@ public class GenerateCSV {
         for(int k=0; k<finalListRelease.size()-1; k++){
 
             // Build Training Set Dataset, with release in range 0-k
-            released = rrt.getReleaseFromProject(PROJECT, true, String.valueOf(k));
-            String trainingArffPath = arff.buildArff(csv.buildCSVFromGit(gtc.retrieveAllGitDataSet(released, finalListRelease, repoToDoThinks, false), finalListRelease.get(k).getReleaseFromJira().getName(), k + "_" + PROJECT +"_TRAINING"));
+            released = rrt.getReleaseFromProject(project, true, String.valueOf(k));
+            String trainingArffPath = arff.buildArff(csv.buildCSVFromGit(gtc.retrieveAllGitDataSet(released, finalListRelease, repoToDoThinks, false), finalListRelease.get(k).getReleaseFromJira().getName(), k + "_" + project +"_TRAINING"));
             // Build Testing Set Dataset with k+1 Release
-            String testingArffPath =  arff.buildArff(csv.buildCSVFromGit(List.of(finalListRelease.get(k+1)), finalListRelease.get(k+1).getReleaseFromJira().getName(), k + "_" + PROJECT + "_TESTING"));
+            String testingArffPath =  arff.buildArff(csv.buildCSVFromGit(List.of(finalListRelease.get(k+1)), finalListRelease.get(k+1).getReleaseFromJira().getName(), k + "_" + project + "_TESTING"));
 
 
             // -- WEKA API ------------------------------------------------------------- INIZIO --
@@ -63,7 +75,7 @@ public class GenerateCSV {
                     for(String costSensitive : costSensitiveCombination){
                         LOGGER.log(Level.INFO, () -> ("ANALIZZO CONFIGURAZIONE: " + featureSelection + " | " + balancing + " | " + costSensitive));
 
-                        tempWeka = whp.evaluationWEKA(PROJECT, released, finalListRelease.get(k+1).getReleaseFromJira(), trainingArffPath, testingArffPath,
+                        tempWeka = whp.evaluationWEKA(project, released, finalListRelease.get(k+1).getReleaseFromJira(), trainingArffPath, testingArffPath,
                                 featureSelection, balancing, costSensitive);
 
                         wekaRandomForestList.add(tempWeka.get(0));
@@ -81,9 +93,11 @@ public class GenerateCSV {
         csv.buildCSVFromWEKA(wekaNativeBayesList);
         csv.buildCSVFromWEKA(wekaIBKList);
 
+        gtp.teardownAll(repoToDoThinks);
 
         long endTime = System.currentTimeMillis();
         LOGGER.log(Level.INFO, () -> ("\n\nThat took " + (endTime - startTime) + " milliseconds"));
     }
+
 
 }

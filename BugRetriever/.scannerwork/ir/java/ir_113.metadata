@@ -1,10 +1,1 @@
-controller.ReleaseTagRetriever#makeTagReleasesList(Lmodel/Repo;Ljava/util/List;)Ljava/util/List;
-java.util.ArrayList#<init>()V
-model.ReleaseTag#instance-init#
-java.util.ArrayList#instance-init#
-model.ReleaseTag#<init>(Ljava/lang/String;Lmodel/Release;Lmodel/Repo;)V
-==
-getName model.Release#getName()Ljava/lang/String;
-add java.util.List#add(Ljava/lang/Object;)Z
-getPrefixTagPath model.Repo#getPrefixTagPath()Ljava/lang/String;
-log java.util.logging.Logger#log(Ljava/util/logging/Level;Ljava/util/function/Supplier;)V
+model.Repo#getGitHandle()LGit;
