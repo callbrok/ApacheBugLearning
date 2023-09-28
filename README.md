@@ -73,23 +73,44 @@ For each classifier used, a .csv file is generated containing for each combinati
 
 |   **Metric**   |           **Description**          |
 |:--------------:|:----------------------------------:|
-|   `%-TRAINING`   | Number of lines of code            |
-|    `PRECISION`   | Sum of LOCs added                  |
-|     `RECALL`     | Maximum LOCs added                 |
-|       `AUC`      | Sum of LOCs added and LOCs removed |
-|      `KAPPA`     | Number of revisions of the class   |
-|    `ACCURACY`    | Average number of LOCs added       |
-|  `TRUE-NEGATIVE` | Number of reviewers of the class   |
-|  `TRUE-POSITIVE` | \| LOC added - LOC removed \|      |
-| `FALSE-POSITIVE` | Maximum CHURN                      |
-| `FALSE-NEGATIVE` | Average CHURN                      |
+|    `PRECISION`   |  How many times you have correctly classified an instance as positive                  |
+|     `RECALL`     | How many of the positives you have been able to classify                 |
+|       `AUC`      | Area subtended by the ROC curve |
+|      `KAPPA`     |  How many times you have been more accurate than a dummy classifier   |
+|    `ACCURACY`    | Percentage of all right estimates out of all estimates       |
+|  `TRUE-NEGATIVE` | Predicted negative and actually negative   |
+|  `TRUE-POSITIVE` | Predicted positive and actually positive      |
+| `FALSE-POSITIVE` | Predicted positive and actually negative                      |
+| `FALSE-NEGATIVE` | Predicted negative and actually positive                      |
 
 
 
 ## Configuration File
 
 The configuration.properties file was used for configuration. The parameters are:
+
+`project` → ***Name of the project to be analyzed***
+
+`use_local` → ***Path of the cloned project locally***
+
+`project_path` → ***Path of the cloned project locally***
+
+`coldstart_project` → ***Set to 'true' to use an apache repository already cloned locally or set to 'false' to automatically clone the repository***
+
+`threshold` → ***Minimum number of commits to make proportion increment otherwise make cold start***
+
+`aproximate` → ***If set to 'true' it approximates the Injected Version calculated via proportion by excess, otherwise it approximates by default***
+
+`get_test_classes` → ***If set to 'true' consider the project test files***
 ## Output Files
+## Project Vulnerabilities
+
+The project was analyzed via the Sonar Cloud platform ( :link: [analysis](https://sonarcloud.io/summary/overall?id=callbrok_BugRetriever) ), showing the presence of 0 code smells, 0 bugs and 0 vulnerabilities.
+
+<p float="center">
+  <img src="https://github.com/callbrok/ApacheBugLearning/blob/b670b72555de043d87ddcbc2d8cc5524d6c55972/ProjectMaterial/image/sonar_cloud.png" width="900" height="170" >
+</p>
+
 ## Presentation :it:
 
-An [expository presentation]() of the project has been created in Italian, preview images below.
+An [expository presentation](https://github.com/callbrok/ApacheBugLearning/blob/b670b72555de043d87ddcbc2d8cc5524d6c55972/ProjectMaterial/slide_MLforSE.pdf) of the project has been created in Italian language.
