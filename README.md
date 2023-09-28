@@ -102,7 +102,7 @@ The configuration.properties file was used for configuration. The parameters are
 `aproximate` → ***If set to 'true' it approximates the Injected Version calculated via proportion by excess, otherwise it approximates by default***
 
 `get_test_classes` → ***If set to 'true' consider the project test files***
-## Output Files
+
 ## Project Vulnerabilities
 
 The project was analyzed via the Sonar Cloud platform ( :link: [analysis](https://sonarcloud.io/summary/overall?id=callbrok_BugRetriever) ), showing the presence of 0 code smells, 0 bugs and 0 vulnerabilities.
