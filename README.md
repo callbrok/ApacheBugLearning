@@ -65,7 +65,7 @@ Inconsistent tickets are discarded and if not present the injection version, nec
 
 The _dataset_ module deals with the prediction of Bugginness of classes, using the training set constructed with the previous modules and as a Machine Laerning tool [WEKA](https://www.cms.waikato.ac.nz/ml/weka/).
 
-The linear combination of different techniques and classifiers was used for prediction. The **classifiers** used were `Random Forest`, `Naive Bayes`, `IBk` in combination with **Feature Selection** `Best First` techniques (Backward Search and Forward Search), **Sampling** `Oversampling`, `Undersampling` and `SMOTE` techniques, and **Cost Sensitive** `Threshold` and `Learning` techniques.
+The linear combination of different techniques and classifiers was used for prediction. The **Classifiers** used were `Random Forest`, `Naive Bayes`, `IBk` in combination with **Feature Selection** `Best First` techniques (Backward Search and Forward Search), **Sampling** `Oversampling`, `Undersampling` and `SMOTE` techniques, and **Cost Sensitive** `Threshold` and `Learning` techniques.
 
 For the evaluation of the classifiers, the **Walk Forward** technique was used; all the given data were divided into k Releases, ordered chronologically, and for each release a run was performed. At the k-th run, the k-th release was used as the testing set and all previous releases as the training set.
 
@@ -87,4 +87,9 @@ For each classifier used, a .csv file is generated containing for each combinati
 
 
 ## Configuration File
+
+The configuration.properties file was used for configuration. The parameters are:
+## Output Files
 ## Presentation :it:
+
+An [expository presentation]() of the project has been created in Italian, preview images below.
