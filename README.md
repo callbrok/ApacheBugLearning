@@ -47,7 +47,7 @@ Ticket information is retrieved in groups of 1000 tickets, via the Jira REST API
 "&fields=key,resolutiondate,versions,created,fixVersions&startAt=" + i + "&maxResults=" + j
 ```
 
-All tickets that refer to BUGs, and that have been closed as a result of the Bug fix, are considered. The variables `i` and `j` are used to retrieve tickets in groups of 1000 items.
+All tickets that refer to BUGs, and that have been closed as a result of the Bug fix, are considered. The variables `i` and `j` are used to retrieve tickets in groups of 1000 items (group of maximum elements returned by a Jira REST API call).
 
 A separate entity has been created for each of these items:
 
