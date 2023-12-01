@@ -51,13 +51,13 @@ All tickets that refer to BUGs, and that have been closed as a result of the Bug
 
 A separate entity has been created for each of these items:
 
-`commit` → **Bug** Entity
+&emsp;&emsp;&emsp;`commit` → **Bug** Entity
 
-`release` → **Release** Entity
+&emsp;&emsp;&emsp;`release` → **Release** Entity
 
-`file` → **RepoFile** Entity
+&emsp;&emsp;&emsp;`file` → **RepoFile** Entity
 
-`repository` → **Repo** Entity
+&emsp;&emsp;&emsp;`repository` → **Repo** Entity
 
 Inconsistent tickets are discarded and if not present the injection version, necessary for class labeling, is calculated using proportion techniques (link paper). Under a threshold, set within the configuration file, proportion Cold Start is used otherwise porportion Increment.
 
@@ -89,19 +89,15 @@ For each classifier used, a .csv file is generated containing for each combinati
 
 The configuration.properties file was used for configuration. The parameters are:
 
-`project` → ***Name of the project to be analyzed***
-
-`use_local` → ***Path of the cloned project locally***
-
-`project_path` → ***Path of the cloned project locally***
-
-`coldstart_project` → ***Set to 'true' to use an apache repository already cloned locally or set to 'false' to automatically clone the repository***
-
-`threshold` → ***Minimum number of commits to make proportion increment otherwise make cold start***
-
-`aproximate` → ***If set to 'true' it approximates the Injected Version calculated via proportion by excess, otherwise it approximates by default***
-
-`get_test_classes` → ***If set to 'true' consider the project test files***
+|   |   |
+|---|---|
+| `project`           | Name of the project to be analyzed                                                                                              |
+| `use_local`         | Path of the cloned project locally                                                                                              |
+| `project_path`      | Path of the cloned project locally                                                                                              |
+| `coldstart_project` | Set to 'true' to use an apache repository already cloned locally or set to 'false' to automatically clone the repository        |
+| `threshold`         | Minimum number of commits to make proportion increment otherwise make cold start                                                |
+| `aproximate`        | If set to 'true' it approximates the Injected Version calculated via proportion by excess, otherwise it approximates by default |
+| `get_test_classes`  | If set to 'true' consider the project test files                                                                                |
 
 ## Project Vulnerabilities
 
